@@ -1,0 +1,30 @@
+ Output for Test 3  Transient, leaky, rainfall                          
+
+          K          D          L         mu      alpha          b          A
+     0.0000    35.0000  1000.0000     2.0000    -0.0000     0.0000    -0.0000
+ Evaluated sum terms  Interval  Tolerance
+                5001        20     0.0100
+
+ General flow problem, initially flat groundwater level, or steady flow: Generl
+
+ Number of locations for which H(x,0) is given:           3
+ First and last of those locations:     0.0000,  1000.0000
+
+ Number of times for which H(1,t) is given:             101
+ First and last of those times:         0.0000, **********
+
+ Number of times for which R(t) is given:               101
+ First and last of those times:         0.0000, **********
+
+ First and last location for which output will be generated:     0.0000,  1000.0000
+ First and last time for which output will be generated:         0.0000, **********
+
+
+ Asymptotic aquifer-scale hydraulic conductivities
+ Zero recharge    R constant     Leaky aquifer
+   1.7272E-06     2.1000E-06     2.1000E-06
+
+
+ Characteristic times of the aquifer
+ Zero recharge    R constant     Leaky aquifer
+   1.1580E+09     9.5238E+08     9.5238E+08

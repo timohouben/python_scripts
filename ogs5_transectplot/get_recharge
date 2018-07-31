@@ -1,0 +1,55 @@
+import ogs5py
+import numpy as np
+import re
+
+name_of_project_derooij = "sinus"
+name_of_project_ogs = "transect_01"
+path_to_project = "/Users/houben/PhD/transect/transect/ogs/confined/transient/topography/1layer/template_30m/"
+
+
+
+def get_recharge_derooij(path_to_project, name_of_project_derooij):
+    '''
+    This function extracts the recharge from the file R.in.
+    path_to_project: path to the project with / in the end
+    name_of_project: name of project folder
+    '''
+    recharge = np.loadtxt(str(path_to_project) + str(name_of_project_derooij) + '/' + 'R.in')
+    return recharge
+
+
+def get_recharge_from_curve(path_to_project, name_of_project_ogs, curve_number):
+    '''
+    Extracts the recharge based on the given curve number from the ogs input file .rfd.
+    path_to_project: path to the project with / in the end
+    name_of_project_ogs: the name of the project (i.e. name of files without extension)
+    '''
+
+
+
+
+
+   # rfd = open(str(path_to_project) + str(name_of_project_ogs) + ".rfd", 'r').read().find("#CURVES")
+
+    lines = []
+    recharge = []
+    counter = 0
+    time_steps = 100
+    curve_number = 0
+
+    rfd = open(str(path_to_project) + str(name_of_project_ogs) + ".rfd", 'r')
+    for line_number, line in enumerate(rfd):
+        if "#CURVE" in line:
+            curve_lines.append(line_number+1)
+
+    for line_number, line in enumerate(rfd, curve_lines[curve_number]):
+        if line[0].isdigit() == True and counter < curve_lines[curve_number+1] - curve_lines[curve_number]:
+            line = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line)
+            recharge.append(line)
+            counter += 1
+
+
+
+    '''
+
+    return curves

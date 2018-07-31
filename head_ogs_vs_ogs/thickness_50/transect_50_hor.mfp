@@ -1,0 +1,23 @@
+GeoSys-MAT-FP: Fluid Properties ------------------------------------
+#FLUID_PROPERTIES
+ $FLUID_TYPE
+  WATER
+ $DENSITY
+  1 0.9997e+03
+ $VISCOSITY
+  1 1.309e-003
+#STOP
+------------------------------------------------------------------------------------------
+
+
+
+
+rausgenommen weil nicht notwendig in .mfp file (laut wiki)
+ $PCS_TYPE
+  PRESSURE1
+  
+   $DENSITY
+  1 0.9997e+03
+ $VISCOSITY
+  1 1.309e-003
+#STOP

@@ -1,0 +1,28 @@
+#STOP
+#INITIAL_CONDITION
+ $PCS_TYPE
+  RICHARDS_FLOW
+ $PRIMARY_VARIABLE
+  PRESSURE1
+ $GEO_TYPE
+  DOMAIN
+ $DIS_TYPE
+  GRADIENT 29 0 9810
+#STOP
+
+
+------------------------------------------------------------------------------------------
+
+
+
+----------BEISPIEL Transient inf. soil (Transient.*)
+#INITIAL_CONDITION
+ $PCS_TYPE
+  RICHARDS_FLOW
+ $PRIMARY_VARIABLE
+  PRESSURE1
+ $GEO_TYPE
+  DOMAIN 
+ $DIS_TYPE
+  RESTART Transient.rfr
+

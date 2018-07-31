@@ -1,0 +1,15 @@
+#!/bin/bash
+dir_new=`date +%Y%m%d_%Hh%Mm%Ss`
+echo "GW Model de Rooij 2012 started. Date and Time: "$dir_new
+./a
+sleep 1
+echo Done.
+
+mkdir $dir_new
+echo "Plots and .OUT will be moved to folder" $dir_new "when you close the plot-window."
+./plot.py
+
+mv *.OUT $dir_new/
+cp *.in $dir_new/
+mv *.png $dir_new/
+echo Plots and .OUT saved.

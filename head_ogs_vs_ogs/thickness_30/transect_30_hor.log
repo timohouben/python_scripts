@@ -1,0 +1,361 @@
+
+          ###################################################
+          ##                                               ##
+          ##               OpenGeoSys-Project              ##
+          ##                                               ##
+          ##  Helmholtz Center for Environmental Research  ##
+          ##    UFZ Leipzig - Environmental Informatics    ##
+          ##                  TU Dresden                   ##
+          ##              University of Kiel               ##
+          ##            University of Edinburgh            ##
+          ##         University of Tuebingen (ZAG)         ##
+          ##       Federal Institute for Geosciences       ##
+          ##          and Natural Resources (BGR)          ##
+          ##  German Research Centre for Geosciences (GFZ) ##
+          ##                                               ##
+          ##  Version 5.7.1-49-g5255869  Date 09.08.2016   ##
+          ##                                               ##
+          ###################################################
+
+          File name (without extension (but with path (mac))): /Users/houben/PhD/transect/transect/ogs/dipped/horizontal/thickness_30/transect_30_hor
+            
+---------------------------------------------
+Data input:
+GEOLIB::readGLIFile open stream from file /Users/houben/PhD/transect/transect/ogs/dipped/horizontal/thickness_30/transect_30_hor.gli ... done
+read points from stream ...  ok, 215 points read
+read polylines from stream ...  ok, 105 polylines read
+PCSRead ... done, read 1 processes
+MFPRead
+BCRead ... done, read 1 boundary conditions
+STRead ... done, read 1 source terms
+ICRead
+OUTRead
+TIMRead
+MMPRead ... 
+--
+ Adopting capillary pressure saturation parameters from the
+ relative permeability function for phase 0. Alternatively, you
+ may enter capillary pressure specific parameters directly.
+--/ndone, read 1 medium properties
+NUMRead
+-> Mass lumping selected for RICHARDS_FLOW
+MSHRead:  ASCII file
+Executing ConstructGrid() ...  done.
+CURRead
+DOMRead: no DDC file
+---------------------------------------------
+Create PCS processes
+.............................................
+Create: RICHARDS_FLOW
+
+->Create MMP
+->Create NUM
+->Create EQS
+->Create TIM
+->Config ELE values
+->Config NOD values
+->Assign IC
+->  Gass flow is formulated as mass balance.
+-> Create BC
+	[BC] set BC took 0.002644
+	[BC] set transient BC took 1e-06
+-> Create ST
+-> recognized XZ plane for PVD output.
+RFR: no restart data
+Checking output data 
+
+
+***Start time steps
+Data output: Polyline profile - obs_0000
+Data output: Polyline profile - obs_0010
+Data output: Polyline profile - obs_0020
+Data output: Polyline profile - obs_0030
+Data output: Polyline profile - obs_0040
+Data output: Polyline profile - obs_0050
+Data output: Polyline profile - obs_0060
+Data output: Polyline profile - obs_0070
+Data output: Polyline profile - obs_0080
+Data output: Polyline profile - obs_0090
+Data output: Polyline profile - obs_0100
+Data output: Polyline profile - obs_0110
+Data output: Polyline profile - obs_0120
+Data output: Polyline profile - obs_0130
+Data output: Polyline profile - obs_0140
+Data output: Polyline profile - obs_0150
+Data output: Polyline profile - obs_0160
+Data output: Polyline profile - obs_0170
+Data output: Polyline profile - obs_0180
+Data output: Polyline profile - obs_0190
+Data output: Polyline profile - obs_0200
+Data output: Polyline profile - obs_0210
+Data output: Polyline profile - obs_0220
+Data output: Polyline profile - obs_0230
+Data output: Polyline profile - obs_0240
+Data output: Polyline profile - obs_0250
+Data output: Polyline profile - obs_0260
+Data output: Polyline profile - obs_0270
+Data output: Polyline profile - obs_0280
+Data output: Polyline profile - obs_0290
+Data output: Polyline profile - obs_0300
+Data output: Polyline profile - obs_0310
+Data output: Polyline profile - obs_0320
+Data output: Polyline profile - obs_0330
+Data output: Polyline profile - obs_0340
+Data output: Polyline profile - obs_0350
+Data output: Polyline profile - obs_0360
+Data output: Polyline profile - obs_0370
+Data output: Polyline profile - obs_0380
+Data output: Polyline profile - obs_0390
+Data output: Polyline profile - obs_0400
+Data output: Polyline profile - obs_0410
+Data output: Polyline profile - obs_0420
+Data output: Polyline profile - obs_0430
+Data output: Polyline profile - obs_0440
+Data output: Polyline profile - obs_0450
+Data output: Polyline profile - obs_0460
+Data output: Polyline profile - obs_0470
+Data output: Polyline profile - obs_0480
+Data output: Polyline profile - obs_0490
+Data output: Polyline profile - obs_0500
+Data output: Polyline profile - obs_0510
+Data output: Polyline profile - obs_0520
+Data output: Polyline profile - obs_0530
+Data output: Polyline profile - obs_0540
+Data output: Polyline profile - obs_0550
+Data output: Polyline profile - obs_0560
+Data output: Polyline profile - obs_0570
+Data output: Polyline profile - obs_0580
+Data output: Polyline profile - obs_0590
+Data output: Polyline profile - obs_0600
+Data output: Polyline profile - obs_0610
+Data output: Polyline profile - obs_0620
+Data output: Polyline profile - obs_0630
+Data output: Polyline profile - obs_0640
+Data output: Polyline profile - obs_0650
+Data output: Polyline profile - obs_0660
+Data output: Polyline profile - obs_0670
+Data output: Polyline profile - obs_0680
+Data output: Polyline profile - obs_0690
+Data output: Polyline profile - obs_0700
+Data output: Polyline profile - obs_0710
+Data output: Polyline profile - obs_0720
+Data output: Polyline profile - obs_0730
+Data output: Polyline profile - obs_0740
+Data output: Polyline profile - obs_0750
+Data output: Polyline profile - obs_0760
+Data output: Polyline profile - obs_0770
+Data output: Polyline profile - obs_0780
+Data output: Polyline profile - obs_0790
+Data output: Polyline profile - obs_0800
+Data output: Polyline profile - obs_0810
+Data output: Polyline profile - obs_0820
+Data output: Polyline profile - obs_0830
+Data output: Polyline profile - obs_0840
+Data output: Polyline profile - obs_0850
+Data output: Polyline profile - obs_0860
+Data output: Polyline profile - obs_0870
+Data output: Polyline profile - obs_0880
+Data output: Polyline profile - obs_0890
+Data output: Polyline profile - obs_0900
+Data output: Polyline profile - obs_0910
+Data output: Polyline profile - obs_0920
+Data output: Polyline profile - obs_0930
+Data output: Polyline profile - obs_0940
+Data output: Polyline profile - obs_0950
+Data output: Polyline profile - obs_0960
+Data output: Polyline profile - obs_0970
+Data output: Polyline profile - obs_0980
+Data output: Polyline profile - obs_0990
+Data output: Polyline profile - obs_1000
+
+
+#############################################################
+Time step: 1|  Time: 1.79769e+308|  Time step size: 1.79769e+308
+
+      ================================================
+    ->Process 0: RICHARDS_FLOW
+      ================================================
+    PCS non-linear iteration: 0/20
+      Assembling equation system...
+      Calling linear solver...
+	  SpBICGSTAB iteration: 179/5000 
+      -->End of PICARD iteration: 0/20
+         PCS error: 1.23555e+23
+         ->Euclidian norm of unknowns: 2.74347e+07
+    PCS non-linear iteration: 1/20
+      Assembling equation system...
+      Calling linear solver...
+	  SpBICGSTAB iteration: 172/5000 
+      -->End of PICARD iteration: 1/20
+         PCS error: 0.565742
+         ->Euclidian norm of unknowns: 1.5521e+07
+    PCS non-linear iteration: 2/20
+      Assembling equation system...
+      Calling linear solver...
+	  SpBICGSTAB iteration: 176/5000 
+      -->End of PICARD iteration: 2/20
+         PCS error: 0.213991
+         ->Euclidian norm of unknowns: 5.65925e+06
+    PCS non-linear iteration: 3/20
+      Assembling equation system...
+      Calling linear solver...
+	  SpBICGSTAB iteration: 177/5000 
+      -->End of PICARD iteration: 3/20
+         PCS error: 0.0462643
+         ->Euclidian norm of unknowns: 1.17493e+06
+    PCS non-linear iteration: 4/20
+      Assembling equation system...
+      Calling linear solver...
+	  SpBICGSTAB iteration: 173/5000 
+      -->End of PICARD iteration: 4/20
+         PCS error: 0.0081828
+         ->Euclidian norm of unknowns: 209035
+    PCS non-linear iteration: 5/20
+      Assembling equation system...
+      Calling linear solver...
+	  SpBICGSTAB iteration: 162/5000 
+      -->End of PICARD iteration: 5/20
+         PCS error: 0.00116519
+         ->Euclidian norm of unknowns: 29725.9
+    PCS non-linear iteration: 6/20
+      Assembling equation system...
+      Calling linear solver...
+	  SpBICGSTAB iteration: 138/5000 
+      -->End of PICARD iteration: 6/20
+         PCS error: 0.00014093
+         ->Euclidian norm of unknowns: 3596.06
+    PCS non-linear iteration: 7/20
+      Assembling equation system...
+      Calling linear solver...
+	  SpBICGSTAB iteration: 133/5000 
+      -->End of PICARD iteration: 7/20
+         PCS error: 1.52302e-05
+         ->Euclidian norm of unknowns: 388.615
+    PCS non-linear iteration: 8/20
+      Assembling equation system...
+      Calling linear solver...
+	  SpBICGSTAB iteration: 73/5000 
+      -->End of PICARD iteration: 8/20
+         PCS error: 5.78794e-07
+         ->Euclidian norm of unknowns: 14.7686
+->Calculate velocity
+
+This step is accepted.
+Write solutions for timestep 1 into file /Users/houben/PhD/transect/transect/ogs/dipped/horizontal/thickness_30/transect_30_hor_RICHARDS_FLOW_PRESSURE1_primary_value.asc
+Data output: Polyline profile - obs_0000
+Data output: Polyline profile - obs_0010
+Data output: Polyline profile - obs_0020
+Data output: Polyline profile - obs_0030
+Data output: Polyline profile - obs_0040
+Data output: Polyline profile - obs_0050
+Data output: Polyline profile - obs_0060
+Data output: Polyline profile - obs_0070
+Data output: Polyline profile - obs_0080
+Data output: Polyline profile - obs_0090
+Data output: Polyline profile - obs_0100
+Data output: Polyline profile - obs_0110
+Data output: Polyline profile - obs_0120
+Data output: Polyline profile - obs_0130
+Data output: Polyline profile - obs_0140
+Data output: Polyline profile - obs_0150
+Data output: Polyline profile - obs_0160
+Data output: Polyline profile - obs_0170
+Data output: Polyline profile - obs_0180
+Data output: Polyline profile - obs_0190
+Data output: Polyline profile - obs_0200
+Data output: Polyline profile - obs_0210
+Data output: Polyline profile - obs_0220
+Data output: Polyline profile - obs_0230
+Data output: Polyline profile - obs_0240
+Data output: Polyline profile - obs_0250
+Data output: Polyline profile - obs_0260
+Data output: Polyline profile - obs_0270
+Data output: Polyline profile - obs_0280
+Data output: Polyline profile - obs_0290
+Data output: Polyline profile - obs_0300
+Data output: Polyline profile - obs_0310
+Data output: Polyline profile - obs_0320
+Data output: Polyline profile - obs_0330
+Data output: Polyline profile - obs_0340
+Data output: Polyline profile - obs_0350
+Data output: Polyline profile - obs_0360
+Data output: Polyline profile - obs_0370
+Data output: Polyline profile - obs_0380
+Data output: Polyline profile - obs_0390
+Data output: Polyline profile - obs_0400
+Data output: Polyline profile - obs_0410
+Data output: Polyline profile - obs_0420
+Data output: Polyline profile - obs_0430
+Data output: Polyline profile - obs_0440
+Data output: Polyline profile - obs_0450
+Data output: Polyline profile - obs_0460
+Data output: Polyline profile - obs_0470
+Data output: Polyline profile - obs_0480
+Data output: Polyline profile - obs_0490
+Data output: Polyline profile - obs_0500
+Data output: Polyline profile - obs_0510
+Data output: Polyline profile - obs_0520
+Data output: Polyline profile - obs_0530
+Data output: Polyline profile - obs_0540
+Data output: Polyline profile - obs_0550
+Data output: Polyline profile - obs_0560
+Data output: Polyline profile - obs_0570
+Data output: Polyline profile - obs_0580
+Data output: Polyline profile - obs_0590
+Data output: Polyline profile - obs_0600
+Data output: Polyline profile - obs_0610
+Data output: Polyline profile - obs_0620
+Data output: Polyline profile - obs_0630
+Data output: Polyline profile - obs_0640
+Data output: Polyline profile - obs_0650
+Data output: Polyline profile - obs_0660
+Data output: Polyline profile - obs_0670
+Data output: Polyline profile - obs_0680
+Data output: Polyline profile - obs_0690
+Data output: Polyline profile - obs_0700
+Data output: Polyline profile - obs_0710
+Data output: Polyline profile - obs_0720
+Data output: Polyline profile - obs_0730
+Data output: Polyline profile - obs_0740
+Data output: Polyline profile - obs_0750
+Data output: Polyline profile - obs_0760
+Data output: Polyline profile - obs_0770
+Data output: Polyline profile - obs_0780
+Data output: Polyline profile - obs_0790
+Data output: Polyline profile - obs_0800
+Data output: Polyline profile - obs_0810
+Data output: Polyline profile - obs_0820
+Data output: Polyline profile - obs_0830
+Data output: Polyline profile - obs_0840
+Data output: Polyline profile - obs_0850
+Data output: Polyline profile - obs_0860
+Data output: Polyline profile - obs_0870
+Data output: Polyline profile - obs_0880
+Data output: Polyline profile - obs_0890
+Data output: Polyline profile - obs_0900
+Data output: Polyline profile - obs_0910
+Data output: Polyline profile - obs_0920
+Data output: Polyline profile - obs_0930
+Data output: Polyline profile - obs_0940
+Data output: Polyline profile - obs_0950
+Data output: Polyline profile - obs_0960
+Data output: Polyline profile - obs_0970
+Data output: Polyline profile - obs_0980
+Data output: Polyline profile - obs_0990
+Data output: Polyline profile - obs_1000
+
+#############################################################
+
+----------------------------------------------------
+
+For process: RICHARDS_FLOW
+Accepted time steps:                1
+Rejected time steps:                0
+Number of non-converged iterations: 0
+Number of stagnated iterations:     0
+
+----------------------------------------------------
+GetRFProcessProcessingAndActivation - to be removed
+
+^O^: Your simulation is terminated normally ^O^ 
+Simulation time: 30s
