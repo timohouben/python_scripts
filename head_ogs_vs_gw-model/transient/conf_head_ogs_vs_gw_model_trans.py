@@ -55,15 +55,18 @@ obs_per_plot =  ['obs_0500']
 
 recharge = []
 
-# read the tec files as dict
-print('Reading .tec-files...')
-tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project)
-print('Reading of .tec-files finished.')
-# Save the dict
-np.save('tecs.npy', tecs)
+if __name__ == "__main__":
+    # read the tec files as dict
+    print('Reading .tec-files...')
+    tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project)
+    print('Reading of .tec-files finished.')
+    # Save the dict
+    print('Saving data...')
+    np.save('tecs.npy', tecs)
+    print('Saving finished.')
 
-time_s = tecs[process][obs_per_plot[0]]["TIME"]
-time_d = time_s / 86400
+    time_s = tecs[process][obs_per_plot[0]]["TIME"]
+    time_d = time_s / 86400
 
 def load_tecs():
     '''
@@ -162,7 +165,7 @@ def gethead_gw_model_each_obs(array_head_gw_model, obs):
 # load .rfd with recharge CURVE or extract recharge from R. in from gw_model
 # =============================================================================
 
-def getrecharge():
+def getrecharge(path_to_project, name_of_project_ogs, time_steps):
     ''' 
     This function extracts the recharge from the .rfd-file BUT ONLY FOR THE GIVEN
     NUMBER OF TIMESTEPS in the variable time_steps.
@@ -178,7 +181,7 @@ def getrecharge():
         rfd = open(str(path_to_project) + str(name_of_project_ogs) + ".rfd",'r')
         for linenumber, line in enumerate(rfd):
                 # line[4] only works when .rfd was saved via the ogs5py api. For other files, select another value
-            if line[4].isdigit() == True and counter < time_steps+1:
+            if line[2].isdigit() == True and counter <= time_steps+1:
                 line = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line)
                 recharge.append(line[1])
                 counter += 1    
@@ -195,30 +198,49 @@ def getrecharge():
 # get the head for maximum, minimum and mean values for given observation point(s)
 # =============================================================================
     
-def gethead_ogs_each_obs(process, observation_point, which, time_steps):
+def gethead_ogs_each_obs(process, observation_point, which, time_steps, tecs, single_file=False):
     '''
     Depending for which position on the observations line you want to plot the 
     head, it will return the min, max or mean head. You need to specify this 
     argument when you call the function plot_obs_vs_time.
     '''
+    if single_file == False or single_file == None:
+        number_of_columns = tecs[process][observation_point]["HEAD"].shape[1]
+        if which == 'max':
+            # select the maximum value (i.e. the uppermost) of polyline as long as polylines are defined from bottom to top
+            head_ogs_timeseries_each_obs = tecs[process][observation_point]["HEAD"][:,number_of_columns-1]
+        elif which == 'min':
+            # select the minimum value (i.e. the lowermost) of polyline as long as polylines are defined from bottom to top
+            head_ogs_timeseries_each_obs = tecs[process][observation_point]["HEAD"][:,0]    
+        elif which == 'mean':
+            head_ogs_timeseries_each_obs=[]
+            for step in range(time_steps+1):
+                # calculates the mean of each time step
+                head_ogs_timeseries_each_obs.append(np.mean(tecs[process][observation_point]["HEAD"][step,:]))
+            head_ogs_timeseries_each_obs = np.asarray(head_ogs_timeseries_each_obs)
+        else:
+            print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
+            head_ogs_timeseries_each_obs = "nan"
+        return head_ogs_timeseries_each_obs
     
-    number_of_columns = tecs[process][observation_point]["HEAD"].shape[1]
-    if which == 'max':
-        # select the maximum value (i.e. the uppermost) of polyline as long as polylines are defined from bottom to top
-        head_ogs_timeseries_each_obs = tecs[process][observation_point]["HEAD"][:,number_of_columns-1]
-    elif which == 'min':
-        # select the minimum value (i.e. the lowermost) of polyline as long as polylines are defined from bottom to top
-        head_ogs_timeseries_each_obs = tecs[process][observation_point]["HEAD"][:,0]    
-    elif which == 'mean':
-        head_ogs_timeseries_each_obs=[]
-        for step in range(time_steps+1):
-            # calculates the mean of each time step
-            head_ogs_timeseries_each_obs.append(np.mean(tecs[process][observation_point]["HEAD"][step,:]))
-        head_ogs_timeseries_each_obs = np.asarray(head_ogs_timeseries_each_obs)
-    else:
-        print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
-        head_ogs_timeseries_each_obs = "nan"
-    return head_ogs_timeseries_each_obs
+    elif single_file == True:
+        number_of_columns = tecs["HEAD"].shape[1]
+        if which == 'max':
+            # select the maximum value (i.e. the uppermost) of polyline as long as polylines are defined from bottom to top
+            head_ogs_timeseries_each_obs = tecs["HEAD"][:,number_of_columns-1]
+        elif which == 'min':
+            # select the minimum value (i.e. the lowermost) of polyline as long as polylines are defined from bottom to top
+            head_ogs_timeseries_each_obs = tecs["HEAD"][:,0]    
+        elif which == 'mean':
+            head_ogs_timeseries_each_obs=[]
+            for step in range(time_steps+1):
+                # calculates the mean of each time step
+                head_ogs_timeseries_each_obs.append(np.mean(tecs["HEAD"][step,:]))
+            head_ogs_timeseries_each_obs = np.asarray(head_ogs_timeseries_each_obs)
+        else:
+            print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
+            head_ogs_timeseries_each_obs = "nan"
+        return head_ogs_timeseries_each_obs        
 
 # =============================================================================
 # =============================================================================
