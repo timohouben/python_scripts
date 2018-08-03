@@ -1,4 +1,4 @@
-#!/usr/bin/env pythonw
+m#!/usr/bin/env pythonw
 # -*- coding: utf-8 -*-
 ########################################
 #   the following must be considered:
