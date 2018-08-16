@@ -70,7 +70,7 @@ recharge = np.asarray([float(i) for i in recharge])
 # Calculate the discrete fourier transformation    
 # =============================================================================
 
-def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=None, t_d=None, fft_data=fft_data, weights=[1,1,1], o_i='oi',aquifer_thickness = 30, aquifer_length = 1000, distance_to_river = 800):
+def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=None, t_d=None, fft_data=fft_data, weights_l=[1,1,1], weights_d=[1,1,1], o_i='oi',aquifer_thickness = 30, aquifer_length = 1000, distance_to_river = 800, windows=None):
      
     # define the sampling frequency/time step
     # -------------------------------------------------------------------------
@@ -90,12 +90,10 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2 / T
         #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
         # =========================================================================
-        power_spectrum_input = (abs(scpfft.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2) / (len(fft_data)*time_step_size)
-        power_spectrum_output = (abs(scpfft.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2) / (len(fft_data)*time_step_size)
+        power_spectrum_input = ((abs(scpfft.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2) / (len(fft_data)*time_step_size))[1:]
+        power_spectrum_output = ((abs(scpfft.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2) / (len(fft_data)*time_step_size))[1:]
         power_spectrum_result = power_spectrum_output / power_spectrum_input
-        power_spectrum_result = np.delete(power_spectrum_result, 0)
-        frequency_input = abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2]
-        frequency_input = np.delete(frequency_input, 0)
+        frequency_input = (abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])[1:]
         if o_i == 'i':
             power_spectrum_result = power_spectrum_input
         elif o_i == 'o':
@@ -106,36 +104,28 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2 / N
         #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
         # =========================================================================
-        power_spectrum_input = (abs(scpfft.fft(recharge_detrend))**2) / len(fft_data)
-        power_spectrum_output = (abs(scpfft.fft(fft_data_detrend))**2) / len(fft_data)
-        power_spectrum_result = power_spectrum_output
-        frequency_input = abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))
-        if o_i == True:
-            power_spectrum_result = power_spectrum_output / power_spectrum_input        
+        power_spectrum_input = ((abs(scpfft.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2) / len(fft_data))[1:]
+        power_spectrum_output = ((abs(scpfft.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2) / len(fft_data))[1:]
+        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        frequency_input = (abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])[1:]
+        if o_i == 'i':
+            power_spectrum_result = power_spectrum_input
+        elif o_i == 'o':
+            power_spectrum_result = power_spectrum_output
 
     if method == 'scipyfft':
         # =========================================================================
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2
         #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
         # =========================================================================
-        power_spectrum_input = abs(scpfft.fft(recharge_detrend))**2
-        power_spectrum_output = abs(scpfft.fft(fft_data_detrend))**2
-        power_spectrum_result = power_spectrum_output
-        frequency_input = abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))
-        if o_i == True:
-            power_spectrum_result = power_spectrum_output / power_spectrum_input        
-        
-    if method == 'scipyffthalf':
-        # =========================================================================
-        # method x: Periodogram: Power Spectral Density: abs(X(w))^2
-        #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
-        # =========================================================================
-        power_spectrum_input = abs(scpfft.fft(recharge_detrend)[:len(scpfft.fft(recharge_detrend))/2])**2
-        power_spectrum_output = abs(scpfft.fft(fft_data_detrend)[:len(scpfft.fft(fft_data_detrend))/2])**2
-        power_spectrum_result = power_spectrum_output
-        frequency_input = abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size)[:len(scpfft.fft(fft_data_detrend))/2])
-        if o_i == True:
-            power_spectrum_result = power_spectrum_output / power_spectrum_input        
+        power_spectrum_input = (abs(scpfft.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2)[1:]
+        power_spectrum_output = (abs(scpfft.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2)[1:]
+        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        frequency_input = (abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])[1:]
+        if o_i == 'i':
+            power_spectrum_result = power_spectrum_input
+        elif o_i == 'o':
+            power_spectrum_result = power_spectrum_output            
 
     elif method == 'scipywelch':    
         # =========================================================================
@@ -150,9 +140,13 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
                                                               sampling_frequency, 
                                                               nperseg=16000, 
                                                               window='hamming')
-        power_spectrum_result = abs(power_spectrum_output)**2
-        if o_i == True:
-            power_spectrum_result = abs((power_spectrum_output / power_spectrum_input))**2        
+        frequency_output = frequency_output[1:]
+        frequency_input = frequency_input[1:]
+        power_spectrum_result = (abs((power_spectrum_output / power_spectrum_input))**2)[1:]
+        if o_i == 'i':
+            power_spectrum_result = power_spectrum_input[1:]
+        elif o_i == 'o':
+            power_spectrum_result = power_spectrum_output[1:]     
 
     elif method == 'pyplotwelch':    
         # =========================================================================
@@ -163,10 +157,15 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
                                                         Fs=sampling_frequency)
         power_spectrum_output, frequency_output = plt.psd(fft_data_detrend,
                                                         Fs=sampling_frequency)
-        power_spectrum_result = power_spectrum_output
-        if o_i == True:
-            power_spectrum_result = power_spectrum_output / power_spectrum_input          
-        
+        frequency_output = frequency_output[1:]
+        frequency_input = frequency_input[1:]
+        power_spectrum_result = (power_spectrum_output / power_spectrum_input)[1:]
+        if o_i == 'i':
+            power_spectrum_result = power_spectrum_input[1:]
+        elif o_i == 'o':
+            power_spectrum_result = power_spectrum_output[1:]    
+         
+         PYPLOTWELCH SOLLTE NUN FUNKTIONIEREN; DANN HIER WEITER MACHEN!   
             
     elif method == 'scipyperio':    
         # =========================================================================
@@ -247,8 +246,12 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
 
         # employ a filter on the spectrum to optimize the fit
         # ---------------------------------------------------------------------
-        # define wondow size based on amount of values
-        window_size = np.around((len(fft_data)/100),0)
+        # define wondow size based on amount of values (1/100 -> 100 windows)
+        if windows == None:
+            windows = len(power_spectrum_result)/10
+        else:
+            print('Data Points in PSD: ' + str(len(power_spectrum_result)))    
+        window_size = np.around((len(power_spectrum_result)/windows),0)
         if window_size % 2 == 0:
             window_size = window_size + 1
         elif window_size < 2:
@@ -270,14 +273,14 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
             # generate a weighing array
             # ---------------------------------------------------------------------      
             # based on dividing the data into segments
-            sigma = []
+            sigma_l = []
             # weights = [1,1,1] # give the weights for each segment, amount of values specifies the amount of segments
-            data_per_segment = len(power_spectrum_result_filtered) / len(weights)
-            for weight in weights:
-                sigma = np.append(sigma,np.full(data_per_segment,weight))
-            if len(power_spectrum_result_filtered) % len(weights) != 0:
-                for residual in range(len(power_spectrum_result_filtered) % len(weights)):
-                    sigma = np.append(sigma,weights[-1])
+            data_per_segment = len(power_spectrum_result_filtered) / len(weights_l)
+            for weight_l in weights_l:
+                sigma_l = np.append(sigma_l,np.full(data_per_segment,weight_l))
+            if len(power_spectrum_result_filtered) % len(weights_l) != 0:
+                for residual in range(len(power_spectrum_result_filtered) % len(weights_l)):
+                    sigma_l = np.append(sigma_l,weights_l[-1])
                     
     
             # define the function to fit (linear aquifer model):
@@ -288,8 +291,8 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
             popt_l, pcov_l = optimization.curve_fit(linear_fit,
                                               frequency_input,
                                               power_spectrum_result_filtered,
-                                              p0 = initial_guess,
-                                              sigma = sigma)
+                                              p0=initial_guess,
+                                              sigma=sigma_l)
             a_l = popt_l[0]
             t_l = popt_l[1]
 
@@ -330,12 +333,21 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
         # O = td * w
         # E = x - x_o    distance from river
         # ---------------------------------------------------------------------
-        if a_d and t_d == None:
+        if a_d == None and t_d == None:
             # make an initial guess for a_l, and t_l
             initial_guess = np.array([0.98e-15, 2000000])
     
-            # generate a weighing array.
-            sigma = np.full((len(power_spectrum_result_filtered)),1.0)
+            # generate a weighing array
+            # ---------------------------------------------------------------------      
+            # based on dividing the data into segments
+            sigma_d = []
+            # weights = [1,1,1] # give the weights for each segment, amount of values specifies the amount of segments
+            data_per_segment = len(power_spectrum_result_filtered) / len(weights_d)
+            for weight_d in weights_d:
+                sigma_d = np.append(sigma_d,np.full(data_per_segment,weight_d))
+            if len(power_spectrum_result_filtered) % len(weights_d) != 0:
+                for residual in range(len(power_spectrum_result_filtered) % len(weights_d)):
+                    sigma_d = np.append(sigma_d,weights_d[-1])
     
             # define the function to fit (linear aquifer model):
             def dupuit_fit(w_d, a_d, t_d):
@@ -347,11 +359,11 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
             popt_d, pcov_d = optimization.curve_fit(dupuit_fit,
                                               frequency_input,
                                               power_spectrum_result_filtered,
-                                              p0=initial_guess)
+                                              p0=initial_guess,
+                                              sigma=sigma_d)
            
             a_d = popt_d[0]
-            t_d = popt_d[1]
-        
+            t_d = popt_d[1]        
         
         # Plot the Dupuit model
         # ---------------------------------------------------------------------
