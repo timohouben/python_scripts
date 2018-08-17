@@ -37,6 +37,8 @@ which = 'max'       # min, max, mean
 time_steps = 8400    # this is the value which is given in the ogs input file .tim. It will result in a total of 101 times because the initial time is added.
 # variables for FFT
 obs_point = ''
+methods = ['scipyfftnormt', 'scipyfftnormn', 'scipyfft', 'scipywelch',
+           'pyplotwelch', 'scipyperio', 'spectrumperio']
 
 # =============================================================================
 # global variables set automatically
@@ -70,11 +72,23 @@ recharge = np.asarray([float(i) for i in recharge])
 # Calculate the discrete fourier transformation    
 # =============================================================================
 
-def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=None, t_d=None, fft_data=fft_data, weights_l=[1,1,1], weights_d=[1,1,1], o_i='oi',aquifer_thickness = 30, aquifer_length = 1000, distance_to_river = 800, windows=None):
+def fft_psd(method='fourier',
+            fit=False, savefig=False,
+            a_l=None, t_l=None, 
+            a_d=None, t_d=None, 
+            fft_data=fft_data,
+            recharge=recharge,
+            weights_l=[1,1,5,5], 
+            weights_d=[1,1,1,1], 
+            o_i='oi',
+            aquifer_thickness=30, 
+            aquifer_length=1000, 
+            distance_to_river=800,
+            time_step_size=86400,
+            windows=None):
      
     # define the sampling frequency/time step
     # -------------------------------------------------------------------------
-    time_step_size = 86400  # [s]
     sampling_frequency = 1./time_step_size    # [Hz] second: 1, day: 1.1574074074074E-5
      
     # detrend input and output signal
@@ -164,8 +178,6 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
             power_spectrum_result = power_spectrum_input[1:]
         elif o_i == 'o':
             power_spectrum_result = power_spectrum_output[1:]    
-         
-         PYPLOTWELCH SOLLTE NUN FUNKTIONIEREN; DANN HIER WEITER MACHEN!   
             
     elif method == 'scipyperio':    
         # =========================================================================
@@ -176,10 +188,14 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
                                                         fs=sampling_frequency)
         frequency_output, power_spectrum_output = signal.periodogram(fft_data_detrend,
                                                         fs=sampling_frequency)
-        power_spectrum_result = power_spectrum_output
-        if o_i == True:
-            power_spectrum_result = power_spectrum_output / power_spectrum_input          
-        
+        frequency_output = frequency_output[1:]
+        frequency_input = frequency_input[1:]
+        power_spectrum_result = (power_spectrum_output / power_spectrum_input)[1:]
+        if o_i == 'i':
+            power_spectrum_result = power_spectrum_input[1:]
+        elif o_i == 'o':
+            power_spectrum_result = power_spectrum_output[1:] 
+            
     elif method == 'spectrumperio':    
         # =========================================================================
         # method x: Spectrum.periodogram
@@ -187,14 +203,20 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
         # =========================================================================              
         from spectrum import WelchPeriodogram
         power_spectrum_input, empty = WelchPeriodogram(recharge_detrend, 256)
+        plt.close()
         frequency_input = power_spectrum_input[1]
+        frequency_input = frequency_input[1:]
         power_spectrum_input = power_spectrum_input[0]
         power_spectrum_output, empty = WelchPeriodogram(fft_data_detrend, 256)
+        plt.close()
         frequency_output = power_spectrum_output[1]
+        frequency_output = frequency_output[1:]
         power_spectrum_output = power_spectrum_output[0]
-        power_spectrum_result = power_spectrum_output
-        if o_i == True:
-            power_spectrum_result = power_spectrum_output / power_spectrum_input          
+        power_spectrum_result = (power_spectrum_output / power_spectrum_input)[1:]
+        if o_i == 'i':
+            power_spectrum_result = power_spectrum_input[1:]
+        elif o_i == 'o':
+            power_spectrum_result = power_spectrum_output[1:]         
     
     '''
     Further methods, not working or still under construction
@@ -232,7 +254,8 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
     #ax.set_ylim(1e-3,1e6)
     #ax.plot(freq_month[ind],psd)
     ax.plot(frequency_input, power_spectrum_result, label='PSD')
-    ax.set_title('power spectrum density for observation point ' + str(obs_point))
+    ax.set_title('power spectrum density for observation point ' + str(obs_point)
+    + '\n' + 'method: ' + str(method))
     #ax.set_title('power spectruml density for recharge')
     ax.grid(color='grey', linestyle='--', linewidth=0.5, which='both')
     
@@ -401,6 +424,6 @@ def fft_psd(method='fourier', fit=False, savefig=False, a_l=None, t_l=None, a_d=
     plt.legend(loc='best')
     plt.show()        
     if savefig == True:
-        fig.savefig(str(path_to_project) + 'FREQUENCY_7_' + str(os.path.basename(str(path_to_project)[:-1])) + '_' + str(obs_point) + ".png")
+        fig.savefig(str(path_to_project) + str(method) + str(os.path.basename(str(path_to_project)[:-1])) + '_' + str(obs_point) + ".png")
     #fig.savefig(str(obs_point) + '_' + str(time.strftime("%Y%m%d%H%M%S")))
   
