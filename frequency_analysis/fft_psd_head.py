@@ -20,7 +20,7 @@ import scipy.fftpack as scpfft
 from scipy import signal
 import numpy as np
 import matplotlib.pyplot as plt
-import time
+import datetime
 import os
 import scipy.optimize as optimization
 import textwrap as tw
@@ -36,7 +36,7 @@ process = 'GROUNDWATER_FLOW'
 which = 'max'       # min, max, mean
 time_steps = 8400    # this is the value which is given in the ogs input file .tim. It will result in a total of 101 times because the initial time is added.
 # variables for FFT
-obs_point = ''
+obs_point = '980'
 methods = ['scipyfftnormt', 'scipyfftnormn', 'scipyfft', 'scipywelch',
            'pyplotwelch', 'scipyperio', 'spectrumperio']
 
@@ -44,7 +44,7 @@ methods = ['scipyfftnormt', 'scipyfftnormn', 'scipyfft', 'scipywelch',
 # global variables set automatically
 # =============================================================================
 print ("Reading .tec-files...")
-tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project, single_file="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/Groundwater@UFZ_eve_HOMO_276_D/transect_01_ply_obs_0200_t21_GROUNDWATER_FLOW.tec")
+tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project, single_file="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/Groundwater@UFZ_eve_HOMO_276_D/transect_01_ply_obs_0250_t26_GROUNDWATER_FLOW.tec")
 print ("Done.")
 
 # =============================================================================
@@ -69,23 +69,32 @@ elif which_data_to_plot == 3:
 recharge = np.asarray([float(i) for i in recharge])
 
 # =============================================================================
+# initialize the file for output   
+# =============================================================================
+with open(str(path_to_project) + 'PSD_output.txt', 'a') as file:
+    file.write('date time method T_l[m2/s] kf_l[m/s] Ss_l[1/m] D_l[m2/s] a_l t_l[s] T_d[m2/s] kf_d[m/s] Ss_d[1/m] D_d[m2/s] a_d t_d[s] path_to_project observation_point\n')
+file.close()
+
+# =============================================================================
 # Calculate the discrete fourier transformation    
 # =============================================================================
 
-def fft_psd(method='fourier',
-            fit=False, savefig=False,
+def fft_psd(method='scipyfftnormt',
+            fit=False, savefig=False, 
+            saveoutput=True, dupuit=False,
             a_l=None, t_l=None, 
             a_d=None, t_d=None, 
             fft_data=fft_data,
             recharge=recharge,
-            weights_l=[1,1,5,5], 
-            weights_d=[1,1,1,1], 
+            weights_l=[1,1,50,500], 
+            weights_d=[3,1,1,2], 
             o_i='oi',
             aquifer_thickness=30, 
             aquifer_length=1000, 
             distance_to_river=800,
             time_step_size=86400,
-            windows=None):
+            windows=None,
+            obs_point=obs_point):
      
     # define the sampling frequency/time step
     # -------------------------------------------------------------------------
@@ -250,7 +259,7 @@ def fft_psd(method='fourier',
     ax = fig.add_subplot(1,1,1)
     ax.set_xscale("log")
     ax.set_yscale("log")
-    ax.set_xlabel("1/second")
+    ax.set_xlabel("1/s")
     #ax.set_ylim(1e-3,1e6)
     #ax.plot(freq_month[ind],psd)
     ax.plot(frequency_input, power_spectrum_result, label='PSD')
@@ -305,7 +314,7 @@ def fft_psd(method='fourier',
                 for residual in range(len(power_spectrum_result_filtered) % len(weights_l)):
                     sigma_l = np.append(sigma_l,weights_l[-1])
                     
-    
+#                    EINE VARIABLE KONSTANT HALTEN! UND MAXIMUM ALLOWED SIZE EXCEEDED bei vielen runs
             # define the function to fit (linear aquifer model):
             def linear_fit(w_l, a_l, t_l):
                 return (1. / (a_l**2 * ( 1 + ((t_l**2) * (w_l**2)))))
@@ -336,16 +345,16 @@ def fft_psd(method='fourier',
         Ss_l = a_l * t_l
         #D = kf / Ss
         D_l = T_l / Ss_l
-        output = ('Aquifer parameters obtained by linear model\n' + 
-              'T [m2/s]: ' + '%0.4e' % T_l  + '\n' +
-              'Ss [1/m]: ' + '%0.4e' % Ss_l + '\n' +
-              'kf [m/s]: ' + '%0.4e' % kf_l + '\n' +
-              'D [m2/s]: ' + '%0.4e' % D_l + '\n' +
-              'a : ' + '%0.4e' % a_l+ '\n' +
+        output_l = ('Linear model:\n ' + 
+              'T [m2/s]: ' + '%0.4e' % T_l  + '\n  ' +
+              'Ss [1/m]: ' + '%0.4e' % Ss_l + '\n  ' +
+              'kf [m/s]: ' + '%0.4e' % kf_l + '\n  ' +
+              'D [m2/s]: ' + '%0.4e' % D_l + '\n  ' +
+              'a : ' + '%0.4e' % a_l+ '\n  ' +
               't_c [s]: ' + '%0.4e' % t_l
               )
-        print(output)
-        plt.text(1e-2,4e14,output)
+        print(output_l)
+        fig_txt = tw.fill(output_l, width=200)
         
         # =====================================================================
         # Dupuit Model
@@ -356,7 +365,7 @@ def fft_psd(method='fourier',
         # O = td * w
         # E = x - x_o    distance from river
         # ---------------------------------------------------------------------
-        if a_d == None and t_d == None:
+        if a_d == None and t_d == None and dupuit == True:
             # make an initial guess for a_l, and t_l
             initial_guess = np.array([0.98e-15, 2000000])
     
@@ -386,7 +395,12 @@ def fft_psd(method='fourier',
                                               sigma=sigma_d)
            
             a_d = popt_d[0]
-            t_d = popt_d[1]        
+            t_d = popt_d[1]
+            
+            #assign nan to alls parameters if duptui model is not used
+        else:
+            T_d, kf_d, Ss_d, D_d, a_d, t_d = np.nan, np.nan, np.nan, np.nan, np.nan, np.nan
+
         
         # Plot the Dupuit model
         # ---------------------------------------------------------------------
@@ -404,26 +418,44 @@ def fft_psd(method='fourier',
             kf_d = T_d/aquifer_thickness
             Ss_d = t_d * T_d / aquifer_length 
             D_d = T_d / Ss_d
-            output = ('Aquifer parameters obtained by Dupuit model\n' + 
-                  'T [m2/s]: ' + '%0.4e' % T_d  + '\n' +
-                  'Ss [1/m]: ' + '%0.4e' % Ss_d + '\n' +
-                  'kf [m/s]: ' + '%0.4e' % kf_d + '\n' +
-                  'D [m2/s]: ' + '%0.4e' % D_d + '\n' +
-                  'a : ' + '%0.4e' % a_d + '\n' +
+            output_d = ('Dupuit model: \n' + 
+                  'T [m2/s]: ' + '%0.4e' % T_d  + '\n  ' +
+                  'Ss [1/m]: ' + '%0.4e' % Ss_d + '\n  ' +
+                  'kf [m/s]: ' + '%0.4e' % kf_d + '\n  ' +
+                  'D [m2/s]: ' + '%0.4e' % D_d + '\n  ' +
+                  'a : ' + '%0.4e' % a_d + '\n  ' +
                   't_c [s]: ' + '%0.4e' % t_d
                   )
+            print(output_d)
+            fig_txt = tw.fill(str(output_l) + '\n' + str(output_d), width=145)   
             
-            
-            print(output)
-            fig_txt = tw.fill(tw.dedent(output), width=120)
-            plt.figtext(0, 0, fig_txt)
             
         except TypeError:
             print("No a_d and t_d given for Dupuit model. Automatic fit not working...")
+                     
+        #annotate the figure    
+        #fig_txt = tw.fill(tw.dedent(output), width=120)
+        plt.figtext(0.5, 0.2, fig_txt, horizontalalignment='center',
+                    bbox=dict(boxstyle="round", facecolor='#F2F3F4',
+                              ec="0.5", pad=0.5, alpha=1))    
 
     plt.legend(loc='best')
     plt.show()        
     if savefig == True:
-        fig.savefig(str(path_to_project) + str(method) + str(os.path.basename(str(path_to_project)[:-1])) + '_' + str(obs_point) + ".png")
-    #fig.savefig(str(obs_point) + '_' + str(time.strftime("%Y%m%d%H%M%S")))
+        fig.savefig(str(path_to_project) + 'PSD_' + str(method) + '_' + 
+                    str(os.path.basename(str(path_to_project)[:-1])) + '_' + 
+                    str(obs_point) + ".png")
+        plt.close()
+
+    if saveoutput == True:
+        with open(str(path_to_project) + 'PSD_output.txt', 'a') as file:
+            file.write(str(datetime.datetime.now()) + ' ' + method + ' ' + 
+                                str(T_l) + ' ' + str(kf_l) + ' ' + 
+                                str(Ss_l) + ' ' + str(D_l) + ' ' + 
+                                str(a_l) + ' ' + str(t_l) + ' ' + 
+                                str(T_d) + ' ' + str(kf_d) + ' ' + 
+                                str(Ss_d) + ' ' + str(D_d) + ' ' + 
+                                str(a_d) + ' ' + str(t_d) + ' ' + 
+                                str(path_to_project) + ' ' + str(obs_point) + '\n')
+        file.close()
   
