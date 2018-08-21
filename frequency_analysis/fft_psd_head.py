@@ -20,81 +20,99 @@ import scipy.fftpack as scpfft
 from scipy import signal
 import numpy as np
 import matplotlib.pyplot as plt
+plt.ioff()
 import datetime
 import os
 import scipy.optimize as optimization
 import textwrap as tw
 
-# =============================================================================
-# global variables set manually
-# =============================================================================
-which_data_to_plot = 1 # 1: ogs, 2: gw_model 3: recharge
-path_to_project = "/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/Groundwater@UFZ_eve_HOMO_276_D/"
-name_of_project_gw_model = "sinus"
-name_of_project_ogs = "transect_01"
-process = 'GROUNDWATER_FLOW'
-which = 'max'       # min, max, mean
-time_steps = 8400    # this is the value which is given in the ogs input file .tim. It will result in a total of 101 times because the initial time is added.
-# variables for FFT
-obs_point = '980'
-methods = ['scipyfftnormt', 'scipyfftnormn', 'scipyfft', 'scipywelch',
-           'pyplotwelch', 'scipyperio', 'spectrumperio']
 
-# =============================================================================
-# global variables set automatically
-# =============================================================================
-print ("Reading .tec-files...")
-tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project, single_file="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/Groundwater@UFZ_eve_HOMO_276_D/transect_01_ply_obs_0250_t26_GROUNDWATER_FLOW.tec")
-print ("Done.")
+def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/Groundwater@UFZ_eve_HORIZONTAL_276_D/",
+                             single_file="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/Groundwater@UFZ_eve_HORIZONTAL_276_D/transect_01_ply_obs_0100_t11_GROUNDWATER_FLOW.tec",
+                             which_data_to_plot=1,
+                             name_of_project_gw_model='',
+                             name_of_project_ogs='transect_01',
+                             process='GROUNDWATER_FLOW',
+                             which='max',
+                             time_steps=8400,
+                             observation_point='NA',
+                             obs_point=''):
+    '''
+    which_data_to_plot = 1 # 1: ogs, 2: gw_model 3: recharge
+    which = 'max'       # min, max, mean
+    time_steps = 8400    # this is the value which is given in the ogs input file .tim. It will result in a total of 101 times because the initial time is added.
+    methods = ['scipyfftnormt', 'scipyfftnormn', 'scipyfft', 'scipywelch',
+               'pyplotwelch', 'scipyperio', 'spectrumperio']
+    '''
+    
+    # =============================================================================
+    # initialize the file for output   
+    # =============================================================================
+    with open(str(path_to_project) + 'PSD_output.txt', 'a') as file:
+        file.write('date time method T_l[m2/s] kf_l[m/s] Ss_l[1/m] D_l[m2/s] a_l t_l[s] T_d[m2/s] kf_d[m/s] Ss_d[1/m] D_d[m2/s] a_d t_d[s] path_to_project observation_point\n')
+    file.close()
 
-# =============================================================================
-# get data dependent on which_data_to_plot
-# =============================================================================
-if which_data_to_plot == 1:
-    head_ogs = gethead_ogs_each_obs(process, obs_point, which, time_steps, tecs=tecs, single_file=True)
-    fft_data = head_ogs
-    recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
-elif which_data_to_plot == 2:
-    head_gw_model = gethead_gw_model_each_obs(make_array_gw_model(
-                        split_gw_model(getlist_gw_model(str(path_to_project) 
-                        + str(name_of_project_gw_model) 
-                        + '/H.OUT'), index=2)), convert_obs_list_to_index('obs_0990'))
-    fft_data = head_gw_model
-    recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
-elif which_data_to_plot == 3:
-    recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
-    fft_data = recharge
- 
-# convert recharge from list to array    
-recharge = np.asarray([float(i) for i in recharge])
-
-# =============================================================================
-# initialize the file for output   
-# =============================================================================
-with open(str(path_to_project) + 'PSD_output.txt', 'a') as file:
-    file.write('date time method T_l[m2/s] kf_l[m/s] Ss_l[1/m] D_l[m2/s] a_l t_l[s] T_d[m2/s] kf_d[m/s] Ss_d[1/m] D_d[m2/s] a_d t_d[s] path_to_project observation_point\n')
-file.close()
+    # =============================================================================
+    # global variables set automatically
+    # =============================================================================
+    print ("Reading .tec-files...")
+    tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project, single_file=single_file)
+    print ("Done.")
+    
+    # =============================================================================
+    # get data dependent on which_data_to_plot
+    # =============================================================================
+    if which_data_to_plot == 1:
+        head_ogs = gethead_ogs_each_obs(process, obs_point, which, time_steps, tecs=tecs, single_file=True)
+        fft_data = head_ogs
+        recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
+    elif which_data_to_plot == 2:
+        head_gw_model = gethead_gw_model_each_obs(make_array_gw_model(
+                            split_gw_model(getlist_gw_model(str(path_to_project) 
+                            + str(name_of_project_gw_model) 
+                            + '/H.OUT'), index=2)), convert_obs_list_to_index('obs_0990'))
+        fft_data = head_gw_model
+        recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
+    elif which_data_to_plot == 3:
+        recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
+        fft_data = recharge
+     
+    # convert recharge from list to array    
+    recharge = np.asarray([float(i) for i in recharge])
+    return fft_data, recharge
 
 # =============================================================================
 # Calculate the discrete fourier transformation    
 # =============================================================================
 
-def fft_psd(method='scipyfftnormt',
+def fft_psd(fft_data,
+            recharge,
+            aquifer_thickness,
+            aquifer_length,
+            distance_to_river=0,
+            path_to_project='no_path_given',
+            single_file='no_path_given',
+            method='scipyfftnormt',
             fit=False, savefig=False, 
             saveoutput=True, dupuit=False,
             a_l=None, t_l=None, 
             a_d=None, t_d=None, 
-            fft_data=fft_data,
-            recharge=recharge,
             weights_l=[1,1,50,500], 
             weights_d=[3,1,1,2], 
             o_i='oi',
-            aquifer_thickness=30, 
-            aquifer_length=1000, 
-            distance_to_river=800,
             time_step_size=86400,
             windows=None,
-            obs_point=obs_point):
+            obs_point='no_obs_given'):
+    
+    # check if recharge and fft_data have the same length and erase values in the end
+    if len(recharge) > len(fft_data):
+        print('Your input and output data have a different length. Adjusting to the smaller one by deleting last entries.')
+        recharge = recharge[:len(fft_data)]
+    elif len(recharge) < len(fft_data):
+        print('Your input and output data have a different length. Adjusting to the smaller one by deleting last entries.')
+        fft_data = fft_data[:len(recharge)]
+        
+        
      
     # define the sampling frequency/time step
     # -------------------------------------------------------------------------
@@ -280,10 +298,12 @@ def fft_psd(method='scipyfftnormt',
         # ---------------------------------------------------------------------
         # define wondow size based on amount of values (1/100 -> 100 windows)
         if windows == None:
-            windows = len(power_spectrum_result)/10
+            windows = len(power_spectrum_result)/50
+            
         else:
             print('Data Points in PSD: ' + str(len(power_spectrum_result)))    
         window_size = np.around((len(power_spectrum_result)/windows),0)
+#!!! achtung: windows = len war ursprünglich /10        
         if window_size % 2 == 0:
             window_size = window_size + 1
         elif window_size < 2:
@@ -325,8 +345,9 @@ def fft_psd(method='scipyfftnormt',
                                               power_spectrum_result_filtered,
                                               p0=initial_guess,
                                               sigma=sigma_l)
-            a_l = popt_l[0]
+
             t_l = popt_l[1]
+            a_l = popt_l[0]
 
         # Plot the linear fit model
         # ---------------------------------------------------------------------
@@ -440,14 +461,14 @@ def fft_psd(method='scipyfftnormt',
                               ec="0.5", pad=0.5, alpha=1))    
 
     plt.legend(loc='best')
-    plt.show()        
+    #plt.show()        
     if savefig == True:
         fig.savefig(str(path_to_project) + 'PSD_' + str(method) + '_' + 
                     str(os.path.basename(str(path_to_project)[:-1])) + '_' + 
                     str(obs_point) + ".png")
         plt.close()
 
-    if saveoutput == True:
+    if fit == True and saveoutput == True:
         with open(str(path_to_project) + 'PSD_output.txt', 'a') as file:
             file.write(str(datetime.datetime.now()) + ' ' + method + ' ' + 
                                 str(T_l) + ' ' + str(kf_l) + ' ' + 
@@ -456,6 +477,8 @@ def fft_psd(method='scipyfftnormt',
                                 str(T_d) + ' ' + str(kf_d) + ' ' + 
                                 str(Ss_d) + ' ' + str(D_d) + ' ' + 
                                 str(a_d) + ' ' + str(t_d) + ' ' + 
-                                str(path_to_project) + ' ' + str(obs_point) + '\n')
+                                str(path_to_project) + str(single_file) + 
+                                ' ' + str(obs_point) + '\n')
         file.close()
+    return T_l, kf_l, Ss_l, D_l, a_l, t_l
   

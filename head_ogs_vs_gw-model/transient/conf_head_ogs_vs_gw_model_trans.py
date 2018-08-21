@@ -30,13 +30,13 @@ import os
 # global variables set manually
 # =============================================================================
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
-path_to_project = "/Users/houben/Desktop/transect_02/"
+path_to_project = "/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_1_results/"
 name_of_project_gw_model = "sinus"
 name_of_project_ogs = "transect_02"
 process = 'GROUNDWATER_FLOW'
 which = 'max'       # min, max, mean
 time_steps = 30   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot =  ['obs_0500']
+obs_per_plot =  ['obs_0300']
 
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
 
