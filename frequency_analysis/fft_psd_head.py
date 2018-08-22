@@ -20,21 +20,21 @@ import scipy.fftpack as scpfft
 from scipy import signal
 import numpy as np
 import matplotlib.pyplot as plt
-plt.ioff()
+#plt.ioff()
 import datetime
 import os
 import scipy.optimize as optimization
 import textwrap as tw
 
 
-def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/Groundwater@UFZ_eve_HORIZONTAL_276_D/",
-                             single_file="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/Groundwater@UFZ_eve_HORIZONTAL_276_D/transect_01_ply_obs_0100_t11_GROUNDWATER_FLOW.tec",
+def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_3_results/",
+                             single_file="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_3_results/transect_01_ply_obs_0000_t1_GROUNDWATER_FLOW.tec",
                              which_data_to_plot=1,
                              name_of_project_gw_model='',
                              name_of_project_ogs='transect_01',
                              process='GROUNDWATER_FLOW',
                              which='max',
-                             time_steps=8400,
+                             time_steps=86400,
                              observation_point='NA',
                              obs_point=''):
     '''
@@ -87,18 +87,18 @@ def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/transect/tra
 
 def fft_psd(fft_data,
             recharge,
-            aquifer_thickness,
-            aquifer_length,
-            distance_to_river=0,
+            aquifer_thickness=30,
+            aquifer_length=1000,
+            distance_to_river=1000,
             path_to_project='no_path_given',
             single_file='no_path_given',
-            method='scipyfftnormt',
+            method='pyplotwelch',
             fit=False, savefig=False, 
             saveoutput=True, dupuit=False,
             a_l=None, t_l=None, 
             a_d=None, t_d=None, 
-            weights_l=[1,1,50,500], 
-            weights_d=[3,1,1,2], 
+            weights_l=[1,1,1,1,1,1], 
+            weights_d=[1,1,1,1,1,1], 
             o_i='oi',
             time_step_size=86400,
             windows=None,
@@ -154,6 +154,20 @@ def fft_psd(fft_data,
         elif o_i == 'o':
             power_spectrum_result = power_spectrum_output
 
+    if method == 'scipyfft2':
+        # =========================================================================
+        # method x: Periodogram: Power Spectral Density: abs(X(w))^2
+        #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
+        # =========================================================================
+        power_spectrum_input = ((abs(scpfft.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2)*2)[1:]
+        power_spectrum_output = ((abs(scpfft.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2)*2)[1:]
+        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        frequency_input = (abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])[1:]
+        if o_i == 'i':
+            power_spectrum_result = power_spectrum_input
+        elif o_i == 'o':
+            power_spectrum_result = power_spectrum_output  
+
     if method == 'scipyfft':
         # =========================================================================
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2
@@ -198,6 +212,7 @@ def fft_psd(fft_data,
                                                         Fs=sampling_frequency)
         power_spectrum_output, frequency_output = plt.psd(fft_data_detrend,
                                                         Fs=sampling_frequency)
+        # delete first value (which is 0) because it makes trouble with fitting
         frequency_output = frequency_output[1:]
         frequency_input = frequency_input[1:]
         power_spectrum_result = (power_spectrum_output / power_spectrum_input)[1:]
@@ -298,17 +313,16 @@ def fft_psd(fft_data,
         # ---------------------------------------------------------------------
         # define wondow size based on amount of values (1/100 -> 100 windows)
         if windows == None:
-            windows = len(power_spectrum_result)/50
+            windows = len(power_spectrum_result)/10
             
         else:
             print('Data Points in PSD: ' + str(len(power_spectrum_result)))    
-        window_size = np.around((len(power_spectrum_result)/windows),0)
-#!!! achtung: windows = len war ursprünglich /10        
+        window_size = np.around((len(power_spectrum_result)/windows),0)       
         if window_size % 2 == 0:
             window_size = window_size + 1
         elif window_size < 2:
             window_size = 2
-        power_spectrum_result_filtered = signal.savgol_filter(power_spectrum_result, window_size, 2)
+        power_spectrum_result_filtered = signal.savgol_filter(power_spectrum_result, window_size, 2)      
         ax.plot(frequency_input, power_spectrum_result_filtered, label='filtered PSD')
         
         
@@ -334,27 +348,33 @@ def fft_psd(fft_data,
                 for residual in range(len(power_spectrum_result_filtered) % len(weights_l)):
                     sigma_l = np.append(sigma_l,weights_l[-1])
                     
-#                    EINE VARIABLE KONSTANT HALTEN! UND MAXIMUM ALLOWED SIZE EXCEEDED bei vielen runs
             # define the function to fit (linear aquifer model):
             def linear_fit(w_l, a_l, t_l):
-                return (1. / (a_l**2 * ( 1 + ((t_l**2) * (w_l**2)))))
-            
+                return (1. / (a_l**2 * ( 1 + ((t_l**2) * (w_l**2)))))              # method 1
+                #return (1. / (a_l * ( 1 + ((t_l**2) * (w_l**2)))))                 # method 2
+                #return (1. / (a_l**2 * ( 1 + ((t_l**2) * ((w_l/2./np.pi)**2)))))   # method 3
+                #return (1. / (a_l * ( 1 + ((t_l**2) * ((w_l/2./np.pi)**2)))))      # method 4
             # perform the fit
             popt_l, pcov_l = optimization.curve_fit(linear_fit,
                                               frequency_input,
-                                              power_spectrum_result_filtered,
+                                              power_spectrum_result,
                                               p0=initial_guess,
                                               sigma=sigma_l)
-
-            t_l = popt_l[1]
-            a_l = popt_l[0]
+# changed optimization from filterered data            
+            # abs to avoid negative values from optimization
+            t_l = abs(popt_l[1])
+            a_l = abs(popt_l[0])
+            t_l = t_l
 
         # Plot the linear fit model
         # ---------------------------------------------------------------------
         linear_model = []
         # fitting model for the linear reservoir (Gelhar, 1993)
         for i in range(0,len(frequency_input)):
-            line = 1 / (a_l**2 * ( 1 + ((t_l**2) * (frequency_input[i]**2))))
+            line = 1. / (a_l**2 * ( 1 + ((t_l**2) * (frequency_input[i]**2))))               # method 1
+            #line = 1 / (a_l * ( 1 + ((t_l**2) * (frequency_input[i]**2))))                  # method 2
+            #line = 1 / (a_l**2 * ( 1 + ((t_l**2) * ((frequency_input[i]/2./np.pi)**2))))    # method 3
+            #line = 1 / (a_l * ( 1 + ((t_l**2) * ((frequency_input[i]/2./np.pi)**2))))       # method 4
             linear_model.append(line)
         ax.plot(frequency_input, linear_model, label='linear model')
  
@@ -362,10 +382,10 @@ def fft_psd(fft_data,
         # ---------------------------------------------------------------------     
         print("Multiplication of t_l for D_l? 86400? or none?")
         T_l = a_l * aquifer_length**2 / 3.
-        kf_l = T_l/30.
-        Ss_l = a_l * t_l
-        #D = kf / Ss
-        D_l = T_l / Ss_l
+        kf_l = T_l / aquifer_thickness
+        S_l = a_l * t_l
+        Ss_l = S_l / aquifer_thickness
+        D_l = T_l / S_l
         output_l = ('Linear model:\n ' + 
               'T [m2/s]: ' + '%0.4e' % T_l  + '\n  ' +
               'Ss [1/m]: ' + '%0.4e' % Ss_l + '\n  ' +
@@ -411,16 +431,17 @@ def fft_psd(fft_data,
             # perform the fit
             popt_d, pcov_d = optimization.curve_fit(dupuit_fit,
                                               frequency_input,
-                                              power_spectrum_result_filtered,
+                                              power_spectrum_result,
                                               p0=initial_guess,
                                               sigma=sigma_d)
-           
-            a_d = popt_d[0]
-            t_d = popt_d[1]
+#!!!! filtered    
+            # abs to avoid negative values
+            a_d = abs(popt_d[0])
+            t_d = abs(popt_d[1])
             
             #assign nan to alls parameters if duptui model is not used
         else:
-            T_d, kf_d, Ss_d, D_d, a_d, t_d = np.nan, np.nan, np.nan, np.nan, np.nan, np.nan
+            T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
 
         
         # Plot the Dupuit model
@@ -437,8 +458,9 @@ def fft_psd(fft_data,
             # ---------------------------------------------------------------------       
             T_d = a_d * aquifer_thickness * distance_to_river
             kf_d = T_d/aquifer_thickness
-            Ss_d = t_d * T_d / aquifer_length 
-            D_d = T_d / Ss_d
+            S_d = t_d * T_d / aquifer_length**2 
+            Ss_d = S_d / aquifer_thickness
+            D_d = T_d / S_d
             output_d = ('Dupuit model: \n' + 
                   'T [m2/s]: ' + '%0.4e' % T_d  + '\n  ' +
                   'Ss [1/m]: ' + '%0.4e' % Ss_d + '\n  ' +
