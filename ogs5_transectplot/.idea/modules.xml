@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../../higrade_develop/Python_Scientific_Programming/.idea/Python_Scientific_Programming.iml" filepath="$PROJECT_DIR$/../../../higrade_develop/Python_Scientific_Programming/.idea/Python_Scientific_Programming.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ogs5_transectplot.iml" filepath="$PROJECT_DIR$/.idea/ogs5_transectplot.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../higrade_develop/stat_with_python/.idea/stat_with_python.iml" filepath="$PROJECT_DIR$/../../../higrade_develop/stat_with_python/.idea/stat_with_python.iml" />
       <module fileurl="file://$USER_HOME$/Desktop/transect_02/.idea/transect_02.iml" filepath="$USER_HOME$/Desktop/transect_02/.idea/transect_02.iml" />
