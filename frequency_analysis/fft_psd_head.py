@@ -27,8 +27,8 @@ import scipy.optimize as optimization
 import textwrap as tw
 
 
-def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_10_results/",
-                             single_file="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_30_results/transect_01_ply_obs_1000_t17_GROUNDWATER_FLOW.tec",
+def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_21_results/",
+                             single_file="/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_21_results/transect_01_ply_obs_0600_t8_GROUNDWATER_FLOW.tec",
                              which_data_to_plot=1,
                              name_of_project_gw_model='',
                              name_of_project_ogs='transect_01',
