@@ -1,4 +1,4 @@
-def get_baseflow_from_line(path_to_file = "/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_30_results/transect_01_ply_obs_1000_t17_GROUNDWATER_FLOW.tec"):
+def get_baseflow_from_line(path_to_file = "/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient_template/con_transient_template_ply_obs_1000_t101_GROUNDWATER_FLOW.tec"):
     '''
     - Polyline has to be vertical! Only x-component of node-velocity is used.
     - All points in the line have to have the exact same x-coordinate (e.g. on a vertical domain border)

@@ -8,7 +8,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="transect_02" />
     <orderEntry type="module" module-name="stat_with_python" />
-    <orderEntry type="module" module-name="Python_Scientific_Programming" />
+    <orderEntry type="module" module-name="ogs_vs_derooij12" />
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<VTKFile type="Collection" version="0.1" byte_order="LittleEndian" compressor="vtkZLibDataCompressor">
-  <Collection>
-    <DataSet timestep="0.000000000000e+00" group="" part="0" file="transect_55_hor_RICHARDS_FLOW0.vtu"/>
-    <DataSet timestep="1.797693134862e+308" group="" part="0" file="transect_55_hor_RICHARDS_FLOW1.vtu"/>
-  </Collection>
-</VTKFile>
