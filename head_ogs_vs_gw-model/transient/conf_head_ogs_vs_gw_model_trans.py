@@ -30,11 +30,11 @@ import os
 # =============================================================================
 which_data_to_plot = 3 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 path_to_project = "/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient_template"
-name_of_project_gw_model = "run1"
+name_of_project_gw_model = "0.01"
 name_of_project_ogs = "con_transient_template"
 process = 'GROUNDWATER_FLOW'
 which = 'max'       # min, max, mean
-time_steps = 100   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
+time_steps = 101   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
 obs_per_plot = ['obs_0100', 'obs_0500', 'obs_0950']
 
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
@@ -164,7 +164,7 @@ def gethead_gw_model_each_obs(array_head_gw_model, obs):
 # load .rfd with recharge CURVE or extract recharge from R. in from gw_model
 # =============================================================================
 
-def getrecharge(path_to_project, name_of_project_ogs, time_steps, mm_d=False):
+def getrecharge(path_to_project, name_of_project_ogs, time_steps, mm_d=True):
     ''' 
     This function extracts the recharge from the .rfd-file BUT ONLY FOR THE GIVEN
     NUMBER OF TIMESTEPS in the variable time_steps.
@@ -276,7 +276,7 @@ def plot_obs_vs_time(obs_per_plot, which):
     ax1.set_ylabel('recharge [mm/day]', color=color)  # we already handled the x-label with ax1
     ax1.bar(time_d, recharge, width=1, color=color)
     ax1.tick_params(axis='y', labelcolor=color)
-    ax1.set_ylim(0,0.2)
+    #ax1.set_ylim(0,0.2)
     #ax1.set_ylim([min(recharge), max(recharge)*2])
     #ax1.set_yticks([0, 1, 2, 3, 4, 5])
    
@@ -369,7 +369,7 @@ def plot_obs_vs_time(obs_per_plot, which):
         for obs in obs_per_plot:
             # derive the head for the given observation point from the gw_model
             head_gw_model = gethead_gw_model_each_obs(make_array_gw_model(
-                            split_gw_model(getlist_gw_model(str(path_to_project) 
+                            split_gw_model(getlist_gw_model(str(path_to_project) + "/" 
                             + str(name_of_project_gw_model) 
                             + '/H.OUT'), index=2)), convert_obs_list_to_index(obs))
             ax2.plot(time_d, head_gw_model, label = str(obs) + ' GW_model', linestyle='-')

@@ -6,9 +6,6 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 2.7" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="transect_02" />
-    <orderEntry type="module" module-name="stat_with_python" />
-    <orderEntry type="module" module-name="ogs_vs_derooij12" />
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />

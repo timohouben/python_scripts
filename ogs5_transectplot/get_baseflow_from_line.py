@@ -1,4 +1,4 @@
-def get_baseflow_from_line(path_to_file = "/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient_template/con_transient_template_ply_obs_1000_t101_GROUNDWATER_FLOW.tec"):
+def get_baseflow_from_line(path_to_file = "/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient/0.0001/con_transient_0.0001_ply_obs_1000_t101_GROUNDWATER_FLOW.tec"):
     '''
     - Polyline has to be vertical! Only x-component of node-velocity is used.
     - All points in the line have to have the exact same x-coordinate (e.g. on a vertical domain border)
@@ -47,3 +47,7 @@ def get_baseflow_from_line(path_to_file = "/Users/houben/PhD/modelling/ogs_vs_de
         return flow_timeseries
     except KeyError:
         print('ERROR: There is no VELOCITY_X1 time series in the given tec-file.')
+
+baseflow =get_baseflow_from_line()
+import matplotlib.pyplot as plt
+plt.plot(baseflow)
