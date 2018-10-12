@@ -24,18 +24,19 @@ from ogs5py.reader import readtec_polyline
 import numpy as np
 import re
 import os
+from cycler import cycler
 
 # =============================================================================
 # global variables set manually
 # =============================================================================
-which_data_to_plot = 3 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
-path_to_project = "/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient_template"
-name_of_project_gw_model = "0.01"
-name_of_project_ogs = "con_transient_template"
+which_data_to_plot = 1 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
+path_to_project = "/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient_run3/9.00e-04_riverbase_28"
+name_of_project_gw_model = "9.00e-04"
+name_of_project_ogs = "con_transient_9.00e-04_riverbase_28"
 process = 'GROUNDWATER_FLOW'
 which = 'max'       # min, max, mean
-time_steps = 101   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_0100', 'obs_0500', 'obs_0950']
+time_steps = 365   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
+obs_per_plot = ['obs_0100', 'obs_0500', 'obs_0950', 'obs_0990']
 
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
 
@@ -47,6 +48,21 @@ obs_per_plot = ['obs_0100', 'obs_0500', 'obs_0950']
 #['obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0990']
 
 #['obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900'] 
+
+# =============================================================================
+# format plots
+# =============================================================================
+
+font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 15}
+plt.rc('font', **font)
+if which_data_to_plot == 1:
+    plt.rc('axes', prop_cycle=(cycler('color', 
+                                  ['b', 'b', 'g', 'g', 'r', 'r', 'c', 'c', 'm', 'm', 'k', 'k', 'y', 'y'])))
+else:
+    plt.rc('axes', prop_cycle=(cycler('color', 
+                                  ['b', 'g', 'r', 'c', 'm', 'k', 'y'])))
 
 # ========================================== ===================================
 # global variables set automatically
@@ -61,7 +77,7 @@ if __name__ == "__main__":
     print('Reading of .tec-files finished.')
     # Save the dict
     print('Saving data...')
-    np.save('tecs.npy', tecs)
+    np.save(str(path_to_project) + '/' + 'tecs.npy', tecs)
     print('Saving finished.')
 
     time_s = tecs[process][obs_per_plot[0]]["TIME"]
@@ -71,7 +87,7 @@ def load_tecs():
     '''
     Load tecs from file.
     '''
-    tecs =  np.load('/Users/houben/PhD/python/scripts/head_ogs_vs_gw-model/transient/tecs.npy').item()
+    tecs =  np.load(str(path_to_project) + '/' + 'tecs.npy').item()
     return tecs
 
 # =============================================================================
@@ -149,7 +165,7 @@ def make_array_gw_model(raw_data_split):
 #                    + str(name_of_project_gw_model) 
 #                    + '/H.OUT'), index=2))
 
-def gethead_gw_model_each_obs(array_head_gw_model, obs):
+def gethead_gw_model_each_obs(array_head_gw_model, obs, save_heads=True):
     '''
     Extract the demanded time series for given observation point and save it in a list.
     '''
@@ -158,6 +174,7 @@ def gethead_gw_model_each_obs(array_head_gw_model, obs):
     
     for line in array_head_gw_model[:,obs]:
         head_gw_model_timeseries_each_obs.append(line)
+    np.savetxt(str(path_to_project) + '/' + 'head_gw_model_' + str(obs) + '.txt', head_gw_model_timeseries_each_obs)         
     return head_gw_model_timeseries_each_obs
 
 # =============================================================================
@@ -204,7 +221,7 @@ def getrecharge(path_to_project, name_of_project_ogs, time_steps, mm_d=True):
 # get the head for maximum, minimum and mean values for given observation point(s)
 # =============================================================================
     
-def gethead_ogs_each_obs(process, observation_point, which, time_steps, tecs, single_file=False):
+def gethead_ogs_each_obs(process, observation_point, which, time_steps, tecs, single_file=False, save_heads=True):
     '''
     Depending for which position on the observations line you want to plot the 
     head, it will return the min, max or mean head. You need to specify this 
@@ -227,7 +244,6 @@ def gethead_ogs_each_obs(process, observation_point, which, time_steps, tecs, si
         else:
             print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
             head_ogs_timeseries_each_obs = "nan"
-        return head_ogs_timeseries_each_obs
     
     elif single_file == True:
         number_of_columns = tecs["HEAD"].shape[1]
@@ -246,7 +262,10 @@ def gethead_ogs_each_obs(process, observation_point, which, time_steps, tecs, si
         else:
             print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
             head_ogs_timeseries_each_obs = "nan"
-        return head_ogs_timeseries_each_obs        
+    
+    # save the head time series as txt for each observation point   
+    np.savetxt(str(path_to_project) + '/' + 'head_ogs_' + str(observation_point) + '_' + str(which) + '.txt', head_ogs_timeseries_each_obs)     
+    return head_ogs_timeseries_each_obs
 
 # =============================================================================
 # =============================================================================
@@ -299,7 +318,7 @@ def plot_obs_vs_time(obs_per_plot, which):
             for obs in obs_per_plot:
                 # derive the head for the given observation point from ogs
                 head_ogs = gethead_ogs_each_obs(process, obs, 'min', time_steps, tecs)
-                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' ogs',  linestyle='--')
+                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' OGS',  linestyle='--')
                 # derive the head for the given observation point from the gw_model
                 head_gw_model = gethead_gw_model_each_obs(make_array_gw_model(
                         split_gw_model(getlist_gw_model(str(path_to_project) + "/"
@@ -309,7 +328,7 @@ def plot_obs_vs_time(obs_per_plot, which):
         elif which == 'max':
             for obs in obs_per_plot:
                 head_ogs = gethead_ogs_each_obs(process, obs, 'max', time_steps, tecs)
-                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' ogs',  linestyle='--')
+                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' OGS',  linestyle='--')
                 # derive the head for the given observation point from the gw_model
                 head_gw_model = gethead_gw_model_each_obs(make_array_gw_model(
                         split_gw_model(getlist_gw_model(str(path_to_project) + "/" 
@@ -319,7 +338,7 @@ def plot_obs_vs_time(obs_per_plot, which):
         elif which == 'mean':
             for obs in obs_per_plot:
                 head_ogs = gethead_ogs_each_obs(process, obs, 'mean', time_steps, tecs)
-                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' ogs',  linestyle='--')
+                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' OGS',  linestyle='--')
                 # derive the head for the given observation point from the gw_model
                 head_gw_model = gethead_gw_model_each_obs(make_array_gw_model(
                         split_gw_model(getlist_gw_model(str(path_to_project) + "/" 
@@ -330,7 +349,7 @@ def plot_obs_vs_time(obs_per_plot, which):
             for obs in obs_per_plot:
                 for which in ['mean', 'min', 'max']:
                     head_ogs = gethead_ogs_each_obs(process, obs, which, time_steps, tecs)
-                    ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' ogs',  linestyle='--')
+                    ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' OGS',  linestyle='--')
                 # derive the head for the given observation point from the gw_model
                 head_gw_model = gethead_gw_model_each_obs(make_array_gw_model(
                     split_gw_model(getlist_gw_model(str(path_to_project) + "/" 
@@ -347,20 +366,20 @@ def plot_obs_vs_time(obs_per_plot, which):
             for obs in obs_per_plot:
                 # derive the head for the given observation point from ogs
                 head_ogs = gethead_ogs_each_obs(process, obs, 'min', time_steps, tecs)
-                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' ogs',  linestyle='-')
+                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' OGS',  linestyle='-')
         elif which == 'max':
             for obs in obs_per_plot:               
                 head_ogs = gethead_ogs_each_obs(process, obs, 'max', time_steps, tecs)
-                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' ogs',  linestyle='-')
+                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' OGS',  linestyle='-')
         elif which == 'mean':
             for obs in obs_per_plot:
                 head_ogs = gethead_ogs_each_obs(process, obs, 'mean', time_steps, tecs)
-                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' ogs',  linestyle='-')
+                ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' OGS',  linestyle='-')
         elif which == 'all':
             for obs in obs_per_plot:
                 for which in ['mean', 'min', 'max']:
                     head_ogs = gethead_ogs_each_obs(process, obs, which, time_steps, tecs)
-                    ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' ogs',  linestyle='-')
+                    ax2.plot(time_d, head_ogs, label = str(obs) + '_' + str(which) + ' OGS',  linestyle='-')
         else:
             print('You entered an invalid argument for "which" in function plot_obs_vs_time. Please enter min, max, mean or all.')
     
@@ -389,7 +408,7 @@ def plot_obs_vs_time(obs_per_plot, which):
     plt.show()
     # make a string from list obs_per_plot
     obs_per_plot_str = "_".join(obs_per_plot)
-    fig.savefig(str(path_to_project) + str(os.path.basename(str(path_to_project)[:-1])) + '_' + str(which) + '_' +str(obs_per_plot_str) + ".png")
+    fig.savefig(str(path_to_project) + '/' + str(os.path.basename(str(path_to_project))) + '_' + str(which) + '_' + str(obs_per_plot_str) + '_' + str(which_data_to_plot) + ".png")
     
 # =============================================================================
 # =============================================================================    

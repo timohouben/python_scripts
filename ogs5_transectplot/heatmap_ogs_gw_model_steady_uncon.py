@@ -101,6 +101,7 @@ def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
         threshold = im.norm(threshold)
     else:
         threshold = im.norm(data.max())/2.
+    threshold=0.2
 
     # Set default alignment to center, but allow it to be
     # overwritten by textkw.
@@ -117,7 +118,7 @@ def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
     texts = []
     for i in range(data.shape[0]):
         for j in range(data.shape[1]):
-            kw.update(color=textcolors[im.norm(data[i, j]) > threshold])
+            kw.update(color=textcolors[im.norm(data[i, j]) < threshold])
             text = im.axes.text(j, i, valfmt(data[i, j], None), **kw)
             texts.append(text)
 
@@ -127,9 +128,9 @@ def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
 fig, ax = plt.subplots()
 
 im, cbar = heatmap(harvest, vegetables, farmers, ax=ax,
-                   cmap="YlGn", cbarlabel="RMSE [mm]")
+                   cmap="RdYlGn_r", cbarlabel="RMSE [mm]")
 #texts = annotate_heatmap(im, valfmt="{x:.1f} t")
-texts = annotate_heatmap(im, valfmt="{x:.3f}")
+texts = annotate_heatmap(im, valfmt="{x:.1f}")
 
 fig.tight_layout()
 plt.show()

@@ -8,10 +8,10 @@ farmers = ["complete \n offset 20", "complete \n offset 60", "complete \n offset
            "incomplete \n offset 20", "incomplete \n offset 60", "incomplete \n offset 100",
            "incomplete 2m \n 20", "incomlete 2m \n offset 60", "incomlete 2m \n offset 100"]
 
-harvest = np.array([[7.91E-03,	1.90E-01,	1.15E+00,	4.91E-01,	1.06E+00,	2.73E+01,	3.22E+01,	3.57E+01,	4.27E+01],
+harvest = np.array([[7.91E-03,	1.90E-01,	1.15E+00,	4.91E-01,	1.06E+00,	2.73E+00,	3.22E+01,	3.57E+01,	4.27E+01],
 [2.03E-02,	4.48E-01,	2.62E+00,	1.10E+00,	2.39E+00,	6.12E+00,	7.25E+01,	8.03E+01,	9.61E+01],
 [3.58E-02,	7.83E-01,	4.61E+00,	1.96E+00,	4.25E+00,	1.09E+01,	1.29E+02,	1.43E+02,	1.71E+02],
-[5.25E-02,	1.22E+00,	7.16E+00,	3.01E+00,	6.58E+00,	1.69E+01,	2.01E+01,	2.23E+02,	2.67E+02]])
+[5.25E-02,	1.22E+00,	7.16E+00,	3.01E+00,	6.58E+00,	1.69E+01,	2.01E+02,	2.23E+02,	2.67E+02]])
 
 
 def heatmap(data, row_labels, col_labels, ax=None,
@@ -104,6 +104,8 @@ def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
     else:
         threshold = im.norm(data.max())/2.
 
+    threshold = 0.1
+
     # Set default alignment to center, but allow it to be
     # overwritten by textkw.
     kw = dict(horizontalalignment="center",
@@ -119,7 +121,7 @@ def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
     texts = []
     for i in range(data.shape[0]):
         for j in range(data.shape[1]):
-            kw.update(color=textcolors[im.norm(data[i, j]) > threshold])
+            kw.update(color=textcolors[im.norm(data[i, j]) < threshold])
             text = im.axes.text(j, i, valfmt(data[i, j], None), **kw)
             texts.append(text)
 
@@ -129,10 +131,10 @@ def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
 fig, ax = plt.subplots()
 
 im, cbar = heatmap(harvest, vegetables, farmers, ax=ax,
-                   cmap="YlGn", cbarlabel="RMSE [mm]")
+                   cmap="RdYlGn_r", cbarlabel="RMSE [mm]")
 #YlGn
 #texts = annotate_heatmap(im, valfmt="{x:.1f} t")
-texts = annotate_heatmap(im, valfmt="{x:.3f}")
+texts = annotate_heatmap(im, valfmt="{x:.1f}")
 
 fig.tight_layout()
 plt.show()

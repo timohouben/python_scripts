@@ -1,10 +1,10 @@
-m#!/usr/bin/env pythonw
+#!/usr/bin/env pythonw
 # -*- coding: utf-8 -*-
 ########################################
 #   the following must be considered:
 # - initial conditions in OGS must be switched off (saturation will be = 1 in whole domain)
 # - script not yet functioning for transient analysis
-# - 
+# - CHANGED script to pic pressure instead of saturation on Oct 7th '18
 
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d, Axes3D
@@ -59,12 +59,14 @@ for k, file_name_ogs in enumerate(tec_files):
     #### find position of decreasing saturation (first time sat != 1)
     for j, x in enumerate(sat_z_data_ogs):
         try:
-            if float(sat_z_data_ogs[j][1]) < 1:                                     # configutation for PRESSURE1 as output
+            if float(sat_z_data_ogs[j][2]) < 0:                                     # configutation for PRESSURE1 as output
             #if sat_z_data_ogs[j][1] > sat_z_data_ogs[j+1][1]: # and sat_z_data_ogs[j+1][1] > sat_z_data_ogs[j+2][1] and sat_z_data_ogs[j+2][1] > sat_z_data_ogs[j+3][1]:# and sat_z_data_ogs[j+3][1] > sat_z_data_ogs[j+4][1] and sat_z_data_ogs[j+4][1] > sat_z_data_ogs[j+5][1]:             # configuration for SATURATION1 as output
-                head_ogs[k, 0] = sat_z_data_ogs[j][0]        
+                head_ogs[k, 0] = x[0]
                 break
         except: IndexError
 data_H_ogs.close()
+
+
 
 # =============================================================================
 # polynomial fit of ogs data
@@ -166,3 +168,5 @@ rmse = error(head_ogs, head_gw_model)
 now = time.time()
 print("ogs-data script runtime: " + str(now - then))    
 fig = plot()
+np.savetxt('head_ogs.txt', head_ogs[:,0])
+np.savetxt('head_gw_model.txt', head_gw_model)
