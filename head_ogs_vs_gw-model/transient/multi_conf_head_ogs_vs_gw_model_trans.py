@@ -181,40 +181,96 @@ for i,curr_dir in enumerate(list_dir):
     # =============================================================================
     # load .rfd with recharge CURVE or extract recharge from R. in from gw_model
     # =============================================================================
-    
-    def getrecharge(path_to_project, name_of_project_ogs, time_steps, mm_d=True):
+    def get_curve(path_to_project, name_of_project_ogs, curve=1, mm_d=True, time_steps=None):
         ''' 
-        This function extracts the recharge from the .rfd-file BUT ONLY FOR THE GIVEN
-        NUMBER OF TIMESTEPS in the variable time_steps.
-        The curve for the recharge must be the FIRST one in the .rdf-file.
-        '''
-        
-        ### erst innerhalb der funktion nach which_data_to_plot fragen
-        ### finall auslagern in eine kleine funktion
-        
-        recharge = []
-        if which_data_to_plot == 1 or which_data_to_plot == 2:
-            counter = 0
-            rfd = open(str(path_to_project) + "/" + str(name_of_project_ogs) + ".rfd",'r')
-            for linenumber, line in enumerate(rfd):
-                    # line[4] only works when .rfd was saved via the ogs5py api. For other files, select another value
-                if line[2].isdigit() == True and counter <= time_steps+1:
-                    line = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line)
-                    recharge.append(line[1])
+        This function extracts the values from the .rfd-file for a given curve 
+        number and stores it in two seperate variables. The first curve is denoted
+        with 1. curves should be seperated via a blank line otherwise this could
+        eventually throw an error.
+        ''' 
+        rfd_x = []
+        rfd_y = []
+        length_of_curves = []
+        counter = 0
+        found = 0
+        rfd = open(str(path_to_project) + "/" + str(name_of_project_ogs) + ".rfd",'r')
+        for linenumber, line in enumerate(rfd):
+            line = line.strip().split()
+            if not line:
+                line = ' '
+            if line and line[0] == '#CURVES' or line[0] == ['#CURVE']:
+                found = 1                
+                continue
+            if found == 1:
+                number = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line[0])
+                if not number:  
+                    length_of_curves.append(counter)                   
+                    found = 0
+                    counter = 0
+                if line != ' ' and line[0] != '#STOP':    
+                    rfd_x.append(float((re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line[0]))[0]))
+                    rfd_y.append(float((re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line[1]))[0]))
                     counter += 1
-        elif which_data_to_plot == 3:
-            recharge_raw = open(str(path_to_project) + "/" + str(name_of_project_gw_model) + "/R.in",'r')
-            for line in recharge_raw:
-                value = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line)
-                if value != []:
-                    recharge.append(value[1])
-        
+           
+        curves_begin = []    
+        for i in range(0,len(length_of_curves)):
+            if i == 0:
+                curves_begin.append(0)
+            else:
+                curves_begin.append(sum(length_of_curves[0:i]))
+            
         if mm_d == True:
-            recharge_new=[]
-            for item in recharge:
-                recharge_new.append(float(item)*86400*1000)
-            recharge = recharge_new
-        return recharge
+            recharge = []
+            for item in rfd_y:
+                recharge.append(item*86400*1000)
+            rfd_y = recharge
+        
+        if time_steps:
+            return rfd_x[curves_begin[curve-1]:(curves_begin[curve-1]+time_steps+1)], rfd_y[curves_begin[curve-1]:(curves_begin[curve-1]+time_steps+1)]
+        else:
+            return rfd_x[curves_begin[curve-1]:(curves_begin[curve-1]+length_of_curves[curve-1])], rfd_y[curves_begin[curve-1]:(curves_begin[curve-1]+length_of_curves[curve-1])]
+    
+    
+    
+    
+#   Das war die alte get_recharge funktion    
+    
+    
+#    def getrecharge(path_to_project, name_of_project_ogs, time_steps, mm_d=True):
+#        ''' 
+#        This function extracts the recharge from the .rfd-file BUT ONLY FOR THE GIVEN
+#        NUMBER OF TIMESTEPS in the variable time_steps.
+#        The curve for the recharge must be the FIRST one in the .rdf-file.
+#        '''
+#        
+#        ### erst innerhalb der funktion nach which_data_to_plot fragen
+#        ### finall auslagern in eine kleine funktion
+#        
+#        recharge = []
+#        if which_data_to_plot == 1 or which_data_to_plot == 2:
+#            counter = 0
+#            rfd = open(str(path_to_project) + "/" + str(name_of_project_ogs) + ".rfd",'r')
+#            for linenumber, line in enumerate(rfd):
+#                    # line[4] only works when .rfd was saved via the ogs5py api. For other files, select another value
+#                if line[2].isdigit() == True and counter <= time_steps+1:
+#                    line = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line)
+#                    recharge.append(line[1])
+#                    counter += 1
+ #       elif which_data_to_plot == 3:
+#            recharge_raw = open(str(path_to_project) + "/" + str(name_of_project_gw_model) + "/R.in",'r')
+#            for line in recharge_raw:
+#                value = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line)
+#                if value != []:
+#                    recharge.append(value[1])
+#        
+#        if mm_d == True:
+#            recharge_new=[]
+ #           for item in recharge:
+ #               recharge_new.append(float(item)*86400*1000)
+#            recharge = recharge_new
+#        return recharge
+  
+ 
     # =============================================================================
     # =============================================================================
     # =============================================================================
@@ -422,5 +478,5 @@ for i,curr_dir in enumerate(list_dir):
     #gethead_gw_model_each_obs(make_array_gw_model(split_gw_model(getlist_gw_model(str(path_to_project) + str(name_of_project_gw_model) + '/H.OUT'), value='head')), 0)
     
     if __name__ == "__main__":
-        recharge = getrecharge(path_to_project, name_of_project_ogs, time_steps)
+        rfd_x, recharge = get_curve(path_to_project, name_of_project_ogs, curve=1, mm_d=True, time_steps=time_steps)
         plot_obs_vs_time(obs_per_plot, which=which)  
