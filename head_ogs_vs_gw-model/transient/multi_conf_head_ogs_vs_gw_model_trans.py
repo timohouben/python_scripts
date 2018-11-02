@@ -23,13 +23,13 @@ plt.ioff()
 # =============================================================================
 # global variables set manually
 # =============================================================================
-path_to_multiple_projects = '/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient_compare/run_3'
+path_to_multiple_projects = '/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/run1_20181030'
 first_part_of_name_of_project_ogs = "con_transient_"
-which_data_to_plot = 1 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
+which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
 which = 'max'       # min, max, mean
 time_steps = 365   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_0100', 'obs_0500', 'obs_0950', 'obs_0990']
+obs_per_plot = ['obs_00100']
 
 # different configurations
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
@@ -198,7 +198,7 @@ for i,curr_dir in enumerate(list_dir):
             rfd = open(str(path_to_project) + "/" + str(name_of_project_ogs) + ".rfd",'r')
             for linenumber, line in enumerate(rfd):
                     # line[4] only works when .rfd was saved via the ogs5py api. For other files, select another value
-                if line[4].isdigit() == True and counter <= time_steps+1:
+                if line[2].isdigit() == True and counter <= time_steps+1:
                     line = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line)
                     recharge.append(line[1])
                     counter += 1

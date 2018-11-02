@@ -4,6 +4,8 @@
 
 Script to make time series analysis with multiple folders comparing ogs and gw_model
 
+You can use different correlation measures: rmse, person, nse
+
 Created on Wed Oct  3 15:26:55 2018
 
 @author: houben

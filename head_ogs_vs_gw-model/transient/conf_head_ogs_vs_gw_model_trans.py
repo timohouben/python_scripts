@@ -29,14 +29,14 @@ from cycler import cycler
 # =============================================================================
 # global variables set manually
 # =============================================================================
-which_data_to_plot = 1 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
-path_to_project = "/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient_run3/9.00e-04_riverbase_28"
+which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
+path_to_project = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/100_1_dirac_homogeneous_edt"
 name_of_project_gw_model = "9.00e-04"
-name_of_project_ogs = "con_transient_9.00e-04_riverbase_28"
+name_of_project_ogs = "con_transient_100_1_dirac_homogeneous"
 process = 'GROUNDWATER_FLOW'
 which = 'max'       # min, max, mean
 time_steps = 365   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_0100', 'obs_0500', 'obs_0950', 'obs_0990']
+obs_per_plot = ['obs_00010']
 
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
 
