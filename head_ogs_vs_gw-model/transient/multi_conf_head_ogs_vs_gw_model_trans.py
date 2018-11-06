@@ -23,13 +23,20 @@ plt.ioff()
 # =============================================================================
 # global variables set manually
 # =============================================================================
-path_to_multiple_projects = '/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/run1_20181030'
-first_part_of_name_of_project_ogs = "con_transient_"
+path_to_multiple_projects = '/Users/houben/Desktop/asds'
+first_part_of_name_of_project_ogs = "transect_02"
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
-which = 'max'       # min, max, mean
-time_steps = 365   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_00100']
+which = 'all'       # min, max, mean
+time_steps = 30   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
+
+#configurations for model run: run1_20181030
+#obs_per_plot = ['obs_00010', 'obs_00040', 'obs_00060', 'obs_00080', 'obs_00090'] # 100
+#obs_per_plot = ['obs_00020', 'obs_00080', 'obs_00120', 'obs_00160', 'obs_00180'] # 200
+#obs_per_plot = ['obs_00050', 'obs_00200', 'obs_00300', 'obs_00400', 'obs_00450'] # 500
+#obs_per_plot = ['obs_00100', 'obs_00400', 'obs_00600', 'obs_00800', 'obs_00900'] # 1000
+#obs_per_plot = ['obs_00200', 'obs_00800', 'obs_01200', 'obs_01600', 'obs_01800'] # 2000
+#obs_per_plot = ['obs_00500', 'obs_02000', 'obs_03000', 'obs_04000', 'obs_04500'] # 5000
 
 # different configurations
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
@@ -317,7 +324,7 @@ for i,curr_dir in enumerate(list_dir):
                     head_ogs_timeseries_each_obs.append(np.mean(tecs["HEAD"][step,:]))
                 head_ogs_timeseries_each_obs = np.asarray(head_ogs_timeseries_each_obs)
             else:
-                print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
+                print('You enterd an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
                 head_ogs_timeseries_each_obs = "nan"
         
         # save the head time series as txt for each observation point   

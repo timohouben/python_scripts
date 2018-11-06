@@ -30,13 +30,13 @@ from cycler import cycler
 # global variables set manually
 # =============================================================================
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
-path_to_project = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/100_1_dirac_homogeneous_edt"
+path_to_project = "/Users/houben/Desktop/transect_02"
 name_of_project_gw_model = "9.00e-04"
-name_of_project_ogs = "con_transient_100_1_dirac_homogeneous"
+name_of_project_ogs = "transect_02"
 process = 'GROUNDWATER_FLOW'
-which = 'max'       # min, max, mean
-time_steps = 365   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_00010']
+which = 'all'       # min, max, mean
+time_steps = 30   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
+obs_per_plot = ['obs_0780']
 
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
 
@@ -180,7 +180,56 @@ def gethead_gw_model_each_obs(array_head_gw_model, obs, save_heads=True):
 # =============================================================================
 # load .rfd with recharge CURVE or extract recharge from R. in from gw_model
 # =============================================================================
-
+def get_curve(path_to_project, name_of_project_ogs, curve=1, mm_d=True, time_steps=None):
+        ''' 
+        This function extracts the values from the .rfd-file for a given curve 
+        number and stores it in two seperate variables. The first curve is denoted
+        with 1. curves should be seperated via a blank line otherwise this could
+        eventually throw an error.
+        ''' 
+        rfd_x = []
+        rfd_y = []
+        length_of_curves = []
+        counter = 0
+        found = 0
+        rfd = open(str(path_to_project) + "/" + str(name_of_project_ogs) + ".rfd",'r')
+        for linenumber, line in enumerate(rfd):
+            line = line.strip().split()
+            if not line:
+                line = ' '
+            if line and line[0] == '#CURVES' or line[0] == ['#CURVE']:
+                found = 1                
+                continue
+            if found == 1:
+                number = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line[0])
+                if not number:  
+                    length_of_curves.append(counter)                   
+                    found = 0
+                    counter = 0
+                if line != ' ' and line[0] != '#STOP':    
+                    rfd_x.append(float((re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line[0]))[0]))
+                    rfd_y.append(float((re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line[1]))[0]))
+                    counter += 1
+           
+        curves_begin = []    
+        for i in range(0,len(length_of_curves)):
+            if i == 0:
+                curves_begin.append(0)
+            else:
+                curves_begin.append(sum(length_of_curves[0:i]))
+            
+        if mm_d == True:
+            recharge = []
+            for item in rfd_y:
+                recharge.append(item*86400*1000)
+            rfd_y = recharge
+        
+        if time_steps:
+            return rfd_x[curves_begin[curve-1]:(curves_begin[curve-1]+time_steps+1)], rfd_y[curves_begin[curve-1]:(curves_begin[curve-1]+time_steps+1)]
+        else:
+            return rfd_x[curves_begin[curve-1]:(curves_begin[curve-1]+length_of_curves[curve-1])], rfd_y[curves_begin[curve-1]:(curves_begin[curve-1]+length_of_curves[curve-1])]
+        
+""" alte funktion:        
 def getrecharge(path_to_project, name_of_project_ogs, time_steps, mm_d=True):
     ''' 
     This function extracts the recharge from the .rfd-file BUT ONLY FOR THE GIVEN
@@ -214,6 +263,7 @@ def getrecharge(path_to_project, name_of_project_ogs, time_steps, mm_d=True):
             recharge_new.append(float(item)*86400*1000)
         recharge = recharge_new
     return recharge
+"""
 # =============================================================================
 # =============================================================================
 # =============================================================================
@@ -263,8 +313,9 @@ def gethead_ogs_each_obs(process, observation_point, which, time_steps, tecs, si
             print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
             head_ogs_timeseries_each_obs = "nan"
     
-    # save the head time series as txt for each observation point   
-    np.savetxt(str(path_to_project) + '/' + 'head_ogs_' + str(observation_point) + '_' + str(which) + '.txt', head_ogs_timeseries_each_obs)     
+    # save the head time series as txt for each observation point 
+    if save_heads == True:
+        np.savetxt(str(path_to_project) + '/' + 'head_ogs_' + str(observation_point) + '_' + str(which) + '.txt', head_ogs_timeseries_each_obs)     
     return head_ogs_timeseries_each_obs
 
 # =============================================================================
@@ -419,5 +470,5 @@ def plot_obs_vs_time(obs_per_plot, which):
 #gethead_gw_model_each_obs(make_array_gw_model(split_gw_model(getlist_gw_model(str(path_to_project) + str(name_of_project_gw_model) + '/H.OUT'), value='head')), 0)
 
 if __name__ == "__main__":
-    recharge = getrecharge(path_to_project, name_of_project_ogs, time_steps)
+    rfd_x, recharge = get_curve(path_to_project, name_of_project_ogs, curve=1, mm_d=True, time_steps=time_steps)
     plot_obs_vs_time(obs_per_plot, which=which)

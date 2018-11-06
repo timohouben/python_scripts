@@ -14,7 +14,7 @@ To Improve:
 # import sys and set path to the module
 import sys
 sys.path.append("/Users/houben/PhD/python/scripts/head_ogs_vs_gw-model/transient")
-from conf_head_ogs_vs_gw_model_trans import gethead_ogs_each_obs, getrecharge, gethead_gw_model_each_obs, make_array_gw_model, split_gw_model, getlist_gw_model, convert_obs_list_to_index
+from conf_head_ogs_vs_gw_model_trans import gethead_ogs_each_obs, get_curve, gethead_gw_model_each_obs, make_array_gw_model, split_gw_model, getlist_gw_model, convert_obs_list_to_index
 from ogs5py.reader import readtec_polyline
 import scipy.fftpack as scpfft
 from scipy import signal
@@ -48,7 +48,7 @@ def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/modelling/tr
     # =============================================================================
     # initialize the file for output   
     # =============================================================================
-    with open(str(path_to_project) + 'PSD_output.txt', 'a') as file:
+    with open(str(path_to_project) + '/PSD_output.txt', 'a') as file:
         file.write('date time method T_l[m2/s] kf_l[m/s] Ss_l[1/m] D_l[m2/s] a_l t_l[s] T_d[m2/s] kf_d[m/s] Ss_d[1/m] D_d[m2/s] a_d t_d[s] path_to_project observation_point\n')
     file.close()
 
@@ -56,6 +56,8 @@ def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/modelling/tr
     # global variables set automatically
     # =============================================================================
     print ("Reading .tec-file...")
+    print (name_of_project_ogs)
+    print(single_file)
     tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project, single_file=single_file)
     print ("Done.")
     
@@ -63,18 +65,21 @@ def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/modelling/tr
     # get data dependent on which_data_to_plot
     # =============================================================================
     if which_data_to_plot == 1:
-        head_ogs = gethead_ogs_each_obs(process, obs_point, which, time_steps, tecs=tecs, single_file=True)
+        head_ogs = gethead_ogs_each_obs(process, obs_point, which, time_steps, tecs=tecs, single_file=True, save_heads=False)
         fft_data = head_ogs
-        recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
+        rfd_x, recharge = get_curve(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, curve=1, mm_d=True, time_steps=time_steps)
+        #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
     elif which_data_to_plot == 2:
         head_gw_model = gethead_gw_model_each_obs(make_array_gw_model(
                             split_gw_model(getlist_gw_model(str(path_to_project) 
                             + str(name_of_project_gw_model) 
-                            + '/H.OUT'), index=2)), convert_obs_list_to_index('obs_0990'))
+                            + '/H.OUT'), index=2)), convert_obs_list_to_index('obs_0990'), save_heads=False)
         fft_data = head_gw_model
-        recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
+        rfd_x, recharge = get_curve(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, curve=1, mm_d=True, time_steps=time_steps)
+        #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
     elif which_data_to_plot == 3:
-        recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
+        rfd_x, recharge = get_curve(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, curve=1, mm_d=True, time_steps=time_steps)
+        #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
         fft_data = recharge
      
     # convert recharge from list to array    
@@ -560,7 +565,7 @@ def fft_psd(fft_data,
             fit_txt = 'fit_'
         if threshold != 1:
             threshold_txt = (str(threshold) + '_')
-        path_name_of_file_plot = (str(path_to_project) + 'PSD_' + 
+        path_name_of_file_plot = (str(path_to_project) + '/' + 'PSD_' + 
                                     fit_txt + o_i_txt + threshold_txt + 
                                     str(method) + '_' + 
                                     str(os.path.basename(str(path_to_project)[:-1])) + 
@@ -568,13 +573,13 @@ def fft_psd(fft_data,
         fig.savefig(path_name_of_file_plot)
         plt.close()
         
-    path_name_of_file_plot = (str(path_to_project) + 'PSD_' + 
+    path_name_of_file_plot = (str(path_to_project) + '/' + 'PSD_' + 
                             fit_txt + o_i_txt + threshold_txt + 
                             str(method) + '_' + 
                             str(os.path.basename(str(path_to_project)[:-1])) + 
                             '_' + str(obs_point) + ".png")    
     if fit == True and saveoutput == True:
-        with open(str(path_to_project) + 'PSD_output.txt', 'a') as file:
+        with open(str(path_to_project) + '/PSD_output.txt', 'a') as file:
             file.write(str(datetime.datetime.now()) + ' ' + method + ' ' + 
                                 str(T_l) + ' ' + str(kf_l) + ' ' + 
                                 str(Ss_l) + ' ' + str(D_l) + ' ' + 
