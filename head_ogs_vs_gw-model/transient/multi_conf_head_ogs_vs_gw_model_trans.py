@@ -23,12 +23,14 @@ plt.ioff()
 # =============================================================================
 # global variables set manually
 # =============================================================================
-path_to_multiple_projects = '/Users/houben/Desktop/asds'
-first_part_of_name_of_project_ogs = "transect_02"
+path_to_multiple_projects = '/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30'
+first_part_of_name_of_project_ogs = "transect_01"
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
-which = 'all'       # min, max, mean
-time_steps = 30   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
+which = 'mean'       # min, max, mean
+time_steps = 8401   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
+obs_per_plot = ['obs_0000', 'obs_0200', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0800', 'obs_0950', 'obs_0990', 'obs_1000']
+
 
 #configurations for model run: run1_20181030
 #obs_per_plot = ['obs_00010', 'obs_00040', 'obs_00060', 'obs_00080', 'obs_00090'] # 100
@@ -70,7 +72,7 @@ for i,curr_dir in enumerate(list_dir):
     path_to_project = str(path_to_multiple_projects) + '/' + str(curr_dir)
     print('Creating plots for: ' + str(path_to_project) + '. ' + str(i+1) + ' of ' + str(len(list_dir)) + ' in progress...')
     name_of_project_gw_model = str(curr_dir[:-13])
-    name_of_project_ogs = str(first_part_of_name_of_project_ogs) + str(curr_dir)
+    name_of_project_ogs = str(first_part_of_name_of_project_ogs)# + str(curr_dir)
    
     # ========================================== ===================================
     # global variables set automatically
@@ -79,35 +81,37 @@ for i,curr_dir in enumerate(list_dir):
     recharge = []
     
     if __name__ == "__main__":
-        # read the tec files as dict
-        print('Reading .tec-files...')
-        tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project)
-        print('Reading of .tec-files finished.')
-        # Save the dict
-        print('Saving data...')
-        np.save(str(path_to_project) + '/' + 'tecs.npy', tecs)
-        print('Saving finished.')
-    
+        try:
+            '''
+            Loading tecs from file if file exists
+            '''
+            print('Reading tecs from file...')
+            tecs =  np.load(str(path_to_project) + '/' + 'tecs.npy').item()
+        except IOError:
+            print('No saved tecs.npy available, reading tecs from .tec-files...')
+            tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project)
+            print('Reading of .tec-files finished.')
+            # Save the dict
+            print('Saving data...')
+            np.save(str(path_to_project) + '/' + 'tecs.npy', tecs)
+            print('Saving finished.')
+        
         time_s = tecs[process][obs_per_plot[0]]["TIME"]
         time_d = time_s / 86400
     
-    def load_tecs():
-        '''
-        Load tecs from file.
-        '''
-        tecs =  np.load(str(path_to_project) + '/' + 'tecs.npy').item()
-        return tecs
-    
+        
+
     # =============================================================================
     # =============================================================================
     # =============================================================================
     # GW Model de Rooij 2012
     # read timeseries for different observation points from H.OUT of gw-model de Rooij 2012
     # =============================================================================
-    try:
-        n_locations_gw_model = sum(1 for line in open(str(path_to_project) + "/" + str(name_of_project_gw_model) + '/OutputLocations.in' , "r"))
-    except IOError:
-        print("No data for gw model de Rooij, 2012")
+    if which_data_to_plot == 1 or which_data_to_plot == 3:
+        try:
+            n_locations_gw_model = sum(1 for line in open(str(path_to_project) + "/" + str(name_of_project_gw_model) + '/OutputLocations.in' , "r"))
+        except IOError:
+            print("No data for gw model de Rooij, 2012")
     
     def convert_obs_list_to_index(obs):
         '''
@@ -188,7 +192,7 @@ for i,curr_dir in enumerate(list_dir):
     # =============================================================================
     # load .rfd with recharge CURVE or extract recharge from R. in from gw_model
     # =============================================================================
-    def get_curve(path_to_project, name_of_project_ogs, curve=1, mm_d=True, time_steps=None):
+    def get_curve(path_to_project, name_of_project_ogs, curve=1, mm_d=False, time_steps=None):
         ''' 
         This function extracts the values from the .rfd-file for a given curve 
         number and stores it in two seperate variables. The first curve is denoted
@@ -214,9 +218,12 @@ for i,curr_dir in enumerate(list_dir):
                     length_of_curves.append(counter)                   
                     found = 0
                     counter = 0
-                if line != ' ' and line[0] != '#STOP':    
-                    rfd_x.append(float((re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line[0]))[0]))
-                    rfd_y.append(float((re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line[1]))[0]))
+                if line != ' ' and line[0] != '#STOP' and line[0]:
+                    try:
+                        rfd_x.append(float((re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line[0]))[0]))
+                        rfd_y.append(float((re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", line[1]))[0]))
+                    except IndexError:
+                        pass
                     counter += 1
            
         curves_begin = []    

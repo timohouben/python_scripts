@@ -81,10 +81,29 @@ single_file_names = ["transect_01_ply_obs_0000_t1_GROUNDWATER_FLOW.tec",
 '''
 
 ###############################################################################
+# configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30
+###############################################################################
+
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30"
+project_folder_list = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith('.')]
+project_folder_list.sort()
+aquifer_thickness = 30
+aquifer_length = 1000
+obs_point_list = ['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
+distance_to_river_list = [1000, 990, 900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 40, 30, 20, 10, 0.001]
+time_steps = 8401
+time_step_size = 86400
+
+
+###############################################################################
+###############################################################################
+
+'''
+###############################################################################
 # configurations for model run: run1_20181030
 ###############################################################################
 
-path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/run1_20181030/5000"
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30"
 project_folder_list = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith('.')]
 project_folder_list.sort()
 #obs_point_list = ["0000", "0200", "0400", "0500", "0600", "0800", "0950", "0990", "1000"]
@@ -101,24 +120,25 @@ aquifer_thickness = [100, 100, 100, 100,
 #aquifer_length = 200
 #aquifer_length = 500
 #aquifer_length = 1000
-#aquifer_length = 2000
-aquifer_length = 5000
+aquifer_length = 2000
+#aquifer_length = 5000
 
 #obs_point_list = ['obs_00010', 'obs_00040', 'obs_00060', 'obs_00080', 'obs_00090'] # 100
 #obs_point_list = ['obs_00020', 'obs_00080', 'obs_00120', 'obs_00160', 'obs_00180'] # 200
 #obs_point_list = ['obs_00050', 'obs_00200', 'obs_00300', 'obs_00400', 'obs_00450'] # 500
 #obs_point_list = ['obs_00100', 'obs_00400', 'obs_00600', 'obs_00800', 'obs_00900'] # 1000
-#obs_point_list = ['obs_00200', 'obs_00800', 'obs_01200', 'obs_01600', 'obs_01800'] # 2000
-obs_point_list = ['obs_00500', 'obs_02000', 'obs_03000', 'obs_04000', 'obs_04500'] # 5000
+obs_point_list = ['obs_00200', 'obs_00800', 'obs_01200', 'obs_01600', 'obs_01800'] # 2000
+#obs_point_list = ['obs_00500', 'obs_02000', 'obs_03000', 'obs_04000', 'obs_04500'] # 5000
 
 #distance_to_river_list = [90, 60, 40, 20, 10] # 100
 #distance_to_river_list = [180, 120, 80, 40, 20] # 200
 #distance_to_river_list = [450, 300, 200, 100, 50] # 500
 #distance_to_river_list = [900, 600, 400, 200, 100] # 1000
-#distance_to_river_list = [1800, 1200, 800, 400, 200]  # 2000
-distance_to_river_list = [4500, 3000, 2000, 1000, 500] # 5000
+distance_to_river_list = [1800, 1200, 800, 400, 200]  # 2000
+#distance_to_river_list = [4500, 3000, 2000, 1000, 500] # 5000
 ###############################################################################
 ###############################################################################
+'''
 
 thresholds = [3e-8, 3e-8, 3e-8, 3e-8, 3e-8, 3e-8, 1e-7, 2e-7, 8e-7]
 
@@ -149,18 +169,16 @@ t_d = np.zeros_like(T_l)
 
 # loop over all project directories
 for i,project_folder in enumerate(project_folder_list):
-    obs_index = 0
     print("Starting with project: " + project_folder)
     path_to_project = path_to_multiple_projects + "/" + project_folder
     single_file_names = [f for f in os.listdir(str(path_to_project)) if f.endswith('.tec')]
     single_file_names.sort()
-    single_file_names.pop()
     name_of_project_ogs = str([f for f in os.listdir(str(path_to_project)) if f.endswith('.rfd')])[2:-6]
     # loop over all .tec files    
     for j,single_file_name in enumerate(single_file_names):
-        obs_point = obs_point_list[obs_index]
+        obs_point = obs_point_list[j]
         fft_data, recharge = get_fft_data_from_simulation(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs,
-                                     single_file=path_to_project+"/"+single_file_name, time_steps=365,
+                                     single_file=path_to_project+"/"+single_file_name, time_steps=time_steps,
                                      obs_point=obs_point)
         #fft_data = fft_data[0:] # eliminate effects from wrong initial conditions
         #recharge = recharge[0:] # eliminate effects from wrong initial conditions
@@ -169,18 +187,19 @@ for i,project_folder in enumerate(project_folder_list):
             T_l[i,j,k], kf_l[i,j,k], Ss_l[i,j,k], D_l[i,j,k], a_l[i,j,k], t_l[i,j,k], T_d[i,j,k], kf_d[i,j,k], Ss_d[i,j,k], D_d[i,j,k], a_d[i,j,k], t_d[i,j,k], power_spectrum_output = fft_psd(
                                             fft_data=fft_data, 
                                             recharge=recharge,
-                                            #threshold=thresholds[obs_index],
-                                            #threshold=1e-6,
+                                            #threshold=thresholds[j],
+                                            threshold=1e-6,
                                             path_to_project=path_to_project, 
                                             method=method, 
                                             fit=True, savefig=True, 
                                             saveoutput=True, obs_point=obs_point, 
                                             single_file=path_to_project+"/"+single_file_name, 
                                             dupuit=True,
-                                            distance_to_river=distance_to_river_list[obs_index],
-                                            aquifer_thickness=aquifer_thickness[i],
-                                            aquifer_length=aquifer_length)
-        obs_index += 1
+                                            distance_to_river=distance_to_river_list[j],
+#                                            aquifer_thickness=aquifer_thickness[i],
+                                            aquifer_thickness=aquifer_thickness,
+                                            aquifer_length=aquifer_length,
+                                            time_step_size=86400)
 
 #if i == 1:
  #   break
@@ -235,4 +254,4 @@ def plot(method=method, params_l=params_l, params_d=params_d, labels=labels):
             plt.close()            
     print('Fertig!')
 
-plot()
+#plot()
