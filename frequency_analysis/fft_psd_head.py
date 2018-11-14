@@ -16,25 +16,25 @@ import sys
 sys.path.append("/Users/houben/PhD/python/scripts/head_ogs_vs_gw-model/transient")
 from conf_head_ogs_vs_gw_model_trans import gethead_ogs_each_obs, get_curve, gethead_gw_model_each_obs, make_array_gw_model, split_gw_model, getlist_gw_model, convert_obs_list_to_index
 from ogs5py.reader import readtec_polyline
-import scipy.fftpack as scpfft
+import scipy.fftpack as fftpack
 from scipy import signal
 import numpy as np
 import matplotlib.pyplot as plt
-plt.ioff()
+#plt.ioff()
 import datetime
 import os
 import scipy.optimize as optimization
 import textwrap as tw
 
 
-def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_30_results",
-                             single_file="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_30_results/transect_01_ply_obs_0600_t8_GROUNDWATER_FLOW.tec",
-                             which_data_to_plot=1,
+def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2/Groundwater@UFZ_eve_HOMO_276_D_4_results",
+                             single_file="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2/Groundwater@UFZ_eve_HOMO_276_D_4_results/transect_01_ply_obs_0400_t6_GROUNDWATER_FLOW.tec",
+                             which_data_to_plot=2,
                              name_of_project_gw_model='',
-                             name_of_project_ogs='transect_01',
+                             name_of_project_ogs=None,
                              process='GROUNDWATER_FLOW',
                              which='mean',
-                             time_steps=8400,
+                             time_steps=8401,
                              observation_point='NA',
                              obs_point=''):
     '''
@@ -56,20 +56,19 @@ def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/modelling/tr
     # global variables set automatically
     # =============================================================================
     print ("Reading .tec-file...")
-    print (name_of_project_ogs)
-    print(single_file)
+    print("Reading: ...", single_file[-40:])
     tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project, single_file=single_file)
     print ("Done.")
     
     # =============================================================================
     # get data dependent on which_data_to_plot
     # =============================================================================
-    if which_data_to_plot == 1:
+    if which_data_to_plot == 2:
         head_ogs = gethead_ogs_each_obs(process, obs_point, which, time_steps, tecs=tecs, single_file=True, save_heads=False)
         fft_data = head_ogs
         rfd_x, recharge = get_curve(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, curve=1, mm_d=True, time_steps=time_steps)
         #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
-    elif which_data_to_plot == 2:
+    elif which_data_to_plot == 1:
         head_gw_model = gethead_gw_model_each_obs(make_array_gw_model(
                             split_gw_model(getlist_gw_model(str(path_to_project) 
                             + str(name_of_project_gw_model) 
@@ -81,6 +80,7 @@ def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/modelling/tr
         rfd_x, recharge = get_curve(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, curve=1, mm_d=True, time_steps=time_steps)
         #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
         fft_data = recharge
+        # FEHLER IN DIESER FUNKTION, NICHT FUNKTIONSFÄHIG
      
     # convert recharge from list to array    
     recharge = np.asarray([float(i) for i in recharge])
@@ -113,6 +113,9 @@ def fft_psd(fft_data,
     o_i_txt = ''
     threshold_txt = ''
     fit_txt = ''
+
+    len_input = len(recharge)
+    len_output = len(fft_data)
     
     # check if recharge and fft_data have the same length and erase values in the end
     if len(recharge) > len(fft_data):
@@ -123,7 +126,6 @@ def fft_psd(fft_data,
         fft_data = fft_data[:len(recharge)]
         
         
-     
     # define the sampling frequency/time step
     # -------------------------------------------------------------------------
     sampling_frequency = 1./time_step_size    # [Hz] second: 1, day: 1.1574074074074E-5
@@ -132,8 +134,6 @@ def fft_psd(fft_data,
     # -------------------------------------------------------------------------
     recharge_detrend = signal.detrend(recharge, type='linear')
     fft_data_detrend = signal.detrend(fft_data, type='linear')
-    #recharge_detrend = recharge
-    #fft_data_detrend = fft_data
     
     # different methodologies for power spectral density
     # -------------------------------------------------------------------------
@@ -143,10 +143,10 @@ def fft_psd(fft_data,
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2 / T
         #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
         # =========================================================================
-        power_spectrum_input = ((abs(scpfft.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2) / (len(fft_data)*time_step_size))[1:]
-        power_spectrum_output = ((abs(scpfft.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2) / (len(fft_data)*time_step_size))[1:]
+        power_spectrum_input = ((abs(fftpack.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2) / (len(fft_data)*time_step_size))
+        power_spectrum_output = ((abs(fftpack.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2) / (len(fft_data)*time_step_size))
         power_spectrum_result = power_spectrum_output / power_spectrum_input
-        frequency_input = (abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])[1:]
+        frequency_input = (abs(fftpack.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])
         if o_i == 'i':
             power_spectrum_result = power_spectrum_input
         elif o_i == 'o':
@@ -157,38 +157,69 @@ def fft_psd(fft_data,
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2 / N
         #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
         # =========================================================================
-        power_spectrum_input = ((abs(scpfft.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2) / len(fft_data))[1:]
-        power_spectrum_output = ((abs(scpfft.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2) / len(fft_data))[1:]
+        power_spectrum_input = ((abs(fftpack.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2) / len(fft_data))
+        power_spectrum_output = ((abs(fftpack.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2) / len(fft_data))
         power_spectrum_result = power_spectrum_output / power_spectrum_input
-        frequency_input = (abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])[1:]
+        frequency_input = (abs(fftpack.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])
         if o_i == 'i':
             power_spectrum_result = power_spectrum_input
         elif o_i == 'o':
             power_spectrum_result = power_spectrum_output
 
-    if method == 'scipyfft2':
+    if method == 'scipyfftdouble':
         # =========================================================================
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2
         #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
         # =========================================================================
-        power_spectrum_input = ((abs(scpfft.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2)*2)[1:]
-        power_spectrum_output = ((abs(scpfft.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2)*2)[1:]
+        power_spectrum_input = ((abs(fftpack.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2)*2)
+        power_spectrum_output = ((abs(fftpack.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2)*2)
         power_spectrum_result = power_spectrum_output / power_spectrum_input
-        frequency_input = (abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])[1:]
+        frequency_input = (abs(fftpack.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])
         if o_i == 'i':
             power_spectrum_result = power_spectrum_input
         elif o_i == 'o':
             power_spectrum_result = power_spectrum_output  
 
+    if method == 'scipyrfft':
+        # =========================================================================
+        # method x: Periodogram: Power Spectral Density: abs(X(w))^2
+        #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
+        # =========================================================================    
+        power_spectrum_input = (abs(fftpack.rfft(recharge_detrend, len_input))**2)[1:]
+        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        frequency_input = (abs(fftpack.rfftfreq(len_output, time_step_size)))[1:]  
+
+    if method == 'scipyrffthalf':
+        # =========================================================================
+        # method x: Periodogram: Power Spectral Density: abs(X(w))^2
+        #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
+        # =========================================================================    
+        power_spectrum_input = ((abs(fftpack.rfft(recharge_detrend, len_input))[:len_output/2])**2)[1:]
+        power_spectrum_output = ((abs(fftpack.rfft(fft_data_detrend, len_output))[:len_output/2])**2)[1:]
+        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        frequency_input = (abs(fftpack.rfftfreq(len_output, time_step_size))[:len_output/2])[1:]
+    
     if method == 'scipyfft':
         # =========================================================================
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2
         #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
         # =========================================================================
-        power_spectrum_input = (abs(scpfft.fft(recharge_detrend)[:len(fft_data_detrend)/2])**2)[1:]
-        power_spectrum_output = (abs(scpfft.fft(fft_data_detrend)[:len(fft_data_detrend)/2])**2)[1:]
+        power_spectrum_input = (abs(fftpack.fft(recharge_detrend, len_input))**2)[1:]
+        power_spectrum_output = (abs(fftpack.fft(fft_data_detrend, len_output))**2)[1:]
         power_spectrum_result = power_spectrum_output / power_spectrum_input
-        frequency_input = (abs(scpfft.fftfreq(len(fft_data_detrend), time_step_size))[:len(fft_data_detrend)/2])[1:]       
+        frequency_input = (abs(fftpack.fftfreq(len_output, time_step_size)))[1:]
+
+    if method == 'scipyffthalf':
+        # =========================================================================
+        # method x: Periodogram: Power Spectral Density: abs(X(w))^2
+        #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
+        # =========================================================================
+        power_spectrum_input = (abs(fftpack.fft(recharge_detrend, len_input)[:len_output/2])**2)[1:]
+        power_spectrum_output = (abs(fftpack.fft(fft_data_detrend, len_output)[:len_output/2])**2)[1:]
+        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        frequency_input = (abs(fftpack.fftfreq(len_output, time_step_size))[:len_output/2])[1:]   
+        
+        
         if o_i == 'i':
             power_spectrum_result = power_spectrum_input
             o_i_txt = 'in_'
@@ -196,7 +227,7 @@ def fft_psd(fft_data,
             power_spectrum_result = power_spectrum_output  
             o_i_txt = 'out_'            
 
-    elif method == 'scipywelch':    
+    if method == 'scipywelch':    
         # =========================================================================
         # method x: scipy.signal.welch
         #           https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.signal.welch.html#r145
@@ -217,11 +248,11 @@ def fft_psd(fft_data,
         elif o_i == 'o':
             power_spectrum_result = power_spectrum_output[1:]     
 
-    elif method == 'pyplotwelch':    
+    if method == 'pyplotwelch':    
         # =========================================================================
         # method x: Pyplot PSD by Welch
         #           https://matplotlib.org/api/_as_gen/matplotlib.pyplot.psd.html
-        # =========================================================================       
+        # =========================================================================
         power_spectrum_input, frequency_input = plt.psd(recharge_detrend,
                                                         Fs=sampling_frequency)
         power_spectrum_output, frequency_output = plt.psd(fft_data_detrend,
@@ -235,7 +266,7 @@ def fft_psd(fft_data,
         elif o_i == 'o':
             power_spectrum_result = power_spectrum_output[1:]    
             
-    elif method == 'scipyperio':    
+    if method == 'scipyperio':    
         # =========================================================================
         # method x: Scipy.signal.periodogram
         #           https://docs.scipy.org/doc/scipy-0.18.1/reference/generated/scipy.signal.periodogram.html
@@ -252,7 +283,7 @@ def fft_psd(fft_data,
         elif o_i == 'o':
             power_spectrum_result = power_spectrum_output[1:] 
             
-    elif method == 'spectrumperio':    
+    if method == 'spectrumperio':    
         # =========================================================================
         # method x: Spectrum.periodogram
         #           http://thomas-cokelaer.info/software/spectrum/html/user/ref_fourier.html#spectrum.periodogram.Periodogram
@@ -299,13 +330,13 @@ def fft_psd(fft_data,
         tes = CORRELOGRAMPSD(recharge_detrend, recharge_detrend, lag=15)
         psd = tes[len(tes)/2:]
     '''          
-    
+
     # delete values with small frequencies at given threshold
     i = 0
     for i, value in enumerate(frequency_input):
         if value > threshold:
             cutoff_index = i
-            print('Remaining data points: ' + str(cutoff_index))
+            print('PSD was cut by threshold. Remaining data points: ' + str(cutoff_index))
             for j in range(i,len(frequency_input)):
                 frequency_input = np.delete(frequency_input, i)
                 power_spectrum_result = np.delete(power_spectrum_result, i)
@@ -314,7 +345,7 @@ def fft_psd(fft_data,
     
     # plot the resulting power spectrum
     # -------------------------------------------------------------------------
-    fig = plt.figure(figsize=(12, 5))
+    fig = plt.figure(figsize=(16, 7))
     ax = fig.add_subplot(1,1,1)
     plt.subplots_adjust(left=None, bottom=0.25, right=None, top=None, wspace=None, hspace=None)
     ax.set_xscale("log")
@@ -346,7 +377,7 @@ def fft_psd(fft_data,
         #power_spectrum_result_filtered = signal.savgol_filter(power_spectrum_result, window_size, 2)
         # method b: wiener
         power_spectrum_result_filtered = signal.wiener(power_spectrum_result, wiener_window)
-        ax.plot(frequency_input, power_spectrum_result_filtered, label='filtered PSD')
+        #ax.plot(frequency_input, power_spectrum_result_filtered, label='filtered PSD')
         
         
         # =====================================================================
@@ -412,6 +443,16 @@ def fft_psd(fft_data,
                 Ss_l = S_l / aquifer_thickness
                 D_l = aquifer_length**2 / (3 * t_l)
                 #D_l = aquifer_length**2 * 4 / (np.pi**2 * t_l)
+                print('T_l = ', a_l, '*', aquifer_length, '**2 / 3.')
+                print("'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'")
+                print('kf_l = ', T_l, '/', aquifer_thickness)
+                print("'kf_l = ', T_l, '/', aquifer_thickness")            
+                print('S_l = ', a_l, '*', t_l)
+                print("'S_l = ', a_l, '*', t_l")
+                print('Ss_l = ', S_l, '/', aquifer_thickness)
+                print("'Ss_l = ', S_l, '/', aquifer_thickness")
+                print('D_l = ', aquifer_length, '**2 / (3 * ', t_l,')')
+                print("'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'")                
                 output_l = ('Linear model:\n ' + 
                       'T [m2/s]: ' + '%0.4e' % T_l  + '\n  ' +
                       'Ss [1/m]: ' + '%0.4e' % Ss_l + '\n  ' +
@@ -458,6 +499,16 @@ def fft_psd(fft_data,
             Ss_l = S_l / aquifer_thickness
             D_l = aquifer_length**2 / (3 * t_l)
             #D_l = aquifer_length**2 * 4 / (np.pi**2 * t_l)
+            print('T_l = ', a_l, '*', aquifer_length, '**2 / 3.')
+            print("'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'")
+            print('kf_l = ', T_l, '/', aquifer_thickness)
+            print("'kf_l = ', T_l, '/', aquifer_thickness")            
+            print('S_l = ', a_l, '*', t_l)
+            print("'S_l = ', a_l, '*', t_l")
+            print('Ss_l = ', S_l, '/', aquifer_thickness)
+            print("'Ss_l = ', S_l, '/', aquifer_thickness")
+            print('D_l = ', aquifer_length, '**2 / (3 * ', t_l,')')
+            print("'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'")
             output_l = ('Linear model:\n ' + 
                   'T [m2/s]: ' + '%0.4e' % T_l  + '\n  ' +
                   'Ss [1/m]: ' + '%0.4e' % Ss_l + '\n  ' +
@@ -530,12 +581,23 @@ def fft_psd(fft_data,
             ax.plot(frequency_input, dupuit_model, label='Dupuit model')
      
             # calculate aquifer parameters
-            # ---------------------------------------------------------------------       
+            # ---------------------------------------------------------------------
+            
             T_d = a_d * aquifer_thickness * distance_to_river
             kf_d = T_d/aquifer_thickness
             S_d = t_d * T_d / aquifer_length**2 
             Ss_d = S_d / aquifer_thickness
             D_d = T_d / S_d
+            print('T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river)
+            print("'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river")
+            print('kf_d = ', T_d, '/', aquifer_thickness)
+            print("'kf_d = ', T_d, '/', aquifer_thickness")
+            print('S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2')
+            print("'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'")
+            print('Ss_d = ', S_d, '/', aquifer_thickness)
+            print("'Ss_d = ', S_d, '/', aquifer_thickness")
+            print('D_d = ', T_d, '/', S_d)
+            print("'D_d = ', T_d, '/', S_d")
             output_d = ('Dupuit model: \n' + 
                   'T [m2/s]: ' + '%0.4e' % T_d  + '\n  ' +
                   'Ss [1/m]: ' + '%0.4e' % Ss_d + '\n  ' +
@@ -550,6 +612,7 @@ def fft_psd(fft_data,
             
         except TypeError:
             print("Automatic Dupuit-model fit failed... Provide a_d and t_d manually.")
+            T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
             fig_txt = tw.fill(str(output_l), width=200)
                      
         #annotate the figure    
@@ -559,7 +622,7 @@ def fft_psd(fft_data,
                               ec="1", pad=0.8, alpha=1))    
 
     plt.legend(loc='best')
-    #plt.show()
+    plt.show()
     if savefig == True:
         if fit == True:
             fit_txt = 'fit_'
@@ -578,6 +641,22 @@ def fft_psd(fft_data,
                             str(method) + '_' + 
                             str(os.path.basename(str(path_to_project)[:-1])) + 
                             '_' + str(obs_point) + ".png")    
+    if fit == False:
+        T_l = np.nan
+        kf_l = np.nan
+        S_l = np.nan
+        Ss_l = np.nan
+        D_l = np.nan
+        t_l = np.nan
+        a_l = np.nan
+        T_d = np.nan
+        kf_d = np.nan
+        S_d = np.nan
+        Ss_d = np.nan
+        D_d = np.nan
+        t_d = np.nan
+        a_d = np.nan
+        
     if fit == True and saveoutput == True:
         with open(str(path_to_project) + '/PSD_output.txt', 'a') as file:
             file.write(str(datetime.datetime.now()) + ' ' + method + ' ' + 
@@ -589,12 +668,4 @@ def fft_psd(fft_data,
                                 str(a_d) + ' ' + str(t_d) + ' ' + 
                                 str(path_name_of_file_plot) + '\n')
         file.close()
-    if fit == False:
-        T_l = np.nan
-        kf_l = np.nan
-        S_l = np.nan
-        Ss_l = np.nan
-        D_l = np.nan
-        t_l = np.nan
-        a_l = np.nan
     return T_l, kf_l, Ss_l, D_l, a_l, t_l, T_d, kf_d, Ss_d, D_d, a_d, t_d, power_spectrum_output

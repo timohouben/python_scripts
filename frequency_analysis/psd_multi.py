@@ -15,10 +15,13 @@ from fft_psd_head import fft_psd, get_fft_data_from_simulation
 import matplotlib.pyplot as plt
 import os
 
-'''
-methods = ['scipyfftnormt', 'scipyfftnormn', 'scipyfft', 'scipywelch',
-           'pyplotwelch', 'scipyperio', 'spectrumperio']
-'''
+
+#methods = ['scipyfftnormt', 'scipyfftnormn', 'scipyfft', 'scipywelch',
+#           'pyplotwelch', 'scipyperio', 'spectrumperio']
+
+
+#methods = ['scipyfft', 'pyplotwelch', 'scipywelch']
+#methods = ['scipywelch']
 
 methods = ['scipyfft']
 
@@ -79,7 +82,47 @@ single_file_names = ["transect_01_ply_obs_0000_t1_GROUNDWATER_FLOW.tec",
                     "transect_01_ply_obs_0990_t16_GROUNDWATER_FLOW.tec",
                     "transect_01_ply_obs_1000_t17_GROUNDWATER_FLOW.tec"]
 '''
+'''
+###############################################################################
+# configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing
+###############################################################################
 
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing"
+project_folder_list = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(('.','fitting'))]
+project_folder_list.sort()
+aquifer_thickness = 30
+aquifer_length = 1000
+obs_point_list = ['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
+distance_to_river_list = [1000, 990, 900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 40, 30, 20, 10, None]
+time_steps = 8401
+time_step_size = 86400
+threshold=1e-6
+
+###############################################################################
+###############################################################################
+'''
+
+
+###############################################################################
+# configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2
+###############################################################################
+
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2"
+project_folder_list = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(('.','fitting'))]
+project_folder_list.sort()
+aquifer_thickness = 30
+aquifer_length = 1000
+obs_point_list = ['obs_0000', 'obs_0200', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0800', 'obs_0950', 'obs_0990', 'obs_1000']
+distance_to_river_list = [1000, 800, 600, 500, 400, 200, 50, 10, None]
+time_steps = 8401
+time_step_size = 86400
+threshold=1e-6
+
+###############################################################################
+###############################################################################
+
+
+'''
 ###############################################################################
 # configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30
 ###############################################################################
@@ -97,6 +140,7 @@ time_step_size = 86400
 
 ###############################################################################
 ###############################################################################
+'''
 
 '''
 ###############################################################################
@@ -142,11 +186,7 @@ distance_to_river_list = [1800, 1200, 800, 400, 200]  # 2000
 
 thresholds = [3e-8, 3e-8, 3e-8, 3e-8, 3e-8, 3e-8, 1e-7, 2e-7, 8e-7]
 
-path_to_results = path_to_multiple_projects + "/fitting_results/"
-if not os.path.exists(path_to_results):
-    os.makedirs(path_to_results)
-
-  
+ 
 
 obs_index = 0 # index for iterating through the observation points
 i=0 # index for different model runs
@@ -183,12 +223,12 @@ for i,project_folder in enumerate(project_folder_list):
         #fft_data = fft_data[0:] # eliminate effects from wrong initial conditions
         #recharge = recharge[0:] # eliminate effects from wrong initial conditions
         for k,method in enumerate(methods):
-            
+            print('######', method, '########')
             T_l[i,j,k], kf_l[i,j,k], Ss_l[i,j,k], D_l[i,j,k], a_l[i,j,k], t_l[i,j,k], T_d[i,j,k], kf_d[i,j,k], Ss_d[i,j,k], D_d[i,j,k], a_d[i,j,k], t_d[i,j,k], power_spectrum_output = fft_psd(
                                             fft_data=fft_data, 
                                             recharge=recharge,
                                             #threshold=thresholds[j],
-                                            threshold=1e-6,
+                                            threshold=threshold,
                                             path_to_project=path_to_project, 
                                             method=method, 
                                             fit=True, savefig=True, 
@@ -211,8 +251,22 @@ params_d = [T_d, kf_d, Ss_d, D_d, a_d, t_d]
 labels = ["T", "kf", "Ss", "D", "a", "t"]
 
 
-def plot(method=method, params_l=params_l, params_d=params_d, labels=labels):
+# create folder for plots if folder doesn't exist already
+path_to_results = path_to_multiple_projects + "/fitting_results/"
+if not os.path.exists(path_to_results):
+    os.makedirs(path_to_results)
+
+# save parameter
+np.save(path_to_results+str('_parameter_linear.npy'),params_l)
+np.save(path_to_results+str('_parameter_dupuit.npy'),params_d)
+
+
+def plot(params_l=None, params_d=None, methods=methods, labels=labels):
     print('Created all PSDs. Continue with plotting of results from linear fitting...')
+
+    params_l = np.load(path_to_results+str('_parameter_linear.npy'))
+    params_d = np.load(path_to_results+str('_parameter_dupuit.npy'))
+    
     # linear model
     i=0 # index for different model runs
     j=0 # index for different LABELS
@@ -221,15 +275,19 @@ def plot(method=method, params_l=params_l, params_d=params_d, labels=labels):
     for j,param in enumerate(params_l):
         for k,method in enumerate(methods):
             for i,path_to_project in enumerate(project_folder_list):
+                plt.figure(figsize=(20,15))    
                 plt.title('Method: ' + str(method) + '\nFit: "linear"' + '\nParameter: ' + str(labels[j]))
                 plt.grid(True)
                 plt.xlabel('observation point')
                 plt.ylabel(str(labels[j]))
+                #plt.figure(figsize=(20, 16))
                 # configuration for homogeneous model runs
                 #plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
                 # configuration for homo/vertical/horizontal
+                plt.xticks(rotation=60)
                 plt.semilogy(obs_point_list, param[i,:,k], label=project_folder_list[i])
                 plt.legend(loc='best')
+            print("Saving fig: ", str(labels[j]) + '_' + str(method) + '_linear' + '.png')
             plt.savefig(str(path_to_results) + str(labels[j]) + '_' + str(method) + '_linear' + '.png')
             plt.close()
             
@@ -241,6 +299,7 @@ def plot(method=method, params_l=params_l, params_d=params_d, labels=labels):
     for j,param in enumerate(params_d):
         for k,method in enumerate(methods):
             for i,path_to_project in enumerate(project_folder_list):
+                plt.figure(figsize=(20,15))
                 plt.title('Method: ' + str(method) + '\nFit: "Dupuit"' + '\nParameter: ' + str(labels[j]))
                 plt.grid(True)
                 plt.xlabel('observation point')
@@ -248,10 +307,12 @@ def plot(method=method, params_l=params_l, params_d=params_d, labels=labels):
                 # configuration for homogeneous model runs
                 #plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
                 # configuration for homo/vertical/horizontal
+                plt.xticks(rotation=60)
                 plt.semilogy(obs_point_list, param[i,:,k], label=project_folder_list[i])
                 plt.legend(loc='best')
+            print("Saving fig: ", str(labels[j]) + '_' + str(method) + '_dupuit' + '.png')    
             plt.savefig(str(path_to_results) + str(labels[j]) + '_' + str(method) + '_dupuit' + '.png')
             plt.close()            
     print('Fertig!')
 
-#plot()
+plot()
