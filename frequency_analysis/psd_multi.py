@@ -14,6 +14,8 @@ sys.path.append("/Users/houben/PhD/python/scripts/frequency_analysis")
 from fft_psd_head import fft_psd, get_fft_data_from_simulation
 import matplotlib.pyplot as plt
 import os
+import time
+then = time.time()
 
 
 #methods = ['scipyfftnormt', 'scipyfftnormn', 'scipyfft', 'scipywelch',
@@ -23,7 +25,7 @@ import os
 #methods = ['scipyfft', 'pyplotwelch', 'scipywelch']
 #methods = ['scipywelch']
 
-methods = ['scipyfft']
+methods = ['scipyffthalf']
 
 '''
 # configuration for homogeneous model runs
@@ -102,7 +104,7 @@ threshold=1e-6
 ###############################################################################
 '''
 
-
+'''
 ###############################################################################
 # configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2
 ###############################################################################
@@ -120,27 +122,32 @@ threshold=1e-6
 
 ###############################################################################
 ###############################################################################
-
-
 '''
+
+
 ###############################################################################
 # configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30
 ###############################################################################
 
 path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30"
 project_folder_list = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith('.')]
+try:
+    project_folder_list.remove("fitting_results")
+except ValueError:
+    pass
 project_folder_list.sort()
 aquifer_thickness = 30
 aquifer_length = 1000
 obs_point_list = ['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
-distance_to_river_list = [1000, 990, 900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 40, 30, 20, 10, 0.001]
+distance_to_river_list = [1000, 990, 900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 40, 30, 20, 10, 0.01]
 time_steps = 8401
 time_step_size = 86400
-
+threshold=1e-6
+fit=True
 
 ###############################################################################
 ###############################################################################
-'''
+
 
 '''
 ###############################################################################
@@ -184,7 +191,7 @@ distance_to_river_list = [1800, 1200, 800, 400, 200]  # 2000
 ###############################################################################
 '''
 
-thresholds = [3e-8, 3e-8, 3e-8, 3e-8, 3e-8, 3e-8, 1e-7, 2e-7, 8e-7]
+#thresholds = [3e-8, 3e-8, 3e-8, 3e-8, 3e-8, 3e-8, 1e-7, 2e-7, 8e-7]
 
  
 
@@ -223,7 +230,8 @@ for i,project_folder in enumerate(project_folder_list):
         #fft_data = fft_data[0:] # eliminate effects from wrong initial conditions
         #recharge = recharge[0:] # eliminate effects from wrong initial conditions
         for k,method in enumerate(methods):
-            print('######', method, '########')
+            print("Method: " + str(method))
+            print("Calculating PSD...")
             T_l[i,j,k], kf_l[i,j,k], Ss_l[i,j,k], D_l[i,j,k], a_l[i,j,k], t_l[i,j,k], T_d[i,j,k], kf_d[i,j,k], Ss_d[i,j,k], D_d[i,j,k], a_d[i,j,k], t_d[i,j,k], power_spectrum_output = fft_psd(
                                             fft_data=fft_data, 
                                             recharge=recharge,
@@ -231,7 +239,7 @@ for i,project_folder in enumerate(project_folder_list):
                                             threshold=threshold,
                                             path_to_project=path_to_project, 
                                             method=method, 
-                                            fit=True, savefig=True, 
+                                            fit=fit, savefig=True, 
                                             saveoutput=True, obs_point=obs_point, 
                                             single_file=path_to_project+"/"+single_file_name, 
                                             dupuit=True,
@@ -268,51 +276,56 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
     params_d = np.load(path_to_results+str('_parameter_dupuit.npy'))
     
     # linear model
-    i=0 # index for different model runs
-    j=0 # index for different LABELS
-    k=0 # index for different methods, PSD            
+    l=0 # index for different parameters
+    m=0 # index for different methods
+    n=0 # index for different model runs
     plt.ioff()
-    for j,param in enumerate(params_l):
-        for k,method in enumerate(methods):
-            for i,path_to_project in enumerate(project_folder_list):
-                plt.figure(figsize=(20,15))    
-                plt.title('Method: ' + str(method) + '\nFit: "linear"' + '\nParameter: ' + str(labels[j]))
-                plt.grid(True)
-                plt.xlabel('observation point')
-                plt.ylabel(str(labels[j]))
+    for l,param in enumerate(params_l):
+        for m,method in enumerate(methods):           
+            plt.figure(figsize=(20,15))    
+            for n,project_folder in enumerate(project_folder_list):
                 #plt.figure(figsize=(20, 16))
                 # configuration for homogeneous model runs
                 #plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
                 # configuration for homo/vertical/horizontal
-                plt.xticks(rotation=60)
-                plt.semilogy(obs_point_list, param[i,:,k], label=project_folder_list[i])
-                plt.legend(loc='best')
-            print("Saving fig: ", str(labels[j]) + '_' + str(method) + '_linear' + '.png')
-            plt.savefig(str(path_to_results) + str(labels[j]) + '_' + str(method) + '_linear' + '.png')
-            plt.close()
+                plt.semilogy(obs_point_list, param[n,:,m], label=project_folder)
+            plt.title('Method: ' + str(method) + '\nFit: "linear"' + '\nParameter: ' + str(labels[l]))
+            plt.grid(True)
+            plt.xlabel('observation point')
+            plt.ylabel(str(labels[l]))
+            plt.xticks(rotation=60)
+            plt.legend(loc='best')
+            print("Saving fig: ", str(labels[l]) + '_' + str(method) + '_linear' + '.png')
+            plt.savefig(str(path_to_results) + str(labels[l]) + '_' + str(method) + '_linear' + '.png')
+            plt.close('all')
             
     # Dupuit model
-    i=0 # index for different model runs
-    j=0 # index for different LABELS
-    k=0 # index for different methods, PSD            
+    l=0 # index for different parameters
+    m=0 # index for different methods
+    n=0 # index for different model runs            
     plt.ioff()
-    for j,param in enumerate(params_d):
-        for k,method in enumerate(methods):
-            for i,path_to_project in enumerate(project_folder_list):
-                plt.figure(figsize=(20,15))
-                plt.title('Method: ' + str(method) + '\nFit: "Dupuit"' + '\nParameter: ' + str(labels[j]))
-                plt.grid(True)
-                plt.xlabel('observation point')
-                plt.ylabel(str(labels[j]))
+    for l,param in enumerate(params_d):
+        for m,method in enumerate(methods):
+            plt.figure(figsize=(20,15))
+            for n,project_folder in enumerate(project_folder_list):
                 # configuration for homogeneous model runs
                 #plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
                 # configuration for homo/vertical/horizontal
-                plt.xticks(rotation=60)
-                plt.semilogy(obs_point_list, param[i,:,k], label=project_folder_list[i])
-                plt.legend(loc='best')
-            print("Saving fig: ", str(labels[j]) + '_' + str(method) + '_dupuit' + '.png')    
-            plt.savefig(str(path_to_results) + str(labels[j]) + '_' + str(method) + '_dupuit' + '.png')
-            plt.close()            
+                plt.semilogy(obs_point_list, param[n,:,m], label=project_folder)
+            plt.title('Method: ' + str(method) + '\nFit: "Dupuit"' + '\nParameter: ' + str(labels[l]))
+            plt.grid(True)
+            plt.xlabel('observation point')
+            plt.ylabel(str(labels[l]))
+            plt.xticks(rotation=60)
+            plt.legend(loc='best')
+            print("Saving fig: ", str(labels[l]) + '_' + str(method) + '_dupuit' + '.png')    
+            plt.savefig(str(path_to_results) + str(labels[l]) + '_' + str(method) + '_dupuit' + '.png')           
+            plt.close('all')
     print('Fertig!')
 
 plot()
+
+
+now = time.time()
+elapsed = now - then
+print("Time elapsed: " + str(np.round(elapsed,2)) + " s")

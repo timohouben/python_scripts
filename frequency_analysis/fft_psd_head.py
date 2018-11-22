@@ -20,7 +20,7 @@ import scipy.fftpack as fftpack
 from scipy import signal
 import numpy as np
 import matplotlib.pyplot as plt
-#plt.ioff()
+plt.ioff()
 import datetime
 import os
 import scipy.optimize as optimization
@@ -31,12 +31,11 @@ def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/modelling/tr
                              single_file="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2/Groundwater@UFZ_eve_HOMO_276_D_4_results/transect_01_ply_obs_0400_t6_GROUNDWATER_FLOW.tec",
                              which_data_to_plot=2,
                              name_of_project_gw_model='',
-                             name_of_project_ogs=None,
+                             name_of_project_ogs='transect_01',
                              process='GROUNDWATER_FLOW',
                              which='mean',
                              time_steps=8401,
-                             observation_point='NA',
-                             obs_point=''):
+                             obs_point='NA'):
     '''
     which_data_to_plot = 1 # 1: ogs, 2: gw_model 3: recharge
     which = 'max'       # min, max, mean
@@ -55,33 +54,33 @@ def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/modelling/tr
     # =============================================================================
     # global variables set automatically
     # =============================================================================
-    print ("Reading .tec-file...")
-    print("Reading: ...", single_file[-40:])
-    tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project, single_file=single_file)
-    print ("Done.")
+    rfd_x, recharge = get_curve(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, curve=1, mm_d=False, time_steps=time_steps)
+    try:
+        fft_data = np.loadtxt(str(path_to_project) + '/' + 'head_ogs_' + str(obs_point) + '_' + str(which) + '.txt')
+        print("Loaded heads from file: " + str('head_ogs_' + str(obs_point) + '_' + str(which) + '.txt'))
+    except IOError:
+        print ("Reading .tec-file...")
+        print(single_file[-40:])
+        tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project, single_file=single_file)
+        print ("Finished reading.")
     
-    # =============================================================================
-    # get data dependent on which_data_to_plot
-    # =============================================================================
-    if which_data_to_plot == 2:
-        head_ogs = gethead_ogs_each_obs(process, obs_point, which, time_steps, tecs=tecs, single_file=True, save_heads=False)
-        fft_data = head_ogs
-        rfd_x, recharge = get_curve(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, curve=1, mm_d=True, time_steps=time_steps)
-        #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
-    elif which_data_to_plot == 1:
-        head_gw_model = gethead_gw_model_each_obs(make_array_gw_model(
-                            split_gw_model(getlist_gw_model(str(path_to_project) 
-                            + str(name_of_project_gw_model) 
-                            + '/H.OUT'), index=2)), convert_obs_list_to_index('obs_0990'), save_heads=False)
-        fft_data = head_gw_model
-        rfd_x, recharge = get_curve(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, curve=1, mm_d=True, time_steps=time_steps)
-        #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
-    elif which_data_to_plot == 3:
-        rfd_x, recharge = get_curve(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, curve=1, mm_d=True, time_steps=time_steps)
-        #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
-        fft_data = recharge
-        # FEHLER IN DIESER FUNKTION, NICHT FUNKTIONSFÄHIG
-     
+        # =============================================================================
+        # get data dependent on which_data_to_plot
+        # =============================================================================
+        if which_data_to_plot == 2:
+            fft_data = gethead_ogs_each_obs(process, obs_point, which, time_steps, tecs=tecs,path_to_project=path_to_project, single_file=True, save_heads=True)
+            #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
+        elif which_data_to_plot == 1:
+            fft_data = gethead_gw_model_each_obs(make_array_gw_model(
+                                split_gw_model(getlist_gw_model(str(path_to_project) 
+                                + str(name_of_project_gw_model) 
+                                + '/H.OUT'), index=2)), convert_obs_list_to_index('obs_0990'), save_heads=False)
+            #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
+        elif which_data_to_plot == 3:
+            #recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
+            fft_data = recharge
+    
+    
     # convert recharge from list to array    
     recharge = np.asarray([float(i) for i in recharge])
     return fft_data, recharge
@@ -97,7 +96,7 @@ def fft_psd(fft_data,
             distance_to_river=None,
             path_to_project='no_path_given',
             single_file='no_path_given',
-            method='scipyfft',
+            method='scipyffthalf',
             fit=False, savefig=False, 
             saveoutput=True, dupuit=False,
             a_l=None, t_l=None, 
@@ -207,8 +206,8 @@ def fft_psd(fft_data,
         power_spectrum_input = (abs(fftpack.fft(recharge_detrend, len_input))**2)[1:]
         power_spectrum_output = (abs(fftpack.fft(fft_data_detrend, len_output))**2)[1:]
         power_spectrum_result = power_spectrum_output / power_spectrum_input
-        frequency_input = (abs(fftpack.fftfreq(len_output, time_step_size)))[1:]
-
+        frequency_input = (abs(fftpack.fftfreq(len_output, time_step_size)))[1:]   
+        
     if method == 'scipyffthalf':
         # =========================================================================
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2
@@ -217,8 +216,7 @@ def fft_psd(fft_data,
         power_spectrum_input = (abs(fftpack.fft(recharge_detrend, len_input)[:len_output/2])**2)[1:]
         power_spectrum_output = (abs(fftpack.fft(fft_data_detrend, len_output)[:len_output/2])**2)[1:]
         power_spectrum_result = power_spectrum_output / power_spectrum_input
-        frequency_input = (abs(fftpack.fftfreq(len_output, time_step_size))[:len_output/2])[1:]   
-        
+        frequency_input = (abs(fftpack.fftfreq(len_output, time_step_size))[:len_output/2])[1:]
         
         if o_i == 'i':
             power_spectrum_result = power_spectrum_input
@@ -622,7 +620,7 @@ def fft_psd(fft_data,
                               ec="1", pad=0.8, alpha=1))    
 
     plt.legend(loc='best')
-    plt.show()
+    #plt.show()
     if savefig == True:
         if fit == True:
             fit_txt = 'fit_'
@@ -633,8 +631,10 @@ def fft_psd(fft_data,
                                     str(method) + '_' + 
                                     str(os.path.basename(str(path_to_project)[:-1])) + 
                                     '_' + str(obs_point) + ".png")
+        print('Saving figure ' + str(path_name_of_file_plot[-30:]))
         fig.savefig(path_name_of_file_plot)
-        plt.close()
+    fig.clf()
+    plt.close(fig)
         
     path_name_of_file_plot = (str(path_to_project) + '/' + 'PSD_' + 
                             fit_txt + o_i_txt + threshold_txt + 
@@ -668,4 +668,5 @@ def fft_psd(fft_data,
                                 str(a_d) + ' ' + str(t_d) + ' ' + 
                                 str(path_name_of_file_plot) + '\n')
         file.close()
+    print('###################################################################')    
     return T_l, kf_l, Ss_l, D_l, a_l, t_l, T_d, kf_d, Ss_d, D_d, a_d, t_d, power_spectrum_output

@@ -271,7 +271,7 @@ def getrecharge(path_to_project, name_of_project_ogs, time_steps, mm_d=True):
 # get the head for maximum, minimum and mean values for given observation point(s)
 # =============================================================================
     
-def gethead_ogs_each_obs(process, observation_point, which, time_steps, tecs, single_file=False, save_heads=True):
+def gethead_ogs_each_obs(process, observation_point, which, time_steps, tecs, path_to_project=path_to_project, single_file=False, save_heads=True):
     '''
     Depending for which position on the observations line you want to plot the 
     head, it will return the min, max or mean head. You need to specify this 
