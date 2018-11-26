@@ -18,12 +18,11 @@ import numpy as np
 import re
 import os
 from cycler import cycler
-plt.ioff()
 
 # =============================================================================
 # global variables set manually
 # =============================================================================
-path_to_multiple_projects = '/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2'
+path_to_multiple_projects = '//Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise'
 first_part_of_name_of_project_ogs = "transect_01"
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
@@ -74,6 +73,7 @@ list_dir.sort()
 for i,curr_dir in enumerate(list_dir):
     path_to_project = str(path_to_multiple_projects) + '/' + str(curr_dir)
     print('Creating plots for: ' + str(path_to_project) + '. ' + str(i+1) + ' of ' + str(len(list_dir)) + ' in progress...')
+    print('##################################################################')
     name_of_project_gw_model = str(curr_dir[:-13])
     name_of_project_ogs = str(first_part_of_name_of_project_ogs)# + str(curr_dir)
    
@@ -88,10 +88,10 @@ for i,curr_dir in enumerate(list_dir):
             '''
             Loading tecs from file if file exists
             '''
-            print('Reading tecs from file...')
+            print('Reading heads from file...')
             tecs =  np.load(str(path_to_project) + '/' + 'tecs.npy').item()
         except IOError:
-            print('No saved tecs.npy available, reading tecs from .tec-files...')
+            print('No saved tecs.npy available, reading heads from .tec-files...')
             tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project)
             print('Reading of .tec-files finished.')
             # Save the dict
@@ -344,6 +344,8 @@ for i,curr_dir in enumerate(list_dir):
         
         # save the head time series as txt for each observation point   
         np.savetxt(str(path_to_project) + '/' + 'head_ogs_' + str(observation_point) + '_' + str(which) + '.txt', head_ogs_timeseries_each_obs)     
+        print('LAST ENTRY OF HEAD IME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS')
+        head_ogs_timeseries_each_obs[-1] = head_ogs_timeseries_each_obs[-2]
         return head_ogs_timeseries_each_obs
     
     # =============================================================================
@@ -483,8 +485,8 @@ for i,curr_dir in enumerate(list_dir):
         fig.tight_layout()  # otherwise the right y-label is slightly clipped
        
         #maximize the plot window
-        wm = plt.get_current_fig_manager()
-        wm.window.state('zoomed')
+        #wm = plt.get_current_fig_manager()
+        #wm.window.state('zoomed')
     
         #plt.show()
         # make a string from list obs_per_plot

@@ -8,6 +8,7 @@ Created on Tue Aug 21 09:54:44 2018
 This is a smal script to execute the psd_fft_head script multiple times for various model results and observation points.
 """
 
+
 import sys
 import numpy as np
 sys.path.append("/Users/houben/PhD/python/scripts/frequency_analysis")
@@ -15,8 +16,8 @@ from fft_psd_head import fft_psd, get_fft_data_from_simulation
 import matplotlib.pyplot as plt
 import os
 import time
+from calculate_model_params import calc_aq_param
 then = time.time()
-
 
 #methods = ['scipyfftnormt', 'scipyfftnormn', 'scipyfft', 'scipywelch',
 #           'pyplotwelch', 'scipyperio', 'spectrumperio']
@@ -26,7 +27,8 @@ then = time.time()
 #methods = ['scipywelch']
 
 methods = ['scipyffthalf']
-
+#methods = ['pyplotwelch']
+#methods = ['scipyperio']
 '''
 # configuration for homogeneous model runs
 path_to_project_list = ["/Users/houben/PhD/transect/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/Groundwater@UFZ_eve_HOMO_276_D_1_results/",
@@ -129,7 +131,7 @@ threshold=1e-6
 # configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30
 ###############################################################################
 
-path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30"
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise"
 project_folder_list = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith('.')]
 try:
     project_folder_list.remove("fitting_results")
@@ -142,9 +144,11 @@ obs_point_list = ['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'o
 distance_to_river_list = [1000, 990, 900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 40, 30, 20, 10, 0.01]
 time_steps = 8401
 time_step_size = 86400
-threshold=1e-6
-fit=True
-
+threshold=1
+fit=False
+S_list = [3.60E-02, 3.30E-02]# 3.00E-02, 2.70E-02, 2.40E-02, 2.10E-02, 1.80E-02, 1.50E-02, 1.20E-02, 9.00E-03, 6.00E-03, 3.00E-03, 2.70E-03 ]
+kf_list = [1.00E-05, 1.00E-05]# 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05]
+weights_d = [1,1,1,1,1]
 ###############################################################################
 ###############################################################################
 
@@ -247,7 +251,10 @@ for i,project_folder in enumerate(project_folder_list):
 #                                            aquifer_thickness=aquifer_thickness[i],
                                             aquifer_thickness=aquifer_thickness,
                                             aquifer_length=aquifer_length,
-                                            time_step_size=86400)
+                                            time_step_size=86400,
+                                            weights_d=weights_d,
+                                            comment='',
+                                            o_i='i')
 
 #if i == 1:
  #   break
@@ -274,7 +281,9 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
 
     params_l = np.load(path_to_results+str('_parameter_linear.npy'))
     params_d = np.load(path_to_results+str('_parameter_dupuit.npy'))
-    
+
+    import matplotlib      
+
     # linear model
     l=0 # index for different parameters
     m=0 # index for different methods
@@ -288,7 +297,10 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 # configuration for homogeneous model runs
                 #plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
                 # configuration for homo/vertical/horizontal
-                plt.semilogy(obs_point_list, param[n,:,m], label=project_folder)
+                color = matplotlib.colors.cnames.values()[n+5]
+                plt.semilogy(obs_point_list, param[n,:,m], label=project_folder, color=color)
+                params_real = calc_aq_param(S_list[n], kf_list[n], aquifer_length, aquifer_thickness, model='linear')
+                plt.axhline(y=params_real[l], ls='dashed', color=color, label='input parameter')
             plt.title('Method: ' + str(method) + '\nFit: "linear"' + '\nParameter: ' + str(labels[l]))
             plt.grid(True)
             plt.xlabel('observation point')
@@ -311,7 +323,12 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 # configuration for homogeneous model runs
                 #plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
                 # configuration for homo/vertical/horizontal
-                plt.semilogy(obs_point_list, param[n,:,m], label=project_folder)
+                color = matplotlib.colors.cnames.values()[n+5]
+                plt.semilogy(obs_point_list, param[n,:,m], label=project_folder, color=color)
+                params_real = []
+                for o, obs_point in enumerate(obs_point_list):
+                    params_real.append(calc_aq_param(S_list[n], kf_list[n], aquifer_length, aquifer_thickness, model='dupuit', distance=distance_to_river_list[o]))
+                plt.plot(obs_point_list, [params_real[x][l] for x in range(0, len(obs_point_list))], ls='dashed', color=color, label='input parameter')
             plt.title('Method: ' + str(method) + '\nFit: "Dupuit"' + '\nParameter: ' + str(labels[l]))
             plt.grid(True)
             plt.xlabel('observation point')

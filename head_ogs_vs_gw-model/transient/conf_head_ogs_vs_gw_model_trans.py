@@ -37,6 +37,7 @@ process = 'GROUNDWATER_FLOW'
 which = 'all'       # min, max, mean
 time_steps = 30   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
 obs_per_plot = ['obs_0780']
+plt.ioff()
 
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
 
@@ -456,7 +457,7 @@ def plot_obs_vs_time(obs_per_plot, which):
     wm = plt.get_current_fig_manager()
     wm.window.state('zoomed')
 
-    plt.show()
+    #plt.show()
     # make a string from list obs_per_plot
     obs_per_plot_str = "_".join(obs_per_plot)
     fig.savefig(str(path_to_project) + '/' + str(os.path.basename(str(path_to_project))) + '_' + str(which) + '_' + str(obs_per_plot_str) + '_' + str(which_data_to_plot) + ".png")

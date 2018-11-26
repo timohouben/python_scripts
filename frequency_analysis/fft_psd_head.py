@@ -25,7 +25,7 @@ import datetime
 import os
 import scipy.optimize as optimization
 import textwrap as tw
-
+from running_mean import running_mean
 
 def get_fft_data_from_simulation(path_to_project="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2/Groundwater@UFZ_eve_HOMO_276_D_4_results",
                              single_file="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2/Groundwater@UFZ_eve_HOMO_276_D_4_results/transect_01_ply_obs_0400_t6_GROUNDWATER_FLOW.tec",
@@ -107,7 +107,8 @@ def fft_psd(fft_data,
             time_step_size=None,
             windows=10,
             wiener_window=100,
-            obs_point='no_obs_given'):
+            obs_point='no_obs_given',
+            comment=''):
     
     o_i_txt = ''
     threshold_txt = ''
@@ -256,9 +257,9 @@ def fft_psd(fft_data,
         power_spectrum_output, frequency_output = plt.psd(fft_data_detrend,
                                                         Fs=sampling_frequency)
         # delete first value (which is 0) because it makes trouble with fitting
-        frequency_output = frequency_output[1:]
-        frequency_input = frequency_input[1:]
-        power_spectrum_result = (power_spectrum_output / power_spectrum_input)[1:]
+        frequency_output = frequency_output#[1:]
+        frequency_input = frequency_input#[1:]
+        power_spectrum_result = (power_spectrum_output / power_spectrum_input)#[1:]
         if o_i == 'i':
             power_spectrum_result = power_spectrum_input[1:]
         elif o_i == 'o':
@@ -374,8 +375,9 @@ def fft_psd(fft_data,
         #    window_size = 2
         #power_spectrum_result_filtered = signal.savgol_filter(power_spectrum_result, window_size, 2)
         # method b: wiener
-        power_spectrum_result_filtered = signal.wiener(power_spectrum_result, wiener_window)
-        #ax.plot(frequency_input, power_spectrum_result_filtered, label='filtered PSD')
+        #power_spectrum_result_filtered = signal.wiener(power_spectrum_result, wiener_window)
+        power_spectrum_result_filtered = running_mean(power_spectrum_result, 10)
+        #ax.plot(frequency_input[:len(power_spectrum_result_filtered)], power_spectrum_result_filtered, label='filtered PSD')
         
         
         # =====================================================================
@@ -435,11 +437,12 @@ def fft_psd(fft_data,
          
                 # calculate aquifer parameters
                 # ---------------------------------------------------------------------     
-                T_l = a_l * aquifer_length**2 / 3.
+### HIER WURDE WAS GEÄNDERT: Die 3 wurde auskommentiert in der folgenden Zeile                
+                T_l = a_l * aquifer_length**2 #/ 3.
                 kf_l = T_l / aquifer_thickness
                 S_l = a_l * t_l
                 Ss_l = S_l / aquifer_thickness
-                D_l = aquifer_length**2 / (3 * t_l)
+                D_l = aquifer_length**2 / (3. * t_l)
                 #D_l = aquifer_length**2 * 4 / (np.pi**2 * t_l)
                 print('T_l = ', a_l, '*', aquifer_length, '**2 / 3.')
                 print("'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'")
@@ -626,7 +629,7 @@ def fft_psd(fft_data,
             fit_txt = 'fit_'
         if threshold != 1:
             threshold_txt = (str(threshold) + '_')
-        path_name_of_file_plot = (str(path_to_project) + '/' + 'PSD_' + 
+        path_name_of_file_plot = (str(path_to_project) + '/' + str(comment) + 'PSD_' + 
                                     fit_txt + o_i_txt + threshold_txt + 
                                     str(method) + '_' + 
                                     str(os.path.basename(str(path_to_project)[:-1])) + 
@@ -636,7 +639,7 @@ def fft_psd(fft_data,
     fig.clf()
     plt.close(fig)
         
-    path_name_of_file_plot = (str(path_to_project) + '/' + 'PSD_' + 
+    path_name_of_file_plot = (str(path_to_project) + '/' + str(comment) + 'PSD_' + 
                             fit_txt + o_i_txt + threshold_txt + 
                             str(method) + '_' + 
                             str(os.path.basename(str(path_to_project)[:-1])) + 
