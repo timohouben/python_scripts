@@ -30,13 +30,13 @@ from cycler import cycler
 # global variables set manually
 # =============================================================================
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
-path_to_project = "/Users/houben/Desktop/transect_02"
+path_to_project = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow/1000_30_mHM_homogeneous"
 name_of_project_gw_model = "9.00e-04"
-name_of_project_ogs = "transect_02"
+name_of_project_ogs = "dupuit_flow0.011000_30_mHM_homogeneous"
 process = 'GROUNDWATER_FLOW'
-which = 'all'       # min, max, mean
-time_steps = 30   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_0780']
+which = 'mean'       # min, max, mean
+time_steps = 365   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
+obs_per_plot = ['obs_00100', 'obs_00400', 'obs_00600', 'obs_00800', 'obs_00900']
 plt.ioff()
 
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
@@ -340,7 +340,7 @@ def plot_obs_vs_time(obs_per_plot, which):
         print(str(np.size(recharge)))
     
     # first axis for recharge
-    fig, ax1 = plt.subplots()
+    fig, ax1 = plt.subplots(figsize=(14, 10))
     plt.title("head timeseries at different observations points")
     color = 'tab:blue'
     ax1.set_xlabel('time [day]')
@@ -454,8 +454,8 @@ def plot_obs_vs_time(obs_per_plot, which):
     fig.tight_layout()  # otherwise the right y-label is slightly clipped
    
     #maximize the plot window
-    wm = plt.get_current_fig_manager()
-    wm.window.state('zoomed')
+    #wm = plt.get_current_fig_manager()
+    #wm.window.state('zoomed')
 
     #plt.show()
     # make a string from list obs_per_plot

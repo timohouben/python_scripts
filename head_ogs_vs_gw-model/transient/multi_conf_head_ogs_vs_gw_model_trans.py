@@ -344,8 +344,8 @@ for i,curr_dir in enumerate(list_dir):
         
         # save the head time series as txt for each observation point   
         np.savetxt(str(path_to_project) + '/' + 'head_ogs_' + str(observation_point) + '_' + str(which) + '.txt', head_ogs_timeseries_each_obs)     
-        print('LAST ENTRY OF HEAD IME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS')
-        head_ogs_timeseries_each_obs[-1] = head_ogs_timeseries_each_obs[-2]
+        #print('LAST ENTRY OF HEAD IME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS')
+        #head_ogs_timeseries_each_obs[-1] = head_ogs_timeseries_each_obs[-2]
         return head_ogs_timeseries_each_obs
     
     # =============================================================================

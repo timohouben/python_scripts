@@ -532,10 +532,6 @@ def fft_psd(fft_data,
         # O = td * w
         # E = x - x_o    distance from river
         # ---------------------------------------------------------------------
-        
-        print(a_d)
-        print(t_d)
-        
         if a_d == None and t_d == None and dupuit == True:
             # make an initial guess for a_l, and t_l
             initial_guess = np.array([0.98e-15, 2000000])

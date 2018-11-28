@@ -131,24 +131,21 @@ threshold=1e-6
 # configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30
 ###############################################################################
 
-path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise"
-project_folder_list = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith('.')]
-try:
-    project_folder_list.remove("fitting_results")
-except ValueError:
-    pass
-project_folder_list.sort()
-aquifer_thickness = 30
-aquifer_length = 1000
+path_to_multiple_projects = "/Users/houben 00
 obs_point_list = ['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
 distance_to_river_list = [1000, 990, 900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 40, 30, 20, 10, 0.01]
 time_steps = 8401
 time_step_size = 86400
-threshold=1
-fit=False
-S_list = [3.60E-02, 3.30E-02]# 3.00E-02, 2.70E-02, 2.40E-02, 2.10E-02, 1.80E-02, 1.50E-02, 1.20E-02, 9.00E-03, 6.00E-03, 3.00E-03, 2.70E-03 ]
-kf_list = [1.00E-05, 1.00E-05]# 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05]
+threshold=1e-6
+fit=True
+S_list = [3.60E-02, 3.30E-02, 3.00E-02, 2.70E-02, 2.40E-02, 2.10E-02, 1.80E-02, 1.50E-02, 1.20E-02, 9.00E-03, 6.00E-03, 3.00E-03, 2.70E-03 ]
+kf_list = [1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05]
 weights_d = [1,1,1,1,1]
+a_d_in=None
+t_d_in=None
+#a_d_in=3e-8
+#t_d_in=6.8e+7
+comment='TEST'
 ###############################################################################
 ###############################################################################
 
@@ -253,8 +250,10 @@ for i,project_folder in enumerate(project_folder_list):
                                             aquifer_length=aquifer_length,
                                             time_step_size=86400,
                                             weights_d=weights_d,
-                                            comment='',
-                                            o_i='i')
+                                            comment=comment,
+                                            o_i='i_o',
+                                            a_d=a_d_in,
+                                            t_d=t_d_in)
 
 #if i == 1:
  #   break
@@ -307,8 +306,8 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
             plt.ylabel(str(labels[l]))
             plt.xticks(rotation=60)
             plt.legend(loc='best')
-            print("Saving fig: ", str(labels[l]) + '_' + str(method) + '_linear' + '.png')
-            plt.savefig(str(path_to_results) + str(labels[l]) + '_' + str(method) + '_linear' + '.png')
+            print("Saving fig: ", str(comment) + str(labels[l]) + '_' + str(threshold) + '_' + str(method) + '_linear' + '.png')
+            plt.savefig(str(path_to_results) + str(comment) + str(labels[l]) + '_' + str(threshold) + '_' + str(method) + '_linear' + '.png')
             plt.close('all')
             
     # Dupuit model
@@ -335,8 +334,8 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
             plt.ylabel(str(labels[l]))
             plt.xticks(rotation=60)
             plt.legend(loc='best')
-            print("Saving fig: ", str(labels[l]) + '_' + str(method) + '_dupuit' + '.png')    
-            plt.savefig(str(path_to_results) + str(labels[l]) + '_' + str(method) + '_dupuit' + '.png')           
+            print("Saving fig: ", str(comment) + str(labels[l]) + '_' + str(threshold) + '_' + str(method) + '_dupuit' + '.png')    
+            plt.savefig(str(path_to_results) + str(comment) + str(labels[l]) + '_' + str(threshold) + '_' + str(method) + '_dupuit' + '.png')           
             plt.close('all')
     print('Fertig!')
 
