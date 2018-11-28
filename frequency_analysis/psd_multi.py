@@ -131,7 +131,15 @@ threshold=1e-6
 # configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30
 ###############################################################################
 
-path_to_multiple_projects = "/Users/houben 00
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise"
+project_folder_list = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith('.')]
+try:
+    project_folder_list.remove("fitting_results")
+except ValueError:
+    pass
+project_folder_list.sort()
+aquifer_thickness = 30
+aquifer_length = 1000
 obs_point_list = ['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
 distance_to_river_list = [1000, 990, 900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 40, 30, 20, 10, 0.01]
 time_steps = 8401

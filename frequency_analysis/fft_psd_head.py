@@ -381,7 +381,7 @@ def fft_psd(fft_data,
         # method b: wiener
         #power_spectrum_result_filtered = signal.wiener(power_spectrum_result, wiener_window)
         power_spectrum_result_filtered = running_mean(power_spectrum_result, 10)
-        #ax.plot(frequency_input[:len(power_spectrum_result_filtered)], power_spectrum_result_filtered, label='filtered PSD')
+        ax.plot(frequency_input[:len(power_spectrum_result_filtered)], power_spectrum_result_filtered, label='filtered PSD')
         
         
         # =====================================================================
