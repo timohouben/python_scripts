@@ -1,4 +1,4 @@
-def get_baseflow_from_line(path_to_file = "/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient/0.0001/con_transient_0.0001_ply_obs_1000_t101_GROUNDWATER_FLOW.tec"):
+def get_baseflow_from_line(path_to_file="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise/Groundwater@UFZ_eve_HOMO_276_D_25_results/transect_01_ply_obs_1000_t17_GROUNDWATER_FLOW.tec"):
     '''
     - Polyline has to be vertical! Only x-component of node-velocity is used.
     - All points in the line have to have the exact same x-coordinate (e.g. on a vertical domain border)
@@ -7,6 +7,7 @@ def get_baseflow_from_line(path_to_file = "/Users/houben/PhD/modelling/ogs_vs_de
 
     from ogs5py.reader import readtec_polyline
     import numpy as np
+    import os
 
 
 
@@ -15,7 +16,7 @@ def get_baseflow_from_line(path_to_file = "/Users/houben/PhD/modelling/ogs_vs_de
 
     # time_steps = number of timesteps + initial values
     try:
-        time_steps = tecs["VELOCITY_X1"].shape[0]
+        time_steps = tecs["VELOCITY_X1"].shape[0]-1
         # nodes = number of nodes along polyline
         nodes = tecs["VELOCITY_X1"].shape[1]
         flow_array = np.zeros((nodes, time_steps))
@@ -44,6 +45,7 @@ def get_baseflow_from_line(path_to_file = "/Users/houben/PhD/modelling/ogs_vs_de
             flow_per_timestep = np.asarray(flow_per_timestep)
             flow_array[:,i] = flow_per_timestep
         flow_timeseries = flow_array.sum(axis=0)
+        np.savetxt(str(path_to_file)[:-len(os.path.basename(str(path_to_file)))] + "/baseflow.txt", flow_timeseries)
         return flow_timeseries
     except KeyError:
         print('ERROR: There is no VELOCITY_X1 time series in the given tec-file.')

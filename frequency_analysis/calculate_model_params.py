@@ -3,7 +3,7 @@
 
 from __future__ import division
 
-def calc_aq_param(S, kf, L, b, model, distance=None):
+def calc_aq_param(Ss, kf, L, b, model, distance=None):
     """
     Function to calculate aquifer parameters a, t, T and D with model input 
     parameters storativity (S), hydraulic conductivity (kf), 
@@ -28,7 +28,7 @@ def calc_aq_param(S, kf, L, b, model, distance=None):
         aquifer length [L]
     b : int, float
         aquifer thickness [L]
-    model : "linear", "dupuit"
+    model : {"linear", "dupuit"}
         which model should be used to calculate parameters
     distance : (optional) int, float
         distance from the river to the observation point
@@ -59,10 +59,10 @@ def calc_aq_param(S, kf, L, b, model, distance=None):
     if model == 'linear':
         T = kf * b
         a = ( T * 3. ) / L**2
+        S = Ss * b
         t = S / a
         D = L**2. / ( 3. * t )
-        Ss = S / b
-        returns = [T, kf, Ss, D, a, t] 
+        returns = [T, kf, S, D, a, t] 
         return returns
     
     elif model == 'dupuit':
@@ -71,10 +71,10 @@ def calc_aq_param(S, kf, L, b, model, distance=None):
         else:    
             T = kf * b
             a = T / ( b * distance )
+            S = Ss * b
             t = ( L**2. * S ) / T
             D = T / S
-            Ss = S / b
-            returns = [T, kf, Ss, D, a, t] 
+            returns = [T, kf, S, D, a, t] 
             return returns
 
     else:

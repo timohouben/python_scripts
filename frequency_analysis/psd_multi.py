@@ -131,7 +131,7 @@ threshold=1e-6
 # configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30
 ###############################################################################
 
-path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise"
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow"
 project_folder_list = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith('.')]
 try:
     project_folder_list.remove("fitting_results")
@@ -146,6 +146,7 @@ time_steps = 8401
 time_step_size = 86400
 threshold=1e-6
 fit=True
+Ss_list = [1.20E-03, 1.10E-03, 1.00E-03, 9.00E-04, 8.00E-04, 7.00E-04, 6.00E-04, 5.00E-04, 4.00E-04, 3.00E-04, 2.00E-04, 1.00E-04, 9.00E-05]
 S_list = [3.60E-02, 3.30E-02, 3.00E-02, 2.70E-02, 2.40E-02, 2.10E-02, 1.80E-02, 1.50E-02, 1.20E-02, 9.00E-03, 6.00E-03, 3.00E-03, 2.70E-03 ]
 kf_list = [1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05, 1.00E-05]
 weights_d = [1,1,1,1,1]
@@ -261,7 +262,12 @@ for i,project_folder in enumerate(project_folder_list):
                                             comment=comment,
                                             o_i='i_o',
                                             a_d=a_d_in,
-                                            t_d=t_d_in)
+                                            t_d=t_d_in,
+                                            Ss_list=Ss_list,
+                                            kf_list=kf_list,
+                                            obs_number=j,
+                                            model_number=i,
+                                            distance_to_river_list=distance_to_river_list)
 
 #if i == 1:
  #   break
@@ -304,9 +310,9 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 # configuration for homogeneous model runs
                 #plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
                 # configuration for homo/vertical/horizontal
-                color = matplotlib.colors.cnames.values()[n+5]
+                color = matplotlib.colors.cnames.values()[n+7]
                 plt.semilogy(obs_point_list, param[n,:,m], label=project_folder, color=color)
-                params_real = calc_aq_param(S_list[n], kf_list[n], aquifer_length, aquifer_thickness, model='linear')
+                params_real = calc_aq_param(Ss_list[n], kf_list[n], aquifer_length, aquifer_thickness, model='linear')
                 plt.axhline(y=params_real[l], ls='dashed', color=color, label='input parameter')
             plt.title('Method: ' + str(method) + '\nFit: "linear"' + '\nParameter: ' + str(labels[l]))
             plt.grid(True)
@@ -330,11 +336,11 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 # configuration for homogeneous model runs
                 #plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
                 # configuration for homo/vertical/horizontal
-                color = matplotlib.colors.cnames.values()[n+5]
+                color = matplotlib.colors.cnames.values()[n+7]
                 plt.semilogy(obs_point_list, param[n,:,m], label=project_folder, color=color)
                 params_real = []
                 for o, obs_point in enumerate(obs_point_list):
-                    params_real.append(calc_aq_param(S_list[n], kf_list[n], aquifer_length, aquifer_thickness, model='dupuit', distance=distance_to_river_list[o]))
+                    params_real.append(calc_aq_param(Ss_list[n], kf_list[n], aquifer_length, aquifer_thickness, model='dupuit', distance=distance_to_river_list[o]))
                 plt.plot(obs_point_list, [params_real[x][l] for x in range(0, len(obs_point_list))], ls='dashed', color=color, label='input parameter')
             plt.title('Method: ' + str(method) + '\nFit: "Dupuit"' + '\nParameter: ' + str(labels[l]))
             plt.grid(True)
@@ -350,6 +356,73 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
 plot()
 
 
+
+
+# plotten der power models der power spectras for obtained parameters and real parameters
+# one plot for one model run and all observation points
+
+# define the function to fit (linear aquifer model):
+#a_d = np.mean(power_spectrum_result[:5])
+def dupuit_fit(w_d, a_d, t_d):
+    return ((1./a_d)**2 * ( (1./(t_d*w_d))*np.tanh((1+1j)*np.sqrt(1./2*t_d*w_d))*np.tanh((1-1j)*np.sqrt(1./2*t_d*w_d)))).real
+
+# define the function to fit (linear aquifer model):
+def linear_fit(w_l, a_l, t_l):
+    return (1. / (a_l**2 * ( 1 + t_l**2 * w_l**2 )))
+
+
+
+p = 0 # index for model runs
+q = 0 # index for observation point
+r = 0 # index for data points
+
+import scipy.fftpack as fftpack
+import matplotlib
+time_step_size = 86400
+len_output = 8400
+frequency = (abs(fftpack.fftfreq(len_output, time_step_size))[:len_output/2])[1:]
+
+params_d = np.load(path_to_results+str('_parameter_dupuit.npy'))
+
+T_d, kf_d, Ss_d, D_d, a_d, t_d = params_d[0], params_d[1], params_d[2], params_d[3], params_d[4], params_d[5] 
+
+for p,project_folder in enumerate(project_folder_list):
+    plt.figure(figsize=(20,15)) 
+    #color = matplotlib.colors.cnames.values()[p+10]
+    for q,obs in enumerate(obs_point_list):
+        plt.axis([1e-9, 1e-5, 1e5, 1e19])
+        params_real = calc_aq_param(Ss_list[p], kf_list[p], aquifer_length, aquifer_thickness, distance=distance_to_river_list[q], model='dupuit')
+        plt.loglog(frequency, [dupuit_fit(a_d=a_d[p,q,0],t_d=t_d[p,q,0],w_d=frequency[i]) for i in range(0,len(frequency))])
+        plt.loglog(frequency, [dupuit_fit(a_d=params_real[4],t_d=params_real[5],w_d=frequency[i]) for i in range(0,len(frequency))], ls='dashed', label=str(obs))
+        plt.title("Dupuit Models")
+    plt.savefig(str(path_to_results) + str(project_folder) + '_dupuit' + '.png')
+    plt.close('all')
+
+
+p = 0 # index for model runs
+q = 0 # index for observation point
+r = 0 # index for data points
+params_l = np.load(path_to_results+str('_parameter_linear.npy'))
+
+T_l, kf_l, Ss_l, D_l, a_l, t_l = params_l[0], params_l[1], params_l[2], params_l[3], params_l[4], params_l[5] 
+
+for p,project_folder in enumerate(project_folder_list):
+    plt.figure(figsize=(20,15)) 
+    #color = matplotlib.colors.cnames.values()[p+10]
+    for q,obs in enumerate(obs_point_list):
+        plt.axis([1e-9, 1e-5, 1e5, 1e19])
+        params_real = calc_aq_param(Ss_list[p], kf_list[p], aquifer_length, aquifer_thickness, model='linear')
+        plt.loglog(frequency, [linear_fit(a_l=a_l[p,q,0],t_l=t_l[p,q,0],w_l=frequency[i]) for i in range(0,len(frequency))])
+        plt.loglog(frequency, [linear_fit(a_l=params_real[4],t_l=params_real[5],w_l=frequency[i]) for i in range(0,len(frequency))], ls='dashed', label=str(obs))
+        plt.title("Linear Reservoir Models")
+    plt.savefig(str(path_to_results) + str(project_folder) + '_linear' + '.png')
+    plt.close('all')
+
+                      
+        
+        
+        
+        
 now = time.time()
 elapsed = now - then
 print("Time elapsed: " + str(np.round(elapsed,2)) + " s")

@@ -30,9 +30,9 @@ from cycler import cycler
 # global variables set manually
 # =============================================================================
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
-path_to_project = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow/1000_30_mHM_homogeneous"
+path_to_project = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow/D_18_1000_30_whitenoise_D_18-D_30_homogeneous"
 name_of_project_gw_model = "9.00e-04"
-name_of_project_ogs = "dupuit_flow0.011000_30_mHM_homogeneous"
+name_of_project_ogs = "dupuit_flow1000_30_whitenoise_D_18-D_30_homogeneous"
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
 time_steps = 365   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.

@@ -22,13 +22,15 @@ from cycler import cycler
 # =============================================================================
 # global variables set manually
 # =============================================================================
-path_to_multiple_projects = '//Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise'
-first_part_of_name_of_project_ogs = "transect_01"
+path_to_multiple_projects = '/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow'
+first_part_of_name_of_project_ogs = "dupuit_flow1000_30_whitenoise_D_18-D_30_homogeneous"
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
 time_steps = 8401   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
 obs_per_plot = obs_point_list = ['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
+
+#['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
 
 
 #['obs_0000', 'obs_0200', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0800', 'obs_0950', 'obs_0990', 'obs_1000']
