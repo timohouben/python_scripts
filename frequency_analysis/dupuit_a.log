@@ -1,0 +1,2265 @@
+No data for gw model de Rooij, 2012
+Starting with project: D_18_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_19_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_20_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_21_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_22_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_23_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_24_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_25_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_26_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_27_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_28_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_29_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Starting with project: D_30_1000_30_whitenoise_D_18-D_30_homogeneous
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+Method: scipyffthalf
+Calculating PSD...
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+first 3000 data points were deleted due to instationary of the aquifer
+all values were substracted by 30 which is the height of the stream (BC)
+PSD was cut by threshold. Remaining data points: 466
+Saving figure 8-D_30_homogeneou_obs_1000.png
+###################################################################
+Created all PSDs. Continue with plotting of results from linear fitting...
+('Saving fig: ', '3000_a_T_1e-06_scipyffthalf_linear.png')
+('Saving fig: ', '3000_a_kf_1e-06_scipyffthalf_linear.png')
+('Saving fig: ', '3000_a_Ss_1e-06_scipyffthalf_linear.png')
+('Saving fig: ', '3000_a_D_1e-06_scipyffthalf_linear.png')
+('Saving fig: ', '3000_a_a_1e-06_scipyffthalf_linear.png')
+('Saving fig: ', '3000_a_t_1e-06_scipyffthalf_linear.png')
+('Saving fig: ', '3000_a_T_1e-06_scipyffthalf_dupuit.png')
+('Saving fig: ', '3000_a_kf_1e-06_scipyffthalf_dupuit.png')
+('Saving fig: ', '3000_a_Ss_1e-06_scipyffthalf_dupuit.png')
+('Saving fig: ', '3000_a_D_1e-06_scipyffthalf_dupuit.png')
+('Saving fig: ', '3000_a_a_1e-06_scipyffthalf_dupuit.png')
+('Saving fig: ', '3000_a_t_1e-06_scipyffthalf_dupuit.png')
+Fertig!
+saving model comparison image: dupuit_3000_a_D_18_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_19_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_20_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_21_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_22_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_23_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_24_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_25_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_26_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_27_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_28_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_29_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: dupuit_3000_a_D_30_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_18_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_19_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_20_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_21_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_22_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_23_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_24_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_25_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_26_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_27_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_28_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_29_1000_30_whitenoise_D_18-D_30_homogeneous.png
+saving model comparison image: linear_3000_a_D_30_1000_30_whitenoise_D_18-D_30_homogeneous.png
+Time elapsed: 309.7 s

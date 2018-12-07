@@ -3,11 +3,15 @@
 
 from __future__ import division
 
+
 def calc_aq_param(Ss, kf, L, b, model, distance=None):
     """
     Function to calculate aquifer parameters a, t, T and D with model input 
     parameters storativity (S), hydraulic conductivity (kf), 
     aquifer length (L) and aquifer thickness (b).
+    If you use the distance for linear model, a will be calculated with respect
+    to the location in the aquifer, i.e. distance to the river with the equation
+    a = beta * T / L^2, beta^2 = 4 / (1 - (x/L - 1)^4)
     
     Two models can be used:
         Linear Reservoir Model
@@ -56,26 +60,28 @@ def calc_aq_param(Ss, kf, L, b, model, distance=None):
     ? D = L^2 / ( 3 * t ): This formulation ist not valid for Dupuit Aquifers?
     D = T / S = K / Ss
     """
-    if model == 'linear':
+    if model == "linear":
         T = kf * b
-        a = ( T * 3. ) / L**2
+        a = (T * 3.0) / L ** 2
         S = Ss * b
         t = S / a
-        D = L**2. / ( 3. * t )
-        returns = [T, kf, S, D, a, t] 
+        D = L ** 2.0 / (3.0 * t)
+        returns = [T, kf, S, D, a, t]
         return returns
-    
-    elif model == 'dupuit':
+
+    elif model == "dupuit":
         if distance == None:
-            print('Please specify the distance between your observation point and the river.')
-        else:    
+            print(
+                "Please specify the distance between your observation point and the river."
+            )
+        else:
             T = kf * b
-            a = T / ( b * distance )
+            a = T / (b * distance)
             S = Ss * b
-            t = ( L**2. * S ) / T
+            t = (L ** 2.0 * S) / T
             D = T / S
-            returns = [T, kf, S, D, a, t] 
+            returns = [T, kf, S, D, a, t]
             return returns
 
     else:
-        print('Invalid argument: model')
+        print("Invalid argument: model")
