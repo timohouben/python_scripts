@@ -378,7 +378,7 @@ for i, project_folder in enumerate(project_folder_list):
 
 params_l = [T_l, kf_l, Ss_l, D_l, a_l, t_l]
 params_d = [T_d, kf_d, Ss_d, D_d, a_d, t_d]
-labels = ["T", "kf", "Ss", "D", "a", "t"]
+labels = ["T", "kf", "Ss", "D", "a", "tc"]
 
 
 # create folder for plots if folder doesn't exist already
@@ -431,7 +431,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
 #                            distance=distance_to_river_list[o]                
                         )
                     )    
-                plt.semilog(
+                plt.semilogy(
                     obs_point_list,
                     [params_real[x][l] for x in range(0, len(obs_point_list))],
                     ls="dashed",
@@ -504,7 +504,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                             distance=distance_to_river_list[o],
                         )
                     )
-                plt.plot(
+                plt.semilogy(
                     obs_point_list,
                     [params_real[x][l] for x in range(0, len(obs_point_list))],
                     ls="dashed",
