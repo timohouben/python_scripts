@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import division
+import numpy as np
 
 
 def calc_aq_param(Ss, kf, L, b, model, distance=None):
     """
-    Function to calculate aquifer parameters a, t, T and D with model input 
+    Function to calculate aquifer parameters T, S, D, a and t with model input 
     parameters storativity (S), hydraulic conductivity (kf), 
     aquifer length (L) and aquifer thickness (b).
     If you use the distance for linear model, a will be calculated with respect
@@ -46,6 +47,8 @@ def calc_aq_param(Ss, kf, L, b, model, distance=None):
         transmissivity [L^2/T]
     D : float
         diffusivity [L^2/T]
+    Ss: float
+        specific storage [1/m]    
     
     Linear Reservoir Model:
     a = ( T * 3 ) / L^2
@@ -62,11 +65,15 @@ def calc_aq_param(Ss, kf, L, b, model, distance=None):
     """
     if model == "linear":
         T = kf * b
-        a = (T * 3.0) / L ** 2
         S = Ss * b
+        if distance == None:
+            a = (T * 3.0) / L ** 2
+        else:
+            beta = np.sqrt(4 / (1 - ( distance/L - 1)**4 ))
+            a = beta * T / L**2
         t = S / a
         D = L ** 2.0 / (3.0 * t)
-        returns = [T, kf, S, D, a, t]
+        returns = [T, kf, Ss, D, a, t]
         return returns
 
     elif model == "dupuit":
@@ -76,11 +83,13 @@ def calc_aq_param(Ss, kf, L, b, model, distance=None):
             )
         else:
             T = kf * b
+            # method from Gelhar 1974, beta = pi^2/4
+            #a = np.pi**2 * T / L**2 / 4
             a = T / (b * distance)
             S = Ss * b
             t = (L ** 2.0 * S) / T
             D = T / S
-            returns = [T, kf, S, D, a, t]
+            returns = [T, kf, Ss, D, a, t]
             return returns
 
     else:
