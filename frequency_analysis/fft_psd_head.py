@@ -195,25 +195,13 @@ def fft_psd(
     obs_number=0,
     model_number=0,
     distance_to_river_list=0,
+    target=False,
+    ymin=None,
+    ymax=None,
+    a_of_x=False,
+    a_alterna=False,
 ):
 
-    print(
-        "LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS"
-    )
-    fft_data[-1] = fft_data[-2]
-    recharge[-1] = recharge[-2]
-    # print('first 3000 data points were deleted due to instationary of the aquifer')
-    fft_data = fft_data[3000:]
-    recharge = recharge[3000:]
-    print("all values were substracted by 30 which is the height of the stream (BC)")
-    fft_data = fft_data - 30
-    recharge = recharge - 30
-    # print('all data werde divided by 2*pi')
-    # fft_data = [i/(2*np.pi) for i in fft_data]
-    # recharge = [i/(2*np.pi) for i in recharge]
-    # print('all data werde divided by exp(1/(2*pi))')
-    # fft_data = [i**(1/(2*np.pi)) for i in fft_data]
-    # recharge = [i**(1/(2*np.pi)) for i in recharge]
 
     o_i_txt = ""
     threshold_txt = ""
@@ -531,7 +519,8 @@ def fft_psd(
     ax.set_xscale("log")
     ax.set_yscale("log")
     ax.set_xlabel("1/s")
-    ax.set_ylim(1e10, 1e20)
+    if ymin != None and ymax != None:
+        ax.set_ylim(ymin, ymax)
     # ax.plot(freq_month[ind],psd)
     ax.plot(frequency_input, power_spectrum_result, label="PSD")
     ax.set_title(
@@ -611,35 +600,38 @@ def fft_psd(
                 ax.plot(frequency_input, linear_model, label="linear model")
 
                 # plot the linear model with input parameters of ogs
-                params_real = calc_aq_param(
-                    Ss_list[model_number],
-                    kf_list[model_number],
-                    aquifer_length,
-                    aquifer_thickness,
-                    model="linear",
-                )  # , distance=distance_to_river_list[obs_number])
-                ax.plot(
-                    frequency_input,
-                    [
-                        linear_fit(
-                            a_l=params_real[4],
-                            t_l=params_real[5],
-                            f_l=frequency_input[i],
-                        )
-                        for i in range(0, len(frequency_input))
-                    ],
-                    label="linear model, target",
-                )
+                if target == True:
+                    params_real = calc_aq_param(
+                        Ss_list[model_number],
+                        kf_list[model_number],
+                        aquifer_length,
+                        aquifer_thickness,
+                        model="linear",
+                    )  # , distance=distance_to_river_list[obs_number])
+                    ax.plot(
+                        frequency_input,
+                        [
+                            linear_fit(
+                                a_l=params_real[4],
+                                t_l=params_real[5],
+                                f_l=frequency_input[i],
+                            )
+                            for i in range(0, len(frequency_input))
+                        ],
+                        label="linear model, target",
+                    )
 
                 # calculate aquifer parameters
                 # ---------------------------------------------------------------------
-                #print("calculation of T with new formula")
-                #T_l = (
-                #    a_l
-                #    * aquifer_length ** 2
-                #    * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
-                #)
-                T_l = a_l * aquifer_length**2 / 3.
+                if a_of_x == True:
+                    print("Calculation of T in dependence of location in aquifer.")
+                    T_l = (
+                        a_l
+                        * aquifer_length ** 2
+                        * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
+                        )
+                if a_of_x == False:
+                    T_l = a_l * aquifer_length**2 / 3.
                 kf_l = T_l / aquifer_thickness
                 S_l = a_l * t_l
                 Ss_l = S_l / aquifer_thickness
@@ -706,13 +698,15 @@ def fft_psd(
 
             # calculate aquifer parameters
             # ---------------------------------------------------------------------
-            #print("calculation of T with new formula")
-            #T_l = (
-            #    a_l
-            #    * aquifer_length ** 2
-            #    * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
-            #)
-            T_l = a_l * aquifer_length**2 / 3.
+            if a_of_x == True:
+                print("Calculation of T in dependence of location in aquifer.")
+                T_l = (
+                    a_l
+                    * aquifer_length ** 2
+                    * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
+                    )
+            if a_of_x == False:
+                T_l = a_l * aquifer_length**2 / 3.
             kf_l = T_l / aquifer_thickness
             S_l = a_l * t_l
             Ss_l = S_l / aquifer_thickness
@@ -811,24 +805,25 @@ def fft_psd(
             ax.plot(frequency_input, dupuit_model, label="Dupuit model")
 
             # plot the dupuit model with input parameters of ogs
-            params_real = calc_aq_param(
-                Ss_list[model_number],
-                kf_list[model_number],
-                aquifer_length,
-                aquifer_thickness,
-                model="dupuit",
-                distance=distance_to_river_list[obs_number],
-            )
-            ax.plot(
-                frequency_input,
-                [
-                    dupuit_fit(
-                        a_d=params_real[4], t_d=params_real[5], f_d=frequency_input[i]
-                    )
-                    for i in range(0, len(frequency_input))
-                ],
-                label="dupuit model, target",
-            )
+            if target == True:
+                params_real = calc_aq_param(
+                    Ss_list[model_number],
+                    kf_list[model_number],
+                    aquifer_length,
+                    aquifer_thickness,
+                    model="dupuit",
+                    distance=distance_to_river_list[obs_number],
+                )
+                ax.plot(
+                    frequency_input,
+                    [
+                        dupuit_fit(
+                            a_d=params_real[4], t_d=params_real[5], f_d=frequency_input[i]
+                        )
+                        for i in range(0, len(frequency_input))
+                    ],
+                    label="dupuit model, target",
+                )
 
             # calculate aquifer parameters
             # ---------------------------------------------------------------------
@@ -838,10 +833,13 @@ def fft_psd(
             #    * aquifer_length ** 2
             #    * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
             #)
-            # method from Gelhar 1974, beta = pi^2/4
-            #T_d = a_d * aquifer_length**2 * 4 / np.pi**2
             
-            T_d = a_d * aquifer_thickness * distance_to_river
+            
+            # method from Gelhar 1974, beta = pi^2/4
+            if a_alterna == True:
+                T_d = a_d * aquifer_length**2 * 4 / np.pi**2
+            else:
+                T_d = a_d * aquifer_thickness * distance_to_river
             kf_d = T_d / aquifer_thickness
             S_d = t_d * T_d / aquifer_length ** 2
             Ss_d = S_d / aquifer_thickness

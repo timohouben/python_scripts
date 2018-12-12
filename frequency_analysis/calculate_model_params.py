@@ -5,7 +5,7 @@ from __future__ import division
 import numpy as np
 
 
-def calc_aq_param(Ss, kf, L, b, model, distance=None):
+def calc_aq_param(Ss, kf, L, b, model, distance=None, a_alterna=False):
     """
     Function to calculate aquifer parameters T, S, D, a and t with model input 
     parameters storativity (S), hydraulic conductivity (kf), 
@@ -69,6 +69,7 @@ def calc_aq_param(Ss, kf, L, b, model, distance=None):
         if distance == None:
             a = (T * 3.0) / L ** 2
         else:
+            print("Discharge constant a for linear model is calculated with respect to the location in the aquifer. Distance to the river: " + str(distance))
             beta = np.sqrt(4 / (1 - ( distance/L - 1)**4 ))
             a = beta * T / L**2
         t = S / a
@@ -83,9 +84,11 @@ def calc_aq_param(Ss, kf, L, b, model, distance=None):
             )
         else:
             T = kf * b
-            # method from Gelhar 1974, beta = pi^2/4
-            #a = np.pi**2 * T / L**2 / 4
-            a = T / (b * distance)
+            if a_alterna == True:
+                print('Discharge constant a for Dupui model is calculated with alternative formulation beta = pi^2/4, see Gelhar 1974.')
+                a = np.pi**2 * T / L**2 / 4
+            else:    
+                a = T / (b * distance)
             S = Ss * b
             t = (L ** 2.0 * S) / T
             D = T / S

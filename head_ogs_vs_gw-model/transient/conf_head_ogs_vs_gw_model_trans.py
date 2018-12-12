@@ -97,10 +97,12 @@ def load_tecs():
 # GW Model de Rooij 2012
 # read timeseries for different observation points from H.OUT of gw-model de Rooij 2012
 # =============================================================================
+'''    
 try:
     n_locations_gw_model = sum(1 for line in open(str(path_to_project) + "/" + str(name_of_project_gw_model) + '/OutputLocations.in' , "r"))
 except IOError:
     print("No data for gw model de Rooij, 2012")
+'''
 
 def convert_obs_list_to_index(obs):
     '''

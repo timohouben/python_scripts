@@ -141,7 +141,7 @@ try:
 except ValueError:
     pass
 project_folder_list.sort()
-aquifer_thickness = 30
+# aquifer_thickness = 30
 aquifer_length = 1000
 obs_point_list = [
     "obs_0000",
@@ -181,10 +181,7 @@ distance_to_river_list = [
     10,
     0.1,
 ]
-time_steps = 8401
-time_step_size = 86400
-threshold = 1e-6
-fit = True
+
 Ss_list = [
     1.20e-03,
     1.10e-03,
@@ -235,7 +232,19 @@ a_d_in = None
 t_d_in = None
 # a_d_in=3e-8
 # t_d_in=6.8e+7
-comment = "e_m_"
+time_steps = 8401
+time_step_size = 86400
+comment = "d_"
+threshold = 1e-6
+fit = True
+mean_thick = True
+icsub = 30
+target = False
+cutoff = 3000
+ymin = 1e9
+ymax = 1e22
+a_of_x=True
+a_alterna=True
 ###############################################################################
 ###############################################################################
 
@@ -303,6 +312,8 @@ D_d = np.zeros_like(T_l)
 a_d = np.zeros_like(T_l)
 t_d = np.zeros_like(T_l)
 
+font = {"family": "normal", "weight": "normal", "size": 15}
+plt.rc("font", **font)
 
 # loop over all project directories
 for i, project_folder in enumerate(project_folder_list):
@@ -315,12 +326,17 @@ for i, project_folder in enumerate(project_folder_list):
     name_of_project_ogs = str(
         [f for f in os.listdir(str(path_to_project)) if f.endswith(".rfd")]
     )[2:-6]
-    # loop over all .tec files
-#    aquifer_thickness = np.mean(
-#        np.loadtxt(
-#            path_to_multiple_projects + "/" + project_folder + "/average_head_-BC.txt"
-#        )[3000:]
-#    )
+
+    if mean_thick == True:
+        # loop over all .tec files
+        aquifer_thickness = np.mean(
+            np.loadtxt(
+                path_to_multiple_projects
+                + "/"
+                + project_folder
+                + "/average_head_-BC.txt"
+            )[3000:]
+        )
     for j, single_file_name in enumerate(single_file_names):
         obs_point = obs_point_list[j]
         print("calculating psd for obs point: " + str(obs_point))
@@ -331,8 +347,29 @@ for i, project_folder in enumerate(project_folder_list):
             time_steps=time_steps,
             obs_point=obs_point,
         )
-        # fft_data = fft_data[0:] # eliminate effects from wrong initial conditions
-        # recharge = recharge[0:] # eliminate effects from wrong initial conditions
+
+        # print(
+        #    "LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS"
+        # )
+        # fft_data[-1] = fft_data[-2]
+        # recharge[-1] = recharge[-2]
+        if cutoff != None:
+            print(
+                "First "
+                + str(cutoff)
+                + " data points were deleted due to instationary of the aquifer."
+            )
+            fft_data = fft_data[cutoff:]
+            recharge = recharge[cutoff:]
+        if icsub != None:
+            print(
+                "All values were substracted by "
+                + str(icsub)
+                + " which is the height of the stream (BC)."
+            )
+            fft_data = fft_data - icsub
+            recharge = recharge - icsub
+
         for k, method in enumerate(methods):
             print("Method: " + str(method))
             print("Calculating PSD...")
@@ -370,6 +407,11 @@ for i, project_folder in enumerate(project_folder_list):
                 obs_number=j,
                 model_number=i,
                 distance_to_river_list=distance_to_river_list,
+                target=target,
+                ymin=ymin,
+                ymax=ymax,
+                a_of_x=a_of_x,
+                a_alterna=a_alterna,
             )
 
 # if i == 1:
@@ -378,7 +420,8 @@ for i, project_folder in enumerate(project_folder_list):
 
 params_l = [T_l, kf_l, Ss_l, D_l, a_l, t_l]
 params_d = [T_d, kf_d, Ss_d, D_d, a_d, t_d]
-labels = ["T", "kf", "Ss", "D", "a", "tc"]
+names = ["T", "kf", "Ss", "D", "a", "tc"]
+labels = ["T [m2/s]", "kf [m/s]", "Ss [1/m]", "D [m2/s]", "a [-]", "tc [s]"]
 
 
 # create folder for plots if folder doesn't exist already
@@ -398,6 +441,10 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
     params_d = np.load(path_to_results + str("_parameter_dupuit.npy"))
 
     import matplotlib
+    from matplotlib.lines import Line2D
+
+    font = {"family": "normal", "weight": "normal", "size": 30}
+    plt.rc("font", **font)
 
     # linear model
     l = 0  # index for different parameters
@@ -406,7 +453,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
     plt.ioff()
     for l, param in enumerate(params_l):
         for m, method in enumerate(methods):
-            plt.figure(figsize=(20, 15))
+            plt.figure(figsize=(25, 25))
             for n, project_folder in enumerate(project_folder_list):
                 # plt.figure(figsize=(20, 16))
                 # configuration for homogeneous model runs
@@ -416,27 +463,40 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 plt.semilogy(
                     obs_point_list,
                     param[n, :, m],
-                    label=project_folder[-4:],
+                    label=project_folder[:4],
                     color=color,
+                    lw=3,
                 )
                 params_real = []
                 for o, obs_point in enumerate(obs_point_list):
-                    params_real.append(
-                        calc_aq_param(
-                            Ss_list[n],
-                            kf_list[n],
-                            aquifer_length,
-                            aquifer_thickness,
-                            model="linear",
-#                            distance=distance_to_river_list[o]                
+                    if a_of_x == True:
+                        params_real.append(
+                            calc_aq_param(
+                                Ss_list[n],
+                                kf_list[n],
+                                aquifer_length,
+                                aquifer_thickness,
+                                model="linear",
+                                distance=distance_to_river_list[o],
+                            )
+                        )    
+                    else:
+                        params_real.append(
+                            calc_aq_param(
+                                Ss_list[n],
+                                kf_list[n],
+                                aquifer_length,
+                                aquifer_thickness,
+                                model="linear",
+                            )
                         )
-                    )    
                 plt.semilogy(
                     obs_point_list,
                     [params_real[x][l] for x in range(0, len(obs_point_list))],
                     ls="dashed",
+                    lw=3,
                     color=color,
-                )    
+                )
             plt.title(
                 "Method: "
                 + str(method)
@@ -444,15 +504,23 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 + "\nParameter: "
                 + str(labels[l])
             )
+            Line2D(
+                [0],
+                [0],
+                color=color,
+                linewidth=3,
+                linestyle="--",
+                label="model input value",
+            )
             plt.grid(True)
             plt.xlabel("observation point")
             plt.ylabel(str(labels[l]))
             plt.xticks(rotation=60)
-            plt.legend(loc="best")
+            plt.legend(loc="best", ncol=4)
             print(
                 "Saving fig: ",
                 str(comment)
-                + str(labels[l])
+                + str(names[l])
                 + "_"
                 + str(threshold)
                 + "_"
@@ -463,7 +531,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
             plt.savefig(
                 str(path_to_results)
                 + str(comment)
-                + str(labels[l])
+                + str(names[l])
                 + "_"
                 + str(threshold)
                 + "_"
@@ -480,7 +548,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
     plt.ioff()
     for l, param in enumerate(params_d):
         for m, method in enumerate(methods):
-            plt.figure(figsize=(20, 15))
+            plt.figure(figsize=(25, 25))
             for n, project_folder in enumerate(project_folder_list):
                 # configuration for homogeneous model runs
                 # plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
@@ -491,6 +559,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                     param[n, :, m],
                     label=project_folder[-4:],
                     color=color,
+                    lw=3,
                 )
                 params_real = []
                 for o, obs_point in enumerate(obs_point_list):
@@ -502,12 +571,14 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                             aquifer_thickness,
                             model="dupuit",
                             distance=distance_to_river_list[o],
+                            a_alterna=a_alterna
                         )
                     )
                 plt.semilogy(
                     obs_point_list,
                     [params_real[x][l] for x in range(0, len(obs_point_list))],
                     ls="dashed",
+                    lw=3,
                     color=color,
                 )
             plt.title(
@@ -521,11 +592,11 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
             plt.xlabel("observation point")
             plt.ylabel(str(labels[l]))
             plt.xticks(rotation=60)
-            plt.legend(loc="best")
+            plt.legend(loc="best", ncol=4)
             print(
                 "Saving fig: ",
                 str(comment)
-                + str(labels[l])
+                + str(names[l])
                 + "_"
                 + str(threshold)
                 + "_"
@@ -536,7 +607,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
             plt.savefig(
                 str(path_to_results)
                 + str(comment)
-                + str(labels[l])
+                + str(names[l])
                 + "_"
                 + str(threshold)
                 + "_"
@@ -574,13 +645,16 @@ def linear_fit(f_l, a_l, t_l):
     return 1.0 / (a_l ** 2 * (1 + t_l ** 2 * w_l ** 2))
 
 
-
 p = 0  # index for model runs
 q = 0  # index for observation point
 r = 0  # index for data points
 
 import scipy.fftpack as fftpack
 import matplotlib
+
+font = {"family": "normal", "weight": "normal", "size": 30}
+plt.rc("font", **font)
+plt.rc("legend", fontsize=15)
 
 time_step_size = 86400
 len_output = 8400
@@ -599,8 +673,8 @@ T_d, kf_d, Ss_d, D_d, a_d, t_d = (
 
 for p, project_folder in enumerate(project_folder_list):
     plt.figure(figsize=(20, 15))
-    # color = matplotlib.colors.cnames.values()[p+10]
     for q, obs in enumerate(obs_point_list):
+        color = matplotlib.colors.cnames.values()[q + 10]
         plt.axis([1e-9, 1e-5, 1e5, 1e19])
         params_real = calc_aq_param(
             Ss_list[p],
@@ -609,6 +683,7 @@ for p, project_folder in enumerate(project_folder_list):
             aquifer_thickness,
             distance=distance_to_river_list[q],
             model="dupuit",
+            a_alterna=a_alterna
         )
         plt.loglog(
             frequency,
@@ -616,6 +691,8 @@ for p, project_folder in enumerate(project_folder_list):
                 dupuit_fit(a_d=a_d[p, q, 0], t_d=t_d[p, q, 0], f_d=frequency[i])
                 for i in range(0, len(frequency))
             ],
+            label=str(obs),
+            color=color,
         )
         plt.loglog(
             frequency,
@@ -624,9 +701,15 @@ for p, project_folder in enumerate(project_folder_list):
                 for i in range(0, len(frequency))
             ],
             ls="dashed",
-            label=str(obs),
+            color=color,
         )
-        plt.title("Dupuit Models")
+        plt.title(
+            "Dupuit Models - comparison of input and output parameter\nModel: "
+            + str(project_folder)[:4]
+        )
+        plt.xlabel("frequency [1/s]")
+        plt.ylabel("spectral power")
+        plt.legend(loc="best", ncol=4)
     print(
         "saving model comparison image: "
         + "dupuit_"
@@ -659,15 +742,30 @@ for p, project_folder in enumerate(project_folder_list):
     # color = matplotlib.colors.cnames.values()[p+10]
     for q, obs in enumerate(obs_point_list):
         plt.axis([1e-9, 1e-5, 1e5, 1e19])
-        params_real = calc_aq_param(
-            Ss_list[p], kf_list[p], aquifer_length, aquifer_thickness, model="linear"
-        )
+        if a_of_x == True:
+            params_real = calc_aq_param(
+                Ss_list[p],
+                kf_list[p],
+                aquifer_length,
+                aquifer_thickness,
+                model="linear",
+                distance=distance_to_river_list[q],
+            )
+        else:
+            params_real = calc_aq_param(
+                Ss_list[p],
+                kf_list[p],
+                aquifer_length,
+                aquifer_thickness,
+                model="linear",
+            )
         plt.loglog(
             frequency,
             [
                 linear_fit(a_l=a_l[p, q, 0], t_l=t_l[p, q, 0], f_l=frequency[i])
                 for i in range(0, len(frequency))
             ],
+            label=str(obs) + "PSD fit output",
         )
         plt.loglog(
             frequency,
@@ -676,9 +774,14 @@ for p, project_folder in enumerate(project_folder_list):
                 for i in range(0, len(frequency))
             ],
             ls="dashed",
-            label=str(obs),
         )
-        plt.title("Linear Reservoir Models")
+        plt.xlabel("frequency [1/2]")
+        plt.ylabel("spectral power")
+        plt.legend(loc="best", ncol=4)
+        plt.title(
+            "Linear Reservoir Models - comparison of input and output parameter\nModel: "
+            + str(project_folder)[:4]
+        )
     print(
         "saving model comparison image: "
         + "linear_"
