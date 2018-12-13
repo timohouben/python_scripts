@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import os
 import time
 from calculate_model_params import calc_aq_param
+from get_obs import get_obs
 
 then = time.time()
 
@@ -128,11 +129,13 @@ threshold=1e-6
 ###############################################################################
 ###############################################################################
 """
+"""
 ###############################################################################
-# configurations for model run: Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30
+# configurations for model runs on EVE:
+# /work/houben/spectral_analysis/20181211_dupuit
+# has to start for each folder seperately
 ###############################################################################
-
-path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow"
+path_to_multiple_projects = "/work/houben/spectral_analysis/20181211_dupuit/1000/10"
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -141,8 +144,101 @@ try:
 except ValueError:
     pass
 project_folder_list.sort()
-# aquifer_thickness = 30
+obs_point_list = get_obs(project_folder_list[0])[1]
+
+distance_to_river_list = get_obs(project_folder_list[0])[2]
+
+Ss_list = [
+    1.20e-03,
+    1.10e-03,
+    1.00e-03,
+    9.00e-04,
+    8.00e-04,
+    7.00e-04,
+    6.00e-04,
+    5.00e-04,
+    4.00e-04,
+    3.00e-04,
+    2.00e-04,
+    1.00e-04,
+    9.00e-05,
+]
+S_list = [
+    3.60e-02,
+    3.30e-02,
+    3.00e-02,
+    2.70e-02,
+    2.40e-02,
+    2.10e-02,
+    1.80e-02,
+    1.50e-02,
+    1.20e-02,
+    9.00e-03,
+    6.00e-03,
+    3.00e-03,
+    2.70e-03,
+]
+kf_list = [
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+]
+
+aquifer_thickness = 10
 aquifer_length = 1000
+weights_d = [1, 1, 1, 1, 1]
+a_d_in = None
+t_d_in = None
+# a_d_in=3e-8
+# t_d_in=6.8e+7
+time_steps = 8401
+time_step_size = 86400
+comment = "TEST"
+threshold = 1
+fit = False
+mean_thick = False
+icsub = None
+target = False
+cutoff = None
+ymin = 1e9
+ymax = 1e22
+a_of_x=False
+a_alterna=False
+###############################################################################
+###############################################################################
+"""
+
+
+
+
+
+
+###############################################################################
+# configurations for model runs: 
+# /Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise
+# /Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_mHM
+# /Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow
+###############################################################################
+
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_mHM"
+project_folder_list = [
+    f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
+]
+try:
+    project_folder_list.remove("fitting_results")
+except ValueError:
+    pass
+project_folder_list.sort()
 obs_point_list = [
     "obs_0000",
     "obs_0010",
@@ -227,6 +323,9 @@ kf_list = [
     1.00e-05,
     1.00e-05,
 ]
+
+aquifer_thickness = 30
+aquifer_length = 1000
 weights_d = [1, 1, 1, 1, 1]
 a_d_in = None
 t_d_in = None
@@ -234,17 +333,17 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "d_"
-threshold = 1e-6
-fit = True
-mean_thick = True
+comment = "icsub"
+threshold = 1
+fit = False
+mean_thick = False
 icsub = 30
 target = False
-cutoff = 3000
+cutoff = None
 ymin = 1e9
 ymax = 1e22
-a_of_x=True
-a_alterna=True
+a_of_x=False
+a_alterna=False
 ###############################################################################
 ###############################################################################
 
@@ -348,11 +447,11 @@ for i, project_folder in enumerate(project_folder_list):
             obs_point=obs_point,
         )
 
-        # print(
-        #    "LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS"
-        # )
-        # fft_data[-1] = fft_data[-2]
-        # recharge[-1] = recharge[-2]
+        print(
+            "LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS"
+         )
+        fft_data[-1] = fft_data[-2]
+        recharge[-1] = recharge[-2]
         if cutoff != None:
             print(
                 "First "
@@ -463,7 +562,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 plt.semilogy(
                     obs_point_list,
                     param[n, :, m],
-                    label=project_folder[:4],
+                    label=project_folder[-4:],
                     color=color,
                     lw=3,
                 )
@@ -705,7 +804,7 @@ for p, project_folder in enumerate(project_folder_list):
         )
         plt.title(
             "Dupuit Models - comparison of input and output parameter\nModel: "
-            + str(project_folder)[:4]
+            + str(project_folder)[-4:]
         )
         plt.xlabel("frequency [1/s]")
         plt.ylabel("spectral power")
@@ -775,12 +874,12 @@ for p, project_folder in enumerate(project_folder_list):
             ],
             ls="dashed",
         )
-        plt.xlabel("frequency [1/2]")
+        plt.xlabel("frequency [1/s]")
         plt.ylabel("spectral power")
         plt.legend(loc="best", ncol=4)
         plt.title(
             "Linear Reservoir Models - comparison of input and output parameter\nModel: "
-            + str(project_folder)[:4]
+            + str(project_folder)[-4:]
         )
     print(
         "saving model comparison image: "

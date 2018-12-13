@@ -601,13 +601,21 @@ def fft_psd(
 
                 # plot the linear model with input parameters of ogs
                 if target == True:
-                    params_real = calc_aq_param(
-                        Ss_list[model_number],
-                        kf_list[model_number],
-                        aquifer_length,
-                        aquifer_thickness,
-                        model="linear",
-                    )  # , distance=distance_to_river_list[obs_number])
+                    if a_of_x == True:
+                        params_real = calc_aq_param(
+                            Ss_list[model_number],
+                            kf_list[model_number],
+                            aquifer_length,
+                            aquifer_thickness,
+                            model="linear",
+                            distance=distance_to_river_list[obs_number])
+                    else:
+                        params_real = calc_aq_param(
+                            Ss_list[model_number],
+                            kf_list[model_number],
+                            aquifer_length,
+                            aquifer_thickness,
+                            model="linear")
                     ax.plot(
                         frequency_input,
                         [
@@ -813,6 +821,7 @@ def fft_psd(
                     aquifer_thickness,
                     model="dupuit",
                     distance=distance_to_river_list[obs_number],
+                    a_alterna=a_alterna
                 )
                 ax.plot(
                     frequency_input,

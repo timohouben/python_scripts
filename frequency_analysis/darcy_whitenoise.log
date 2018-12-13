@@ -1,0 +1,1601 @@
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_18
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_19
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_1_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_20
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_21
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_22
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_23
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_24
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_25
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_26
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_27
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_28
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_29
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_2_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_30
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _eve_HOMO_276_D_3_obs_1000.png
+###################################################################
+Created all PSDs. Continue with plotting of results from linear fitting...
+('Saving fig: ', 'T_1_scipyffthalf_linear.png')
+('Saving fig: ', 'kf_1_scipyffthalf_linear.png')
+('Saving fig: ', 'Ss_1_scipyffthalf_linear.png')
+('Saving fig: ', 'D_1_scipyffthalf_linear.png')
+('Saving fig: ', 'a_1_scipyffthalf_linear.png')
+('Saving fig: ', 'tc_1_scipyffthalf_linear.png')
+('Saving fig: ', 'T_1_scipyffthalf_dupuit.png')
+('Saving fig: ', 'kf_1_scipyffthalf_dupuit.png')
+('Saving fig: ', 'Ss_1_scipyffthalf_dupuit.png')
+('Saving fig: ', 'D_1_scipyffthalf_dupuit.png')
+('Saving fig: ', 'a_1_scipyffthalf_dupuit.png')
+('Saving fig: ', 'tc_1_scipyffthalf_dupuit.png')
+Fertig!
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_18.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_19.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_20.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_21.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_22.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_23.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_24.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_25.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_26.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_27.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_28.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_29.png
+saving model comparison image: dupuit_Groundwater@UFZ_eve_HOMO_276_D_30.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_18.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_19.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_20.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_21.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_22.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_23.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_24.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_25.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_26.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_27.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_28.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_29.png
+saving model comparison image: linear_Groundwater@UFZ_eve_HOMO_276_D_30.png
+Time elapsed: 334.26 s
