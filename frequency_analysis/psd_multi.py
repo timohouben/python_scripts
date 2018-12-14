@@ -231,7 +231,7 @@ a_alterna=False
 # /Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow
 ###############################################################################
 
-path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_mHM"
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise"
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -334,17 +334,18 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "icsub"
-threshold = 1
-fit = False
+comment = "b1_"
+threshold = 1e-6
+fit = True
 mean_thick = False
-icsub = 30
+icsub = None
 target = False
 cutoff = None
 ymin = 1e9
 ymax = 1e22
 a_of_x=False
 a_alterna=False
+detrend=False
 ###############################################################################
 ###############################################################################
 '''
@@ -512,6 +513,7 @@ for i, project_folder in enumerate(project_folder_list):
                 ymax=ymax,
                 a_of_x=a_of_x,
                 a_alterna=a_alterna,
+                detrend=detrend,
             )
 
 # if i == 1:

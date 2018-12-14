@@ -1,0 +1,732 @@
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_18
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 6.035293226807365e-10, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.00020117644089357885, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 6.035293226807365e-10, '*', 46881534.889666304)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.028294380998193622, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 46881534.889666304, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 2.0118e-04
+  Ss [1/m]: 9.4315e-04
+  kf [m/s]: 6.7059e-06
+  D [m2/s]: 7.1101e-03
+  a: 6.0353e-10
+  t_c [s]: 4.6882e+07
+('T_d = ', 5.974561682766923e-10, '*', 30, '*', 1000)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 1.7923685048300768e-05, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 137744411.36898363, '*', 1.7923685048300768e-05, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0024688874465412423, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 1.7923685048300768e-05, '/', 0.0024688874465412423)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 1.7924e-05
+  Ss [1/m]: 8.2296e-05
+  kf [m/s]: 5.9746e-07
+  D [m2/s]: 7.2598e-03
+  a: 5.9746e-10
+  t_c [s]: 1.3774e+08
+Saving figure _eve_HOMO_276_D_1_obs_0000.png
+###################################################################
+calculating psd for obs point: obs_0010
+Loaded heads from file: head_ogs_obs_0010_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 6.035915564561974e-10, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.00020119718548539914, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 6.035915564561974e-10, '*', 46880873.16259121)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.028296899200234, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 46880873.16259121, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 2.0120e-04
+  Ss [1/m]: 9.4323e-04
+  kf [m/s]: 6.7066e-06
+  D [m2/s]: 7.1102e-03
+  a: 6.0359e-10
+  t_c [s]: 4.6881e+07
+('T_d = ', 5.975169917149458e-10, '*', 30, '*', 990)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 1.774625465393389e-05, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 137742729.65421796, '*', 1.774625465393389e-05, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.002444417557171723, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 1.774625465393389e-05, '/', 0.002444417557171723)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 1.7746e-05
+  Ss [1/m]: 8.1481e-05
+  kf [m/s]: 5.9154e-07
+  D [m2/s]: 7.2599e-03
+  a: 5.9752e-10
+  t_c [s]: 1.3774e+08
+Saving figure _eve_HOMO_276_D_1_obs_0010.png
+###################################################################
+calculating psd for obs point: obs_0100
+Loaded heads from file: head_ogs_obs_0100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 6.097741944819941e-10, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.00020325806482733135, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 6.097741944819941e-10, '*', 46815657.66800878)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.028546979943654845, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 46815657.66800878, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 2.0326e-04
+  Ss [1/m]: 9.5157e-04
+  kf [m/s]: 6.7753e-06
+  D [m2/s]: 7.1201e-03
+  a: 6.0977e-10
+  t_c [s]: 4.6816e+07
+('T_d = ', 6.035599586927372e-10, '*', 30, '*', 900)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 1.6296118884703905e-05, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 137576464.8861896, '*', 1.6296118884703905e-05, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0022419624275226385, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 1.6296118884703905e-05, '/', 0.0022419624275226385)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 1.6296e-05
+  Ss [1/m]: 7.4732e-05
+  kf [m/s]: 5.4320e-07
+  D [m2/s]: 7.2687e-03
+  a: 6.0356e-10
+  t_c [s]: 1.3758e+08
+Saving figure _eve_HOMO_276_D_1_obs_0100.png
+###################################################################
+calculating psd for obs point: obs_0200
+Loaded heads from file: head_ogs_obs_0200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 6.292946741714028e-10, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.0002097648913904676, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 6.292946741714028e-10, '*', 46616195.536705986)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.029335323581381793, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 46616195.536705986, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 2.0976e-04
+  Ss [1/m]: 9.7784e-04
+  kf [m/s]: 6.9922e-06
+  D [m2/s]: 7.1506e-03
+  a: 6.2929e-10
+  t_c [s]: 4.6616e+07
+('T_d = ', 6.226469006059938e-10, '*', 30, '*', 800)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 1.4943525614543852e-05, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 137060291.2612084, '*', 1.4943525614543852e-05, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0020481639731987082, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 1.4943525614543852e-05, '/', 0.0020481639731987082)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 1.4944e-05
+  Ss [1/m]: 6.8272e-05
+  kf [m/s]: 4.9812e-07
+  D [m2/s]: 7.2961e-03
+  a: 6.2265e-10
+  t_c [s]: 1.3706e+08
+Saving figure _eve_HOMO_276_D_1_obs_0200.png
+###################################################################
+calculating psd for obs point: obs_0300
+Loaded heads from file: head_ogs_obs_0300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 6.647169316942103e-10, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.00022157231056473675, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 6.647169316942103e-10, '*', 46276557.51273914)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.030760811319238614, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 46276557.51273914, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 2.2157e-04
+  Ss [1/m]: 1.0254e-03
+  kf [m/s]: 7.3857e-06
+  D [m2/s]: 7.2031e-03
+  a: 6.6472e-10
+  t_c [s]: 4.6277e+07
+('T_d = ', 6.572434946627238e-10, '*', 30, '*', 700)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 1.38021133879172e-05, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 136195123.41638097, '*', 1.38021133879172e-05, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0018797805362742671, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 1.38021133879172e-05, '/', 0.0018797805362742671)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 1.3802e-05
+  Ss [1/m]: 6.2659e-05
+  kf [m/s]: 4.6007e-07
+  D [m2/s]: 7.3424e-03
+  a: 6.5724e-10
+  t_c [s]: 1.3620e+08
+Saving figure _eve_HOMO_276_D_1_obs_0300.png
+###################################################################
+calculating psd for obs point: obs_0400
+Loaded heads from file: head_ogs_obs_0400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 7.214570471840573e-10, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.00024048568239468573, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 7.214570471840573e-10, '*', 45785736.39064333)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.03303244217954117, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 45785736.39064333, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 2.4049e-04
+  Ss [1/m]: 1.1011e-03
+  kf [m/s]: 8.0162e-06
+  D [m2/s]: 7.2803e-03
+  a: 7.2146e-10
+  t_c [s]: 4.5786e+07
+('T_d = ', 7.126430449559062e-10, '*', 30, '*', 600)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 1.282757480920631e-05, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 134932360.0152225, '*', 1.282757480920631e-05, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0017308549422780247, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 1.282757480920631e-05, '/', 0.0017308549422780247)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 1.2828e-05
+  Ss [1/m]: 5.7695e-05
+  kf [m/s]: 4.2759e-07
+  D [m2/s]: 7.4111e-03
+  a: 7.1264e-10
+  t_c [s]: 1.3493e+08
+Saving figure _eve_HOMO_276_D_1_obs_0400.png
+###################################################################
+calculating psd for obs point: obs_0500
+Loaded heads from file: head_ogs_obs_0500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 8.101042206313829e-10, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.00027003474021046096, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 8.101042206313829e-10, '*', 45126756.77268704)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.036557376124959615, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 45126756.77268704, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 2.7003e-04
+  Ss [1/m]: 1.2186e-03
+  kf [m/s]: 9.0012e-06
+  D [m2/s]: 7.3866e-03
+  a: 8.1010e-10
+  t_c [s]: 4.5127e+07
+('T_d = ', 7.991367904469198e-10, '*', 30, '*', 500)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 1.1987051856703797e-05, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 133225052.38426805, '*', 1.1987051856703797e-05, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0015969756115423008, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 1.1987051856703797e-05, '/', 0.0015969756115423008)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 1.1987e-05
+  Ss [1/m]: 5.3233e-05
+  kf [m/s]: 3.9957e-07
+  D [m2/s]: 7.5061e-03
+  a: 7.9914e-10
+  t_c [s]: 1.3323e+08
+Saving figure _eve_HOMO_276_D_1_obs_0500.png
+###################################################################
+calculating psd for obs point: obs_0600
+Loaded heads from file: head_ogs_obs_0600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 9.525701110129954e-10, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.0003175233703376651, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 9.525701110129954e-10, '*', 44274888.80403022)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.04217493574314309, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 44274888.80403022, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 3.1752e-04
+  Ss [1/m]: 1.4058e-03
+  kf [m/s]: 1.0584e-05
+  D [m2/s]: 7.5287e-03
+  a: 9.5257e-10
+  t_c [s]: 4.4275e+07
+('T_d = ', 9.379913643171475e-10, '*', 30, '*', 400)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 1.125589637180577e-05, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 131011163.67111123, '*', 1.125589637180577e-05, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0014746480818317127, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 1.125589637180577e-05, '/', 0.0014746480818317127)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 1.1256e-05
+  Ss [1/m]: 4.9155e-05
+  kf [m/s]: 3.7520e-07
+  D [m2/s]: 7.6329e-03
+  a: 9.3799e-10
+  t_c [s]: 1.3101e+08
+Saving figure _eve_HOMO_276_D_1_obs_0600.png
+###################################################################
+calculating psd for obs point: obs_0700
+Loaded heads from file: head_ogs_obs_0700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 1.2006861533799282e-09, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.0004002287177933094, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 1.2006861533799282e-09, '*', 43195919.429182686)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.05186474234113466, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 43195919.429182686, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 4.0023e-04
+  Ss [1/m]: 1.7288e-03
+  kf [m/s]: 1.3341e-05
+  D [m2/s]: 7.7168e-03
+  a: 1.2007e-09
+  t_c [s]: 4.3196e+07
+('T_d = ', 1.1795961891188123e-09, '*', 30, '*', 300)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 1.0616365702069311e-05, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 128164995.70698129, '*', 1.0616365702069311e-05, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0013606464646294567, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 1.0616365702069311e-05, '/', 0.0013606464646294567)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 1.0616e-05
+  Ss [1/m]: 4.5355e-05
+  kf [m/s]: 3.5388e-07
+  D [m2/s]: 7.8024e-03
+  a: 1.1796e-09
+  t_c [s]: 1.2816e+08
+Saving figure _eve_HOMO_276_D_1_obs_0700.png
+###################################################################
+calculating psd for obs point: obs_0800
+Loaded heads from file: head_ogs_obs_0800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 1.7107750354079325e-09, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.0005702583451359776, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 1.7107750354079325e-09, '*', 41841403.52320239)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.07158122859392416, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 41841403.52320239, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 5.7026e-04
+  Ss [1/m]: 2.3860e-03
+  kf [m/s]: 1.9009e-05
+  D [m2/s]: 7.9666e-03
+  a: 1.7108e-09
+  t_c [s]: 4.1841e+07
+('T_d = ', 1.675804193447207e-09, '*', 30, '*', 200)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 1.0054825160683242e-05, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 124518101.29433899, '*', 1.0054825160683242e-05, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0012520077378548242, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 1.0054825160683242e-05, '/', 0.0012520077378548242)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 1.0055e-05
+  Ss [1/m]: 4.1734e-05
+  kf [m/s]: 3.3516e-07
+  D [m2/s]: 8.0310e-03
+  a: 1.6758e-09
+  t_c [s]: 1.2452e+08
+Saving figure _eve_HOMO_276_D_1_obs_0800.png
+###################################################################
+calculating psd for obs point: obs_0900
+Loaded heads from file: head_ogs_obs_0900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 3.265917456005849e-09, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.0010886391520019496, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 3.265917456005849e-09, '*', 40140543.96127528)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.1310957032166991, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 40140543.96127528, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 1.0886e-03
+  Ss [1/m]: 4.3699e-03
+  kf [m/s]: 3.6288e-05
+  D [m2/s]: 8.3042e-03
+  a: 3.2659e-09
+  t_c [s]: 4.0141e+07
+('T_d = ', 3.1872953500107473e-09, '*', 30, '*', 100)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 9.561886050032241e-06, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 119779271.43993714, '*', 9.561886050032241e-06, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0011453157446645603, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 9.561886050032241e-06, '/', 0.0011453157446645603)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 9.5619e-06
+  Ss [1/m]: 3.8177e-05
+  kf [m/s]: 3.1873e-07
+  D [m2/s]: 8.3487e-03
+  a: 3.1873e-09
+  t_c [s]: 1.1978e+08
+Saving figure _eve_HOMO_276_D_1_obs_0900.png
+###################################################################
+calculating psd for obs point: obs_0950
+Loaded heads from file: head_ogs_obs_0950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 6.393828234353928e-09, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.002131276078117976, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 6.393828234353928e-09, '*', 39128905.6226876)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.25018350154971014, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 39128905.6226876, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 2.1313e-03
+  Ss [1/m]: 8.3395e-03
+  kf [m/s]: 7.1043e-05
+  D [m2/s]: 8.5189e-03
+  a: 6.3938e-09
+  t_c [s]: 3.9129e+07
+('T_d = ', 6.226339171406966e-09, '*', 30, '*', 50)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 9.339508757110448e-06, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 116836158.58293417, '*', 9.339508757110448e-06, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0010911923262324587, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 9.339508757110448e-06, '/', 0.0010911923262324587)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 9.3395e-06
+  Ss [1/m]: 3.6373e-05
+  kf [m/s]: 3.1132e-07
+  D [m2/s]: 8.5590e-03
+  a: 6.2263e-09
+  t_c [s]: 1.1684e+08
+Saving figure _eve_HOMO_276_D_1_obs_0950.png
+###################################################################
+calculating psd for obs point: obs_0960
+Loaded heads from file: head_ogs_obs_0960_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 7.959498950295972e-09, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.002653166316765324, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 7.959498950295972e-09, '*', 38911438.39768369)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.3097155530808697, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 38911438.39768369, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 2.6532e-03
+  Ss [1/m]: 1.0324e-02
+  kf [m/s]: 8.8439e-05
+  D [m2/s]: 8.5665e-03
+  a: 7.9595e-09
+  t_c [s]: 3.8911e+07
+('T_d = ', 7.747422174121953e-09, '*', 30, '*', 40)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 9.296906608946343e-06, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 116188018.44999513, '*', 9.296906608946343e-06, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0010801891566081395, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 9.296906608946343e-06, '/', 0.0010801891566081395)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 9.2969e-06
+  Ss [1/m]: 3.6006e-05
+  kf [m/s]: 3.0990e-07
+  D [m2/s]: 8.6067e-03
+  a: 7.7474e-09
+  t_c [s]: 1.1619e+08
+Saving figure _eve_HOMO_276_D_1_obs_0960.png
+###################################################################
+calculating psd for obs point: obs_0970
+Loaded heads from file: head_ogs_obs_0970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 1.0569680356465402e-08, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.003523226785488467, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 1.0569680356465402e-08, '*', 38688497.90458975)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.4089250563232951, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 38688497.90458975, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 3.5232e-03
+  Ss [1/m]: 1.3631e-02
+  kf [m/s]: 1.1744e-04
+  D [m2/s]: 8.6158e-03
+  a: 1.0570e-08
+  t_c [s]: 3.8688e+07
+('T_d = ', 1.0283198556011171e-08, '*', 30, '*', 30)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 9.254878700410053e-06, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 115518022.6808526, '*', 9.254878700410053e-06, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0010691052876225084, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 9.254878700410053e-06, '/', 0.0010691052876225084)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 9.2549e-06
+  Ss [1/m]: 3.5637e-05
+  kf [m/s]: 3.0850e-07
+  D [m2/s]: 8.6567e-03
+  a: 1.0283e-08
+  t_c [s]: 1.1552e+08
+Saving figure _eve_HOMO_276_D_1_obs_0970.png
+###################################################################
+calculating psd for obs point: obs_0980
+Loaded heads from file: head_ogs_obs_0980_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 1.5791083108075325e-08, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.005263694369358442, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 1.5791083108075325e-08, '*', 38459634.80753858)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.6073192895520683, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 38459634.80753858, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 5.2637e-03
+  Ss [1/m]: 2.0244e-02
+  kf [m/s]: 1.7546e-04
+  D [m2/s]: 8.6671e-03
+  a: 1.5791e-08
+  t_c [s]: 3.8460e+07
+('T_d = ', 1.5355741638006374e-08, '*', 30, '*', 20)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 9.213444982803824e-06, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 114821839.45972712, '*', 9.213444982803824e-06, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.001057904700686529, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 9.213444982803824e-06, '/', 0.001057904700686529)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 9.2134e-06
+  Ss [1/m]: 3.5263e-05
+  kf [m/s]: 3.0711e-07
+  D [m2/s]: 8.7091e-03
+  a: 1.5356e-08
+  t_c [s]: 1.1482e+08
+Saving figure _eve_HOMO_276_D_1_obs_0980.png
+###################################################################
+calculating psd for obs point: obs_0990
+Loaded heads from file: head_ogs_obs_0990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 3.145708019473343e-08, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.010485693398244476, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 3.145708019473343e-08, '*', 38224187.22788109)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 1.2024213230059608, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 38224187.22788109, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 1.0486e-02
+  Ss [1/m]: 4.0081e-02
+  kf [m/s]: 3.4952e-04
+  D [m2/s]: 8.7205e-03
+  a: 3.1457e-08
+  t_c [s]: 3.8224e+07
+('T_d = ', 3.0575032647249775e-08, '*', 30, '*', 10)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 9.172509794174932e-06, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 114096536.87880675, '*', 9.172509794174932e-06, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.0010465516020022963, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 9.172509794174932e-06, '/', 0.0010465516020022963)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 9.1725e-06
+  Ss [1/m]: 3.4885e-05
+  kf [m/s]: 3.0575e-07
+  D [m2/s]: 8.7645e-03
+  a: 3.0575e-08
+  t_c [s]: 1.1410e+08
+Saving figure _eve_HOMO_276_D_1_obs_0990.png
+###################################################################
+calculating psd for obs point: obs_1000
+Loaded heads from file: head_ogs_obs_1000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 3.134609751118001e-07, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.10448699170393337, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 3.134609751118001e-07, '*', 38006686.85507637)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 11.913613122361074, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 38006686.85507637, ')')
+'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'
+Linear model:
+ T [m2/s]: 1.0449e-01
+  Ss [1/m]: 3.9712e-01
+  kf [m/s]: 3.4829e-03
+  D [m2/s]: 8.7704e-03
+  a: 3.1346e-07
+  t_c [s]: 3.8007e+07
+('T_d = ', 3.045367877539008e-07, '*', 30, '*', 0.1)
+'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river
+('kf_d = ', 9.136103632617025e-07, '/', 30)
+'kf_d = ', T_d, '/', aquifer_thickness
+('S_d = ', 113418590.4688076, '*', 9.136103632617025e-07, '/', 1000, '**2')
+'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'
+('Ss_d = ', 0.00010362039963883757, '/', 30)
+'Ss_d = ', S_d, '/', aquifer_thickness
+('D_d = ', 9.136103632617025e-07, '/', 0.00010362039963883757)
+'D_d = ', T_d, '/', S_d
+Dupuit model: 
+T [m2/s]: 9.1361e-07
+  Ss [1/m]: 3.4540e-06
+  kf [m/s]: 3.0454e-08
+  D [m2/s]: 8.8169e-03
+  a: 3.0454e-07
+  t_c [s]: 1.1342e+08
+Saving figure _eve_HOMO_276_D_1_obs_1000.png
+###################################################################
+Starting with project: Groundwater@UFZ_eve_HOMO_276_D_19
+calculating psd for obs point: obs_0000
+Loaded heads from file: head_ogs_obs_0000_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+Method: scipyffthalf
+Calculating PSD...
+PSD was cut by threshold. Remaining data points: 725
+('T_l = ', 5.99209224409044e-10, '*', 1000, '**2 / 3.')
+'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'
+('kf_l = ', 0.000199736408136348, '/', 30)
+'kf_l = ', T_l, '/', aquifer_thickness
+('S_l = ', 5.99209224409044e-10, '*', 43721775.898746915)
+'S_l = ', a_l, '*', t_l
+('Ss_l = ', 0.02619849142607417, '/', 30)
+'Ss_l = ', S_l, '/', aquifer_thickness
+('D_l = ', 1000, '**2 / (3 * ', 43721775.898746915, ')')
+'D_l = ', aquifer_length, '**2 / (3 * 
