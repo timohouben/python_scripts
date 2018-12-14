@@ -13,6 +13,7 @@ import sys
 import numpy as np
 
 sys.path.append("/Users/houben/PhD/python/scripts/frequency_analysis")
+sys.path.append("/home/houben/python_pkg/python_scripts/python_scripts/head_ogs_vs_gw-model/transient")
 from fft_psd_head import fft_psd, get_fft_data_from_simulation
 import matplotlib.pyplot as plt
 import os
@@ -333,11 +334,11 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "icsub"
+comment = "nodetrend"
 threshold = 1
 fit = False
 mean_thick = False
-icsub = 30
+icsub = None
 target = False
 cutoff = None
 ymin = 1e9
