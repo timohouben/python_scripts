@@ -19,6 +19,8 @@ TO IMPLE;ENT IN THIS SCRIPT:
 # =============================================================================
 # import modules
 # =============================================================================
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from ogs5py.reader import readtec_polyline
 import numpy as np

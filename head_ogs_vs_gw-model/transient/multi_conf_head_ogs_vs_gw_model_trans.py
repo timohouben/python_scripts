@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/home/houben/env1/bin/python2
 # -*- coding: utf-8 -*-
 """
 Created on Wed Oct  3 11:56:07 2018
@@ -12,7 +12,12 @@ with an additional routine to perform multiple runs in a directory
 # =============================================================================
 # import modules
 # =============================================================================
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import sys
+sys.path.append("/home/houben/python_pkg/python_scripts/python_scripts/frequency_analysis")
+from get_obs import get_obs
 from ogs5py.reader import readtec_polyline
 import numpy as np
 import re
@@ -22,13 +27,18 @@ from cycler import cycler
 # =============================================================================
 # global variables set manually
 # =============================================================================
-path_to_multiple_projects = '/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow'
-first_part_of_name_of_project_ogs = "dupuit_flow1000_30_whitenoise_D_18-D_30_homogeneous"
+
+
+path_to_multiple_projects = input()
+first_part_of_name_of_project_ogs = "transect"
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
 time_steps = 8401   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = obs_point_list = ['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
+# obs_per_plot = obs_point_list = get_obs("/work/houben/spectral_analysis/20181211_dupuit/5000/10/0091_5000_10_9.00e-05")[1]
+
+
+#['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
 
 #['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
 
@@ -74,6 +84,7 @@ list_dir = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.start
 list_dir.sort()
 for i,curr_dir in enumerate(list_dir):
     path_to_project = str(path_to_multiple_projects) + '/' + str(curr_dir)
+    obs_per_plot = obs_point_list = get_obs(path_to_project)[1]
     print('Creating plots for: ' + str(path_to_project) + '. ' + str(i+1) + ' of ' + str(len(list_dir)) + ' in progress...')
     print('##################################################################')
     name_of_project_gw_model = str(curr_dir[:-13])

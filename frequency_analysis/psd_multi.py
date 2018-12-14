@@ -13,6 +13,7 @@ import sys
 import numpy as np
 
 sys.path.append("/Users/houben/PhD/python/scripts/frequency_analysis")
+sys.path.append("/home/houben/python_pkg/python_scripts/python_scripts/head_ogs_vs_gw-model/transient")
 from fft_psd_head import fft_psd, get_fft_data_from_simulation
 import matplotlib.pyplot as plt
 import os
@@ -129,7 +130,7 @@ threshold=1e-6
 ###############################################################################
 ###############################################################################
 """
-"""
+
 ###############################################################################
 # configurations for model runs on EVE:
 # /work/houben/spectral_analysis/20181211_dupuit
@@ -144,9 +145,9 @@ try:
 except ValueError:
     pass
 project_folder_list.sort()
-obs_point_list = get_obs(project_folder_list[0])[1]
+obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[1]
 
-distance_to_river_list = get_obs(project_folder_list[0])[2]
+distance_to_river_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[2]
 
 Ss_list = [
     1.20e-03,
@@ -205,7 +206,7 @@ time_steps = 8401
 time_step_size = 86400
 comment = "TEST"
 threshold = 1
-fit = False
+fit = True
 mean_thick = False
 icsub = None
 target = False
@@ -216,13 +217,13 @@ a_of_x=False
 a_alterna=False
 ###############################################################################
 ###############################################################################
-"""
 
 
 
 
 
 
+'''
 ###############################################################################
 # configurations for model runs: 
 # /Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise
@@ -346,7 +347,7 @@ a_of_x=False
 a_alterna=False
 ###############################################################################
 ###############################################################################
-
+'''
 
 """
 ###############################################################################
