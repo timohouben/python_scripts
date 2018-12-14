@@ -200,6 +200,7 @@ def fft_psd(
     ymax=None,
     a_of_x=False,
     a_alterna=False,
+    detrend=False
 ):
 
 
@@ -228,10 +229,12 @@ def fft_psd(
 
     # detrend input and output signal
     # -------------------------------------------------------------------------
-    recharge_detrend = recharge
-    fft_data_detrend = fft_data
-#    recharge_detrend = signal.detrend(recharge, type="linear")
-#    fft_data_detrend = signal.detrend(fft_data, type="linear")
+    if detrend == True:
+        recharge_detrend = signal.detrend(recharge, type="linear")
+        fft_data_detrend = signal.detrend(fft_data, type="linear")   
+    else:   
+        recharge_detrend = recharge
+        fft_data_detrend = fft_data
 
     # different methodologies for power spectral density
     # -------------------------------------------------------------------------
