@@ -204,8 +204,8 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "TEST"
-threshold = 1
+comment = ""
+threshold = 1e-6
 fit = True
 mean_thick = False
 icsub = None
@@ -215,6 +215,7 @@ ymin = 1e9
 ymax = 1e22
 a_of_x=False
 a_alterna=False
+detrend=False
 ###############################################################################
 ###############################################################################
 
