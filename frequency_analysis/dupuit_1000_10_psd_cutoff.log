@@ -1,0 +1,1510 @@
+Starting with project: 0001_1000_10_1.20e-03
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.20e-0_obs_00990.png
+###################################################################
+Starting with project: 0002_1000_10_1.10e-03
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.10e-0_obs_00990.png
+###################################################################
+Starting with project: 0003_1000_10_1.00e-03
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00990.png
+###################################################################
+Starting with project: 0004_1000_10_9.00e-04
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00990.png
+###################################################################
+Starting with project: 0005_1000_10_8.00e-04
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_8.00e-0_obs_00990.png
+###################################################################
+Starting with project: 0006_1000_10_7.00e-04
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_7.00e-0_obs_00990.png
+###################################################################
+Starting with project: 0007_1000_10_6.00e-04
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_6.00e-0_obs_00990.png
+###################################################################
+Starting with project: 0008_1000_10_5.00e-04
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_5.00e-0_obs_00990.png
+###################################################################
+Starting with project: 0009_1000_10_4.00e-04
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_4.00e-0_obs_00990.png
+###################################################################
+Starting with project: 0010_1000_10_3.00e-04
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_3.00e-0_obs_00990.png
+###################################################################
+Starting with project: 0011_1000_10_2.00e-04
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_2.00e-0_obs_00990.png
+###################################################################
+Starting with project: 0012_1000_10_1.00e-04
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_1.00e-0_obs_00990.png
+###################################################################
+Starting with project: 0013_1000_10_9.00e-05
+calculating psd for obs point: obs_00100
+Loaded heads from file: head_ogs_obs_00100_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00100.png
+###################################################################
+calculating psd for obs point: obs_00200
+Loaded heads from file: head_ogs_obs_00200_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00200.png
+###################################################################
+calculating psd for obs point: obs_00300
+Loaded heads from file: head_ogs_obs_00300_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00300.png
+###################################################################
+calculating psd for obs point: obs_00400
+Loaded heads from file: head_ogs_obs_00400_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00400.png
+###################################################################
+calculating psd for obs point: obs_00500
+Loaded heads from file: head_ogs_obs_00500_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00500.png
+###################################################################
+calculating psd for obs point: obs_00600
+Loaded heads from file: head_ogs_obs_00600_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00600.png
+###################################################################
+calculating psd for obs point: obs_00700
+Loaded heads from file: head_ogs_obs_00700_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00700.png
+###################################################################
+calculating psd for obs point: obs_00800
+Loaded heads from file: head_ogs_obs_00800_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00800.png
+###################################################################
+calculating psd for obs point: obs_00850
+Loaded heads from file: head_ogs_obs_00850_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00850.png
+###################################################################
+calculating psd for obs point: obs_00900
+Loaded heads from file: head_ogs_obs_00900_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00900.png
+###################################################################
+calculating psd for obs point: obs_00920
+Loaded heads from file: head_ogs_obs_00920_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00920.png
+###################################################################
+calculating psd for obs point: obs_00950
+Loaded heads from file: head_ogs_obs_00950_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00950.png
+###################################################################
+calculating psd for obs point: obs_00970
+Loaded heads from file: head_ogs_obs_00970_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00970.png
+###################################################################
+calculating psd for obs point: obs_00990
+Loaded heads from file: head_ogs_obs_00990_mean.txt
+LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS
+First 3000 data points were deleted due to instationary of the aquifer.
+Method: scipyffthalf
+Calculating PSD...
+Saving figure _1000_10_9.00e-0_obs_00990.png
+###################################################################
+Created all PSDs. Continue with plotting of results from linear fitting...
+('Saving fig: ', 'T_1_scipyffthalf_linear.png')
+('Saving fig: ', 'kf_1_scipyffthalf_linear.png')
+('Saving fig: ', 'Ss_1_scipyffthalf_linear.png')
+('Saving fig: ', 'D_1_scipyffthalf_linear.png')
+('Saving fig: ', 'a_1_scipyffthalf_linear.png')
+('Saving fig: ', 'tc_1_scipyffthalf_linear.png')
+('Saving fig: ', 'T_1_scipyffthalf_dupuit.png')
+('Saving fig: ', 'kf_1_scipyffthalf_dupuit.png')
+('Saving fig: ', 'Ss_1_scipyffthalf_dupuit.png')
+('Saving fig: ', 'D_1_scipyffthalf_dupuit.png')
+('Saving fig: ', 'a_1_scipyffthalf_dupuit.png')
+('Saving fig: ', 'tc_1_scipyffthalf_dupuit.png')
+Fertig!
+saving model comparison image: dupuit_0001_1000_10_1.20e-03.png
+saving model comparison image: dupuit_0002_1000_10_1.10e-03.png
+saving model comparison image: dupuit_0003_1000_10_1.00e-03.png
+saving model comparison image: dupuit_0004_1000_10_9.00e-04.png
+saving model comparison image: dupuit_0005_1000_10_8.00e-04.png
+saving model comparison image: dupuit_0006_1000_10_7.00e-04.png
+saving model comparison image: dupuit_0007_1000_10_6.00e-04.png
+saving model comparison image: dupuit_0008_1000_10_5.00e-04.png
+saving model comparison image: dupuit_0009_1000_10_4.00e-04.png
+saving model comparison image: dupuit_0010_1000_10_3.00e-04.png
+saving model comparison image: dupuit_0011_1000_10_2.00e-04.png
+saving model comparison image: dupuit_0012_1000_10_1.00e-04.png
+saving model comparison image: dupuit_0013_1000_10_9.00e-05.png
+saving model comparison image: linear_0001_1000_10_1.20e-03.png
+saving model comparison image: linear_0002_1000_10_1.10e-03.png
+saving model comparison image: linear_0003_1000_10_1.00e-03.png
+saving model comparison image: linear_0004_1000_10_9.00e-04.png
+saving model comparison image: linear_0005_1000_10_8.00e-04.png
+saving model comparison image: linear_0006_1000_10_7.00e-04.png
+saving model comparison image: linear_0007_1000_10_6.00e-04.png
+saving model comparison image: linear_0008_1000_10_5.00e-04.png
+saving model comparison image: linear_0009_1000_10_4.00e-04.png
+saving model comparison image: linear_0010_1000_10_3.00e-04.png
+saving model comparison image: linear_0011_1000_10_2.00e-04.png
+saving model comparison image: linear_0012_1000_10_1.00e-04.png
+saving model comparison image: linear_0013_1000_10_9.00e-05.png
+Time elapsed: 244.67 s
