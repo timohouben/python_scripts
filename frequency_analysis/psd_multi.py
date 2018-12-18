@@ -215,6 +215,7 @@ ymin = 1e9
 ymax = 1e22
 a_of_x=False
 a_alterna=False
+cut_averaged_head=3000
 ###############################################################################
 ###############################################################################
 
@@ -435,8 +436,8 @@ for i, project_folder in enumerate(project_folder_list):
                 path_to_multiple_projects
                 + "/"
                 + project_folder
-                + "/average_head_-BC.txt"
-            )[3000:]
+                + "spatial_averaged_head_timeseries.txt"
+            )[cut_averaged_head:]
         )
     for j, single_file_name in enumerate(single_file_names):
         obs_point = obs_point_list[j]
