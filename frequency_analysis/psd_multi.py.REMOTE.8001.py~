@@ -136,7 +136,7 @@ threshold=1e-6
 # /work/houben/spectral_analysis/20181211_dupuit
 # has to start for each folder seperately
 ###############################################################################
-path_to_multiple_projects = "/work/houben/spectral_analysis/20181211_dupuit/5000/10"
+path_to_multiple_projects = "/work/houben/spectral_analysis/20181211_dupuit/1000/10"
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -204,19 +204,18 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "c_"
-threshold = 1e-6
+comment = "TEST"
+threshold = 1
 fit = True
-mean_thick = True
+mean_thick = False
 icsub = None
 target = False
-cutoff = 5000
+cutoff = None
 ymin = 1e9
 ymax = 1e22
-a_of_x=True
+a_of_x=False
 a_alterna=False
-detrend=False
-cut_averaged_head=5000
+cut_averaged_head=3000
 ###############################################################################
 ###############################################################################
 
@@ -437,7 +436,7 @@ for i, project_folder in enumerate(project_folder_list):
                 path_to_multiple_projects
                 + "/"
                 + project_folder
-                + "/spatial_averaged_head_timeseries.txt"
+                + "spatial_averaged_head_timeseries.txt"
             )[cut_averaged_head:]
         )
     for j, single_file_name in enumerate(single_file_names):
@@ -567,7 +566,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 plt.semilogy(
                     obs_point_list,
                     param[n, :, m],
-                    label=project_folder[-8:],
+                    label=project_folder[-4:],
                     color=color,
                     lw=3,
                 )
@@ -661,7 +660,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 plt.semilogy(
                     obs_point_list,
                     param[n, :, m],
-                    label=project_folder[-8:],
+                    label=project_folder[-4:],
                     color=color,
                     lw=3,
                 )
@@ -809,7 +808,7 @@ for p, project_folder in enumerate(project_folder_list):
         )
         plt.title(
             "Dupuit Models - comparison of input and output parameter\nModel: "
-            + str(project_folder)[-8:]
+            + str(project_folder)[-4:]
         )
         plt.xlabel("frequency [1/s]")
         plt.ylabel("spectral power")
@@ -884,7 +883,7 @@ for p, project_folder in enumerate(project_folder_list):
         plt.legend(loc="best", ncol=4)
         plt.title(
             "Linear Reservoir Models - comparison of input and output parameter\nModel: "
-            + str(project_folder)[-8:]
+            + str(project_folder)[-4:]
         )
     print(
         "saving model comparison image: "

@@ -17,10 +17,10 @@ def get_obs(path_to_project):
     This number can be used as a distance or coordinate of a transect.
     This function ONLY WORKS FOR POLYLINES currently!
     '''
-    
+
     file_names = [f for f in os.listdir(path_to_project) if f.endswith(".tec")]
     file_names.sort()
-    
+
     string_begin = "ply_"
     string_end = "_t"
     obs_names = []
@@ -54,56 +54,55 @@ if __name__ == "__main__":
             'transect_01_ply_obs_0990_t16_GROUNDWATER_FLOW.tec',
             'transect_01_ply_obs_1000_t17_GROUNDWATER_FLOW.tec',
             'transect_01_ply_tobs_0010_t2_GROUNDWATER_FLOW.tec']
-    
+
     obs_names_c = ['obs_0000',
                 'obs_0010',
                 'obs_0100',
-                'obs_0200', 
-                'obs_0300', 
-                'obs_0400', 
-                'obs_0500', 
-                'obs_0600', 
-                'obs_0700', 
-                'obs_0800', 
-                'obs_0900', 
-                'obs_0950', 
-                'obs_0960', 
-                'obs_0970', 
-                'obs_0980', 
-                'obs_0990', 
+                'obs_0200',
+                'obs_0300',
+                'obs_0400',
+                'obs_0500',
+                'obs_0600',
+                'obs_0700',
+                'obs_0800',
+                'obs_0900',
+                'obs_0950',
+                'obs_0960',
+                'obs_0970',
+                'obs_0980',
+                'obs_0990',
                 'obs_1000',
                 'tobs_0010']
-    
+
     obs_locs_c = [0,
-                10, 
-                100, 
-                200, 
-                300, 
-                400, 
-                500, 
-                600, 
-                700, 
-                800, 
-                900, 
-                950, 
-                960, 
-                970, 
-                980, 
-                990, 
+                10,
+                100,
+                200,
+                300,
+                400,
+                500,
+                600,
+                700,
+                800,
+                900,
+                950,
+                960,
+                970,
+                980,
+                990,
                 1000,
                 10]
-    
+
     path_to_project = "/Users/houben/PhD/python/scripts/tests/get_obs"
-          
+
     file_names, obs_names, obs_locs = get_obs(path_to_project)
     print(file_names)
     print(file_names_c)
     print(obs_names)
-    print(obs_names_c)        
+    print(obs_names_c)
     print(obs_locs)
     print(obs_locs_c)
-    if file_names == file_names_c and obs_names == obs_names_c and obs_locs == obs_locs_c:        
+    if file_names == file_names_c and obs_names == obs_names_c and obs_locs == obs_locs_c:
         print('Test passed.')
     else:
         print('Test NOT passed.')
-    
