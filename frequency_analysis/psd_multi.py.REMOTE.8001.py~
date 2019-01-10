@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
@@ -137,7 +136,7 @@ threshold=1e-6
 # /work/houben/spectral_analysis/20181211_dupuit
 # has to start for each folder seperately
 ###############################################################################
-path_to_multiple_projects = "/data/MultiMoSi/houben/spectral_analysis/20181210_darcy/5000/10"
+path_to_multiple_projects = "/work/houben/spectral_analysis/20181211_dupuit/1000/10"
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -149,8 +148,6 @@ project_folder_list.sort()
 obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[1]
 
 distance_to_river_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[2]
-
-print("The distances are: \n ", distance_to_river_list)
 
 Ss_list = [
     1.20e-03,
@@ -199,7 +196,7 @@ kf_list = [
 ]
 
 aquifer_thickness = 10
-aquifer_length = 2000
+aquifer_length = 1000
 weights_d = [1, 1, 1, 1, 1]
 a_d_in = None
 t_d_in = None
@@ -207,19 +204,18 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = ""
+comment = "TEST"
 threshold = 1
-fit = False
+fit = True
 mean_thick = False
 icsub = None
 target = False
 cutoff = None
-ymin = 1e27
-ymax = 1e35
-a_of_x = False
-a_alterna = False
-detrend = False
-cut_averaged_head = 0
+ymin = 1e9
+ymax = 1e22
+a_of_x=False
+a_alterna=False
+cut_averaged_head=3000
 ###############################################################################
 ###############################################################################
 
@@ -440,7 +436,7 @@ for i, project_folder in enumerate(project_folder_list):
                 path_to_multiple_projects
                 + "/"
                 + project_folder
-                + "/spatial_averaged_head_timeseries.txt"
+                + "spatial_averaged_head_timeseries.txt"
             )[cut_averaged_head:]
         )
     for j, single_file_name in enumerate(single_file_names):
@@ -505,7 +501,7 @@ for i, project_folder in enumerate(project_folder_list):
                 time_step_size=86400,
                 weights_d=weights_d,
                 comment=comment,
-                o_i="o_i",
+                o_i="i_o",
                 a_d=a_d_in,
                 t_d=t_d_in,
                 Ss_list=Ss_list,
@@ -570,7 +566,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 plt.semilogy(
                     obs_point_list,
                     param[n, :, m],
-                    label=project_folder[-8:],
+                    label=project_folder[-4:],
                     color=color,
                     lw=3,
                 )
@@ -664,7 +660,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 plt.semilogy(
                     obs_point_list,
                     param[n, :, m],
-                    label=project_folder[-8:],
+                    label=project_folder[-4:],
                     color=color,
                     lw=3,
                 )
@@ -812,7 +808,7 @@ for p, project_folder in enumerate(project_folder_list):
         )
         plt.title(
             "Dupuit Models - comparison of input and output parameter\nModel: "
-            + str(project_folder)[-8:]
+            + str(project_folder)[-4:]
         )
         plt.xlabel("frequency [1/s]")
         plt.ylabel("spectral power")
@@ -887,7 +883,7 @@ for p, project_folder in enumerate(project_folder_list):
         plt.legend(loc="best", ncol=4)
         plt.title(
             "Linear Reservoir Models - comparison of input and output parameter\nModel: "
-            + str(project_folder)[-8:]
+            + str(project_folder)[-4:]
         )
     print(
         "saving model comparison image: "

@@ -29,7 +29,8 @@ from cycler import cycler
 # =============================================================================
 
 
-path_to_multiple_projects = input()
+#path_to_multiple_projects = input()
+path_to_multiple_projects = raw_input("Insert path to multiple projects: ")
 first_part_of_name_of_project_ogs = "transect"
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
@@ -506,7 +507,7 @@ for i,curr_dir in enumerate(list_dir):
         # make a string from list obs_per_plot
         obs_per_plot_str = "_".join(obs_per_plot)
         fig.savefig(str(path_to_project) + '/' + str(os.path.basename(str(path_to_project))) + '_' + str(which) + '_' + str(obs_per_plot_str) + '_' + str(which_data_to_plot) + ".png")
-        
+        plt.close('all')
     # =============================================================================
     # =============================================================================    
     # =============================================================================

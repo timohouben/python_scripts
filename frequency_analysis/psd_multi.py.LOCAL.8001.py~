@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
@@ -137,7 +136,7 @@ threshold=1e-6
 # /work/houben/spectral_analysis/20181211_dupuit
 # has to start for each folder seperately
 ###############################################################################
-path_to_multiple_projects = "/data/MultiMoSi/houben/spectral_analysis/20181210_darcy/5000/10"
+path_to_multiple_projects = "/work/houben/spectral_analysis/20181211_dupuit/1000/10"
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -149,8 +148,6 @@ project_folder_list.sort()
 obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[1]
 
 distance_to_river_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[2]
-
-print("The distances are: \n ", distance_to_river_list)
 
 Ss_list = [
     1.20e-03,
@@ -199,7 +196,7 @@ kf_list = [
 ]
 
 aquifer_thickness = 10
-aquifer_length = 2000
+aquifer_length = 1000
 weights_d = [1, 1, 1, 1, 1]
 a_d_in = None
 t_d_in = None
@@ -207,19 +204,18 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = ""
-threshold = 1
-fit = False
-mean_thick = False
+comment = "a"
+threshold = 1e-6
+fit = True
+mean_thick = True
 icsub = None
 target = False
-cutoff = None
-ymin = 1e27
-ymax = 1e35
-a_of_x = False
-a_alterna = False
-detrend = False
-cut_averaged_head = 0
+cutoff = 3000
+ymin = 1e9
+ymax = 1e22
+a_of_x=False
+a_alterna=False
+detrend=False
 ###############################################################################
 ###############################################################################
 
@@ -440,8 +436,8 @@ for i, project_folder in enumerate(project_folder_list):
                 path_to_multiple_projects
                 + "/"
                 + project_folder
-                + "/spatial_averaged_head_timeseries.txt"
-            )[cut_averaged_head:]
+                + "/average_head_-BC.txt"
+            )[3000:]
         )
     for j, single_file_name in enumerate(single_file_names):
         obs_point = obs_point_list[j]
@@ -505,7 +501,7 @@ for i, project_folder in enumerate(project_folder_list):
                 time_step_size=86400,
                 weights_d=weights_d,
                 comment=comment,
-                o_i="o_i",
+                o_i="i_o",
                 a_d=a_d_in,
                 t_d=t_d_in,
                 Ss_list=Ss_list,
