@@ -136,7 +136,7 @@ threshold=1e-6
 # /work/houben/spectral_analysis/20181211_dupuit
 # has to start for each folder seperately
 ###############################################################################
-path_to_multiple_projects = "/work/houben/spectral_analysis/20181211_dupuit/5000/10"
+path_to_multiple_projects = "/data/MultiMoSi/houben/spectral_analysis/20181210_darcy/5000/10"
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -148,6 +148,8 @@ project_folder_list.sort()
 obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[1]
 
 distance_to_river_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[2]
+
+print("The distances are: \n ", distance_to_river_list)
 
 Ss_list = [
     1.20e-03,
@@ -196,7 +198,7 @@ kf_list = [
 ]
 
 aquifer_thickness = 10
-aquifer_length = 1000
+aquifer_length = 2000
 weights_d = [1, 1, 1, 1, 1]
 a_d_in = None
 t_d_in = None
@@ -204,19 +206,19 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "c_"
-threshold = 1e-6
-fit = True
-mean_thick = True
+comment = ""
+threshold = 1
+fit = False
+mean_thick = False
 icsub = None
 target = False
-cutoff = 5000
-ymin = 1e9
-ymax = 1e22
-a_of_x=True
-a_alterna=False
-detrend=False
-cut_averaged_head=5000
+cutoff = None
+ymin = 1e27
+ymax = 1e35
+a_of_x = False
+a_alterna = False
+detrend = False
+cut_averaged_head = 0
 ###############################################################################
 ###############################################################################
 
