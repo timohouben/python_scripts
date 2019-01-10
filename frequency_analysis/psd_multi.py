@@ -136,7 +136,7 @@ threshold=1e-6
 # /work/houben/spectral_analysis/20181211_dupuit
 # has to start for each folder seperately
 ###############################################################################
-path_to_multiple_projects = "/work/houben/spectral_analysis/20181211_dupuit/1000/10"
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise"
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -204,18 +204,19 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "TEST"
+comment = "DELETE_"
 threshold = 1
-fit = True
+fit = False
 mean_thick = False
 icsub = None
 target = False
 cutoff = None
-ymin = 1e9
-ymax = 1e22
+ymin = None
+ymax = None
 a_of_x=False
 a_alterna=False
 cut_averaged_head=3000
+detrend=False
 ###############################################################################
 ###############################################################################
 
@@ -501,7 +502,7 @@ for i, project_folder in enumerate(project_folder_list):
                 time_step_size=86400,
                 weights_d=weights_d,
                 comment=comment,
-                o_i="i_o",
+                o_i="o_i",
                 a_d=a_d_in,
                 t_d=t_d_in,
                 Ss_list=Ss_list,
