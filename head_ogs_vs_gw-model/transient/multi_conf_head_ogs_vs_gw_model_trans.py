@@ -38,7 +38,7 @@ first_part_of_name_of_project_ogs = "transect"
 which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
-time_steps = 37   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
+time_steps = 93  # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
 # obs_per_plot = obs_point_list = get_obs("/work/houben/spectral_analysis/20181211_dupuit/5000/10/0091_5000_10_9.00e-05")[1]
 
 
