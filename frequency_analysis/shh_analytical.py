@@ -86,17 +86,17 @@ def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
     # calculate angular frequency omega from f
     omega = [i*2*np.pi for i in f]
     
-    # define two helper function
+    # define two helper functions
     def Bm(m, x_dim):
-        return np.cos((2 * m + 1) * np.pi * (x_dim / 2)) / (2 * m + 1)
+        return np.cos((2 * m + 1) * np.pi * x_dim / 2) / (2 * m + 1)
 
     def Bn(n, x_dim):
-        return np.cos((2 * n + 1) * np.pi * (x_dim / 2)) / (2 * n + 1)
+        return np.cos((2 * n + 1) * np.pi * x_dim / 2) / (2 * n + 1)
 
     Shh = []
-    outer_sum = 0
     print('Omega has length of ' + str(len(omega)))
     for i, freq in enumerate(omega):    
+        outer_sum = 0
         print('Currently calculating value ' + str(i) + ' of ' + str(len(omega)))
         for j in range(0, m):
             inner_sum = 0
@@ -104,8 +104,8 @@ def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
                 inner_sum += (
                     ((-1) ** (j + k) * Bm(j, x_dim) * Bn(k, x_dim) * Sww[i])
                     / (2 * j ** 2 + 2 * k ** 2 + 2 * j + 2 * k + 1)
-                    * (2 * j + 1) ** 2
-                    / (((2 * j + 1) ** 4 / tc ** 2) + omega[i] ** 2)
+                    * ((2 * j + 1) ** 2
+                    / (((2 * j + 1) ** 4 / tc ** 2) + omega[i] ** 2))
                 )
             outer_sum += inner_sum
             print(outer_sum)

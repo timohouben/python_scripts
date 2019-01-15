@@ -136,7 +136,11 @@ threshold=1e-6
 # /work/houben/spectral_analysis/20181211_dupuit
 # has to start for each folder seperately
 ###############################################################################
-path_to_multiple_projects = "/work/houben/spectral_analysis/20181211_dupuit/1000/10"
+<<<<<<< HEAD
+path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise"
+=======
+path_to_multiple_projects = "/data/MultiMoSi/houben/spectral_analysis/20181210_darcy/5000/10"
+>>>>>>> 756a75c487afa84436071d3c6750ee67a031f278
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -148,6 +152,8 @@ project_folder_list.sort()
 obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[1]
 
 distance_to_river_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[2]
+
+print("The distances are: \n ", distance_to_river_list)
 
 Ss_list = [
     1.20e-03,
@@ -196,7 +202,7 @@ kf_list = [
 ]
 
 aquifer_thickness = 10
-aquifer_length = 1000
+aquifer_length = 2000
 weights_d = [1, 1, 1, 1, 1]
 a_d_in = None
 t_d_in = None
@@ -204,18 +210,32 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "a"
-threshold = 1e-6
-fit = True
-mean_thick = True
+<<<<<<< HEAD
+comment = "DELETE_"
+=======
+comment = ""
+>>>>>>> 756a75c487afa84436071d3c6750ee67a031f278
+threshold = 1
+fit = False
+mean_thick = False
 icsub = None
 target = False
-cutoff = 3000
-ymin = 1e9
-ymax = 1e22
+cutoff = None
+<<<<<<< HEAD
+ymin = None
+ymax = None
 a_of_x=False
 a_alterna=False
+cut_averaged_head=3000
 detrend=False
+=======
+ymin = 1e27
+ymax = 1e35
+a_of_x = False
+a_alterna = False
+detrend = False
+cut_averaged_head = 0
+>>>>>>> 756a75c487afa84436071d3c6750ee67a031f278
 ###############################################################################
 ###############################################################################
 
@@ -436,8 +456,8 @@ for i, project_folder in enumerate(project_folder_list):
                 path_to_multiple_projects
                 + "/"
                 + project_folder
-                + "/average_head_-BC.txt"
-            )[3000:]
+                + "/spatial_averaged_head_timeseries.txt"
+            )[cut_averaged_head:]
         )
     for j, single_file_name in enumerate(single_file_names):
         obs_point = obs_point_list[j]
@@ -501,7 +521,7 @@ for i, project_folder in enumerate(project_folder_list):
                 time_step_size=86400,
                 weights_d=weights_d,
                 comment=comment,
-                o_i="i_o",
+                o_i="o_i",
                 a_d=a_d_in,
                 t_d=t_d_in,
                 Ss_list=Ss_list,

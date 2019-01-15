@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
@@ -505,7 +506,7 @@ for i, project_folder in enumerate(project_folder_list):
                 time_step_size=86400,
                 weights_d=weights_d,
                 comment=comment,
-                o_i="i_o",
+                o_i="o_i",
                 a_d=a_d_in,
                 t_d=t_d_in,
                 Ss_list=Ss_list,

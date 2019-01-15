@@ -385,8 +385,9 @@ for i,curr_dir in enumerate(list_dir):
             print("ERROR: time_d and recharge have different shape!")
             print(str(np.size(time_d)))
             print(str(np.size(recharge)))
-            print("Set time_steps equal to the number of time steps-1 you want to plot.")
-                    
+            #print("Cut length of recharge to length of time_d")
+            #recharge = recharge[:len(time_d)]
+        
         # first axis for recharge
         fig, ax1 = plt.subplots(figsize=(14, 10))
         plt.title("head timeseries at different observations points")
