@@ -136,7 +136,7 @@ threshold=1e-6
 # /work/houben/spectral_analysis/20181211_dupuit
 # has to start for each folder seperately
 ###############################################################################
-path_to_multiple_projects = "/data/MultiMoSi/houben/spectral_analysis/20181210_darcy/5000/10"
+path_to_multiple_projects = raw_input("Specfy parent directory to multiple model runs: ")
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -148,8 +148,6 @@ project_folder_list.sort()
 obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[1]
 
 distance_to_river_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[2]
-
-print("The distances are: \n ", distance_to_river_list)
 
 Ss_list = [
     1.20e-03,
@@ -163,8 +161,8 @@ Ss_list = [
     4.00e-04,
     3.00e-04,
     2.00e-04,
-    1.00e-04,
-    9.00e-05,
+   # 1.00e-04,
+   # 9.00e-05,
 ]
 S_list = [
     3.60e-02,
@@ -178,8 +176,8 @@ S_list = [
     1.20e-02,
     9.00e-03,
     6.00e-03,
-    3.00e-03,
-    2.70e-03,
+   # 3.00e-03,
+   # 2.70e-03,
 ]
 kf_list = [
     1.00e-05,
@@ -193,12 +191,12 @@ kf_list = [
     1.00e-05,
     1.00e-05,
     1.00e-05,
-    1.00e-05,
-    1.00e-05,
+   # 1.00e-05,
+   # 1.00e-05,
 ]
 
-aquifer_thickness = 10
-aquifer_length = 2000
+aquifer_thickness = 20
+aquifer_length = 10000
 weights_d = [1, 1, 1, 1, 1]
 a_d_in = None
 t_d_in = None
@@ -206,19 +204,22 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = ""
+comment = "a"
 threshold = 1
-fit = False
+fit = True
 mean_thick = False
 icsub = None
-target = False
+target = True
 cutoff = None
-ymin = 1e27
-ymax = 1e35
-a_of_x = False
+ymin = 1e9
+ymax = 1e22
+a_of_x = True
 a_alterna = False
 detrend = False
 cut_averaged_head = 0
+
+distance_to_river_list = [10000 - i for i in distance_to_river_list]
+print("The distances are: \n ", distance_to_river_list)
 ###############################################################################
 ###############################################################################
 
