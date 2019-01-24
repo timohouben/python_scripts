@@ -37,6 +37,7 @@ import scipy.optimize as optimization
 import textwrap as tw
 from running_mean import moving_average
 from calculate_model_params import calc_aq_param
+from shh_analytical import shh_analytical
 
 
 def get_fft_data_from_simulation(
@@ -198,9 +199,14 @@ def fft_psd(
     target=False,
     ymin=None,
     ymax=None,
+    xmin=None,
+    xmax=None,
     a_of_x=False,
     a_alterna=False,
-    detrend=False
+    detrend=False,
+    shh_anal=False,
+    Sy=None,
+    T=None
 ):
 
 
@@ -235,6 +241,9 @@ def fft_psd(
     else:   
         recharge_detrend = recharge
         fft_data_detrend = fft_data
+
+
+        
 
     # different methodologies for power spectral density
     # -------------------------------------------------------------------------
@@ -278,7 +287,7 @@ def fft_psd(
             power_spectrum_result = power_spectrum_input
         elif o_i == "o":
             power_spectrum_result = power_spectrum_output
-
+            
     if method == "scipyfftdouble":
         # =========================================================================
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2
@@ -344,6 +353,35 @@ def fft_psd(
         power_spectrum_input = (
             abs(
                 (fftpack.fft(recharge_detrend, len_input)[: len_output / 2])
+            )
+            ** 2
+        )[1:]
+        power_spectrum_output = (
+            abs(
+                (fftpack.fft(fft_data_detrend, len_output)[: len_output / 2])
+            )
+            ** 2
+        )[1:]
+        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        frequency_input = (
+            abs(fftpack.fftfreq(len_output, time_step_size))[: len_output / 2]
+        )[1:]
+
+        if o_i == "i":
+            power_spectrum_result = power_spectrum_input
+            o_i_txt = "in_"
+        elif o_i == "o":
+            power_spectrum_result = power_spectrum_output
+            o_i_txt = "out_"
+
+    if method == "scipyffthalfpi":
+        # =========================================================================
+        # method x: Periodogram: Power Spectral Density: abs(X(w))^2
+        #           http://staff.utia.cas.cz/barunik/files/QFII/04%20-%20Seminar/04-qf.html
+        # =========================================================================
+        power_spectrum_input = (
+            abs(
+                (fftpack.fft(recharge_detrend, len_input)[: len_output / 2])
                 / 2.0
                 / np.pi
             )
@@ -370,7 +408,8 @@ def fft_psd(
         elif o_i == "o":
             power_spectrum_result = power_spectrum_output
             o_i_txt = "out_"
-
+            
+            
     if method == "autocorrelation":
         # =========================================================================
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2
@@ -406,32 +445,32 @@ def fft_psd(
         frequency_output = frequency_output[1:]
         frequency_input = frequency_input[1:]
         power_spectrum_result = (
-            abs((power_spectrum_output / power_spectrum_input)) ** 2
+                power_spectrum_output / power_spectrum_input
         )[1:]
         if o_i == "i":
             power_spectrum_result = power_spectrum_input[1:]
         elif o_i == "o":
             power_spectrum_result = power_spectrum_output[1:]
 
-    if method == "pyplotwelch":
-        # =========================================================================
-        # method x: Pyplot PSD by Welch
-        #           https://matplotlib.org/api/_as_gen/matplotlib.pyplot.psd.html
-        # =========================================================================
-        power_spectrum_input, frequency_input = plt.psd(
-            recharge_detrend, Fs=sampling_frequency
-        )
-        power_spectrum_output, frequency_output = plt.psd(
-            fft_data_detrend, Fs=sampling_frequency
-        )
-        # delete first value (which is 0) because it makes trouble with fitting
-        frequency_output = frequency_output  # [1:]
-        frequency_input = frequency_input  # [1:]
-        power_spectrum_result = power_spectrum_output / power_spectrum_input  # [1:]
-        if o_i == "i":
-            power_spectrum_result = power_spectrum_input[1:]
-        elif o_i == "o":
-            power_spectrum_result = power_spectrum_output[1:]
+#    if method == "pyplotwelch":
+#        # =========================================================================
+#        # method x: Pyplot PSD by Welch
+#        #           https://matplotlib.org/api/_as_gen/matplotlib.pyplot.psd.html
+#        # =========================================================================
+#        power_spectrum_input, frequency_input = plt.psd(
+#            recharge_detrend, Fs=sampling_frequency
+#        )
+#        power_spectrum_output, frequency_output = plt.psd(
+#            fft_data_detrend, Fs=sampling_frequency
+#        )
+#        # delete first value (which is 0) because it makes trouble with fitting
+#        frequency_output = frequency_output  # [1:]
+#        frequency_input = frequency_input  # [1:]
+#        power_spectrum_result = power_spectrum_output / power_spectrum_input  # [1:]
+#        if o_i == "i":
+#            power_spectrum_result = power_spectrum_input[1:]
+#        elif o_i == "o":
+#            power_spectrum_result = power_spectrum_output[1:]
 
     if method == "scipyperio":
         # =========================================================================
@@ -452,28 +491,28 @@ def fft_psd(
         elif o_i == "o":
             power_spectrum_result = power_spectrum_output[1:]
 
-    if method == "spectrumperio":
-        # =========================================================================
-        # method x: Spectrum.periodogram
-        #           http://thomas-cokelaer.info/software/spectrum/html/user/ref_fourier.html#spectrum.periodogram.Periodogram
-        # =========================================================================
-        from spectrum import WelchPeriodogram
-
-        power_spectrum_input, empty = WelchPeriodogram(recharge_detrend, 256)
-        plt.close()
-        frequency_input = power_spectrum_input[1]
-        frequency_input = frequency_input[1:]
-        power_spectrum_input = power_spectrum_input[0]
-        power_spectrum_output, empty = WelchPeriodogram(fft_data_detrend, 256)
-        plt.close()
-        frequency_output = power_spectrum_output[1]
-        frequency_output = frequency_output[1:]
-        power_spectrum_output = power_spectrum_output[0]
-        power_spectrum_result = (power_spectrum_output / power_spectrum_input)[1:]
-        if o_i == "i":
-            power_spectrum_result = power_spectrum_input[1:]
-        elif o_i == "o":
-            power_spectrum_result = power_spectrum_output[1:]
+#    if method == "spectrumperio":
+#        # =========================================================================
+#        # method x: Spectrum.periodogram
+#        #           http://thomas-cokelaer.info/software/spectrum/html/user/ref_fourier.html#spectrum.periodogram.Periodogram
+#        # =========================================================================
+#        from spectrum import WelchPeriodogram
+#
+#        power_spectrum_input, empty = WelchPeriodogram(recharge_detrend, 256)
+#        plt.close()
+#        frequency_input = power_spectrum_input[1]
+#        frequency_input = frequency_input[1:]
+#        power_spectrum_input = power_spectrum_input[0]
+#        power_spectrum_output, empty = WelchPeriodogram(fft_data_detrend, 256)
+#        plt.close()
+#        frequency_output = power_spectrum_output[1]
+#        frequency_output = frequency_output[1:]
+#        power_spectrum_output = power_spectrum_output[0]
+#        power_spectrum_result = (power_spectrum_output / power_spectrum_input)[1:]
+#        if o_i == "i":
+#            power_spectrum_result = power_spectrum_input[1:]
+#        elif o_i == "o":
+#            power_spectrum_result = power_spectrum_output[1:]
 
     """
     Further methods, not working or still under construction
@@ -513,6 +552,19 @@ def fft_psd(
                 frequency_input = np.delete(frequency_input, i)
                 power_spectrum_result = np.delete(power_spectrum_result, i)
             break
+        
+    # power spectral density analytical
+    # -------------------------------------------------------------------------
+    if shh_anal == True:
+        power_spectrum_output = shh_analytical(power_spectrum_input, frequency_input, Sy, T, aquifer_length - distance_to_river, aquifer_length)
+        power_spectrum_result = power_spectrum_output / power_spectrum_input        
+        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
 
     # plot the resulting power spectrum
     # -------------------------------------------------------------------------
@@ -526,8 +578,21 @@ def fft_psd(
     ax.set_xlabel("1/s")
     if ymin != None and ymax != None:
         ax.set_ylim(ymin, ymax)
+    if xmin != None and xmax != None:
+        ax.set_xlim(xmin, xmax)
+        
     # ax.plot(freq_month[ind],psd)
     ax.plot(frequency_input, power_spectrum_result, label="PSD")
+    
+    #if shh_anal == True:
+    #    ax.plot(frequency_input, shh_analytical(power_spectrum_input, frequency_input, Sy, T, distance_to_river, aquifer_length), label="Shh analytical")
+    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
     ax.set_title(
         "Power Spectral Density for observation point "
         + str(obs_point)

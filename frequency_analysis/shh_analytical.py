@@ -8,6 +8,7 @@
 from __future__ import division
 import numpy as np
 
+
 def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
     """
     Function to analyticaly compute the power spectrum of head with a given
@@ -40,6 +41,7 @@ def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
                 T = k * b
                 with b = saturated thickness [L] and k = hydr. conductivity 
                 [L/T]
+                Is used to calculate the discharge parameter a.
     x           float, Location of observed head time series [L]
                 x = 0 : dh/dx = 0, x = L : h = h0 (h0 = constant head)
     L           float, aquifer length [L]
@@ -82,10 +84,10 @@ def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
     tc = Sy / a
     # define dimensionless coordinate
     x_dim = x / L
-    
+
     # calculate angular frequency omega from f
-    omega = [i*2*np.pi for i in f]
-    
+    omega = [i * 2 * np.pi for i in f]
+
     # define two helper functions
     def Bm(m, x_dim):
         return np.cos((2 * m + 1) * np.pi * x_dim / 2) / (2 * m + 1)
@@ -94,27 +96,29 @@ def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
         return np.cos((2 * n + 1) * np.pi * x_dim / 2) / (2 * n + 1)
 
     Shh = []
-    print('Omega has length of ' + str(len(omega)))
-    for i, freq in enumerate(omega):    
+    print("Omega has length of " + str(len(omega)))
+    for i, freq in enumerate(omega):
         outer_sum = 0
-        print('Currently calculating value ' + str(i) + ' of ' + str(len(omega)))
+        # print("Currently calculating value " + str(i) + " of " + str(len(omega)))
         for j in range(0, m):
             inner_sum = 0
             for k in range(0, n):
                 inner_sum += (
                     ((-1) ** (j + k) * Bm(j, x_dim) * Bn(k, x_dim) * Sww[i])
                     / (2 * j ** 2 + 2 * k ** 2 + 2 * j + 2 * k + 1)
-                    * ((2 * j + 1) ** 2
-                    / (((2 * j + 1) ** 4 / tc ** 2) + omega[i] ** 2))
+                    * (
+                        (2 * j + 1) ** 2
+                        / (((2 * j + 1) ** 4 / tc ** 2) + omega[i] ** 2)
+                    )
                 )
             outer_sum += inner_sum
-            print(outer_sum)
+            # print(outer_sum)
         Shh.append(outer_sum * (16 / np.pi ** 2 / Sy ** 2))
-    print('Finished')    
-    
+    print("Finished")
+
     # approximation for t >> 1, beta = 2, Shh(omega) prop. omega**2, for more
     # info see Liang and Zhang 2013
     # Shh = [Sww[i]/Sy**2/omega[i] for i in range(0, len(omega))]
-    
+
     Shh = np.asarray(Shh)
     return Shh

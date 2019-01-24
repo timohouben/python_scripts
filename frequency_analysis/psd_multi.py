@@ -24,16 +24,9 @@ from get_obs import get_obs
 
 then = time.time()
 
-# methods = ['scipyfftnormt', 'scipyfftnormn', 'scipyfft', 'scipywelch',
-#           'pyplotwelch', 'scipyperio', 'spectrumperio']
-
-
-# methods = ['scipyfft', 'pyplotwelch', 'scipywelch']
-# methods = ['scipywelch']
-# methods = ['autocorrelation']
-methods = ["scipyffthalf"]
-# methods = ['pyplotwelch']
-# methods = ['scipyperio']
+# methods = ['scipyperio', 'scipywelch', 'scipyffthalf']
+methods = ['scipyffthalf']
+# methods = ['scipywelch', 'scipyffthalf']
 
 """
 # configuration for homogeneous model runs
@@ -151,53 +144,53 @@ obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0
 distance_to_river_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[2]
 
 Ss_list = [
-    1.20e-03,
-    1.10e-03,
-    1.00e-03,
-    9.00e-04,
-    8.00e-04,
-    7.00e-04,
-    6.00e-04,
-    5.00e-04,
-    4.00e-04,
-    3.00e-04,
-    2.00e-04,
-   # 1.00e-04,
-   # 9.00e-05,
+#    1.20e-03,
+#    1.10e-03,
+#    1.00e-03,
+#    9.00e-04,
+#    8.00e-04,
+#    7.00e-04,
+#    6.00e-04,
+#    5.00e-04,
+#    4.00e-04,
+#    3.00e-04,
+#    2.00e-04,
+#    1.00e-04,
+    9.00e-05,
 ]
 S_list = [
-    3.60e-02,
-    3.30e-02,
-    3.00e-02,
-    2.70e-02,
-    2.40e-02,
-    2.10e-02,
-    1.80e-02,
-    1.50e-02,
-    1.20e-02,
-    9.00e-03,
-    6.00e-03,
-   # 3.00e-03,
-   # 2.70e-03,
+#    3.60e-02,
+#    3.30e-02,
+#    3.00e-02,
+#    2.70e-02,
+#    2.40e-02,
+#    2.10e-02,
+#    1.80e-02,
+#    1.50e-02,
+#    1.20e-02,
+#    9.00e-03,
+#    6.00e-03,
+#    3.00e-03,
+    2.70e-03,
 ]
 kf_list = [
+#    1.00e-05,
+#    1.00e-05,
+#    1.00e-05,
+#    1.00e-05,
+#    1.00e-05,
+#    1.00e-05,
+#    1.00e-05,
+#    1.00e-05,
+#    1.00e-05,
+#    1.00e-05,
+#    1.00e-05,
+#    1.00e-05,
     1.00e-05,
-    1.00e-05,
-    1.00e-05,
-    1.00e-05,
-    1.00e-05,
-    1.00e-05,
-    1.00e-05,
-    1.00e-05,
-    1.00e-05,
-    1.00e-05,
-    1.00e-05,
-   # 1.00e-05,
-   # 1.00e-05,
 ]
 
-aquifer_thickness = 20
-aquifer_length = 10000
+aquifer_thickness = 30
+aquifer_length = 1000
 weights_d = [1, 1, 1, 1, 1]
 a_d_in = None
 t_d_in = None
@@ -205,21 +198,30 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "a"
+comment = "mean_out"
 threshold = 1
 fit = True
 mean_thick = False
 icsub = None
-target = True
+target = False
 cutoff = None
-ymin = 1e9
-ymax = 1e22
-a_of_x = True
+#ymin = 1e9
+ymin = None
+#ymax = 1e22
+ymax = None
+#xmin = 1e-9
+xmin = None
+#xmax = 1e-5
+xmax = None
+a_of_x = False
 a_alterna = False
 detrend = False
 cut_averaged_head = 0
+which='mean'
+shh_anal = True
+o_i="oi"
 
-distance_to_river_list = [10000 - i for i in distance_to_river_list]
+distance_to_river_list = [aquifer_length - i for i in distance_to_river_list]
 print("The distances are: \n ", distance_to_river_list)
 ###############################################################################
 ###############################################################################
@@ -453,6 +455,7 @@ for i, project_folder in enumerate(project_folder_list):
             single_file=path_to_project + "/" + single_file_name,
             time_steps=time_steps,
             obs_point=obs_point,
+            which=which
         )
 
         print(
@@ -506,7 +509,7 @@ for i, project_folder in enumerate(project_folder_list):
                 time_step_size=86400,
                 weights_d=weights_d,
                 comment=comment,
-                o_i="o_i",
+                o_i=o_i,
                 a_d=a_d_in,
                 t_d=t_d_in,
                 Ss_list=Ss_list,
@@ -517,9 +520,14 @@ for i, project_folder in enumerate(project_folder_list):
                 target=target,
                 ymin=ymin,
                 ymax=ymax,
+                xmin=xmin,
+                xmax=xmax,
                 a_of_x=a_of_x,
                 a_alterna=a_alterna,
                 detrend=detrend,
+                shh_anal=shh_anal,
+                Sy=Ss_list[i],
+                T=kf_list[i]*aquifer_thickness
             )
 
 # if i == 1:

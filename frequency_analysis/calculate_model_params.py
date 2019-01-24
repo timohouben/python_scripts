@@ -8,7 +8,7 @@ import numpy as np
 def calc_aq_param(Ss, kf, L, b, model, distance=None, a_alterna=False):
     """
     Function to calculate aquifer parameters T, S, D, a and t with model input 
-    parameters storativity (S), hydraulic conductivity (kf), 
+    parameters storativity (Ss), hydraulic conductivity (kf), 
     aquifer length (L) and aquifer thickness (b).
     If you use the distance for linear model, a will be calculated with respect
     to the location in the aquifer, i.e. distance to the river with the equation
@@ -73,7 +73,7 @@ def calc_aq_param(Ss, kf, L, b, model, distance=None, a_alterna=False):
             beta = np.sqrt(4 / (1 - ( distance/L - 1)**4 ))
             a = beta * T / L**2
         t = S / a
-        D = L ** 2.0 / (3.0 * t)
+        D = T / S
         returns = [T, kf, Ss, D, a, t]
         return returns
 
