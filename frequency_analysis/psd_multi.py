@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
@@ -14,7 +13,9 @@ import sys
 import numpy as np
 
 sys.path.append("/Users/houben/PhD/python/scripts/frequency_analysis")
-sys.path.append("/home/houben/python_pkg/python_scripts/python_scripts/head_ogs_vs_gw-model/transient")
+sys.path.append(
+    "/home/houben/python_pkg/python_scripts/python_scripts/head_ogs_vs_gw-model/transient"
+)
 from fft_psd_head import fft_psd, get_fft_data_from_simulation
 import matplotlib.pyplot as plt
 import os
@@ -25,7 +26,8 @@ from get_obs import get_obs
 then = time.time()
 
 # methods = ['scipyperio', 'scipywelch', 'scipyffthalf']
-methods = ['scipyffthalf']
+methods = ["scipyffthalf"]
+# methods = ['scipywelch']
 # methods = ['scipywelch', 'scipyffthalf']
 
 """
@@ -130,7 +132,9 @@ threshold=1e-6
 # /work/houben/spectral_analysis/20181211_dupuit
 # has to start for each folder seperately
 ###############################################################################
-path_to_multiple_projects = raw_input("Specfy parent directory to multiple model runs: ")
+path_to_multiple_projects = raw_input(
+    "Specfy parent directory to multiple model runs: "
+)
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -141,52 +145,40 @@ except ValueError:
 project_folder_list.sort()
 obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[1]
 
-distance_to_river_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[2]
+distance_to_river_list = get_obs(
+    path_to_multiple_projects + "/" + project_folder_list[0]
+)[2]
 
 Ss_list = [
-#    1.20e-03,
-#    1.10e-03,
-#    1.00e-03,
-#    9.00e-04,
-#    8.00e-04,
-#    7.00e-04,
-#    6.00e-04,
-#    5.00e-04,
-#    4.00e-04,
-#    3.00e-04,
-#    2.00e-04,
-#    1.00e-04,
-    9.00e-05,
+    #    1.20e-03,
+    #    1.10e-03,
+    #    1.00e-03,
+    #    9.00e-04,
+    #    8.00e-04,
+    #    7.00e-04,
+    #    6.00e-04,
+        5.00e-04,
+    #    4.00e-04,
+    #    3.00e-04,
+    #    2.00e-04,
+    #    1.00e-04,
+    #    9.00e-05
 ]
-S_list = [
-#    3.60e-02,
-#    3.30e-02,
-#    3.00e-02,
-#    2.70e-02,
-#    2.40e-02,
-#    2.10e-02,
-#    1.80e-02,
-#    1.50e-02,
-#    1.20e-02,
-#    9.00e-03,
-#    6.00e-03,
-#    3.00e-03,
-    2.70e-03,
-]
+
 kf_list = [
-#    1.00e-05,
-#    1.00e-05,
-#    1.00e-05,
-#    1.00e-05,
-#    1.00e-05,
-#    1.00e-05,
-#    1.00e-05,
-#    1.00e-05,
-#    1.00e-05,
-#    1.00e-05,
-#    1.00e-05,
-#    1.00e-05,
-    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+        1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05
 ]
 
 aquifer_thickness = 30
@@ -198,40 +190,36 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "mean_out"
+comment = "max"
 threshold = 1
 fit = True
 mean_thick = False
 icsub = None
 target = False
 cutoff = None
-#ymin = 1e9
+# ymin = 1e9
 ymin = None
-#ymax = 1e22
+# ymax = 1e22
 ymax = None
-#xmin = 1e-9
+# xmin = 1e-9
 xmin = None
-#xmax = 1e-5
+# xmax = 1e-5
 xmax = None
 a_of_x = False
 a_alterna = False
 detrend = False
 cut_averaged_head = 0
-which='mean'
-shh_anal = True
-o_i="oi"
+which = "max"
+shh_anal = False
+o_i = "oi"
 
 distance_to_river_list = [aquifer_length - i for i in distance_to_river_list]
-print("The distances are: \n ", distance_to_river_list)
+S_list = [i * aquifer_thickness for i in Ss_list]
 ###############################################################################
 ###############################################################################
 
 
-
-
-
-
-'''
+"""
 ###############################################################################
 # configurations for model runs: 
 # /Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise
@@ -356,7 +344,7 @@ a_alterna=False
 detrend=False
 ###############################################################################
 ###############################################################################
-'''
+"""
 
 """
 ###############################################################################
@@ -400,6 +388,88 @@ distance_to_river_list = [1800, 1200, 800, 400, 200]  # 2000
 ###############################################################################
 """
 
+###############################################################################
+###############################################################################
+
+# write parameters in log file
+
+print(
+    "log-file for power spectral density of multiple OGS model runs"
+    + "\n###############################################################################"
+    + "\nParameters"
+    + "\n----------"
+    + "\nDirectory: "
+    + str(path_to_multiple_projects)
+    + "\nProject folder list: "
+    + str(project_folder_list)
+    + "\nObservation points: "
+    + str(obs_point_list)
+    + "\nDistances to river: "
+    + str(distance_to_river_list)
+    + "\nStorativities: "
+    + str(S_list)
+    + "\nspec. Storativities: "
+    + str(Ss_list)
+    + "\nHydraulic cond.: "
+    + str(kf_list)
+    + "\nAquifer thickness: "
+    + str(aquifer_thickness)
+    + "\nAquifer length: "
+    + str(aquifer_length)
+    + "\nWeights for fit: "
+    + str(weights_d)
+    + "\na_d: "
+    + str(a_d_in)
+    + "\nt_d: "
+    + str(t_d_in)
+    + "\nTime steps: "
+    + str(time_steps)
+    + "\nTime step size: "
+    + str(time_step_size)
+    + "\nComment: "
+    + str(comment)
+    + "\nMaximum x-value of PSD: "
+    + str(threshold)
+    + "\nFit: "
+    + str(fit)
+    + "\nSpat. averaged aquifer thickness fo rech time step: "
+    + str(mean_thick)
+    + "\nSubstraction of boundary conditions: "
+    + str(icsub)
+    + "\nPlot target model with OGS-input parameters: "
+    + str(target)
+    + "\nDelete the first # values of time series: "
+    + str(cutoff)
+    + "\nMinimum of y-achsis: "
+    + str(ymin)
+    + "\nMaximum of y-achsis: "
+    + str(ymax)
+    + "\nMinimum of x-achsis: "
+    + str(xmin)
+    + "\nMaximum of x-achsis: "
+    + str(xmax)
+    + "\nUse parameter 'a' for linear model in dependence of location: "
+    + str(a_of_x)
+    + "\nUse an alternative calculation for parameter 'a' for Dupuit model: "
+    + str(a_alterna)
+    + "\nDetrend the time series: "
+    + str(detrend)
+    + "\nCut the averaged head by the initial conditions: "
+    + str(cut_averaged_head)
+    + "\nWhere to grab the piezometric head along a vertical line as observation point (min, max, mean): "
+    + str(which)
+    + "\nPlot the analytical power spectrum of the output: "
+    + str(shh_anal)
+    + "\nPlot input ('i'), output ('o') oder resulting ('oi') power spectra: "
+    + str(o_i)
+    + "\n###############################################################################"
+)
+
+
+###############################################################################
+###############################################################################
+
+
 # thresholds = [3e-8, 3e-8, 3e-8, 3e-8, 3e-8, 3e-8, 1e-7, 2e-7, 8e-7]
 
 
@@ -426,6 +496,9 @@ plt.rc("font", **font)
 
 # loop over all project directories
 for i, project_folder in enumerate(project_folder_list):
+    print(
+        "###############################################################################"
+    )
     print("Starting with project: " + project_folder)
     path_to_project = path_to_multiple_projects + "/" + project_folder
     single_file_names = [
@@ -435,6 +508,7 @@ for i, project_folder in enumerate(project_folder_list):
     name_of_project_ogs = str(
         [f for f in os.listdir(str(path_to_project)) if f.endswith(".rfd")]
     )[2:-6]
+    print(name_of_project_ogs)
 
     if mean_thick == True:
         # loop over all .tec files
@@ -448,29 +522,31 @@ for i, project_folder in enumerate(project_folder_list):
         )
     for j, single_file_name in enumerate(single_file_names):
         obs_point = obs_point_list[j]
-        print("calculating psd for obs point: " + str(obs_point))
+        print("1st: Getting time series for observation point: " + str(obs_point))
         fft_data, recharge = get_fft_data_from_simulation(
             path_to_project=path_to_project,
             name_of_project_ogs=name_of_project_ogs,
             single_file=path_to_project + "/" + single_file_name,
             time_steps=time_steps,
             obs_point=obs_point,
-            which=which
+            which=which,
         )
 
         print(
             "LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS"
-         )
+        )
         fft_data[-1] = fft_data[-2]
         recharge[-1] = recharge[-2]
+
         if cutoff != None:
             print(
                 "First "
                 + str(cutoff)
-                + " data points were deleted due to instationary of the aquifer."
+                + " data points in time series were deleted due to instationary of the aquifer."
             )
             fft_data = fft_data[cutoff:]
             recharge = recharge[cutoff:]
+
         if icsub != None:
             print(
                 "All values were substracted by "
@@ -481,8 +557,8 @@ for i, project_folder in enumerate(project_folder_list):
             recharge = recharge - icsub
 
         for k, method in enumerate(methods):
+            print("2nd: Calculating PSD...")
             print("Method: " + str(method))
-            print("Calculating PSD...")
             T_l[i, j, k], kf_l[i, j, k], Ss_l[i, j, k], D_l[i, j, k], a_l[i, j, k], t_l[
                 i, j, k
             ], T_d[i, j, k], kf_d[i, j, k], Ss_d[i, j, k], D_d[i, j, k], a_d[
@@ -527,7 +603,7 @@ for i, project_folder in enumerate(project_folder_list):
                 detrend=detrend,
                 shh_anal=shh_anal,
                 Sy=Ss_list[i],
-                T=kf_list[i]*aquifer_thickness
+                T=kf_list[i] * aquifer_thickness,
             )
 
 # if i == 1:
@@ -571,6 +647,19 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
         for m, method in enumerate(methods):
             plt.figure(figsize=(25, 25))
             for n, project_folder in enumerate(project_folder_list):
+                print(
+                    "Linear fit:"
+                    + "\nParameter: "
+                    + str(labels[l])
+                    + "\nobservation points: "
+                    + str(obs_point_list)
+                    + "\nDerived parameter value: "
+                    + str(param[n, :, m])
+                    + "\nmethod: "
+                    + str(method)
+                    + "\nproject folder: "
+                    + str(project_folder)
+                )
                 # plt.figure(figsize=(20, 16))
                 # configuration for homogeneous model runs
                 # plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
@@ -595,7 +684,26 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                                 model="linear",
                                 distance=distance_to_river_list[o],
                             )
-                        )    
+                        )
+                        print(
+                            "Calculating real model parameters for parameter 'a' in dependence on x"
+                            + "\nobservation point: "
+                            + str(obs_point)
+                            + "\nSs: "
+                            + str(Ss_list[n])
+                            + "\nkf: "
+                            + str(kf_list[n])
+                            + "\naquifer length: "
+                            + str(aquifer_length)
+                            + "\naquifer thickness: "
+                            + str(aquifer_thickness)
+                            + "\nmodel: "
+                            + "linear"
+                            + "\ndistance to river: "
+                            + str(distance_to_river_list[o])
+                            + "\nOutput: [T, kf, Ss, D, a, t] "
+                            + str(params_real[o])
+                        )
                     else:
                         params_real.append(
                             calc_aq_param(
@@ -605,6 +713,23 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                                 aquifer_thickness,
                                 model="linear",
                             )
+                        )
+                        print(
+                            "Calculating real model parameters for parameter 'a' INdependent on x"
+                            + "\nobservation point: "
+                            + str(obs_point)
+                            + "\nSs: "
+                            + str(Ss_list[n])
+                            + "\nkf: "
+                            + str(kf_list[n])
+                            + "\naquifer length: "
+                            + str(aquifer_length)
+                            + "\naquifer thickness: "
+                            + str(aquifer_thickness)
+                            + "\nmodel: "
+                            + "linear"
+                            + "\nOutput: [T, kf, Ss, D, a, t] "
+                            + str(params_real[o])
                         )
                 plt.semilogy(
                     obs_point_list,
@@ -666,6 +791,19 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
         for m, method in enumerate(methods):
             plt.figure(figsize=(25, 25))
             for n, project_folder in enumerate(project_folder_list):
+                print(
+                    "Dupuit fit:"
+                    + "\nParameter: "
+                    + str(labels[l])
+                    + "\nobservation points: "
+                    + str(obs_point_list)
+                    + "\nDerived parameter value: "
+                    + str(param[n, :, m])
+                    + "\nmethod: "
+                    + str(method)
+                    + "\nproject folder: "
+                    + str(project_folder)
+                )
                 # configuration for homogeneous model runs
                 # plt.semilogy(obs_point_list, param[i,:,k], label=path_to_project[-12:-9])
                 # configuration for homo/vertical/horizontal
@@ -687,8 +825,29 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                             aquifer_thickness,
                             model="dupuit",
                             distance=distance_to_river_list[o],
-                            a_alterna=a_alterna
+                            a_alterna=a_alterna,
                         )
+                    )
+                    print(
+                        "Calculating real model parameters for parameter 'a' in dependence on x"
+                        + "\nobservation point: "
+                        + str(obs_point)
+                        + "\nSs: "
+                        + str(Ss_list[n])
+                        + "\nkf: "
+                        + str(kf_list[n])
+                        + "\naquifer length: "
+                        + str(aquifer_length)
+                        + "\naquifer thickness: "
+                        + str(aquifer_thickness)
+                        + "\nmodel: "
+                        + "dupuit"
+                        + "\ndistance to river: "
+                        + str(distance_to_river_list[o])
+                        + "\na_alterna: "
+                        + str(a_alterna)
+                        + "\nOutput: [T, kf, Ss, D, a, t] "
+                        + str(params_real[o])
                     )
                 plt.semilogy(
                     obs_point_list,
@@ -799,7 +958,7 @@ for p, project_folder in enumerate(project_folder_list):
             aquifer_thickness,
             distance=distance_to_river_list[q],
             model="dupuit",
-            a_alterna=a_alterna
+            a_alterna=a_alterna,
         )
         plt.loglog(
             frequency,

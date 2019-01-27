@@ -42,7 +42,7 @@ from shh_analytical import shh_analytical
 
 def get_fft_data_from_simulation(
     path_to_project="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2/Groundwater@UFZ_eve_HOMO_276_D_4_results",
-    single_file="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2/Groundwater@UFZ_eve_HOMO_276_D_4_results/transect_01_ply_obs_0400_t6_GROUNDWATER_FLOW.tec",
+    single_file="/Users/houben/Desktop/Shh_test_Groundwater@UFZ_eve_HOMO_276_D_30/content/transect_01_ply_obs_0000_t1_GROUNDWATER_FLOW.tec",
     which_data_to_plot=2,
     name_of_project_gw_model="",
     name_of_project_ogs="transect_01",
@@ -209,7 +209,51 @@ def fft_psd(
     T=None
 ):
 
-
+    print("Function arguments:"
+    +"\nthreshold: "    +str(threshold)
+    +"\naquifer_thickness: " +str(aquifer_thickness)
+    +"\naquifer_length: "   + str(aquifer_length)
+    +"\ndistance_to_river: " +str(distance_to_river)
+    +"\npath_to_project: " +  str(path_to_project)
+    +"\nsingle_file: " +   str(single_file)
+    +"\nmethod: "  + str( method)
+    +"\nfit: "   + str(fit)
+    +"\nsavefig: "  + str( savefig)
+    +"\nsaveoutput: " + str(saveoutput)
+    +"\ndupuit: "  + str( dupuit)
+    +"\na_l: "   + str(a_l)
+    +"\nt_l: "   + str(t_l)
+    +"\na_d: "   + str(a_d)
+    +"\nt_d: "   + str(t_d)
+    +"\nweights_l: " +   str(weights_l)
+    +"\nweights_d: "+    str(weights_d)
+    +"\no_i: "   + str(o_i)
+    +"\ntime_step_size: " +   str(time_step_size)
+    +"\nwindows: "   + str(windows)
+    +"\nwiener_window: "+    str(wiener_window)
+    +"\nobs_point: "   + str(obs_point)
+    +"\ncomment: "    +str(comment)
+    +"\nSs_list: "   + str(Ss_list)
+    +"\nkf_list: "   + str(kf_list)
+    +"\nobs_number: "   + str(obs_number)
+    +"\nmodel_number: "   + str(model_number)
+    +"\ndistance_to_river_list: " +   str(distance_to_river_list)
+    +"\ntarget: "  +  str(target)
+    +"\nymin: "   + str(ymin)
+    +"\nymax: "   + str(ymax)
+    +"\nxmin: "   + str(xmin)
+    +"\nxmax: "   + str(xmax)
+    +"\na_of_x: "   + str(a_of_x)
+    +"\na_alterna: "  +  str(a_alterna)
+    +"\ndetrend: "   + str(detrend)
+    +"\nshh_anal: " +   str(shh_anal)
+    +"\nSy: " +   str(Sy)
+    +"\nT: " +   str(T)
+    )
+    
+    
+    
+    
     o_i_txt = ""
     threshold_txt = ""
     fit_txt = ""
@@ -236,9 +280,11 @@ def fft_psd(
     # detrend input and output signal
     # -------------------------------------------------------------------------
     if detrend == True:
+        print("Time series have been detrended.")
         recharge_detrend = signal.detrend(recharge, type="linear")
         fft_data_detrend = signal.detrend(fft_data, type="linear")   
-    else:   
+    else:
+        print("Time series haven't been detrended.")
         recharge_detrend = recharge
         fft_data_detrend = fft_data
 
@@ -556,15 +602,9 @@ def fft_psd(
     # power spectral density analytical
     # -------------------------------------------------------------------------
     if shh_anal == True:
+        print("Calculating analytical psd...")
         power_spectrum_output = shh_analytical(power_spectrum_input, frequency_input, Sy, T, aquifer_length - distance_to_river, aquifer_length)
         power_spectrum_result = power_spectrum_output / power_spectrum_input        
-        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-        print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
 
     # plot the resulting power spectrum
     # -------------------------------------------------------------------------
@@ -672,6 +712,14 @@ def fft_psd(
                 # plot the linear model with input parameters of ogs
                 if target == True:
                     if a_of_x == True:
+                        print("Calculating parameters for target model for parameter 'a' in dependence on x"
+                              + "\nSs: " + str(Ss_list[model_number])
+                              + "\nkf: " + str(kf_list[model_number])
+                              + "\naquifer length: " + str(aquifer_length)
+                              + "\naquifer thickness: " + str(aquifer_thickness)
+                              + "\nmodel: " + "linear"
+                              + "\ndistance to river: " + str(distance_to_river_list)
+                              )
                         params_real = calc_aq_param(
                             Ss_list[model_number],
                             kf_list[model_number],
@@ -680,6 +728,13 @@ def fft_psd(
                             model="linear",
                             distance=distance_to_river_list[obs_number])
                     else:
+                        print("Calculating parameters for target model for parameter 'a' INdependent on x"
+                              + "\nSs: " + str(Ss_list[model_number])
+                              + "\nkf: " + str(kf_list[model_number])
+                              + "\naquifer length: " + str(aquifer_length)
+                              + "\naquifer thickness: " + str(aquifer_thickness)
+                              + "\nmodel: " + "linear"
+                              )
                         params_real = calc_aq_param(
                             Ss_list[model_number],
                             kf_list[model_number],
@@ -702,21 +757,23 @@ def fft_psd(
                 # calculate aquifer parameters
                 # ---------------------------------------------------------------------
                 if a_of_x == True:
-                    print("Calculation of T in dependence of location in aquifer.")
+                    print("Calculation of T in dependence on location in aquifer.")
                     T_l = (
                         a_l
                         * aquifer_length ** 2
                         * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
                         )
+                    print("T_l = (a_l* aquifer_length ** 2 * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4)")
+                    print("T_l = " + str(a_l) + " * " + str(aquifer_length) + " ** 2 * (1 - ((" + str(distance_to_river) + ") / " + str(aquifer_length) + ") - 1)) ** 4)")
                 if a_of_x == False:
                     T_l = a_l * aquifer_length**2 / 3.
+                    print("T_l = ", a_l, "*", aquifer_length, "**2 / 3.")
+                    print("'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'")
                 kf_l = T_l / aquifer_thickness
                 S_l = a_l * t_l
                 Ss_l = S_l / aquifer_thickness
                 D_l = aquifer_length ** 2 / (3.0 * t_l)
                 # D_l = aquifer_length**2 * 4 / (np.pi**2 * t_l)
-                print("T_l = ", a_l, "*", aquifer_length, "**2 / 3.")
-                print("'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'")
                 print("kf_l = ", T_l, "/", aquifer_thickness)
                 print("'kf_l = ', T_l, '/', aquifer_thickness")
                 print("S_l = ", a_l, "*", t_l)
@@ -750,7 +807,7 @@ def fft_psd(
             except RuntimeError:
 
                 print(
-                    "Automatic linear model fit failed... Provide a_l and t_l manually."
+                    "Automatic linear model fit failed... Provide a_l and t_l manually!"
                 )
                 # calculate aquifer parameters
                 # ---------------------------------------------------------------------
@@ -783,6 +840,8 @@ def fft_psd(
                     * aquifer_length ** 2
                     * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
                     )
+            print("T_l = (a_l* aquifer_length ** 2 * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4)")
+            print("T_l = " + str(a_l) + " * " + str(aquifer_length) + " ** 2 * (1 - ((" + str(distance_to_river) + ") / " + str(aquifer_length) + ") - 1)) ** 4)")    
             if a_of_x == False:
                 T_l = a_l * aquifer_length**2 / 3.
             kf_l = T_l / aquifer_thickness
@@ -866,7 +925,7 @@ def fft_psd(
 
             except RuntimeError:
                 T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
-                print("Dupuit fit failed...")
+                print("Dupuit fit failed... Provide a_d and a_t manually!")
 
             # assign nan to alls parameters if duptui model is not used
         else:
@@ -884,6 +943,15 @@ def fft_psd(
 
             # plot the dupuit model with input parameters of ogs
             if target == True:
+                print("Calculating parameters for target model for parameter 'a' in dependence on x"
+                              + "\nSs: " + str(Ss_list[model_number])
+                              + "\nkf: " + str(kf_list[model_number])
+                              + "\naquifer length: " + str(aquifer_length)
+                              + "\naquifer thickness: " + str(aquifer_thickness)
+                              + "\nmodel: " + "dupuit"
+                              + "\ndistance to river: " + str(distance_to_river_list)
+                              + "a_alterna: " + str(a_alterna)
+                              )
                 params_real = calc_aq_param(
                     Ss_list[model_number],
                     kf_list[model_number],
