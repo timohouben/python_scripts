@@ -8,8 +8,21 @@
 from __future__ import division
 import numpy as np
 
+def shh_analytical_help(X, Sy, T, x, L):
+    # define a (discharge constant)
+    a = np.pi ** 2 * T / (4 * L ** 2)
+    # define tc (characteristic time scale)
+    tc = Sy / a
+    # define dimensionless coordinate
+    x_dim = x / L
+    
+    
+    
+    shh_analytical(X, )
 
-def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
+
+#def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10, norm=False):
+def shh_analytical(X, Sy, T, m=5, n=5, norm=False):    
     """
     Function to analyticaly compute the power spectrum of head with a given
     spectrum of the coresponding recharge process Sww in a phreatic aquifer,
@@ -29,7 +42,8 @@ def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
     -----
     Sww         array, power spectrum of recharge as function of frequency 
                 omega.
-    f           array, frequencies [1/T]
+    f           array, frequencies [1/T], will be internally converted to 
+                angular frequency omega
     Sy          float, specific yield [-]
                 The specific storage (Ss) in an unconfined aquifer is usually
                 much smaller than the specific yield (Sy). Therefore,
@@ -47,6 +61,7 @@ def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
     L           float, aquifer length [L]
     m           integer, number of terms of outer sum, dafault = 1000?
     n           integer, number of terms of inner sum, default = 1000?
+    norm        bool, normalize the output spectrum Shh by the input spectrum Sww
             
 
     Output
@@ -77,6 +92,7 @@ def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
     asd
 
     """
+    f, Sww = X
 
     # define a (discharge constant)
     a = np.pi ** 2 * T / (4 * L ** 2)
@@ -119,6 +135,11 @@ def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10):
     # approximation for t >> 1, beta = 2, Shh(omega) prop. omega**2, for more
     # info see Liang and Zhang 2013
     # Shh = [Sww[i]/Sy**2/omega[i] for i in range(0, len(omega))]
-
-    Shh = np.asarray(Shh)
-    return Shh
+    
+    if norm == True:
+        Shh_Sww = [value/Sww[i] for i, value in enumerate(Shh)]
+        Shh_Sww = np.asarray(Shh_Sww)
+        return Shh_Sww
+    else:    
+        Shh = np.asarray(Shh)
+        return Shh
