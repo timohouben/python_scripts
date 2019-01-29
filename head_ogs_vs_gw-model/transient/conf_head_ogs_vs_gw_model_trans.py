@@ -38,7 +38,8 @@ name_of_project_ogs = "transect"
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
 time_steps = 8401   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0850', 'obs_0900', 'obs_0920', 'obs_0950', 'obs_0970', 'obs_0990']
+obs_per_plot = ['obs_0400']
+#['obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0850', 'obs_0900', 'obs_0920', 'obs_0950', 'obs_0970', 'obs_0990']
 plt.ioff()
 
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
@@ -113,8 +114,10 @@ def convert_obs_list_to_index(obs):
     '''
     # Lennart: allgemeiner fassen
     #obs_index = int(obs[4:])/10
-    
-    obs_index = obs_per_plot.index(obs)
+    output_locations = np.loadtxt(str(path_to_project) + "/" + str(name_of_project_gw_model) + '/OutputLocations.in')
+    output_locations = output_locations.tolist()
+    obs_int = int(re.findall('\d+', obs)[0])
+    obs_index = output_locations.index(int(obs_int))
     print("Observation index is: " + str(obs_index))
     
     return obs_index
