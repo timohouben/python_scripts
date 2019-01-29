@@ -30,7 +30,7 @@ from scipy import signal
 import numpy as np
 import matplotlib.pyplot as plt
 
-plt.ioff()
+#plt.ioff()
 import datetime
 import os
 import scipy.optimize as optimization
@@ -602,10 +602,23 @@ def fft_psd(
     # power spectral density analytical
     # -------------------------------------------------------------------------
     if shh_anal == True:
-        print("Calculating analytical psd...")
+        print("!! Calculating analytical psd...")
+        print("Input parameters are: "
+              + "\nSy: " 
+              + str(Sy)
+              + "\nT: "
+              + str(T)
+              + "\nLocation: "
+              + str(aquifer_length - distance_to_river)
+              + "\nA. Length: " 
+              + str(aquifer_length)
+              )
         power_spectrum_output = shh_analytical(power_spectrum_input, frequency_input, Sy, T, aquifer_length - distance_to_river, aquifer_length)
-        power_spectrum_result = power_spectrum_output / power_spectrum_input        
-
+        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        if o_i == "o":
+            power_spectrum_result = power_spectrum_output
+        if o_i == "i":    
+            power_spectrum_result = power_spectrum_input
     # plot the resulting power spectrum
     # -------------------------------------------------------------------------
     fig = plt.figure(figsize=(16, 7))
@@ -772,7 +785,8 @@ def fft_psd(
                 kf_l = T_l / aquifer_thickness
                 S_l = a_l * t_l
                 Ss_l = S_l / aquifer_thickness
-                D_l = aquifer_length ** 2 / (3.0 * t_l)
+                D_l = T_l / S_l
+                #D_l = aquifer_length ** 2 / (3.0 * t_l)
                 # D_l = aquifer_length**2 * 4 / (np.pi**2 * t_l)
                 print("kf_l = ", T_l, "/", aquifer_thickness)
                 print("'kf_l = ', T_l, '/', aquifer_thickness")
@@ -1042,7 +1056,7 @@ def fft_psd(
     #    if a_d == None and t_d == None and dupuit == True:
 
     plt.legend(loc="best")
-    # plt.show()
+    #plt.show()
     if savefig == True:
         if fit == True:
             fit_txt = "fit_"
@@ -1058,7 +1072,7 @@ def fft_psd(
             + threshold_txt
             + str(method)
             + "_"
-            + str(os.path.basename(str(path_to_project)[:-1]))
+            + str(os.path.basename(str(path_to_project)))
             + "_"
             + str(obs_point)
             + ".png"

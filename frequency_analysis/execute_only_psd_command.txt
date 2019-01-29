@@ -1,0 +1,1 @@
+fft_psd(fft_data=fft_data, recharge=recharge, aquifer_thickness=30,aquifer_length=1000,path_to_project="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise/shh_anal_test/Groundwater@UFZ_eve_HOMO_276_D_28",fit=True,time_step_size=86400, savefig=True)

@@ -48,9 +48,10 @@ def spatial_averaged_head_timeseries(path_to_multiple_projects, remove_value=Non
         if remove_value != None:
             av_head_timeseries.pop(remove_value)
         np.savetxt(path_to_multiple_projects + '/' + project_folder_list[i] + '/' + 'spatial_averaged_head_timeseries.txt', av_head_timeseries)
-
+        print("spatial_averaged_head_timeseries.txt has been saved")
     
 if __name__ == "__main__":
-    path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise"
-    remove_value=8401
+    path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise/shh_anal_test"
+    # give the index of a value which should be romoved from the head time series. 0 is first index!
+    remove_value=None
     spatial_averaged_head_timeseries(path_to_multiple_projects, remove_value)

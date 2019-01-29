@@ -157,12 +157,29 @@ Ss_list = [
     #    8.00e-04,
     #    7.00e-04,
     #    6.00e-04,
-        5.00e-04,
+    #    5.00e-04,
     #    4.00e-04,
     #    3.00e-04,
     #    2.00e-04,
-    #    1.00e-04,
-    #    9.00e-05
+        1.00e-04,
+        9.00e-05
+]
+
+# changed values for Ss
+Ss_list = [
+    #    1.20e-03,
+    #    1.10e-03,
+    #    1.00e-03,
+    #    9.00e-04,
+    #    8.00e-04,
+    #    7.00e-04,
+    #    6.00e-04,
+    #    5.00e-04,
+    #    4.00e-04,
+    #    3.00e-04,
+    #    2.00e-04,
+        30.00e-04,
+        270.00e-05
 ]
 
 kf_list = [
@@ -173,12 +190,12 @@ kf_list = [
     #    1.00e-05,
     #    1.00e-05,
     #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
+    #    1.00e-05,
         1.00e-05,
-    #    1.00e-05,
-    #    1.00e-05,
-    #    1.00e-05,
-    #    1.00e-05,
-    #    1.00e-05
+        1.00e-05
 ]
 
 aquifer_thickness = 30
@@ -190,28 +207,35 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "max"
+comment = "Anal_S_alterna"
 threshold = 1
-fit = True
+fit = False
 mean_thick = False
 icsub = None
 target = False
 cutoff = None
-# ymin = 1e9
-ymin = None
-# ymax = 1e22
-ymax = None
-# xmin = 1e-9
-xmin = None
-# xmax = 1e-5
-xmax = None
+# config for shh/sww
+#ymin = 1e9
+#ymax = 1e22
+#xmin = 1e-9
+#xmax = 1e-5
+# config for shh
+ymin = 1e-2
+ymax = 1e7
+xmin = 1e-9
+xmax = 1e-5
+# config for automatic
+#ymin = None
+#ymax = None
+#xmin = None
+#xmax = None
 a_of_x = False
 a_alterna = False
 detrend = False
 cut_averaged_head = 0
-which = "max"
-shh_anal = False
-o_i = "oi"
+which = "mean"
+shh_anal = True
+o_i = "o"
 
 distance_to_river_list = [aquifer_length - i for i in distance_to_river_list]
 S_list = [i * aquifer_thickness for i in Ss_list]

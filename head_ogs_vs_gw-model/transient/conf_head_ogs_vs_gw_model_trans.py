@@ -31,21 +31,21 @@ from cycler import cycler
 # =============================================================================
 # global variables set manually
 # =============================================================================
-which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
-path_to_project = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow/D_18_1000_30_whitenoise_D_18-D_30_homogeneous"
-name_of_project_gw_model = "9.00e-04"
-name_of_project_ogs = "dupuit_flow1000_30_whitenoise_D_18-D_30_homogeneous"
+which_data_to_plot = 1 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
+path_to_project = "/Users/houben/PhD/modelling/shh_analytical/models/darcy_8401_days_from_20181210_darcy/1000_30_1.00e-04"
+name_of_project_gw_model = "1e-04"
+name_of_project_ogs = "transect"
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
-time_steps = 365   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_00100', 'obs_00400', 'obs_00600', 'obs_00800', 'obs_00900']
+time_steps = 8401   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
+obs_per_plot = ['obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0850', 'obs_0900', 'obs_0920', 'obs_0950', 'obs_0970', 'obs_0990']
 plt.ioff()
 
 #['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
 
 # ['obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0990']
 
-
+#['obs_0000', 'obs_0200', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0800', 'obs_0950', 'obs_0990', 'obs_1000']
 #['obs_0100', 'obs_0500', 'obs_0950']
 
 #['obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0990']
@@ -72,7 +72,7 @@ else:
 # =============================================================================
 
 recharge = []
-
+"""
 if __name__ == "__main__":
     # read the tec files as dict
     print('Reading .tec-files...')
@@ -92,19 +92,19 @@ def load_tecs():
     '''
     tecs =  np.load(str(path_to_project) + '/' + 'tecs.npy').item()
     return tecs
-
+"""
 # =============================================================================
 # =============================================================================
 # =============================================================================
 # GW Model de Rooij 2012
 # read timeseries for different observation points from H.OUT of gw-model de Rooij 2012
 # =============================================================================
-'''    
+ 
 try:
     n_locations_gw_model = sum(1 for line in open(str(path_to_project) + "/" + str(name_of_project_gw_model) + '/OutputLocations.in' , "r"))
 except IOError:
     print("No data for gw model de Rooij, 2012")
-'''
+
 
 def convert_obs_list_to_index(obs):
     '''
@@ -112,7 +112,11 @@ def convert_obs_list_to_index(obs):
     to pick the right observation point from the gw_model data.
     '''
     # Lennart: allgemeiner fassen
-    obs_index = int(obs[4:])/10
+    #obs_index = int(obs[4:])/10
+    
+    obs_index = obs_per_plot.index(obs)
+    print("Observation index is: " + str(obs_index))
+    
     return obs_index
 
 def getlist_gw_model(path_filename):
@@ -282,41 +286,44 @@ def gethead_ogs_each_obs(process, observation_point, which, time_steps, tecs, pa
     head, it will return the min, max or mean head. You need to specify this 
     argument when you call the function plot_obs_vs_time.
     '''
-    if single_file == False or single_file == None:
-        number_of_columns = tecs[process][observation_point]["HEAD"].shape[1]
-        if which == 'max':
-            # select the maximum value (i.e. the uppermost) of polyline as long as polylines are defined from bottom to top
-            head_ogs_timeseries_each_obs = tecs[process][observation_point]["HEAD"][:,number_of_columns-1]
-        elif which == 'min':
-            # select the minimum value (i.e. the lowermost) of polyline as long as polylines are defined from bottom to top
-            head_ogs_timeseries_each_obs = tecs[process][observation_point]["HEAD"][:,0]    
-        elif which == 'mean':
-            head_ogs_timeseries_each_obs=[]
-            for step in range(time_steps+1):
-                # calculates the mean of each time step
-                head_ogs_timeseries_each_obs.append(np.mean(tecs[process][observation_point]["HEAD"][step,:]))
-            head_ogs_timeseries_each_obs = np.asarray(head_ogs_timeseries_each_obs)
-        else:
-            print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
-            head_ogs_timeseries_each_obs = "nan"
-    
-    elif single_file == True:
-        number_of_columns = tecs["HEAD"].shape[1]
-        if which == 'max':
-            # select the maximum value (i.e. the uppermost) of polyline as long as polylines are defined from bottom to top
-            head_ogs_timeseries_each_obs = tecs["HEAD"][:,number_of_columns-1]
-        elif which == 'min':
-            # select the minimum value (i.e. the lowermost) of polyline as long as polylines are defined from bottom to top
-            head_ogs_timeseries_each_obs = tecs["HEAD"][:,0]    
-        elif which == 'mean':
-            head_ogs_timeseries_each_obs=[]
-            for step in range(time_steps+1):
-                # calculates the mean of each time step
-                head_ogs_timeseries_each_obs.append(np.mean(tecs["HEAD"][step,:]))
-            head_ogs_timeseries_each_obs = np.asarray(head_ogs_timeseries_each_obs)
-        else:
-            print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
-            head_ogs_timeseries_each_obs = "nan"
+    try:
+        head_ogs_timeseries_each_obs = np.loadtxt(str(path_to_project) + '/' + 'head_ogs_' + str(observation_point) + '_' + str(which) + '.txt')
+    except IOError:
+        if single_file == False or single_file == None:
+            number_of_columns = tecs[process][observation_point]["HEAD"].shape[1]
+            if which == 'max':
+                # select the maximum value (i.e. the uppermost) of polyline as long as polylines are defined from bottom to top
+                head_ogs_timeseries_each_obs = tecs[process][observation_point]["HEAD"][:,number_of_columns-1]
+            elif which == 'min':
+                # select the minimum value (i.e. the lowermost) of polyline as long as polylines are defined from bottom to top
+                head_ogs_timeseries_each_obs = tecs[process][observation_point]["HEAD"][:,0]    
+            elif which == 'mean':
+                head_ogs_timeseries_each_obs=[]
+                for step in range(time_steps+1):
+                    # calculates the mean of each time step
+                    head_ogs_timeseries_each_obs.append(np.mean(tecs[process][observation_point]["HEAD"][step,:]))
+                head_ogs_timeseries_each_obs = np.asarray(head_ogs_timeseries_each_obs)
+            else:
+                print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
+                head_ogs_timeseries_each_obs = "nan"
+        
+        elif single_file == True:
+            number_of_columns = tecs["HEAD"].shape[1]
+            if which == 'max':
+                # select the maximum value (i.e. the uppermost) of polyline as long as polylines are defined from bottom to top
+                head_ogs_timeseries_each_obs = tecs["HEAD"][:,number_of_columns-1]
+            elif which == 'min':
+                # select the minimum value (i.e. the lowermost) of polyline as long as polylines are defined from bottom to top
+                head_ogs_timeseries_each_obs = tecs["HEAD"][:,0]    
+            elif which == 'mean':
+                head_ogs_timeseries_each_obs=[]
+                for step in range(time_steps+1):
+                    # calculates the mean of each time step
+                    head_ogs_timeseries_each_obs.append(np.mean(tecs["HEAD"][step,:]))
+                head_ogs_timeseries_each_obs = np.asarray(head_ogs_timeseries_each_obs)
+            else:
+                print('You entered an invalid argument for "which" in function gethead_ogs_each_obs. Please enter min, max or mean.')
+                head_ogs_timeseries_each_obs = "nan"
     
     # save the head time series as txt for each observation point 
     if save_heads == True:
