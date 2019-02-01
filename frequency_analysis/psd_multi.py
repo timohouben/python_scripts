@@ -252,9 +252,9 @@ detrend = True
 cut_averaged_head = 0
 which = "mean"
 shh_anal = True
-o_i = "o"
+o_i = "oi"
 anal_fit = True
-anal_fit_norm = False
+anal_fit_norm = True
 model_fit = False
 
 distance_to_river_list = [aquifer_length - i for i in obs_locations]
