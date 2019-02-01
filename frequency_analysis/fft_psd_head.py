@@ -206,7 +206,10 @@ def fft_psd(
     detrend=False,
     shh_anal=False,
     Sy=None,
-    T=None
+    T=None,
+    anal_fit=None,
+    anal_fit_norm=True,
+    model_fit=True
 ):
 
     print("Function arguments:"
@@ -599,28 +602,11 @@ def fft_psd(
                 power_spectrum_result = np.delete(power_spectrum_result, i)
             break
         
-    # power spectral density analytical
-    # -------------------------------------------------------------------------
-    if shh_anal == True:
-        print("!! Calculating analytical psd...")
-        print("Input parameters are: "
-              + "\nSy: " 
-              + str(Sy)
-              + "\nT: "
-              + str(T)
-              + "\nLocation: "
-              + str(aquifer_length - distance_to_river)
-              + "\nA. Length: " 
-              + str(aquifer_length)
-              )
-        power_spectrum_output = shh_analytical(power_spectrum_input, frequency_input, Sy, T, aquifer_length - distance_to_river, aquifer_length)
-        power_spectrum_result = power_spectrum_output / power_spectrum_input
-        if o_i == "o":
-            power_spectrum_result = power_spectrum_output
-        if o_i == "i":    
-            power_spectrum_result = power_spectrum_input
     # plot the resulting power spectrum
     # -------------------------------------------------------------------------
+    font = {"family": "normal", "weight": "normal", "size": 15}
+    plt.rc("font", **font)  
+    plt.rc("legend",fontsize=10)
     fig = plt.figure(figsize=(16, 7))
     ax = fig.add_subplot(1, 1, 1)
     plt.subplots_adjust(
@@ -637,15 +623,24 @@ def fft_psd(
     # ax.plot(freq_month[ind],psd)
     ax.plot(frequency_input, power_spectrum_result, label="PSD")
     
-    #if shh_anal == True:
-    #    ax.plot(frequency_input, shh_analytical(power_spectrum_input, frequency_input, Sy, T, distance_to_river, aquifer_length), label="Shh analytical")
-    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
-    #    print('ACHTUNG: EIGENTLICH WURDE HIER DIE FALSCHE KOORDINATE GEWÄHLT!!!')
+    # power spectral density analytical
+    # -------------------------------------------------------------------------
+    if shh_anal == True:
+        print("!! Calculating analytical psd...")
+        print("Input parameters are: "
+              + "\nSy: " 
+              + str(Sy)
+              + "\nT: "
+              + str(T)
+              + "\nLocation: "
+              + str(aquifer_length - distance_to_river)
+              + "\nA. Length: " 
+              + str(aquifer_length)
+              )
+        power_spectrum_output_anal = shh_analytical((frequency_input, power_spectrum_input), Sy, T, aquifer_length - distance_to_river, aquifer_length)
+
+
+    
     ax.set_title(
         "Power Spectral Density for observation point "
         + str(obs_point)
@@ -677,42 +672,244 @@ def fft_psd(
         # power_spectrum_result_filtered = signal.wiener(power_spectrum_result, wiener_window)
         # power_spectrum_result_filtered = moving_average(power_spectrum_result, 3)
         # ax.plot(frequency_input[:len(power_spectrum_result_filtered)], power_spectrum_result_filtered, label='filtered PSD')
-
+        
         # =====================================================================
-        # linear model
+        # analytical solution by Liang and Zhang 2013
         # =====================================================================
-        # least squares automatic fit for linear aquifer model (Gelhar, 1993):
-        # abs(H_h(w))**2 = 1 / (a**2 * ( 1 + ((t_l**2) * (w**2))))
-        # ---------------------------------------------------------------------
-
-        if a_l == None and t_l == None:
-            # make an initial guess for a_l, and t_l
-            initial_guess = np.array([1e-15, 40000])
-
-            # generate a weighing array
-            # ---------------------------------------------------------------------
-            # based on dividing the data into segments
-            sigma_l = []
-            data_per_segment = len(power_spectrum_result) / len(weights_l)
-            for weight_l in weights_l:
-                sigma_l = np.append(sigma_l, np.full(data_per_segment, weight_l))
-            if len(power_spectrum_result) % len(weights_l) != 0:
-                for residual in range(len(power_spectrum_result) % len(weights_l)):
-                    sigma_l = np.append(sigma_l, weights_l[-1])
-
-            try:
-                # perform the fit
-                popt_l, pcov_l = optimization.curve_fit(
-                    linear_fit,
-                    frequency_input,
-                    power_spectrum_result,
-                    p0=initial_guess,
-                    sigma=sigma_l,
+        
+        if anal_fit == True:
+            from fit_analytical_psd import shh_analytical_fit
+            popt, pcov = shh_analytical_fit(power_spectrum_input, power_spectrum_result, frequency_input, aquifer_length-distance_to_river, aquifer_length, m=5, n=5, norm=False)
+            popt[0] = abs(popt[0])
+            popt[1] = abs(popt[1])            
+            
+            print("Inferred aquifer parameters: Storativity, Transmissivity: " + str(popt[0]) + ", " + str(popt[1]))
+            S_anal = popt[0]
+            T_anal = popt[1]
+            kf_anal = popt[1] / aquifer_thickness
+            D_anal = popt[1] /popt[0]
+            
+            if popt[0] == 1.0 and popt[1] == 1.0:
+                print("T and S have been set to nan.")
+                T_anal, S_anal = np.nan, np.nan
+            
+            
+            output_anal = (
+                    "Analytical fit:\n "
+                    + "T [m2/s]: "
+                    + "%0.4e" % T_anal
+                    + "\n  "
+                    + "S [-]: "
+                    + "%0.4e" % S_anal
+                    + "\n  "
+                    + "kf [m/s]: "
+                    + "%0.4e" % kf_anal
+                    + "\n  "
+                    + "D [m2/s]: "
+                    + "%0.4e" % D_anal
                 )
-                # abs to avoid negative values from optimization
-                t_l = abs(popt_l[1])
-                a_l = abs(popt_l[0])
+            
+            input_param = (
+                    "OGS input parameter:\n "
+                    + "T [m2/s]: "
+                    + "%0.4e" % T
+                    + "\n  "
+                    + "S [-]: "
+                    + "%0.4e" % Sy
+                )
+            fig_txt_1 = tw.fill(str(output_anal), width=145)
+            fig_txt_2 = tw.fill(str(input_param), width=145)
+            text = []
+            text.append(fig_txt_1)
+            text.append(fig_txt_2)
+            fig_txt = '\n\n'.join(text for text in text)
 
+            plt.figtext(
+                0.5,
+                0.05,
+                fig_txt,
+                horizontalalignment="center",
+                bbox=dict(boxstyle="square", facecolor="#F2F3F4", ec="1", pad=0.8, alpha=1),
+            )
+                        
+            
+            ax.plot(frequency_input, shh_analytical((frequency_input,power_spectrum_input), popt[0], popt[1], aquifer_length-distance_to_river, aquifer_length, m=5, n=5, norm=anal_fit_norm), label="analytical fit", color="red")
+            
+            T_l = np.nan
+            kf_l = np.nan
+            S_l = np.nan
+            Ss_l = np.nan
+            D_l = np.nan
+            t_l = np.nan
+            a_l = np.nan
+            T_d = np.nan
+            kf_d = np.nan
+            S_d = np.nan
+            Ss_d = np.nan
+            D_d = np.nan
+            t_d = np.nan
+            a_d = np.nan
+            
+            
+        if model_fit == True:
+            # =====================================================================
+            # linear model
+            # =====================================================================
+            # least squares automatic fit for linear aquifer model (Gelhar, 1993):
+            # abs(H_h(w))**2 = 1 / (a**2 * ( 1 + ((t_l**2) * (w**2))))
+            # ---------------------------------------------------------------------
+    
+            if a_l == None and t_l == None:
+                # make an initial guess for a_l, and t_l
+                initial_guess = np.array([1e-15, 40000])
+    
+                # generate a weighing array
+                # ---------------------------------------------------------------------
+                # based on dividing the data into segments
+                sigma_l = []
+                data_per_segment = len(power_spectrum_result) / len(weights_l)
+                for weight_l in weights_l:
+                    sigma_l = np.append(sigma_l, np.full(data_per_segment, weight_l))
+                if len(power_spectrum_result) % len(weights_l) != 0:
+                    for residual in range(len(power_spectrum_result) % len(weights_l)):
+                        sigma_l = np.append(sigma_l, weights_l[-1])
+    
+                try:
+                    # perform the fit
+                    popt_l, pcov_l = optimization.curve_fit(
+                        linear_fit,
+                        frequency_input,
+                        power_spectrum_result,
+                        p0=initial_guess,
+                        sigma=sigma_l,
+                    )
+                    # abs to avoid negative values from optimization
+                    t_l = abs(popt_l[1])
+                    a_l = abs(popt_l[0])
+    
+                    # Plot the linear fit model
+                    # ---------------------------------------------------------------------
+                    linear_model = []
+                    # fitting model for the linear reservoir (Gelhar, 1993)
+                    for i in range(0, len(frequency_input)):
+                        line = linear_fit(frequency_input[i], a_l, t_l)
+                        linear_model.append(line)
+                    ax.plot(frequency_input, linear_model, label="linear model")
+    
+                    # plot the linear model with input parameters of ogs
+                    if target == True:
+                        if a_of_x == True:
+                            print("Calculating parameters for target model for parameter 'a' in dependence on x"
+                                  + "\nSs: " + str(Ss_list[model_number])
+                                  + "\nkf: " + str(kf_list[model_number])
+                                  + "\naquifer length: " + str(aquifer_length)
+                                  + "\naquifer thickness: " + str(aquifer_thickness)
+                                  + "\nmodel: " + "linear"
+                                  + "\ndistance to river: " + str(distance_to_river_list)
+                                  )
+                            params_real = calc_aq_param(
+                                Ss_list[model_number],
+                                kf_list[model_number],
+                                aquifer_length,
+                                aquifer_thickness,
+                                model="linear",
+                                distance=distance_to_river_list[obs_number])
+                        else:
+                            print("Calculating parameters for target model for parameter 'a' INdependent on x"
+                                  + "\nSs: " + str(Ss_list[model_number])
+                                  + "\nkf: " + str(kf_list[model_number])
+                                  + "\naquifer length: " + str(aquifer_length)
+                                  + "\naquifer thickness: " + str(aquifer_thickness)
+                                  + "\nmodel: " + "linear"
+                                  )
+                            params_real = calc_aq_param(
+                                Ss_list[model_number],
+                                kf_list[model_number],
+                                aquifer_length,
+                                aquifer_thickness,
+                                model="linear")
+                        ax.plot(
+                            frequency_input,
+                            [
+                                linear_fit(
+                                    a_l=params_real[4],
+                                    t_l=params_real[5],
+                                    f_l=frequency_input[i],
+                                )
+                                for i in range(0, len(frequency_input))
+                            ],
+                            label="linear model, target",
+                        )
+    
+                    # calculate aquifer parameters
+                    # ---------------------------------------------------------------------
+                    if a_of_x == True:
+                        print("Calculation of T in dependence on location in aquifer.")
+                        T_l = (
+                            a_l
+                            * aquifer_length ** 2
+                            * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
+                            )
+                        print("T_l = (a_l* aquifer_length ** 2 * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4)")
+                        print("T_l = " + str(a_l) + " * " + str(aquifer_length) + " ** 2 * (1 - ((" + str(distance_to_river) + ") / " + str(aquifer_length) + ") - 1)) ** 4)")
+                    if a_of_x == False:
+                        T_l = a_l * aquifer_length**2 / 3.
+                        print("T_l = ", a_l, "*", aquifer_length, "**2 / 3.")
+                        print("'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'")
+                    kf_l = T_l / aquifer_thickness
+                    S_l = a_l * t_l
+                    Ss_l = S_l / aquifer_thickness
+                    D_l = T_l / S_l
+                    #D_l = aquifer_length ** 2 / (3.0 * t_l)
+                    # D_l = aquifer_length**2 * 4 / (np.pi**2 * t_l)
+                    print("kf_l = ", T_l, "/", aquifer_thickness)
+                    print("'kf_l = ', T_l, '/', aquifer_thickness")
+                    print("S_l = ", a_l, "*", t_l)
+                    print("'S_l = ', a_l, '*', t_l")
+                    print("Ss_l = ", S_l, "/", aquifer_thickness)
+                    print("'Ss_l = ', S_l, '/', aquifer_thickness")
+                    print("D_l = ", aquifer_length, "**2 / (3 * ", t_l, ")")
+                    print("'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'")
+                    output_l = (
+                        "Linear model:\n "
+                        + "T [m2/s]: "
+                        + "%0.4e" % T_l
+                        + "\n  "
+                        + "Ss [1/m]: "
+                        + "%0.4e" % Ss_l
+                        + "\n  "
+                        + "kf [m/s]: "
+                        + "%0.4e" % kf_l
+                        + "\n  "
+                        + "D [m2/s]: "
+                        + "%0.4e" % D_l
+                        + "\n  "
+                        + "a: "
+                        + "%0.4e" % a_l
+                        + "\n  "
+                        + "t_c [s]: "
+                        + "%0.4e" % t_l
+                    )
+                    print(output_l)
+                    fig_txt = tw.fill(output_l, width=250)
+                except RuntimeError:
+    
+                    print(
+                        "Automatic linear model fit failed... Provide a_l and t_l manually!"
+                    )
+                    # calculate aquifer parameters
+                    # ---------------------------------------------------------------------
+                    T_l = np.nan
+                    kf_l = np.nan
+                    S_l = np.nan
+                    Ss_l = np.nan
+                    D_l = np.nan
+                    t_l = np.nan
+                    a_l = np.nan
+                    # D_l = aquifer_length**2 * 4 / (np.pi**2 * t_l)
+                    output_l = ""
+                    print(output_l)
+            else:
                 # Plot the linear fit model
                 # ---------------------------------------------------------------------
                 linear_model = []
@@ -721,73 +918,27 @@ def fft_psd(
                     line = linear_fit(frequency_input[i], a_l, t_l)
                     linear_model.append(line)
                 ax.plot(frequency_input, linear_model, label="linear model")
-
-                # plot the linear model with input parameters of ogs
-                if target == True:
-                    if a_of_x == True:
-                        print("Calculating parameters for target model for parameter 'a' in dependence on x"
-                              + "\nSs: " + str(Ss_list[model_number])
-                              + "\nkf: " + str(kf_list[model_number])
-                              + "\naquifer length: " + str(aquifer_length)
-                              + "\naquifer thickness: " + str(aquifer_thickness)
-                              + "\nmodel: " + "linear"
-                              + "\ndistance to river: " + str(distance_to_river_list)
-                              )
-                        params_real = calc_aq_param(
-                            Ss_list[model_number],
-                            kf_list[model_number],
-                            aquifer_length,
-                            aquifer_thickness,
-                            model="linear",
-                            distance=distance_to_river_list[obs_number])
-                    else:
-                        print("Calculating parameters for target model for parameter 'a' INdependent on x"
-                              + "\nSs: " + str(Ss_list[model_number])
-                              + "\nkf: " + str(kf_list[model_number])
-                              + "\naquifer length: " + str(aquifer_length)
-                              + "\naquifer thickness: " + str(aquifer_thickness)
-                              + "\nmodel: " + "linear"
-                              )
-                        params_real = calc_aq_param(
-                            Ss_list[model_number],
-                            kf_list[model_number],
-                            aquifer_length,
-                            aquifer_thickness,
-                            model="linear")
-                    ax.plot(
-                        frequency_input,
-                        [
-                            linear_fit(
-                                a_l=params_real[4],
-                                t_l=params_real[5],
-                                f_l=frequency_input[i],
-                            )
-                            for i in range(0, len(frequency_input))
-                        ],
-                        label="linear model, target",
-                    )
-
+    
                 # calculate aquifer parameters
                 # ---------------------------------------------------------------------
                 if a_of_x == True:
-                    print("Calculation of T in dependence on location in aquifer.")
+                    print("Calculation of T in dependence of location in aquifer.")
                     T_l = (
                         a_l
                         * aquifer_length ** 2
                         * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
                         )
-                    print("T_l = (a_l* aquifer_length ** 2 * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4)")
-                    print("T_l = " + str(a_l) + " * " + str(aquifer_length) + " ** 2 * (1 - ((" + str(distance_to_river) + ") / " + str(aquifer_length) + ") - 1)) ** 4)")
+                print("T_l = (a_l* aquifer_length ** 2 * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4)")
+                print("T_l = " + str(a_l) + " * " + str(aquifer_length) + " ** 2 * (1 - ((" + str(distance_to_river) + ") / " + str(aquifer_length) + ") - 1)) ** 4)")    
                 if a_of_x == False:
                     T_l = a_l * aquifer_length**2 / 3.
-                    print("T_l = ", a_l, "*", aquifer_length, "**2 / 3.")
-                    print("'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'")
                 kf_l = T_l / aquifer_thickness
                 S_l = a_l * t_l
                 Ss_l = S_l / aquifer_thickness
-                D_l = T_l / S_l
-                #D_l = aquifer_length ** 2 / (3.0 * t_l)
+                D_l = aquifer_length ** 2 / (3 * t_l)
                 # D_l = aquifer_length**2 * 4 / (np.pi**2 * t_l)
+                print("T_l = ", a_l, "*", aquifer_length, "**2 / 3.")
+                print("'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'")
                 print("kf_l = ", T_l, "/", aquifer_thickness)
                 print("'kf_l = ', T_l, '/', aquifer_thickness")
                 print("S_l = ", a_l, "*", t_l)
@@ -818,243 +969,178 @@ def fft_psd(
                 )
                 print(output_l)
                 fig_txt = tw.fill(output_l, width=250)
-            except RuntimeError:
-
-                print(
-                    "Automatic linear model fit failed... Provide a_l and t_l manually!"
-                )
+    
+            # =====================================================================
+            # Dupuit Model
+            # =====================================================================
+            # Step 5: least squares automatic fit for Dupuit-Aquifer model
+            # (e.g. Gelhar and Wilson, 1974):
+            # abs(H_h(w))**2 = (b/E)**2 * ( (1/O)*tanh)((1+j)*sqrt(1/2*O))*tanh((1-j)*sqrt(1/2*O))
+            # O = td * w
+            # E = x - x_o    distance from river
+            # ---------------------------------------------------------------------
+    
+            if a_d == None and t_d == None and dupuit == True:
+                # make an initial guess for a_l, and t_l
+                initial_guess = np.array([0.98e-15, 2000000])
+    
+                # generate a weighing array
+                # ---------------------------------------------------------------------
+                # based on dividing the data into segments
+                sigma_d = []
+                # weights = [1,1,1] # give the weights for each segment, amount of values specifies the amount of segments
+                data_per_segment = len(power_spectrum_result) / len(weights_d)
+                for weight_d in weights_d:
+                    sigma_d = np.append(sigma_d, np.full(data_per_segment, weight_d))
+                if len(power_spectrum_result) % len(weights_d) != 0:
+                    for residual in range(len(power_spectrum_result) % len(weights_d)):
+                        sigma_d = np.append(sigma_d, weights_d[-1])
+    
+                try:
+                    # perform the fit
+                    popt_d, pcov_d = optimization.curve_fit(
+                        dupuit_fit,
+                        frequency_input,
+                        power_spectrum_result,
+                        p0=initial_guess,
+                        sigma=sigma_d,
+                    )
+                    # abs to avoid negative values
+                    # a_d = popt_d[0]
+                    # a_d = popt_d[0]
+                    a_d = popt_d[0]
+                    t_d = popt_d[1]
+    
+                except RuntimeError:
+                    T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
+                    print("Dupuit fit failed... Provide a_d and a_t manually!")
+    
+                # assign nan to alls parameters if duptui model is not used
+            else:
+                T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
+    
+            # Plot the Dupuit model
+            # ---------------------------------------------------------------------
+            try:
+                dupuit_model = []
+                # fitting model for the linear reservoir (Gelhar, 1993)
+                for i in range(0, len(frequency_input)):
+                    line = dupuit_fit(frequency_input[i], a_d, t_d)
+                    dupuit_model.append(line)
+                ax.plot(frequency_input, dupuit_model, label="Dupuit model")
+    
+                # plot the dupuit model with input parameters of ogs
+                if target == True:
+                    print("Calculating parameters for target model for parameter 'a' in dependence on x"
+                                  + "\nSs: " + str(Ss_list[model_number])
+                                  + "\nkf: " + str(kf_list[model_number])
+                                  + "\naquifer length: " + str(aquifer_length)
+                                  + "\naquifer thickness: " + str(aquifer_thickness)
+                                  + "\nmodel: " + "dupuit"
+                                  + "\ndistance to river: " + str(distance_to_river_list)
+                                  + "a_alterna: " + str(a_alterna)
+                                  )
+                    params_real = calc_aq_param(
+                        Ss_list[model_number],
+                        kf_list[model_number],
+                        aquifer_length,
+                        aquifer_thickness,
+                        model="dupuit",
+                        distance=distance_to_river_list[obs_number],
+                        a_alterna=a_alterna
+                    )
+                    ax.plot(
+                        frequency_input,
+                        [
+                            dupuit_fit(
+                                a_d=params_real[4], t_d=params_real[5], f_d=frequency_input[i]
+                            )
+                            for i in range(0, len(frequency_input))
+                        ],
+                        label="dupuit model, target",
+                    )
+    
                 # calculate aquifer parameters
                 # ---------------------------------------------------------------------
-                T_l = np.nan
-                kf_l = np.nan
-                S_l = np.nan
-                Ss_l = np.nan
-                D_l = np.nan
-                t_l = np.nan
-                a_l = np.nan
-                # D_l = aquifer_length**2 * 4 / (np.pi**2 * t_l)
-                output_l = ""
-                print(output_l)
-        else:
-            # Plot the linear fit model
-            # ---------------------------------------------------------------------
-            linear_model = []
-            # fitting model for the linear reservoir (Gelhar, 1993)
-            for i in range(0, len(frequency_input)):
-                line = linear_fit(frequency_input[i], a_l, t_l)
-                linear_model.append(line)
-            ax.plot(frequency_input, linear_model, label="linear model")
-
-            # calculate aquifer parameters
-            # ---------------------------------------------------------------------
-            if a_of_x == True:
-                print("Calculation of T in dependence of location in aquifer.")
-                T_l = (
-                    a_l
-                    * aquifer_length ** 2
-                    * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
-                    )
-            print("T_l = (a_l* aquifer_length ** 2 * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4)")
-            print("T_l = " + str(a_l) + " * " + str(aquifer_length) + " ** 2 * (1 - ((" + str(distance_to_river) + ") / " + str(aquifer_length) + ") - 1)) ** 4)")    
-            if a_of_x == False:
-                T_l = a_l * aquifer_length**2 / 3.
-            kf_l = T_l / aquifer_thickness
-            S_l = a_l * t_l
-            Ss_l = S_l / aquifer_thickness
-            D_l = aquifer_length ** 2 / (3 * t_l)
-            # D_l = aquifer_length**2 * 4 / (np.pi**2 * t_l)
-            print("T_l = ", a_l, "*", aquifer_length, "**2 / 3.")
-            print("'T_l = ', a_l, '*', aquifer_length, '**2 / 3.'")
-            print("kf_l = ", T_l, "/", aquifer_thickness)
-            print("'kf_l = ', T_l, '/', aquifer_thickness")
-            print("S_l = ", a_l, "*", t_l)
-            print("'S_l = ', a_l, '*', t_l")
-            print("Ss_l = ", S_l, "/", aquifer_thickness)
-            print("'Ss_l = ', S_l, '/', aquifer_thickness")
-            print("D_l = ", aquifer_length, "**2 / (3 * ", t_l, ")")
-            print("'D_l = ', aquifer_length, '**2 / (3 * ', t_l,')'")
-            output_l = (
-                "Linear model:\n "
-                + "T [m2/s]: "
-                + "%0.4e" % T_l
-                + "\n  "
-                + "Ss [1/m]: "
-                + "%0.4e" % Ss_l
-                + "\n  "
-                + "kf [m/s]: "
-                + "%0.4e" % kf_l
-                + "\n  "
-                + "D [m2/s]: "
-                + "%0.4e" % D_l
-                + "\n  "
-                + "a: "
-                + "%0.4e" % a_l
-                + "\n  "
-                + "t_c [s]: "
-                + "%0.4e" % t_l
-            )
-            print(output_l)
-            fig_txt = tw.fill(output_l, width=250)
-
-        # =====================================================================
-        # Dupuit Model
-        # =====================================================================
-        # Step 5: least squares automatic fit for Dupuit-Aquifer model
-        # (e.g. Gelhar and Wilson, 1974):
-        # abs(H_h(w))**2 = (b/E)**2 * ( (1/O)*tanh)((1+j)*sqrt(1/2*O))*tanh((1-j)*sqrt(1/2*O))
-        # O = td * w
-        # E = x - x_o    distance from river
-        # ---------------------------------------------------------------------
-
-        if a_d == None and t_d == None and dupuit == True:
-            # make an initial guess for a_l, and t_l
-            initial_guess = np.array([0.98e-15, 2000000])
-
-            # generate a weighing array
-            # ---------------------------------------------------------------------
-            # based on dividing the data into segments
-            sigma_d = []
-            # weights = [1,1,1] # give the weights for each segment, amount of values specifies the amount of segments
-            data_per_segment = len(power_spectrum_result) / len(weights_d)
-            for weight_d in weights_d:
-                sigma_d = np.append(sigma_d, np.full(data_per_segment, weight_d))
-            if len(power_spectrum_result) % len(weights_d) != 0:
-                for residual in range(len(power_spectrum_result) % len(weights_d)):
-                    sigma_d = np.append(sigma_d, weights_d[-1])
-
-            try:
-                # perform the fit
-                popt_d, pcov_d = optimization.curve_fit(
-                    dupuit_fit,
-                    frequency_input,
-                    power_spectrum_result,
-                    p0=initial_guess,
-                    sigma=sigma_d,
+                #print("calculation of T with new formula")
+                #T_d = (
+                #    a_d
+                #    * aquifer_length ** 2
+                #    * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
+                #)
+                
+                
+                # method from Gelhar 1974, beta = pi^2/4
+                if a_alterna == True:
+                    T_d = a_d * aquifer_length**2 * 4 / np.pi**2
+                else:
+                    T_d = a_d * aquifer_thickness * distance_to_river
+                kf_d = T_d / aquifer_thickness
+                S_d = t_d * T_d / aquifer_length ** 2
+                Ss_d = S_d / aquifer_thickness
+                D_d = T_d / S_d
+                print("T_d = ", a_d, "*", aquifer_thickness, "*", distance_to_river)
+                print("'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river")
+                print("kf_d = ", T_d, "/", aquifer_thickness)
+                print("'kf_d = ', T_d, '/', aquifer_thickness")
+                print("S_d = ", t_d, "*", T_d, "/", aquifer_length, "**2")
+                print("'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'")
+                print("Ss_d = ", S_d, "/", aquifer_thickness)
+                print("'Ss_d = ', S_d, '/', aquifer_thickness")
+                print("D_d = ", T_d, "/", S_d)
+                print("'D_d = ', T_d, '/', S_d")
+                output_d = (
+                    "Dupuit model: \n"
+                    + "T [m2/s]: "
+                    + "%0.4e" % T_d
+                    + "\n  "
+                    + "Ss [1/m]: "
+                    + "%0.4e" % Ss_d
+                    + "\n  "
+                    + "kf [m/s]: "
+                    + "%0.4e" % kf_d
+                    + "\n  "
+                    + "D [m2/s]: "
+                    + "%0.4e" % D_d
+                    + "\n  "
+                    + "a: "
+                    + "%0.4e" % a_d
+                    + "\n  "
+                    + "t_c [s]: "
+                    + "%0.4e" % t_d
                 )
-                # abs to avoid negative values
-                # a_d = popt_d[0]
-                # a_d = popt_d[0]
-                a_d = popt_d[0]
-                t_d = popt_d[1]
-
-            except RuntimeError:
+                print(output_d)
+                fig_txt = tw.fill(str(output_l) + "\n" + str(output_d), width=145)
+    
+            except TypeError:
+                print("Automatic Dupuit-model fit failed... Provide a_d and t_d manually.")
                 T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
-                print("Dupuit fit failed... Provide a_d and a_t manually!")
-
-            # assign nan to alls parameters if duptui model is not used
-        else:
-            T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
-
-        # Plot the Dupuit model
-        # ---------------------------------------------------------------------
-        try:
-            dupuit_model = []
-            # fitting model for the linear reservoir (Gelhar, 1993)
-            for i in range(0, len(frequency_input)):
-                line = dupuit_fit(frequency_input[i], a_d, t_d)
-                dupuit_model.append(line)
-            ax.plot(frequency_input, dupuit_model, label="Dupuit model")
-
-            # plot the dupuit model with input parameters of ogs
-            if target == True:
-                print("Calculating parameters for target model for parameter 'a' in dependence on x"
-                              + "\nSs: " + str(Ss_list[model_number])
-                              + "\nkf: " + str(kf_list[model_number])
-                              + "\naquifer length: " + str(aquifer_length)
-                              + "\naquifer thickness: " + str(aquifer_thickness)
-                              + "\nmodel: " + "dupuit"
-                              + "\ndistance to river: " + str(distance_to_river_list)
-                              + "a_alterna: " + str(a_alterna)
-                              )
-                params_real = calc_aq_param(
-                    Ss_list[model_number],
-                    kf_list[model_number],
-                    aquifer_length,
-                    aquifer_thickness,
-                    model="dupuit",
-                    distance=distance_to_river_list[obs_number],
-                    a_alterna=a_alterna
-                )
-                ax.plot(
-                    frequency_input,
-                    [
-                        dupuit_fit(
-                            a_d=params_real[4], t_d=params_real[5], f_d=frequency_input[i]
-                        )
-                        for i in range(0, len(frequency_input))
-                    ],
-                    label="dupuit model, target",
-                )
-
-            # calculate aquifer parameters
-            # ---------------------------------------------------------------------
-            #print("calculation of T with new formula")
-            #T_d = (
-            #    a_d
-            #    * aquifer_length ** 2
-            #    * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
-            #)
-            
-            
-            # method from Gelhar 1974, beta = pi^2/4
-            if a_alterna == True:
-                T_d = a_d * aquifer_length**2 * 4 / np.pi**2
-            else:
-                T_d = a_d * aquifer_thickness * distance_to_river
-            kf_d = T_d / aquifer_thickness
-            S_d = t_d * T_d / aquifer_length ** 2
-            Ss_d = S_d / aquifer_thickness
-            D_d = T_d / S_d
-            print("T_d = ", a_d, "*", aquifer_thickness, "*", distance_to_river)
-            print("'T_d = ', a_d, '*', aquifer_thickness, '*', distance_to_river")
-            print("kf_d = ", T_d, "/", aquifer_thickness)
-            print("'kf_d = ', T_d, '/', aquifer_thickness")
-            print("S_d = ", t_d, "*", T_d, "/", aquifer_length, "**2")
-            print("'S_d = ', t_d, '*', T_d, '/', aquifer_length, '**2'")
-            print("Ss_d = ", S_d, "/", aquifer_thickness)
-            print("'Ss_d = ', S_d, '/', aquifer_thickness")
-            print("D_d = ", T_d, "/", S_d)
-            print("'D_d = ', T_d, '/', S_d")
-            output_d = (
-                "Dupuit model: \n"
-                + "T [m2/s]: "
-                + "%0.4e" % T_d
-                + "\n  "
-                + "Ss [1/m]: "
-                + "%0.4e" % Ss_d
-                + "\n  "
-                + "kf [m/s]: "
-                + "%0.4e" % kf_d
-                + "\n  "
-                + "D [m2/s]: "
-                + "%0.4e" % D_d
-                + "\n  "
-                + "a: "
-                + "%0.4e" % a_d
-                + "\n  "
-                + "t_c [s]: "
-                + "%0.4e" % t_d
+                fig_txt = tw.fill(str(output_l), width=200)
+    
+            # annotate the figure
+            # fig_txt = tw.fill(tw.dedent(output), width=120)
+            plt.figtext(
+                0.5,
+                0.05,
+                fig_txt,
+                horizontalalignment="center",
+                bbox=dict(boxstyle="square", facecolor="#F2F3F4", ec="1", pad=0.8, alpha=1),
             )
-            print(output_d)
-            fig_txt = tw.fill(str(output_l) + "\n" + str(output_d), width=145)
+    
+        #    if a_d == None and t_d == None and dupuit == True:
+    
+    
+    
+    # plot the target analytical power spectrum based on input parameters from ogs model runs
+    # ---------------------------------------------------------------------   
+    if o_i == "o":
+        ax.plot(frequency_input, power_spectrum_output_anal, label="analytical target", color="green", marker="o", ls="", markersize=0.5)
+    if o_i == "oi":    
+        power_spectrum_result_anal = power_spectrum_output_anal / power_spectrum_input
+        ax.plot(frequency_input, power_spectrum_result_anal, label="analytical, target")
 
-        except TypeError:
-            print("Automatic Dupuit-model fit failed... Provide a_d and t_d manually.")
-            T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
-            fig_txt = tw.fill(str(output_l), width=200)
 
-        # annotate the figure
-        # fig_txt = tw.fill(tw.dedent(output), width=120)
-        plt.figtext(
-            0.5,
-            0.05,
-            fig_txt,
-            horizontalalignment="center",
-            bbox=dict(boxstyle="square", facecolor="#F2F3F4", ec="1", pad=0.8, alpha=1),
-        )
-
-    #    if a_d == None and t_d == None and dupuit == True:
-
+    
     plt.legend(loc="best")
     #plt.show()
     if savefig == True:
@@ -1150,6 +1236,8 @@ def fft_psd(
         file.close()
     print("###################################################################")
     return (
+        T_anal,
+        S_anal,
         T_l,
         kf_l,
         Ss_l,
