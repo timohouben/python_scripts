@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
@@ -162,8 +161,8 @@ Ss_list = [
     4.00e-04,
     3.00e-04,
     2.00e-04,
-   # 1.00e-04,
-   # 9.00e-05,
+    1.00e-04,
+    9.00e-05,
 ]
 S_list = [
     3.60e-02,
@@ -177,8 +176,8 @@ S_list = [
     1.20e-02,
     9.00e-03,
     6.00e-03,
-   # 3.00e-03,
-   # 2.70e-03,
+    3.00e-03,
+    2.70e-03,
 ]
 kf_list = [
     1.00e-05,
@@ -192,12 +191,12 @@ kf_list = [
     1.00e-05,
     1.00e-05,
     1.00e-05,
-   # 1.00e-05,
-   # 1.00e-05,
+    1.00e-05,
+    1.00e-05,
 ]
 
-aquifer_thickness = 20
-aquifer_length = 10000
+aquifer_thickness = 10
+aquifer_length = 5000
 weights_d = [1, 1, 1, 1, 1]
 a_d_in = None
 t_d_in = None
@@ -205,12 +204,12 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "a"
+comment = "b"
 threshold = 1
 fit = True
 mean_thick = False
 icsub = None
-target = True
+target = False
 cutoff = None
 ymin = 1e9
 ymax = 1e22
@@ -219,7 +218,7 @@ a_alterna = False
 detrend = False
 cut_averaged_head = 0
 
-distance_to_river_list = [10000 - i for i in distance_to_river_list]
+distance_to_river_list = [aquifer_length - i for i in distance_to_river_list]
 print("The distances are: \n ", distance_to_river_list)
 ###############################################################################
 ###############################################################################
@@ -433,6 +432,8 @@ for i, project_folder in enumerate(project_folder_list):
     name_of_project_ogs = str(
         [f for f in os.listdir(str(path_to_project)) if f.endswith(".rfd")]
     )[2:-6]
+
+    print("This is the name of the project: ", name_of_project_ogs)
 
     if mean_thick == True:
         # loop over all .tec files
