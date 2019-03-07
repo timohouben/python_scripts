@@ -31,14 +31,16 @@ from cycler import cycler
 # =============================================================================
 # global variables set manually
 # =============================================================================
-which_data_to_plot = 3 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
-path_to_project = "/Users/houben/PhD/modelling/20190201_gw_model/source/"
-name_of_project_gw_model = "0.15"
-name_of_project_ogs = "transect_01"
+which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
+path_to_project = "/Users/houben/PhD/modelling/20190304_spectral_analysis_homogeneous/models/99999_9.00e-01_1.00e-04"
+name_of_project_gw_model = "0.45"
+name_of_project_ogs = "transect"
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
 time_steps = 8401   # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
+obs_per_plot = ['obs_0100', 'obs_0200']
+#['obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0850', 'obs_0900', 'obs_0920', 'obs_0950', 'obs_0970', 'obs_0990']
+#['obs_0200', 'obs_0400', 'obs_0600', 'obs_0800', 'obs_0950']
 #['obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0850', 'obs_0900', 'obs_0920', 'obs_0950', 'obs_0970', 'obs_0990']
 plt.ioff()
 

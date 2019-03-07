@@ -11,7 +11,7 @@ import re
 
 def get_obs(path_to_project):
     '''
-    Give the path to the project and get a list with the names of the
+    Give the path to the ogs project and get a list with the names of the
     observation points, the file names and the number included in the name from
     .tec-files!
     This number can be used as a distance or coordinate of a transect.

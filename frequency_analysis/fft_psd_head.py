@@ -733,7 +733,7 @@ def fft_psd(
             )
                         
             
-            ax.plot(frequency_input, shh_analytical((frequency_input,power_spectrum_input), popt[0], popt[1], aquifer_length-distance_to_river, aquifer_length, m=5, n=5, norm=anal_fit_norm), label="analytical fit", color="red")
+            ax.plot(frequency_input, shh_analytical((frequency_input,power_spectrum_input), popt[0], popt[1], aquifer_length-distance_to_river, aquifer_length, m=5, n=5, norm=anal_fit_norm), label="analytical fit", color="red") #, ls="", marker="*")
             
             T_l = np.nan
             kf_l = np.nan
@@ -749,6 +749,7 @@ def fft_psd(
             D_d = np.nan
             t_d = np.nan
             a_d = np.nan
+
             
             
         if model_fit == True:
@@ -1132,12 +1133,13 @@ def fft_psd(
     
     
     # plot the target analytical power spectrum based on input parameters from ogs model runs
-    # ---------------------------------------------------------------------   
-    if o_i == "o":
-        ax.plot(frequency_input, power_spectrum_output_anal, label="analytical target", color="green", marker="o", ls="", markersize=0.5)
-    if o_i == "oi":    
-        power_spectrum_result_anal = power_spectrum_output_anal / power_spectrum_input
-        ax.plot(frequency_input, power_spectrum_result_anal, label="analytical, target")
+    # ---------------------------------------------------------------------
+    if anal_fit == True:
+        if o_i == "o":
+            ax.plot(frequency_input, power_spectrum_output_anal, label="analytical target", color="green", marker="o", ls="", markersize=0.5)
+        if o_i == "oi":    
+            power_spectrum_result_anal = power_spectrum_output_anal / power_spectrum_input
+            ax.plot(frequency_input, power_spectrum_result_anal, label="analytical, target")
 
 
     
@@ -1198,9 +1200,11 @@ def fft_psd(
         D_d = np.nan
         t_d = np.nan
         a_d = np.nan
-
+        T_anal = np.nan
+        S_anal = np.nan
+        
     if fit == True and saveoutput == True:
-        with open(str(path_to_project) + "/PSD_output.txt", "a") as file:
+        with open(str(path_to_project) + "/PSD_output.log", "a") as file:
             file.write(
                 str(datetime.datetime.now())
                 + " "
