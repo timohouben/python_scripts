@@ -24,7 +24,7 @@ from conf_head_ogs_vs_gw_model_trans import (
     getlist_gw_model,
     convert_obs_list_to_index,
 )
-from ogs5py.reader import readtec_polyline
+#from ogs5py.reader import readtec_polyline
 import scipy.fftpack as fftpack
 from scipy import signal
 import numpy as np
@@ -93,13 +93,14 @@ def get_fft_data_from_simulation(
             + str("head_ogs_" + str(obs_point) + "_" + str(which) + ".txt")
         )
     except IOError:
-        print("Reading .tec-file...")
+        print("NOT Reading .tec-files, because VTK is not working on EVE...")
+        print("Reading .tec-files...")
         print(single_file[-40:])
-        tecs = readtec_polyline(
-            task_id=name_of_project_ogs,
-            task_root=path_to_project,
-            single_file=single_file,
-        )
+        #tecs = readtec_polyline(
+        #    task_id=name_of_project_ogs,
+        #    task_root=path_to_project,
+        #    single_file=single_file,
+        #)
         print("Finished reading.")
 
         # =============================================================================
@@ -253,10 +254,10 @@ def fft_psd(
     +"\nSy: " +   str(Sy)
     +"\nT: " +   str(T)
     )
-    
-    
-    
-    
+
+
+
+
     o_i_txt = ""
     threshold_txt = ""
     fit_txt = ""
@@ -285,14 +286,14 @@ def fft_psd(
     if detrend == True:
         print("Time series have been detrended.")
         recharge_detrend = signal.detrend(recharge, type="linear")
-        fft_data_detrend = signal.detrend(fft_data, type="linear")   
+        fft_data_detrend = signal.detrend(fft_data, type="linear")
     else:
         print("Time series haven't been detrended.")
         recharge_detrend = recharge
         fft_data_detrend = fft_data
 
 
-        
+
 
     # different methodologies for power spectral density
     # -------------------------------------------------------------------------
@@ -336,7 +337,7 @@ def fft_psd(
             power_spectrum_result = power_spectrum_input
         elif o_i == "o":
             power_spectrum_result = power_spectrum_output
-            
+
     if method == "scipyfftdouble":
         # =========================================================================
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2
@@ -457,8 +458,8 @@ def fft_psd(
         elif o_i == "o":
             power_spectrum_result = power_spectrum_output
             o_i_txt = "out_"
-            
-            
+
+
     if method == "autocorrelation":
         # =========================================================================
         # method x: Periodogram: Power Spectral Density: abs(X(w))^2
@@ -565,11 +566,11 @@ def fft_psd(
 
     """
     Further methods, not working or still under construction
-    elif method == 'spectrum_sperio':    
+    elif method == 'spectrum_sperio':
         # =========================================================================
         # method x: Spectrum.speriodogram
         #           http://thomas-cokelaer.info/software/spectrum/html/user/ref_fourier.html#spectrum.periodogram.Periodogram
-        # =========================================================================          
+        # =========================================================================
         from spectrum import speriodogram
         power_spectrum_input = speriodogram(recharge_detrend,
                                             detrend = False,
@@ -579,11 +580,11 @@ def fft_psd(
                                             sampling = sampling_frequency)
         power_spectrum_result = power_spectrum_output / power_spectrum_input
 
-    elif method == 'correlation':    
+    elif method == 'correlation':
         # =========================================================================
         # method x: CORRELOGRAMPSD.periodogram
         #           http://thomas-cokelaer.info/software/spectrum/html/user/ref_fourier.html#spectrum.periodogram.Periodogram
-        # =========================================================================      
+        # =========================================================================
         from spectrum import CORRELOGRAMPSD
         tes = CORRELOGRAMPSD(recharge_detrend, recharge_detrend, lag=15)
         psd = tes[len(tes)/2:]
@@ -601,11 +602,11 @@ def fft_psd(
                 frequency_input = np.delete(frequency_input, i)
                 power_spectrum_result = np.delete(power_spectrum_result, i)
             break
-        
+
     # plot the resulting power spectrum
     # -------------------------------------------------------------------------
     font = {"family": "normal", "weight": "normal", "size": 15}
-    plt.rc("font", **font)  
+    plt.rc("font", **font)
     plt.rc("legend",fontsize=10)
     fig = plt.figure(figsize=(16, 7))
     ax = fig.add_subplot(1, 1, 1)
@@ -619,28 +620,28 @@ def fft_psd(
         ax.set_ylim(ymin, ymax)
     if xmin != None and xmax != None:
         ax.set_xlim(xmin, xmax)
-        
+
     # ax.plot(freq_month[ind],psd)
     ax.plot(frequency_input, power_spectrum_result, label="PSD")
-    
+
     # power spectral density analytical
     # -------------------------------------------------------------------------
     if shh_anal == True:
         print("!! Calculating analytical psd...")
         print("Input parameters are: "
-              + "\nSy: " 
+              + "\nSy: "
               + str(Sy)
               + "\nT: "
               + str(T)
               + "\nLocation: "
               + str(aquifer_length - distance_to_river)
-              + "\nA. Length: " 
+              + "\nA. Length: "
               + str(aquifer_length)
               )
         power_spectrum_output_anal = shh_analytical((frequency_input, power_spectrum_input), Sy, T, aquifer_length - distance_to_river, aquifer_length)
 
 
-    
+
     ax.set_title(
         "Power Spectral Density for observation point "
         + str(obs_point)
@@ -672,28 +673,28 @@ def fft_psd(
         # power_spectrum_result_filtered = signal.wiener(power_spectrum_result, wiener_window)
         # power_spectrum_result_filtered = moving_average(power_spectrum_result, 3)
         # ax.plot(frequency_input[:len(power_spectrum_result_filtered)], power_spectrum_result_filtered, label='filtered PSD')
-        
+
         # =====================================================================
         # analytical solution by Liang and Zhang 2013
         # =====================================================================
-        
+
         if anal_fit == True:
             from fit_analytical_psd import shh_analytical_fit
             popt, pcov = shh_analytical_fit(power_spectrum_input, power_spectrum_result, frequency_input, aquifer_length-distance_to_river, aquifer_length, m=5, n=5, norm=False)
             popt[0] = abs(popt[0])
-            popt[1] = abs(popt[1])            
-            
+            popt[1] = abs(popt[1])
+
             print("Inferred aquifer parameters: Storativity, Transmissivity: " + str(popt[0]) + ", " + str(popt[1]))
             S_anal = popt[0]
             T_anal = popt[1]
             kf_anal = popt[1] / aquifer_thickness
             D_anal = popt[1] /popt[0]
-            
+
             if popt[0] == 1.0 and popt[1] == 1.0:
                 print("T and S have been set to nan.")
                 T_anal, S_anal = np.nan, np.nan
-            
-            
+
+
             output_anal = (
                     "Analytical fit:\n "
                     + "T [m2/s]: "
@@ -708,7 +709,7 @@ def fft_psd(
                     + "D [m2/s]: "
                     + "%0.4e" % D_anal
                 )
-            
+
             input_param = (
                     "OGS input parameter:\n "
                     + "T [m2/s]: "
@@ -731,10 +732,10 @@ def fft_psd(
                 horizontalalignment="center",
                 bbox=dict(boxstyle="square", facecolor="#F2F3F4", ec="1", pad=0.8, alpha=1),
             )
-                        
-            
+
+
             ax.plot(frequency_input, shh_analytical((frequency_input,power_spectrum_input), popt[0], popt[1], aquifer_length-distance_to_river, aquifer_length, m=5, n=5, norm=anal_fit_norm), label="analytical fit", color="red")
-            
+
             T_l = np.nan
             kf_l = np.nan
             S_l = np.nan
@@ -749,8 +750,8 @@ def fft_psd(
             D_d = np.nan
             t_d = np.nan
             a_d = np.nan
-            
-            
+
+
         if model_fit == True:
             # =====================================================================
             # linear model
@@ -758,11 +759,11 @@ def fft_psd(
             # least squares automatic fit for linear aquifer model (Gelhar, 1993):
             # abs(H_h(w))**2 = 1 / (a**2 * ( 1 + ((t_l**2) * (w**2))))
             # ---------------------------------------------------------------------
-    
+
             if a_l == None and t_l == None:
                 # make an initial guess for a_l, and t_l
                 initial_guess = np.array([1e-15, 40000])
-    
+
                 # generate a weighing array
                 # ---------------------------------------------------------------------
                 # based on dividing the data into segments
@@ -773,7 +774,7 @@ def fft_psd(
                 if len(power_spectrum_result) % len(weights_l) != 0:
                     for residual in range(len(power_spectrum_result) % len(weights_l)):
                         sigma_l = np.append(sigma_l, weights_l[-1])
-    
+
                 try:
                     # perform the fit
                     popt_l, pcov_l = optimization.curve_fit(
@@ -786,7 +787,7 @@ def fft_psd(
                     # abs to avoid negative values from optimization
                     t_l = abs(popt_l[1])
                     a_l = abs(popt_l[0])
-    
+
                     # Plot the linear fit model
                     # ---------------------------------------------------------------------
                     linear_model = []
@@ -795,7 +796,7 @@ def fft_psd(
                         line = linear_fit(frequency_input[i], a_l, t_l)
                         linear_model.append(line)
                     ax.plot(frequency_input, linear_model, label="linear model")
-    
+
                     # plot the linear model with input parameters of ogs
                     if target == True:
                         if a_of_x == True:
@@ -840,7 +841,7 @@ def fft_psd(
                             ],
                             label="linear model, target",
                         )
-    
+
                     # calculate aquifer parameters
                     # ---------------------------------------------------------------------
                     if a_of_x == True:
@@ -893,7 +894,7 @@ def fft_psd(
                     print(output_l)
                     fig_txt = tw.fill(output_l, width=250)
                 except RuntimeError:
-    
+
                     print(
                         "Automatic linear model fit failed... Provide a_l and t_l manually!"
                     )
@@ -918,7 +919,7 @@ def fft_psd(
                     line = linear_fit(frequency_input[i], a_l, t_l)
                     linear_model.append(line)
                 ax.plot(frequency_input, linear_model, label="linear model")
-    
+
                 # calculate aquifer parameters
                 # ---------------------------------------------------------------------
                 if a_of_x == True:
@@ -929,7 +930,7 @@ def fft_psd(
                         * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
                         )
                 print("T_l = (a_l* aquifer_length ** 2 * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4)")
-                print("T_l = " + str(a_l) + " * " + str(aquifer_length) + " ** 2 * (1 - ((" + str(distance_to_river) + ") / " + str(aquifer_length) + ") - 1)) ** 4)")    
+                print("T_l = " + str(a_l) + " * " + str(aquifer_length) + " ** 2 * (1 - ((" + str(distance_to_river) + ") / " + str(aquifer_length) + ") - 1)) ** 4)")
                 if a_of_x == False:
                     T_l = a_l * aquifer_length**2 / 3.
                 kf_l = T_l / aquifer_thickness
@@ -969,7 +970,7 @@ def fft_psd(
                 )
                 print(output_l)
                 fig_txt = tw.fill(output_l, width=250)
-    
+
             # =====================================================================
             # Dupuit Model
             # =====================================================================
@@ -979,11 +980,11 @@ def fft_psd(
             # O = td * w
             # E = x - x_o    distance from river
             # ---------------------------------------------------------------------
-    
+
             if a_d == None and t_d == None and dupuit == True:
                 # make an initial guess for a_l, and t_l
                 initial_guess = np.array([0.98e-15, 2000000])
-    
+
                 # generate a weighing array
                 # ---------------------------------------------------------------------
                 # based on dividing the data into segments
@@ -995,7 +996,7 @@ def fft_psd(
                 if len(power_spectrum_result) % len(weights_d) != 0:
                     for residual in range(len(power_spectrum_result) % len(weights_d)):
                         sigma_d = np.append(sigma_d, weights_d[-1])
-    
+
                 try:
                     # perform the fit
                     popt_d, pcov_d = optimization.curve_fit(
@@ -1010,15 +1011,15 @@ def fft_psd(
                     # a_d = popt_d[0]
                     a_d = popt_d[0]
                     t_d = popt_d[1]
-    
+
                 except RuntimeError:
                     T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
                     print("Dupuit fit failed... Provide a_d and a_t manually!")
-    
+
                 # assign nan to alls parameters if duptui model is not used
             else:
                 T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
-    
+
             # Plot the Dupuit model
             # ---------------------------------------------------------------------
             try:
@@ -1028,7 +1029,7 @@ def fft_psd(
                     line = dupuit_fit(frequency_input[i], a_d, t_d)
                     dupuit_model.append(line)
                 ax.plot(frequency_input, dupuit_model, label="Dupuit model")
-    
+
                 # plot the dupuit model with input parameters of ogs
                 if target == True:
                     print("Calculating parameters for target model for parameter 'a' in dependence on x"
@@ -1059,7 +1060,7 @@ def fft_psd(
                         ],
                         label="dupuit model, target",
                     )
-    
+
                 # calculate aquifer parameters
                 # ---------------------------------------------------------------------
                 #print("calculation of T with new formula")
@@ -1068,8 +1069,8 @@ def fft_psd(
                 #    * aquifer_length ** 2
                 #    * (1 - ((float(distance_to_river) / aquifer_length) - 1)) ** 4
                 #)
-                
-                
+
+
                 # method from Gelhar 1974, beta = pi^2/4
                 if a_alterna == True:
                     T_d = a_d * aquifer_length**2 * 4 / np.pi**2
@@ -1111,12 +1112,12 @@ def fft_psd(
                 )
                 print(output_d)
                 fig_txt = tw.fill(str(output_l) + "\n" + str(output_d), width=145)
-    
+
             except TypeError:
                 print("Automatic Dupuit-model fit failed... Provide a_d and t_d manually.")
                 T_d, kf_d, Ss_d, D_d = np.nan, np.nan, np.nan, np.nan
                 fig_txt = tw.fill(str(output_l), width=200)
-    
+
             # annotate the figure
             # fig_txt = tw.fill(tw.dedent(output), width=120)
             plt.figtext(
@@ -1126,21 +1127,21 @@ def fft_psd(
                 horizontalalignment="center",
                 bbox=dict(boxstyle="square", facecolor="#F2F3F4", ec="1", pad=0.8, alpha=1),
             )
-    
+
         #    if a_d == None and t_d == None and dupuit == True:
-    
-    
-    
+
+
+
     # plot the target analytical power spectrum based on input parameters from ogs model runs
-    # ---------------------------------------------------------------------   
+    # ---------------------------------------------------------------------
     if o_i == "o":
         ax.plot(frequency_input, power_spectrum_output_anal, label="analytical target", color="green", marker="o", ls="", markersize=0.5)
-    if o_i == "oi":    
+    if o_i == "oi":
         power_spectrum_result_anal = power_spectrum_output_anal / power_spectrum_input
         ax.plot(frequency_input, power_spectrum_result_anal, label="analytical, target")
 
 
-    
+
     plt.legend(loc="best")
     #plt.show()
     if savefig == True:
