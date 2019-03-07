@@ -127,9 +127,105 @@ threshold=1e-6
 ###############################################################################
 ###############################################################################
 """
+"""
+###############################################################################
+# configurations for gw model
+#
+###############################################################################
+
+path_to_multiple_projects = "/Users/houben/PhD/modelling/20190201_gw_model/source/right_initial_cond_1000_30/model_runs"
+project_folder_list = [
+    f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
+]
+try:
+    project_folder_list.remove("fitting_results")
+except ValueError:
+    pass
+project_folder_list.sort()
+
+try:
+    project_folder_list.remove("fitting_results")
+except ValueError:
+    pass
+project_folder_list.sort()
+obs_point_list = ['obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0850', 'obs_0900', 'obs_0920', 'obs_0950', 'obs_0970', 'obs_0990']
+obs_locations = [100, 200, 300, 400 ,500 ,600, 700, 800, 850, 900, 920, 950, 970, 990]
+
+S_list = [0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45]
+Ss_list = [np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan]
+
+T_list = [
+    30.00e-05,
+    30.00e-05,
+    30.00e-05,
+    30.00e-05,
+    30.00e-05,
+    30.00e-05,
+    30.00e-05,
+    30.00e-05,
+]
+
+kf_list = [
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    
+    1.00e-05,
+]
+
+aquifer_thickness = 30
+aquifer_length = 1000
+weights_d = [1, 1, 1, 1, 1]
+a_d_in = None
+t_d_in = None
+# a_d_in=3e-8
+# t_d_in=6.8e+7
+time_steps = 8401
+time_step_size = 86400
+comment = "LOG"
+threshold = 1
+fit = True
+mean_thick = False
+icsub = None
+target = False
+cutoff = 0
+# config for shh/sww
+#ymin = 1e9
+#ymax = 1e22
+#xmin = 1e-9
+#xmax = 1e-5
+# config for shh
+#ymin = 1e-7 
+#ymax = 1e7
+#xmin = 1e-9
+#xmax = 1e-5
+# config for automatic
+#ymin = None
+#ymax = None
+#xmin = None
+#xmax = None
+a_of_x = False
+a_alterna = False
+detrend = True
+cut_averaged_head = 0
+which = "mean"
+shh_anal = True
+o_i = "o"
+anal_fit = True
+anal_fit_norm = False
+model_fit = False
+gw_model = True
+
+distance_to_river_list = [aquifer_length - i for i in obs_locations]
+"""
+
 
 ###############################################################################
-# configurations for model runs on EVE:
+# configurations for model runs on EVE and also for local projects
 # /work/houben/spectral_analysis/20181211_dupuit
 # has to start for each folder seperately
 ###############################################################################
@@ -227,23 +323,27 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
+<<<<<<< HEAD
 comment = raw_input("Give a comment: ")
+=======
+comment = "DELETE"
+>>>>>>> 065ad4a9bd7535d37e91a626fd20c12459f267a8
 threshold = 1
-fit = True
+fit = False
 mean_thick = False
 icsub = None
 target = False
 cutoff = None
 # config for shh/sww
-#ymin = 1e9
-#ymax = 1e22
-#xmin = 1e-9
-#xmax = 1e-5
-# config for shh
-ymin = 1e-7 
-ymax = 1e7
+ymin = 1e9
+ymax = 1e22
 xmin = 1e-9
 xmax = 1e-5
+# config for shh
+#ymin = 1e-7 
+#ymax = 1e8
+#xmin = 1e-9
+#xmax = 1e-5
 # config for automatic
 #ymin = None
 #ymax = None
@@ -254,11 +354,13 @@ a_alterna = False
 detrend = True
 cut_averaged_head = 0
 which = "mean"
-shh_anal = True
-o_i = "o"
-anal_fit = True
+shh_anal = False
+o_i = "oi"
+anal_fit = False
 anal_fit_norm = False
 model_fit = False
+
+gw_model = False
 
 distance_to_river_list = [aquifer_length - i for i in obs_locations]
 ###############################################################################
@@ -267,7 +369,7 @@ distance_to_river_list = [aquifer_length - i for i in obs_locations]
 
 """
 ###############################################################################
-# configurations for model runs: 
+# configurations for model runs: OLD
 # /Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_whitenoise
 # /Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30_mHM
 # /Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/frequency/dupuit_flow
@@ -394,7 +496,7 @@ detrend=False
 
 """
 ###############################################################################
-# configurations for model run: run1_20181030
+# configurations for model run: run1_20181030 OLD
 ###############################################################################
 
 path_to_multiple_projects = "/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30"
@@ -514,6 +616,8 @@ print(
     + str(anal_fit_norm)
     + "\nUse the Dupuit and Linear reservoir model to fit the PSD: "
     + str(model_fit)
+    + "\nCalculate PSD for model results of gw model de Rooij 2012: "
+    + str(gw_model)
     + "\n###############################################################################"
 )
 
@@ -556,10 +660,26 @@ for i, project_folder in enumerate(project_folder_list):
     )
     print("Starting with project: " + project_folder)
     path_to_project = path_to_multiple_projects + "/" + project_folder
-    single_file_names = [
-        f for f in os.listdir(str(path_to_project)) if f.endswith(".tec")
-    ]
-    single_file_names.sort()
+    
+    if gw_model == True:
+        single_file_names = [
+            f for f in os.listdir(str(path_to_project)) if f.endswith(".txt")
+        ]
+        import re
+        single_file_names = sorted(single_file_names, key=lambda x: [int(s) for s in re.findall(r'\d+', x)])
+        print("Order of input files has to corespond to the given aquifer parameters: " + str(", ".join(single_file_names)))
+        if len(single_file_names)!=len(obs_point_list):
+            print("Your number of locations is not equal to the number of .txt files in your project directory.")
+
+    else:
+        single_file_names = [
+            f for f in os.listdir(str(path_to_project)) if f.endswith(".tec")
+        ]
+        single_file_names.sort()
+        print("Order of input files has to corespond to the given aquifer parameters: " + str(", ".join(single_file_names)))
+        if len(single_file_names)!=len(obs_point_list):
+            print("Your number of locations is not equal to the number of .txt files in your project directory.")
+    
     name_of_project_ogs = str(
         [f for f in os.listdir(str(path_to_project)) if f.endswith(".rfd")]
     )[2:-6]
@@ -577,18 +697,28 @@ for i, project_folder in enumerate(project_folder_list):
                 + "/spatial_averaged_head_timeseries.txt"
             )[cut_averaged_head:]
         )
+    
+    
+   
     for j, single_file_name in enumerate(single_file_names):
+
         obs_point = obs_point_list[j]
         print("1st: Getting time series for observation point: " + str(obs_point))
-        fft_data, recharge = get_fft_data_from_simulation(
-            path_to_project=path_to_project,
-            name_of_project_ogs=name_of_project_ogs,
-            single_file=path_to_project + "/" + single_file_name,
-            time_steps=time_steps,
-            obs_point=obs_point,
-            which=which,
-        )
-
+    
+        if gw_model == True:
+            fft_data = np.loadtxt(path_to_project + "/" + single_file_name)
+            recharge = np.loadtxt(path_to_project + "/" + name_of_project_ogs + ".rfd")[:,1]
+            
+        else:    
+            fft_data, recharge = get_fft_data_from_simulation(
+                path_to_project=path_to_project,
+                name_of_project_ogs=name_of_project_ogs,
+                single_file=path_to_project + "/" + single_file_name,
+                time_steps=time_steps,
+                obs_point=obs_point,
+                which=which,
+            )
+            
         print(
             "LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS"
         )

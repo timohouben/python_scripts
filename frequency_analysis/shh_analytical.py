@@ -138,6 +138,6 @@ def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
         Shh_Sww = [value/Sww[i] for i, value in enumerate(Shh)]
         Shh_Sww = np.asarray(Shh_Sww)
         return Shh_Sww
-    else:    
+    else:
         Shh = np.asarray(Shh)
         return Shh

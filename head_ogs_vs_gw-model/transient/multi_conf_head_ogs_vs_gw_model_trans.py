@@ -31,15 +31,25 @@ from cycler import cycler
 # global variables set manually
 # =============================================================================
 
+if __name__ == "__main__":
+    try:
+        path_to_multiple_projects = sys.argv[1]    
+    except IndexError:
+        print("You forgot to give the path to multiple projects as argument...")
+        path_to_multiple_projects = raw_input("Insert path to multiple projects: ")
 
-#path_to_multiple_projects = input()
-path_to_multiple_projects = raw_input("Insert path to multiple projects: ")
-first_part_of_name_of_project_ogs = "con_transient_"
-which_data_to_plot = 1 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
+else:
+    path_to_multiple_projects = raw_input("Insert path to multiple projects: ")
+
+    
+print(path_to_multiple_projects)
+first_part_of_name_of_project_ogs = ""
+which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
-time_steps = 365  # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_0000', 'obs_0200', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0800', 'obs_0950', 'obs_0990', 'obs_1000']
+time_steps = 10950  # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
+obs_per_plot = ['obs_00000','obs_00050','obs_00100','obs_00200','obs_00400','obs_00500','obs_00600','obs_00800','obs_00920','obs_00930','obs_00940','obs_00950','obs_00960','obs_00970','obs_00980','obs_00990','obs_01000']
+#['obs_0000', 'obs_0200', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0800', 'obs_0950', 'obs_0990', 'obs_1000']
 # obs_per_plot = obs_point_list = get_obs("/work/houben/spectral_analysis/20181211_dupuit/5000/10/0091_5000_10_9.00e-05")[1]
 
 
@@ -94,7 +104,8 @@ for i,curr_dir in enumerate(list_dir):
     print('##################################################################')
     #name_of_project_gw_model = str(curr_dir[:-13])
     name_of_project_gw_model = curr_dir
-    name_of_project_ogs = str(first_part_of_name_of_project_ogs) + str(curr_dir)
+    #name_of_project_ogs = str(first_part_of_name_of_project_ogs) + str(curr_dir)
+    name_of_project_ogs = 'transect'
    
     # ========================================== ===================================
     # global variables set automatically
@@ -119,7 +130,10 @@ for i,curr_dir in enumerate(list_dir):
                 print('Saving finished.')
         except IOError:
             print("Failed to load input data.")
-            
+
+        tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project)
+        #print(tecs)
+        #print(name_of_project_ogs, path_to_project)
         time_s = tecs[process][obs_per_plot[0]]["TIME"]
         time_d = time_s / 86400
     
