@@ -223,7 +223,7 @@ gw_model = True
 distance_to_river_list = [aquifer_length - i for i in obs_locations]
 """
 
-"""
+
 ###############################################################################
 # configurations for model runs on EVE and also for local projects
 # /work/houben/spectral_analysis/20181211_dupuit
@@ -358,7 +358,7 @@ gw_model = False
 distance_to_river_list = [aquifer_length - i for i in obs_locations]
 ###############################################################################
 ###############################################################################
-"""
+
 
 """
 ###############################################################################
@@ -532,81 +532,6 @@ distance_to_river_list = [1800, 1200, 800, 400, 200]  # 2000
 ###############################################################################
 ###############################################################################
 
-
-###############################################################################
-# configurations for model runs on EVE and also for local projects
-# /Users/houben/PhD/modelling/20190304_spectral_analysis_homogeneous/models
-###############################################################################
-path_to_multiple_projects = raw_input(
-    "Specfy parent directory to multiple model runs: "
-)
-project_folder_list = [
-    f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
-]
-try:
-    project_folder_list.remove("fitting_results")
-except ValueError:
-    pass
-project_folder_list.sort()
-obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[1]
-
-obs_locations = get_obs(
-    path_to_multiple_projects + "/" + project_folder_list[0]
-)[2]
-
-
-aquifer_thickness = 30
-aquifer_length = 1000
-weights_d = [1, 1, 1, 1, 1]
-a_d_in = None
-t_d_in = None
-# a_d_in=3e-8
-# t_d_in=6.8e+7
-time_steps = 8401
-time_step_size = 86400
-comment = "DELETE"
-threshold = 1
-fit = False
-mean_thick = False
-icsub = None
-target = False
-cutoff = 0
-# config for shh/sww
-ymin = 1e9
-ymax = 1e22
-xmin = 1e-9
-xmax = 1e-5
-# config for shh
-#ymin = 1e-7 
-#ymax = 1e8
-#xmin = 1e-9
-#xmax = 1e-5
-# config for automatic
-#ymin = None
-#ymax = None
-#xmin = None
-#xmax = None
-a_of_x = False
-a_alterna = False
-detrend = True
-cut_averaged_head = 0
-which = "mean"
-shh_anal = False
-o_i = "oi"
-anal_fit = False
-anal_fit_norm = False
-model_fit = False
-
-gw_model = False
-
-distance_to_river_list = [aquifer_length - i for i in obs_locations]
-###############################################################################
-###############################################################################
-
-
-
-
-
 # write parameters in log file
 
 print(
@@ -622,6 +547,12 @@ print(
     + str(obs_point_list)
     + "\nDistances to river: "
     + str(distance_to_river_list)
+    + "\nStorativities: "
+    + str(S_list)
+    + "\nspec. Storativities: "
+    + str(Ss_list)
+    + "\nHydraulic cond.: "
+    + str(kf_list)
     + "\nAquifer thickness: "
     + str(aquifer_thickness)
     + "\nAquifer length: "
@@ -1241,7 +1172,7 @@ def plot(params_l=None, params_d=None, methods=methods, labels=labels):
                 plt.close("all")
 
 
-#plot()
+plot()
 
 
 
