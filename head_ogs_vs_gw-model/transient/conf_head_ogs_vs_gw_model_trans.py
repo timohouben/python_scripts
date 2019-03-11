@@ -22,7 +22,7 @@ TO IMPLE;ENT IN THIS SCRIPT:
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from ogs5py.reader import readtec_polyline
+#from ogs5py.reader import readtec_polyline
 import numpy as np
 import re
 import os

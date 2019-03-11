@@ -23,6 +23,7 @@ import time
 from calculate_model_params import calc_aq_param
 from get_obs import get_obs
 from own_colors import own_colors
+from get_ogs_parameters import get_ogs_parameters 
 
 then = time.time()
 
@@ -246,37 +247,38 @@ obs_locations = get_obs(
     path_to_multiple_projects + "/" + project_folder_list[0]
 )[2]
 
-# only necessary when using model fits
-Ss_list = [
-    1.20e-03,
-    1.10e-03,
-    1.00e-03,
-    9.00e-04,
-    8.00e-04,
-    7.00e-04,
-    6.00e-04,
-    5.00e-04,
-    4.00e-04,
-    3.00e-04,
-    2.00e-04,
-    1.00e-04,
-    9.00e-05,
-]
+# configuration for models on local machine
+#Ss_list = [
+#    1.20e-03,
+#    1.10e-03,
+#    1.00e-03,
+#    9.00e-04,
+#    8.00e-04,
+#    7.00e-04,
+#    6.00e-04,
+#    5.00e-04,
+#    4.00e-04,
+#    3.00e-04,
+#    2.00e-04,
+#    1.00e-04,
+#    9.00e-05,
+#]
 
-S_list = [
-    3.60e-02,
-    3.30e-02,
-    3.00e-02,
-    2.70e-02,
-    2.40e-02,
-    2.10e-02,
-    1.80e-02,
-    1.50e-02,
-    1.20e-02,
-    9.00e-03,
-    6.00e-03,
-    3.00e-03,
-    2.70e-03,
+# configuration for models on eve
+
+Ss_list = [1.00E-03,
+1.00E-04,
+1.10E-03,
+1.20E-03,
+2.00E-04,
+3.00E-04,
+4.00E-04,
+5.00E-04,
+6.00E-04,
+7.00E-04,
+8.00E-04,
+9.00E-04,
+9.00E-05
 ]
 
 T_list = [
@@ -311,8 +313,10 @@ kf_list = [
     1.00e-05,
 ]
 
-aquifer_thickness = 30
-aquifer_length = 1000
+aquifer_thickness = int(raw_input("Aquifer thickness: "))
+S_list = [i * aquifer_thickness for i in Ss_list]
+
+aquifer_length = int(raw_input("Aquifer length: "))
 weights_d = [1, 1, 1, 1, 1]
 a_d_in = None
 t_d_in = None
@@ -320,13 +324,13 @@ t_d_in = None
 # t_d_in=6.8e+7
 time_steps = 8401
 time_step_size = 86400
-comment = "DELETE"
+comment = raw_input("Give a comment: ")
 threshold = 1
 fit = False
 mean_thick = False
 icsub = None
 target = False
-cutoff = 0
+cutoff = None
 # config for shh/sww
 ymin = 1e9
 ymax = 1e22
@@ -747,6 +751,8 @@ for i, project_folder in enumerate(project_folder_list):
     )[2:-6]
     print(name_of_project_ogs)
 
+    print("This is the name of the project: ", name_of_project_ogs)
+
     if mean_thick == True:
         # loop over all .tec files
         aquifer_thickness = np.mean(
@@ -835,8 +841,8 @@ for i, project_folder in enumerate(project_folder_list):
                 o_i=o_i,
                 a_d=a_d_in,
                 t_d=t_d_in,
-                Ss_list=Ss_list,
-                kf_list=kf_list,
+                Ss_input=get_ogs_parameters(path_to_project)[0],
+                kf_input=get_ogs_parameters(path_to_project)[1],
                 obs_number=j,
                 model_number=i,
                 distance_to_river_list=distance_to_river_list,
