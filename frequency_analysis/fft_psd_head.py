@@ -24,7 +24,7 @@ from conf_head_ogs_vs_gw_model_trans import (
     getlist_gw_model,
     convert_obs_list_to_index,
 )
-from ogs5py.reader import readtec_polyline
+#from ogs5py.reader import readtec_polyline
 import scipy.fftpack as fftpack
 from scipy import signal
 import numpy as np
@@ -42,7 +42,7 @@ from shh_analytical import shh_analytical
 def get_fft_data_from_simulation(
     path_to_project="/Users/houben/PhD/modelling/transect/ogs/confined/transient/rectangular/Groundwater@UFZ/Model_Setup_D_day_EVE/homogeneous/D18-D30/testing2/Groundwater@UFZ_eve_HOMO_276_D_4_results",
     single_file="/Users/houben/Desktop/Shh_test_Groundwater@UFZ_eve_HOMO_276_D_30/content/transect_01_ply_obs_0000_t1_GROUNDWATER_FLOW.tec",
-    which_data_to_plot=2,
+    which_data_to_plot=1,
     name_of_project_gw_model="",
     name_of_project_ogs="transect_01",
     process="GROUNDWATER_FLOW",
@@ -93,31 +93,31 @@ def get_fft_data_from_simulation(
         )
     except IOError:
         print("NOT Reading .tec-files, because VTK is not working on EVE...")
-        print("Reading .tec-files...")
+#        print("Reading .tec-files...")
         print(single_file[-40:])
-        tecs = readtec_polyline(
-            task_id=name_of_project_ogs,
-            task_root=path_to_project,
-            single_file=single_file,
-        )
+#        tecs = readtec_polyline(
+#            task_id=name_of_project_ogs,
+#            task_root=path_to_project,
+#            single_file=single_file,
+#        )
         print("Finished reading.")
 
         # =============================================================================
         # get data dependent on which_data_to_plot
         # =============================================================================
-        if which_data_to_plot == 2:
+        if which_data_to_plot == 1:
             fft_data = gethead_ogs_each_obs(
                 process,
                 obs_point,
                 which,
                 time_steps,
-                tecs=tecs,
+#                tecs=tecs,
                 path_to_project=path_to_project,
                 single_file=True,
                 save_heads=True,
             )
             # recharge = getrecharge(path_to_project=path_to_project, name_of_project_ogs=name_of_project_ogs, time_steps=time_steps)
-        elif which_data_to_plot == 1:
+        elif which_data_to_plot == 2:
             fft_data = gethead_gw_model_each_obs(
                 make_array_gw_model(
                     split_gw_model(
