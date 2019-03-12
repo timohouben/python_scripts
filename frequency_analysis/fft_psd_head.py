@@ -91,15 +91,16 @@ def get_fft_data_from_simulation(
             "Loaded heads from file: "
             + str("head_ogs_" + str(obs_point) + "_" + str(which) + ".txt")
         )
+        tecs = []
     except IOError:
-        print("NOT Reading .tec-files, because VTK is not working on EVE...")
-#        print("Reading .tec-files...")
+        print("Reading .txt-files failed...")
+        print("Reading .tec-files...")
         print(single_file[-40:])
-#        tecs = readtec_polyline(
-#            task_id=name_of_project_ogs,
-#            task_root=path_to_project,
-#            single_file=single_file,
-#        )
+        tecs = readtec_polyline(
+           task_id=name_of_project_ogs,
+            task_root=path_to_project,
+            single_file=single_file,
+        )
         print("Finished reading.")
 
         # =============================================================================
@@ -111,7 +112,7 @@ def get_fft_data_from_simulation(
                 obs_point,
                 which,
                 time_steps,
-#                tecs=tecs,
+                tecs=tecs,
                 path_to_project=path_to_project,
                 single_file=True,
                 save_heads=True,

@@ -48,9 +48,9 @@ which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
 time_steps = 10950  # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_00000','obs_00050','obs_00100','obs_00200','obs_00400','obs_00500','obs_00600','obs_00800','obs_00920','obs_00930','obs_00940','obs_00950','obs_00960','obs_00970','obs_00980','obs_00990','obs_01000']
+obs_per_plot = ['obs_00000','obs_00050','obs_00100','obs_00200','obs_00400','obs_00500','obs_00600','obs_00800','obs_00850','obs_00900','obs_00910', 'obs_00920','obs_00930','obs_00940','obs_00950','obs_00960','obs_00970','obs_00980','obs_00990','obs_01000']
 #['obs_0000', 'obs_0200', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0800', 'obs_0950', 'obs_0990', 'obs_1000']
-# obs_per_plot = obs_point_list = get_obs("/work/houben/spectral_analysis/20181211_dupuit/5000/10/0091_5000_10_9.00e-05")[1]
+# obs_per_plot = obs_point_list = obs("/work/houben/spectral_analysis/20181211_dupuit/5000/10/0091_5000_10_9.00e-05")[1]
 
 
 #['obs_0000', 'obs_0010', 'obs_0100', 'obs_0200', 'obs_0300', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0700', 'obs_0800', 'obs_0900', 'obs_0950', 'obs_0960', 'obs_0970', 'obs_0980', 'obs_0990', 'obs_1000']
@@ -341,6 +341,7 @@ for i,curr_dir in enumerate(list_dir):
         '''
         try:
             head_ogs_timeseries_each_obs = np.loadtxt(str(path_to_project) + '/' + 'head_ogs_' + str(observation_point) + '_' + str(which) + '.txt')
+            print('Loaded heads from file...')
         except IOError:
             if single_file == False or single_file == None:
                 number_of_columns = tecs[process][observation_point]["HEAD"].shape[1]

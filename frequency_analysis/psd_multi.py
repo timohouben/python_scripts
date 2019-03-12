@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env pyth/Users/houben/PhD/modelling/20190304_spectral_analysis_homogeneous/modelsn2
 # -*- coding: utf-8 -*-
 """
 Created on Tue Aug 21 09:54:44 2018
@@ -553,6 +553,8 @@ except ValueError:
     pass
 project_folder_list.sort()
 obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[1]
+obs_point_list.remove('obs_00850')
+print('REMOVE THAT THING BEFORE MIGRATING TO EVVE')
 
 obs_locations = get_obs(
     path_to_multiple_projects + "/" + project_folder_list[0]
@@ -783,13 +785,17 @@ for i, project_folder in enumerate(project_folder_list):
                 time_steps=time_steps,
                 obs_point=obs_point,
                 which=which,
+                which_data_to_plot=1,
+                name_of_project_gw_model="",
+                process="GROUNDWATER_FLOW"
             )
             
-        print(
-            "LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS"
-        )
-        fft_data[-1] = fft_data[-2]
-        recharge[-1] = recharge[-2]
+            
+        #print(
+        #    "LAST ENTRY OF HEAD and RECHARGE TIME SERIES WAS SET EQUAL TO PREVIOUS ONE DUE TO UNREASONABLE RESULTS"
+        #)
+        #fft_data[-1] = fft_data[-2]
+        #recharge[-1] = recharge[-2]
 
         if cutoff != None:
             print(
