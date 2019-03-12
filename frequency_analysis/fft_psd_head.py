@@ -24,7 +24,7 @@ from conf_head_ogs_vs_gw_model_trans import (
     getlist_gw_model,
     convert_obs_list_to_index,
 )
-#from ogs5py.reader import readtec_polyline
+from ogs5py.reader import readtec_polyline
 import scipy.fftpack as fftpack
 from scipy import signal
 import numpy as np
@@ -35,7 +35,6 @@ import datetime
 import os
 import scipy.optimize as optimization
 import textwrap as tw
-from running_mean import moving_average
 from calculate_model_params import calc_aq_param
 from shh_analytical import shh_analytical
 
@@ -96,11 +95,11 @@ def get_fft_data_from_simulation(
         print("NOT Reading .tec-files, because VTK is not working on EVE...")
         print("Reading .tec-files...")
         print(single_file[-40:])
-        #tecs = readtec_polyline(
-        #    task_id=name_of_project_ogs,
-        #    task_root=path_to_project,
-        #    single_file=single_file,
-        #)
+        tecs = readtec_polyline(
+            task_id=name_of_project_ogs,
+            task_root=path_to_project,
+            single_file=single_file,
+        )
         print("Finished reading.")
 
         # =============================================================================
@@ -192,8 +191,8 @@ def fft_psd(
     wiener_window=100,
     obs_point="no_obs_given",
     comment="",
-    Ss_list=[],
-    kf_list=[],
+    Ss_input=1,
+    kf_input=1,
     obs_number=0,
     model_number=0,
     distance_to_river_list=0,
@@ -237,8 +236,8 @@ def fft_psd(
     +"\nwiener_window: "+    str(wiener_window)
     +"\nobs_point: "   + str(obs_point)
     +"\ncomment: "    +str(comment)
-    +"\nSs_list: "   + str(Ss_list)
-    +"\nkf_list: "   + str(kf_list)
+    +"\nSs_input: "   + str(Ss_input)
+    +"\nkf_input: "   + str(kf_input)
     +"\nobs_number: "   + str(obs_number)
     +"\nmodel_number: "   + str(model_number)
     +"\ndistance_to_river_list: " +   str(distance_to_river_list)
@@ -802,31 +801,31 @@ def fft_psd(
                     if target == True:
                         if a_of_x == True:
                             print("Calculating parameters for target model for parameter 'a' in dependence on x"
-                                  + "\nSs: " + str(Ss_list[model_number])
-                                  + "\nkf: " + str(kf_list[model_number])
+                                  + "\nSs: " + str(Ss_input)
+                                  + "\nkf: " + str(kf_input)
                                   + "\naquifer length: " + str(aquifer_length)
                                   + "\naquifer thickness: " + str(aquifer_thickness)
                                   + "\nmodel: " + "linear"
                                   + "\ndistance to river: " + str(distance_to_river_list)
                                   )
                             params_real = calc_aq_param(
-                                Ss_list[model_number],
-                                kf_list[model_number],
+                                Ss_input,
+                                kf_input,
                                 aquifer_length,
                                 aquifer_thickness,
                                 model="linear",
                                 distance=distance_to_river_list[obs_number])
                         else:
                             print("Calculating parameters for target model for parameter 'a' INdependent on x"
-                                  + "\nSs: " + str(Ss_list[model_number])
-                                  + "\nkf: " + str(kf_list[model_number])
+                                  + "\nSs: " + str(Ss_input)
+                                  + "\nkf: " + str(kf_input)
                                   + "\naquifer length: " + str(aquifer_length)
                                   + "\naquifer thickness: " + str(aquifer_thickness)
                                   + "\nmodel: " + "linear"
                                   )
                             params_real = calc_aq_param(
-                                Ss_list[model_number],
-                                kf_list[model_number],
+                                Ss_input,
+                                kf_input,
                                 aquifer_length,
                                 aquifer_thickness,
                                 model="linear")
@@ -1034,8 +1033,8 @@ def fft_psd(
                 # plot the dupuit model with input parameters of ogs
                 if target == True:
                     print("Calculating parameters for target model for parameter 'a' in dependence on x"
-                                  + "\nSs: " + str(Ss_list[model_number])
-                                  + "\nkf: " + str(kf_list[model_number])
+                                  + "\nSs: " + str(Ss_input)
+                                  + "\nkf: " + str(kf_input)
                                   + "\naquifer length: " + str(aquifer_length)
                                   + "\naquifer thickness: " + str(aquifer_thickness)
                                   + "\nmodel: " + "dupuit"
@@ -1043,8 +1042,8 @@ def fft_psd(
                                   + "a_alterna: " + str(a_alterna)
                                   )
                     params_real = calc_aq_param(
-                        Ss_list[model_number],
-                        kf_list[model_number],
+                        Ss_input,
+                        kf_input,
                         aquifer_length,
                         aquifer_thickness,
                         model="dupuit",

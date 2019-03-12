@@ -566,9 +566,9 @@ a_d_in = None
 t_d_in = None
 # a_d_in=3e-8
 # t_d_in=6.8e+7
-time_steps = 8401
+time_steps = 10950
 time_step_size = 86400
-comment = "DELETE"
+comment = ""
 threshold = 1
 fit = False
 mean_thick = False
@@ -576,20 +576,20 @@ icsub = None
 target = False
 cutoff = 0
 # config for shh/sww
-ymin = 1e9
-ymax = 1e22
-xmin = 1e-9
-xmax = 1e-5
+#ymin = 1e9
+#ymax = 1e22
+#xmin = 1e-9
+#xmax = 1e-5
 # config for shh
 #ymin = 1e-7 
 #ymax = 1e8
 #xmin = 1e-9
 #xmax = 1e-5
 # config for automatic
-#ymin = None
-#ymax = None
-#xmin = None
-#xmax = None
+ymin = None
+ymax = None
+xmin = None
+xmax = None
 a_of_x = False
 a_alterna = False
 detrend = True
@@ -812,6 +812,8 @@ for i, project_folder in enumerate(project_folder_list):
         for k, method in enumerate(methods):
             print("2nd: Calculating PSD...")
             print("Method: " + str(method))
+            ogs_input_parameter = get_ogs_parameters(path_to_project)
+            
             T_anal[i, j, k], S_anal[i, j, k], T_l[i, j, k], kf_l[i, j, k], Ss_l[i, j, k], D_l[i, j, k], a_l[i, j, k], t_l[
                 i, j, k
             ], T_d[i, j, k], kf_d[i, j, k], Ss_d[i, j, k], D_d[i, j, k], a_d[
@@ -841,8 +843,8 @@ for i, project_folder in enumerate(project_folder_list):
                 o_i=o_i,
                 a_d=a_d_in,
                 t_d=t_d_in,
-                Ss_input=get_ogs_parameters(path_to_project)[0],
-                kf_input=get_ogs_parameters(path_to_project)[1],
+                Ss_input=ogs_input_parameter[0],
+                kf_input=ogs_input_parameter[1],
                 obs_number=j,
                 model_number=i,
                 distance_to_river_list=distance_to_river_list,
@@ -855,8 +857,8 @@ for i, project_folder in enumerate(project_folder_list):
                 a_alterna=a_alterna,
                 detrend=detrend,
                 shh_anal=shh_anal,
-                Sy=S_list[i],
-                T=kf_list[i] * aquifer_thickness,
+                Sy=ogs_input_parameter[0] * aquifer_thickness,
+                T=ogs_input_parameter[1] * aquifer_thickness,
                 anal_fit=anal_fit,
                 anal_fit_norm=anal_fit_norm,
                 model_fit=model_fit
