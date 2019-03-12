@@ -541,9 +541,18 @@ distance_to_river_list = [1800, 1200, 800, 400, 200]  # 2000
 # configurations for model runs on EVE and also for local projects
 # /Users/houben/PhD/modelling/20190304_spectral_analysis_homogeneous/models
 ###############################################################################
-path_to_multiple_projects = raw_input(
-    "Specfy parent directory to multiple model runs: "
-)
+if __name__ == "__main__":
+    try:
+        path_to_multiple_projects = sys.argv[1]    
+    except IndexError:
+        print("You forgot to give the path to multiple projects as argument...")
+        path_to_multiple_projects = raw_input("Insert path to multiple projects: ")
+
+else:
+    path_to_multiple_projects = raw_input("Insert path to multiple projects: ")
+
+
+
 project_folder_list = [
     f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
@@ -553,8 +562,7 @@ except ValueError:
     pass
 project_folder_list.sort()
 obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder_list[0])[1]
-obs_point_list.remove('obs_00850')
-print('REMOVE THAT THING BEFORE MIGRATING TO EVVE')
+
 
 obs_locations = get_obs(
     path_to_multiple_projects + "/" + project_folder_list[0]
