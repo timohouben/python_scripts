@@ -1,16 +1,76 @@
 #!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3
 # -*- coding: utf-8 -*
 
+def plot_spectrum(data, frequency, name=None, labels=None, path=None, lims=None, linestyle='-', marker="", grid="both", unit="[Hz]", heading="None", figtxt=None):
+    """
+    Function to plot one or multiple power spectra.
 
-def plot_single_spectrum():
-    """
-    Function to plot a single power spectrum
+    Parameters
+    ----------
+    data : 2-D array
+        Each row represents a seperate power spectrum.
+    frequency : 1-D array
+        Corresponding frequencies of data.
+    name : string
+        Name of file. If None, time is used.
+    labels : X item list
+        Labels for different power spectra as list in same order as data.
+    path : string
+        Path to store the image.
+    lims : list with 2 tuples
+        lims[0] = x limit as tuple (xmin,xmax)
+        lims[1] = y limit as tuple (ymin,ymax)
+        e.g. lims = [(1e-8,1e-4),(1e0,1e5)]
+    linestyle : X item list
+        List with linestyles for differenct spectra.
+    marker : X item list
+        List with marker for differenct spectra.
+    grid : string
+        "major", "minor", "both", "none"
+    unit : string
+        Unit of frequency.
+    heading : string
+        Provide a heading for the image. If None, no heading.
+    figtxt : string (multiline possible)
+        Provide an annotation for a box below the figure. If None, no annotaion.
+
+    Yields
+    ------
+    One saved image in path.
     """
 
-def plot_multiple_spectrum():
-    """
-    Function to plot multiple power spectra along e.g. along aquifer.
-    """
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    font = {"family": "normal", "weight": "normal", "size": 20}
+    plt.rc("font", **font)
+    plt.rc("legend",fontsize=15)
+    plt.figure(figsize=[20,10], dpi=100)
+    if np.ndim(data) == 1:
+        plt.loglog(frequency, data, label=str(labels[0]), linewidth=1, linestyle=linestyle, marker=marker)
+    else:
+        for i,spectrum in enumerate(data):
+            print(np.shape(spectrum))
+            plt.loglog(frequency, spectrum, label=labels[i], linewidth=1, linestyle=linestyle[i], marker=marker[i])
+    plt.grid(which=grid, color='grey', linestyle='-', linewidth=0.2)
+    if lims != None:
+        plt.xlim(lims[0])
+        plt.ylim(lims[1])
+    if heading != None:
+        plt.title(heading)
+    if labels != None:
+        plt.ylabel("Spectral Density")
+        plt.xlabel("Frequency %s" % unit)
+    plt.legend(loc="best")
+    if figtxt != None:
+        plt.figtext(0.135,-0.05,figtxt,horizontalalignment="left",
+        bbox=dict(boxstyle="square", facecolor="#F2F3F4", ec="1", pad=0.8, alpha=1))
+    if path != None:
+        import datetime
+        if name == None:
+            name = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+        plt.savefig(path + "/" + name + ".png", pad_inches=0.5, bbox_inches="tight")
+    plt.close()
 
 def plot_shh_anal_loc(aquifer_length, time_step_size):
     """
@@ -120,4 +180,17 @@ def plot_shh_anal_S(aquifer_length, time_step_size):
 
 if __name__ == "__main__":
     #plot_shh_anal_loc(aquifer_length=1000, time_step_size=86400)
-    plot_shh_anal_S(aquifer_length=1000, time_step_size=86400)
+    #plot_shh_anal_S(aquifer_length=1000, time_step_size=86400)
+
+
+    # Test for function plot_spectrum
+    from power_spectrum import power_spectrum
+    import numpy as np
+    frequency, data1 = power_spectrum(np.random.rand(1000),np.random.rand(1000),86400,o_i="o")
+    frequency, data2 = power_spectrum(np.random.rand(1000),np.random.rand(1000),86400,o_i="o")
+    frequency, data3 = power_spectrum(np.random.rand(1000),np.random.rand(1000),86400,o_i="o")
+    data = np.vstack((data1,data2,data3))
+    labels = ["head1","head2","head3"]
+    linestyle = ["-","--",":"]
+    path = "/Users/houben/Desktop/TEST"
+    plot_spectrum(data, frequency, labels, path, lims=None,figtxt="nonoasndoand\nasdasd", linestyle=linestyle)

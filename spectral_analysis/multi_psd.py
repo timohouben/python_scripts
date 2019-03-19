@@ -14,6 +14,7 @@ sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
 from calc_tc import calc_tc
 from processing import *
 from power_spectrum import power_spectrum
+from plot_power_spectra import plot_spectrum
 from get_obs import get_obs
 from get_ogs_parameters import get_ogs_parameters
 from shh_analytical import shh_analytical_fit, shh_analytical
@@ -132,23 +133,24 @@ print(results)
 
 # outer loop over all project_folders containing OGS model runs
 for i, project_folder in enumerate(project_folder_list):
+    path_to_project = path_to_multiple_projects + "/" + project_folder
     # read the OGS model run and its parameters
     recharge_time_series = np.loadtxt(
-        path_to_multiple_projects
-        + "/"
-        + project_folder
+        path_to_project
         + "/"
         + "rfd_curve#1.txt"
     )
     # write OGS input parameters in DataFrame and multiply Ss and kf by thickness
     Ss, kf, time_step_size, time_steps = get_ogs_parameters(
-        path_to_multiple_projects + "/" + project_folder
+        path_to_project
     )
+    S = Ss * aquifer_thickness
+    T = kf * aquifer_thickness
     # get list of observation points in current porject_folder
-    obs_point_list = get_obs(path_to_multiple_projects + "/" + project_folder)[
+    obs_point_list = get_obs(path_to_project)[
         1
     ]
-    obs_loc_list = get_obs(path_to_multiple_projects + "/" + project_folder)[2]
+    obs_loc_list = get_obs(path_to_project)[2]
     # inner loop over all observation points of current OGS model run
     for j, (obs_point, obs_loc) in enumerate(
         zip(obs_point_list, obs_loc_list)
@@ -207,34 +209,34 @@ for i, project_folder in enumerate(project_folder_list):
         popt = [abs(i) for i in popt]
         # add values to dataframe
         print("Sy fit: ", "{0:.3e}".format(popt[0]))
-        print("Sy input: ", "{0:.3e}".format(Ss * aquifer_thickness))
+        print("Sy input: ", "{0:.3e}".format(S))
         print("T fit: ", "{0:.3e}".format(popt[1]))
-        print("T input: ", "{0:.3e}".format(kf * aquifer_thickness))
+        print("T input: ", "{0:.3e}".format(T))
         print(popt, pcov)
 
         # fill dataframe
         results_temp = {
             "name": project_folder,
-            "S_in": Ss * aquifer_thickness,
-            "T_in": kf * aquifer_thickness,
+            "S_in": S,
+            "T_in": T,
             "tc_in": calc_tc(
-                aquifer_length, Ss * aquifer_thickness, kf * aquifer_thickness
+                aquifer_length, S, T
             ),
             "S_out": popt[0],
             "T_out": popt[1],
             "tc_out": calc_tc(aquifer_length, popt[0], popt[1]),
             "cov": pcov,
             "err_S": percent_difference_fraction(
-                Ss * aquifer_thickness, popt[0]
+                S, popt[0]
             ),
             "err_T": percent_difference_fraction(
-                kf * aquifer_thickness, popt[1]
+                T, popt[1]
             ),
             "err_tc": percent_difference_fraction(
                 calc_tc(
                     aquifer_length,
-                    Ss * aquifer_thickness,
-                    kf * aquifer_thickness,
+                    S,
+                    T,
                 ),
                 calc_tc(aquifer_length, popt[0], popt[1]),
             ),
@@ -247,6 +249,18 @@ for i, project_folder in enumerate(project_folder_list):
         results = results.append(
             other=results_temp, ignore_index=True, sort=False
         )
+
+        # plot the power spectra: Shh from ogs runs, Shh theoretical, Shh fitted
+        Shh_numerical = Shh
+        Shh_theoretical = shh_analytical((frequency, Sww), S, T, obs_loc, aquifer_length, m=5, n=5, norm=False)
+        Shh_fitted = shh_analytical((frequency, Sww), popt[0], popt[1], obs_loc, aquifer_length, m=5, n=5, norm=False)
+        data = np.vstack((Shh_numerical,Shh_fitted,Shh_fitted))
+        labels = ['Shh numerical', 'Shh_fitted', 'Shh_theoretical']
+        linestyle = ['-','','']
+        marker = ['','*','.']
+        figtxt = "asd"
+        plot_spectrum(data, frequency, labels=labels, path=path_to_project, lims=None, linestyle=linestyle, marker=marker, heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc), name="PSD_" + project_folder + "_" + str(obs_loc).zfill(len(str(aquifer_length))), figtxt=figtxt)
+
         # break
     if i == 1:
         break

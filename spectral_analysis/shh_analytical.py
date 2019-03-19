@@ -16,11 +16,11 @@ def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
     Parameters
     ----------
     X : tuple (f, Sww)
-        Sww : 1D array
-            power spectrum of recharge as function of frequency omega.
         f : 1D array
             frequencies [1/T], will be internally converted to angular
             frequency omega
+        Sww : 1D array
+            power spectrum of recharge as function of frequency omega.
     Sy : float
         specific yield [-]
         The specific storage (Ss) in an unconfined aquifer is usually much

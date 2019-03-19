@@ -44,7 +44,7 @@ def power_spectrum(
         # ======================================================================
     o_i : string
         'o_i' : output spectrum will be devided by input spectrum
-        'i' : only iput spectrum will be returned
+        'i' : only input spectrum will be returned
         'o' : only output spectrum will be returned
 
     Yields
