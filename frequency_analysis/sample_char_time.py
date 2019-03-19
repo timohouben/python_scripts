@@ -22,13 +22,14 @@ def rounder(x, min=10):
             return np.around(x, i+1)
 
 # tc is calculated in days
-
 tc_min = 1
 tc_max = 10950
 scale = 100
 Tmin, Tmax = 1e-6, 1e-2
 Smin, Smax = 1e-5, 5e-1
 length=1000
+
+
 
 # distribution should be devided in three segments:
 # 1st segment: values greater and close to tc_min
