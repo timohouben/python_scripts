@@ -1,8 +1,10 @@
-#!/usr/bin/env python3
+#!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3
 # -*- coding: utf-8 -*
 
 
-def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi"):
+def power_spectrum(
+    input, output, time_step_size, method="scipyffthalf", o_i="oi"
+):
     """
     This script computes the power spectral density estimate of a time series.
     As default, output spectrum is devided by input spectrum.
@@ -52,6 +54,12 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
 
     power_spectrum_xx : 1D array
         Power spectrum of time series.
+
+    Suggested Improvements
+    ----------------------
+    - Make input an optional argument! New structure: Every method is a function.
+
+
     """
     import numpy as np
 
@@ -61,14 +69,13 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
     if np.asarray(input).ndim != 1:
         raise ValueError
         print("x and y must have dimension = 1.")
-
     len_input = len(input)
     len_output = len(output)
-
     # define the sampling frequency/time step
     # -------------------------------------------------------------------------
-    sampling_frequency = 1.0 / time_step_size  # [Hz] second: 1, day: 1.1574074074074E-5
-
+    sampling_frequency = (
+        1.0 / time_step_size
+    )  # [Hz] second: 1, day: 1.1574074074074E-5
     # methodologies for power spectral density
     # -------------------------------------------------------------------------
 
@@ -84,7 +91,14 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
         power_spectrum_output = spectrum[1:]
         power_spectrum_result = power_spectrum_output / power_spectrum_input
         frequency_input = (
-            abs(fftpack.fftfreq(len_output, time_step_size))[: round(len_output / 2)]
+            abs(fftpack.fftfreq(len_output, time_step_size))[
+                : round(len_output / 2)
+            ]
+        )[1:]
+        frequency_output = (
+            abs(fftpack.fftfreq(len_output, time_step_size))[
+                : round(len_output / 2)
+            ]
         )[1:]
 
     if method == "scipywelch":
@@ -115,8 +129,11 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
         power_spectrum_result = power_spectrum_output / power_spectrum_input
 
     if o_i == "i":
-        return frequency_input, power_spectrum_input
+        return np.asarray(frequency_input), np.asarray(power_spectrum_input)
+        # return frequency_input, power_spectrum_input
     elif o_i == "o":
-        return frequency_output, power_spectrum_output
+        return np.asarray(frequency_output), np.asarray(power_spectrum_output)
+        # return frequency_input, power_spectrum_input
     elif o_i == "oi":
-        return frequency_input, power_spectrum_result
+        return np.asarray(frequency_input), np.asarray(power_spectrum_result)
+        # return frequency_input, power_spectrum_result

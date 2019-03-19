@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*
 
+
 def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
-    '''
+    """
     Function to analyticaly compute the power spectrum of head with a given
     spectrum of the coresponding recharge process Sww in a phreatic aquifer,
     modeled by a linearized Boussinesq-Equation.
@@ -61,7 +62,7 @@ def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
     Examples
     --------
 
-    '''
+    """
 
     import numpy as np
 
@@ -121,7 +122,7 @@ def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
 
 
 def shh_analytical_fit(Sww, Shh, f, x, L, m, n, norm):
-    '''
+    """
     Function which should be used to fit the power spectrum to a given
     experimental data set (Shh). Since the shh_anlytical takes additional parameters
     (location, m, n, norm) beside the ones to optimize (Sy, T) the optimization
@@ -167,24 +168,42 @@ def shh_analytical_fit(Sww, Shh, f, x, L, m, n, norm):
         Is used to calculate the discharge parameter a.
     pcov : array
         covariance matrix
-    '''
+    """
 
     import scipy.optimize as optimization
     from functools import partial as prt
 
     partial = prt(shh_analytical, x=x, L=L, m=m, n=n, norm=norm)
-    initial_guess = [1,1]
+    initial_guess = [1, 1]
     popt, pcov = optimization.curve_fit(
-        partial,
-        (f, Sww),
-        Shh,
-        p0=initial_guess
+        partial, (f, Sww), Shh, p0=initial_guess
     )
     return popt, pcov
 
+
 if __name__ == "__main__":
-    popt, pcov = shh_analytical_fit(power_spectrum_input, power_spectrum_output, frequency_input, location=500, length=1000, m=2, n=2, norm=False)
+    popt, pcov = shh_analytical_fit(
+        power_spectrum_input,
+        power_spectrum_output,
+        frequency_input,
+        location=500,
+        length=1000,
+        m=2,
+        n=2,
+        norm=False,
+    )
     plt.loglog(power_spectrum_output, label="data", color="blue")
-    plt.loglog(shh_analytical((frequency_input,power_spectrum_input), popt[0], popt[1], x=500, L=1000, norm=False), label="fit", color="red")
+    plt.loglog(
+        shh_analytical(
+            (frequency_input, power_spectrum_input),
+            popt[0],
+            popt[1],
+            x=500,
+            L=1000,
+            norm=False,
+        ),
+        label="fit",
+        color="red",
+    )
     plt.legend()
     plt.show()
