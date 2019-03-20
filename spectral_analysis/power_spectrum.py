@@ -2,11 +2,11 @@
 # ------------------------------------------------------------------------------
 # python 2 and 3 compatible
 from __future__ import division
+
 # ------------------------------------------------------------------------------
 
-def power_spectrum(
-    input, output, time_step_size, method="scipyffthalf", o_i="oi"
-):
+
+def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi"):
     """
     This script computes the power spectral density estimate of a time series.
     As default, output spectrum is devided by input spectrum.
@@ -75,9 +75,7 @@ def power_spectrum(
     len_output = len(output)
     # define the sampling frequency/time step
     # -------------------------------------------------------------------------
-    sampling_frequency = (
-        1.0 / time_step_size
-    )  # [Hz] second: 1, day: 1.1574074074074E-5
+    sampling_frequency = 1.0 / time_step_size  # [Hz] second: 1, day: 1.1574074074074E-5
     # methodologies for power spectral density
     # -------------------------------------------------------------------------
 

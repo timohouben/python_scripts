@@ -2,7 +2,9 @@
 # ------------------------------------------------------------------------------
 # python 2 and 3 compatible
 from __future__ import division
+
 # ------------------------------------------------------------------------------
+
 
 def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
     """
@@ -177,9 +179,7 @@ def shh_analytical_fit(Sww, Shh, f, x, L, m, n, norm):
 
     partial = prt(shh_analytical, x=x, L=L, m=m, n=n, norm=norm)
     initial_guess = [1, 1]
-    popt, pcov = optimization.curve_fit(
-        partial, (f, Sww), Shh, p0=initial_guess
-    )
+    popt, pcov = optimization.curve_fit(partial, (f, Sww), Shh, p0=initial_guess)
     return popt, pcov
 
 
