@@ -2,7 +2,9 @@
 # ------------------------------------------------------------------------------
 # python 2 and 3 compatible
 from __future__ import division
+
 # ------------------------------------------------------------------------------
+
 # import modules
 import sys
 import numpy as np
@@ -11,10 +13,6 @@ import pandas as pd
 
 # add search path for own modules
 sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
-
-# for eve
-import matplotlib
-matplotlib.use('Agg')
 
 # add search path for owdn modules on eve
 
@@ -99,15 +97,13 @@ except IndexError:
     print("You forgot to give the path to multiple projects as argument...")
     path_to_multiple_projects = input("Insert path to multiple projects: ")
 
-#path_to_multiple_projects = (
+# path_to_multiple_projects = (
 #    "/Users/houben/PhD/modelling/20190318_spectral_analysis_homogeneous/models"
-#)
+# )
 
 # get a list of all directories containing OGS model runs
 project_folder_list = [
-    f
-    for f in os.listdir(str(path_to_multiple_projects))
-    if not f.startswith(".")
+    f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
 ]
 
 # remove folder "fitting_results" from list and sort
@@ -145,26 +141,16 @@ print(results)
 for i, project_folder in enumerate(project_folder_list):
     path_to_project = path_to_multiple_projects + "/" + project_folder
     # read the OGS model run and its parameters
-    recharge_time_series = np.loadtxt(
-        path_to_project
-        + "/"
-        + "rfd_curve#1.txt"
-    )
+    recharge_time_series = np.loadtxt(path_to_project + "/" + "rfd_curve#1.txt")
     # write OGS input parameters in DataFrame and multiply Ss and kf by thickness
-    Ss, kf, time_step_size, time_steps = get_ogs_parameters(
-        path_to_project
-    )
+    Ss, kf, time_step_size, time_steps = get_ogs_parameters(path_to_project)
     S = Ss * aquifer_thickness
     T = kf * aquifer_thickness
     # get list of observation points in current porject_folder
-    obs_point_list = get_obs(path_to_project)[
-        1
-    ]
+    obs_point_list = get_obs(path_to_project)[1]
     obs_loc_list = get_obs(path_to_project)[2]
     # inner loop over all observation points of current OGS model run
-    for j, (obs_point, obs_loc) in enumerate(
-        zip(obs_point_list, obs_loc_list)
-    ):
+    for j, (obs_point, obs_loc) in enumerate(zip(obs_point_list, obs_loc_list)):
         # Do not perform the fit on observation point x=L
         if obs_loc == aquifer_length:
             break
@@ -229,26 +215,15 @@ for i, project_folder in enumerate(project_folder_list):
             "name": project_folder,
             "S_in": S,
             "T_in": T,
-            "tc_in": calc_tc(
-                aquifer_length, S, T
-            ),
+            "tc_in": calc_tc(aquifer_length, S, T),
             "S_out": popt[0],
             "T_out": popt[1],
             "tc_out": calc_tc(aquifer_length, popt[0], popt[1]),
             "cov": pcov,
-            "err_S": percent_difference_fraction(
-                S, popt[0]
-            ),
-            "err_T": percent_difference_fraction(
-                T, popt[1]
-            ),
+            "err_S": percent_difference_fraction(S, popt[0]),
+            "err_T": percent_difference_fraction(T, popt[1]),
             "err_tc": percent_difference_fraction(
-                calc_tc(
-                    aquifer_length,
-                    S,
-                    T,
-                ),
-                calc_tc(aquifer_length, popt[0], popt[1]),
+                calc_tc(aquifer_length, S, T), calc_tc(aquifer_length, popt[0], popt[1])
             ),
             "obs_loc": obs_loc,
             "time_step_size": time_step_size,
@@ -256,35 +231,55 @@ for i, project_folder in enumerate(project_folder_list):
             "model_period": time_step_size * time_steps / 86400,
             "which": which,
         }
-        results = results.append(
-            other=results_temp, ignore_index=True, sort=False
-        )
+        results = results.append(other=results_temp, ignore_index=True, sort=False)
 
         # plot the power spectra: Shh from ogs runs, Shh theoretical, Shh fitted
         Shh_numerical = Shh
-        Shh_theoretical = shh_analytical((frequency, Sww), S, T, obs_loc, aquifer_length, m=5, n=5, norm=False)
-        Shh_fitted = shh_analytical((frequency, Sww), popt[0], popt[1], obs_loc, aquifer_length, m=5, n=5, norm=False)
-        data = np.vstack((Shh_numerical,Shh_fitted,Shh_fitted))
-        labels = ['Shh numerical', 'Shh_fitted', 'Shh_theoretical']
-        linestyle = ['-','','']
-        marker = ['','*','.']
-        figtxt = "asd"
-        plot_spectrum(data, frequency, labels=labels, path=path_to_project, lims=None, linestyle=linestyle, marker=marker, heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc), name="PSD_" + project_folder + "_" + str(obs_loc).zfill(len(str(aquifer_length))), figtxt=figtxt)
+        Shh_theoretical = shh_analytical(
+            (frequency, Sww), S, T, obs_loc, aquifer_length, m=5, n=5, norm=False
+        )
+        Shh_fitted = shh_analytical(
+            (frequency, Sww),
+            popt[0],
+            popt[1],
+            obs_loc,
+            aquifer_length,
+            m=5,
+            n=5,
+            norm=False,
+        )
+        data = np.vstack((Shh_numerical, Shh_fitted, Shh_fitted))
+        labels = ["Shh numerical", "Shh fitted", "Shh theoretical"]
+        linestyle = ["-", "", ""]
+        # lims = [(1e-8,1e-4),(1e-7,1e0)]
+        marker = ["", "*", "."]
+        figtxt = "OGS Input Parameter: S = %1.1e, T = %1.1e" % (S,T)
+             + "\nDerived Parameter:   S = %1.1e, T = %1.1e" % (popt[0],popt[1])
+        plot_spectrum(
+            data,
+            frequency,
+            labels=labels,
+            path=path_to_project,
+            lims=None,
+            linestyle=linestyle,
+            marker=marker,
+            heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),
+            name="PSD_"
+            + project_folder
+            + "_"
+            + str(obs_loc).zfill(len(str(aquifer_length))),
+            figtxt=figtxt,
+        )
 print(results)
 
 # make directory for results
 path_to_results = path_to_multiple_projects + "/" + "fitting_results"
 if not os.path.exists(path_to_results):
     os.mkdir(path_to_results)
-# delete already existing results
+# set path to results incl file name of results
 path_to_results_df = (
-    path_to_multiple_projects
-    + "/"
-    + "fitting_results"
-    + "/"
-    + comment
-    + "results.csv"
+    path_to_multiple_projects + "/" + "fitting_results" + "/" + comment + "results.csv"
 )
 # if os.path.isfile(path_to_results_df): # override = true, not necesarry
 results.to_csv(path_to_results_df)
-plot_errors_vs_loc(results,path_to_results)
+plot_errors_vs_loc(results, path_to_results)

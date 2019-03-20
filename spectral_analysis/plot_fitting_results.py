@@ -2,6 +2,7 @@
 # ------------------------------------------------------------------------------
 # python 2 and 3 compatible
 from __future__ import division
+
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 # set some parameters for the analysis manually
@@ -48,19 +49,22 @@ def plot_errors_vs_loc(results, path_to_results):
             obs_loc,
             err_S,
             path_to_results + "/" + project_folder + "_err_S.png",
-            label=project_folder, title="Relative error in storativity"
+            label=project_folder,
+            title="Relative error in storativity",
         )
         plot(
             obs_loc,
             err_T,
             path_to_results + "/" + project_folder + "_err_T.png",
-            label=project_folder, title="Relative error in transmissivity"
+            label=project_folder,
+            title="Relative error in transmissivity",
         )
         plot(
             obs_loc,
             err_tc,
             path_to_results + "/" + project_folder + "_err_tc.png",
-            label=project_folder, title="Relative error in characteristic time"
+            label=project_folder,
+            title="Relative error in characteristic time",
         )
 
 
@@ -90,8 +94,7 @@ def plot_heatmap(results, path_to_results):
         if not os.path.exists(path_to_results + "/heatmap"):
             os.mkdir(path_to_results + "/heatmap")
         fig.savefig(
-            path_to_results + "/heatmap" + "/" + str(obs_loc) + "_" + error,
-            dpi=dpi,
+            path_to_results + "/heatmap" + "/" + str(obs_loc) + "_" + error, dpi=dpi
         )
         fig.clf()
 
@@ -109,6 +112,7 @@ def plot_heatmap(results, path_to_results):
 
 if __name__ == "__main__":
     import pandas as pd
+
     results = pd.read_csv(
         "/Users/houben/PhD/modelling/20190304_spectral_analysis_homogeneous/models/fitting_results/results.csv"
     )
