@@ -1,4 +1,3 @@
-# /Library/Frameworks/Python.framework/Versions/3.6/bin/python3
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------------------------
 # python 2 and 3 compatible
