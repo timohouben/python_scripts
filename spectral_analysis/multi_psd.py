@@ -253,8 +253,7 @@ for i, project_folder in enumerate(project_folder_list):
         linestyle = ["-", "", ""]
         # lims = [(1e-8,1e-4),(1e-7,1e0)]
         marker = ["", "*", "."]
-        figtxt = "OGS Input Parameter: S = %1.1e, T = %1.1e" % (S,T)
-             + "\nDerived Parameter:   S = %1.1e, T = %1.1e" % (popt[0],popt[1])
+        figtxt = "OGS Input Parameter: S = %1.3e, T = %1.3e" % (S,T) + "\nDerived Parameter:    S = %1.3e, T = %1.3e" % (popt[0],popt[1])
         plot_spectrum(
             data,
             frequency,
