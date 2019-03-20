@@ -110,7 +110,7 @@ def percent_fraction(a, b):
 
 def percent_difference_fraction(a, b):
     """
-    Returns fraction of difference of a and b to b as %.
+    Returns fraction of difference of a and b to a as %.
     (a - b)/b * 100
 
     Parameters
@@ -120,4 +120,4 @@ def percent_difference_fraction(a, b):
     b : float
 
     """
-    return (a - b) / b * 100
+    return (a - b) / a * 100

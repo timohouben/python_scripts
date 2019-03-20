@@ -29,10 +29,11 @@ def plot_errors_vs_loc(results, path_to_results):
 
     import matplotlib.pyplot as plt
 
-    def plot(x, y, path, label):
+    def plot(x, y, path, label, title):
         plt.plot(x, y, label=label)
-        plt.xlabel("Location of pbservation point [m]")
+        plt.xlabel("Location of observation point [m]")
         plt.ylabel("Error in %")
+        plt.title(title)
         plt.legend()
         plt.savefig(path, dpi=dpi)
         plt.close()
@@ -46,19 +47,19 @@ def plot_errors_vs_loc(results, path_to_results):
             obs_loc,
             err_S,
             path_to_results + "/" + project_folder + "_err_S.png",
-            label=project_folder,
+            label=project_folder, title="Relative error in storativity"
         )
         plot(
             obs_loc,
             err_T,
             path_to_results + "/" + project_folder + "_err_T.png",
-            label=project_folder,
+            label=project_folder, title="Relative error in transmissivity"
         )
         plot(
             obs_loc,
             err_tc,
             path_to_results + "/" + project_folder + "_err_tc.png",
-            label=project_folder,
+            label=project_folder, title="Relative error in characteristic time"
         )
 
 
