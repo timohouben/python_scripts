@@ -1,6 +1,9 @@
 #!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3
 # -*- coding: utf-8 -*
-
+# ------------------------------------------------------------------------------
+# python 2 and 3 compatible
+from __future__ import division
+# ------------------------------------------------------------------------------
 # import modules
 import sys
 import numpy as np
@@ -9,6 +12,9 @@ import pandas as pd
 
 # add search path for own modules
 sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
+
+# add search path for owdn modules on eve
+
 
 # own modules
 from calc_tc import calc_tc
@@ -89,9 +95,9 @@ except IndexError:
     print("You forgot to give the path to multiple projects as argument...")
     path_to_multiple_projects = input("Insert path to multiple projects: ")
 
-path_to_multiple_projects = (
-    "/Users/houben/PhD/modelling/20190304_spectral_analysis_homogeneous/models"
-)
+#path_to_multiple_projects = (
+#    "/Users/houben/PhD/modelling/20190304_spectral_analysis_homogeneous/models"
+#)
 
 # get a list of all directories containing OGS model runs
 project_folder_list = [
