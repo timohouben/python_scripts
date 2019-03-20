@@ -47,7 +47,7 @@ def plot_spectrum(data, frequency, name=None, labels=None, path=None, lims=None,
     import matplotlib.pyplot as plt
     import numpy as np
 
-    font = {"family": "normal", "weight": "normal", "size": 20}
+    font = {"family": "Helvetica", "weight": "normal", "size": 20}
     plt.rc("font", **font)
     plt.rc("legend",fontsize=15)
     plt.figure(figsize=[20,10], dpi=100)
