@@ -27,6 +27,7 @@ from plot_power_spectra import plot_spectrum
 from get_obs import get_obs
 from get_ogs_parameters import get_ogs_parameters
 from shh_analytical import shh_analytical_fit, shh_analytical
+from plot_fitting_results import plot_errors_vs_loc
 
 
 # ------------------------------------------------------------------------------
@@ -269,10 +270,6 @@ for i, project_folder in enumerate(project_folder_list):
         marker = ['','*','.']
         figtxt = "asd"
         plot_spectrum(data, frequency, labels=labels, path=path_to_project, lims=None, linestyle=linestyle, marker=marker, heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc), name="PSD_" + project_folder + "_" + str(obs_loc).zfill(len(str(aquifer_length))), figtxt=figtxt)
-
-        # break
-    if i == 1:
-        break
 print(results)
 
 # make directory for results
@@ -290,3 +287,4 @@ path_to_results_df = (
 )
 # if os.path.isfile(path_to_results_df): # override = true, not necesarry
 results.to_csv(path_to_results_df)
+plot_errors_vs_loc(results,path_to_results)
