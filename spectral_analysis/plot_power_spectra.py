@@ -42,6 +42,8 @@ def plot_spectrum(data, frequency, name=None, labels=None, path=None, lims=None,
     One saved image in path.
     """
 
+    import matplotlib
+    matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     import numpy as np
 

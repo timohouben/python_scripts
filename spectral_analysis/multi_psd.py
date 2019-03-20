@@ -12,6 +12,10 @@ import pandas as pd
 # add search path for own modules
 sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
 
+# for eve
+import matplotlib
+matplotlib.use('Agg')
+
 # add search path for owdn modules on eve
 
 
