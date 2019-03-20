@@ -96,7 +96,7 @@ except IndexError:
     path_to_multiple_projects = input("Insert path to multiple projects: ")
 
 #path_to_multiple_projects = (
-#    "/Users/houben/PhD/modelling/20190304_spectral_analysis_homogeneous/models"
+#    "/Users/houben/PhD/modelling/20190318_spectral_analysis_homogeneous/models"
 #)
 
 # get a list of all directories containing OGS model runs
