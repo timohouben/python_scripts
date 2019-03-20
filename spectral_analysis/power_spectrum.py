@@ -87,27 +87,27 @@ def power_spectrum(
 
         # first value was popped because frequencies are very low (=0) and cause errors while fitting
         spectrum = fftpack.fft(input)
-        spectrum = abs(spectrum[: round(len(spectrum) / 2)]) ** 2
+        spectrum = abs(spectrum[: int(round(len(spectrum) / 2))]) ** 2
         power_spectrum_input = spectrum[1:]
         spectrum = fftpack.fft(output)
-        spectrum = abs(spectrum[: round(len(spectrum) / 2)]) ** 2
+        spectrum = abs(spectrum[: int(round(len(spectrum) / 2))]) ** 2
         power_spectrum_output = spectrum[1:]
         power_spectrum_result = power_spectrum_output / power_spectrum_input
         frequency_input = (
             abs(fftpack.fftfreq(len_output, time_step_size))[
-                : round(len_output / 2)
+                : int(round(len_output / 2))
             ]
         )[1:]
         frequency_output = (
             abs(fftpack.fftfreq(len_output, time_step_size))[
-                : round(len_output / 2)
+                : int(round(len_output / 2))
             ]
         )[1:]
 
     if method == "scipywelch":
         from scipy import signal
 
-        nperseg = round(len(input) / 10)
+        nperseg = int(round(len(input) / 10))
         frequency_input, power_spectrum_input = signal.welch(
             input, sampling_frequency, nperseg=nperseg, window="hamming"
         )
