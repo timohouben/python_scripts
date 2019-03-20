@@ -6,6 +6,8 @@ from __future__ import division
 # ------------------------------------------------------------------------------
 
 # import modules
+import time
+time_begin = time.time()
 import sys
 import numpy as np
 import os
@@ -269,6 +271,8 @@ for i, project_folder in enumerate(project_folder_list):
             + str(obs_loc).zfill(len(str(aquifer_length))),
             figtxt=figtxt,
         )
+    time_1_model = time.time() - time_begin
+    print(str(time_1_model) + " s elapsed for " + project_folder + "...")
 print(results)
 
 # make directory for results
@@ -282,3 +286,5 @@ path_to_results_df = (
 # if os.path.isfile(path_to_results_df): # override = true, not necesarry
 results.to_csv(path_to_results_df)
 plot_errors_vs_loc(results, path_to_results)
+time_end = time.time() - time_begin
+print(str(time_end/60) + " m elapsed.)
