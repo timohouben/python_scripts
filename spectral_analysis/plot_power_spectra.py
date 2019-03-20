@@ -1,5 +1,9 @@
 #!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3
 # -*- coding: utf-8 -*
+# ------------------------------------------------------------------------------
+# python 2 and 3 compatible
+from __future__ import division
+# ------------------------------------------------------------------------------
 
 def plot_spectrum(data, frequency, name=None, labels=None, path=None, lims=None, linestyle='-', marker="", grid="both", unit="[Hz]", heading="None", figtxt=None):
     """

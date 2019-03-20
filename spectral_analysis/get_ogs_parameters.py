@@ -1,6 +1,9 @@
 #!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3
 # -*- coding: utf-8 -*-
-
+# ------------------------------------------------------------------------------
+# python 2 and 3 compatible
+from __future__ import division
+# ------------------------------------------------------------------------------
 
 def get_ogs_parameters(path):
     from ogs5py import OGS

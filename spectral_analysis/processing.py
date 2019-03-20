@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*
-
+# ------------------------------------------------------------------------------
+# python 2 and 3 compatible
+from __future__ import division
+# ------------------------------------------------------------------------------
 
 def detrend(timeseries, type="linear"):
     """
