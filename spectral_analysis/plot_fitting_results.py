@@ -92,24 +92,27 @@ def plot_heatmap(results, path_to_results, abs = True):
     import seaborn as sns
     import os
 
+    # extract input values for achsis limits
+    achsisticks_x = results["T_in"].unique()
+    achsislabel_x = ["%1.2e" % i for i in achsisticks_x]
+    achsisticks_y = results["S_in"].unique()
+    achsislabel_y = ["%1.2e" % i for i in achsisticks_y]
+
     def plot(pivotted, error):
         import numpy as np
         from matplotlib.colors import LogNorm
         import math
         # set axismin and axis max based on input space (hard coded, BAD SOLUTION)
-        achsismin_y, achsismax_y = 1e-6, 1e-1
-        achsismin_x, achsismax_x = 1e-5, 1
+        #achsismin_y, achsismax_y = 1e-6, 1e-1
+        #achsismin_x, achsismax_x = 1e-5, 1
+        #achsisticks_x = [math.pow(10, i) for i in range(math.floor(math.log10(achsismin_x)), 1+math.ceil(math.log10(achsismax_x)))]
+        #achsisticks_y = [math.pow(10, i) for i in range(math.floor(math.log10(achsismin_y)), 1+math.ceil(math.log10(achsismax_y)))]
         barmin, barmax = 1, 1000
-        achisticks = [math.pow(10, i) for i in range(math.floor(math.log10()), 1+math.ceil(math.log10(vmax)))]
         cbar_ticks = [1,10,100,1000]
-<<<<<<< HEAD
-        plot = sns.heatmap(pivotted, cmap="Spectral_r",vmax=1000, vmin=1, norm=LogNorm(vmin=1, vmax=1000),cbar_kws={"ticks": cbar_ticks})
-=======
         log_norm = LogNorm(vmin=barmin, vmax=barmax)
-        plot = sns.heatmap(pivotted, cmap="Spectral_r",cbar_kws={"ticks": cbar_ticks}, norm=log_norm, vmax=barmax, vmin=barmin)
-        plot.set_yticks(achisticks_y)
-        plot.set_xticks(achisticks_x)
-e0cdda5b93a55e0f8ca398f5c64ba7c321dd461
+        plot = sns.heatmap(pivotted, cmap="Spectral_r",cbar_kws={"ticks": cbar_ticks}, norm=log_norm, vmax=barmax, vmin=barmin, yticklabels=achsislabel_y, xticklabels=achsislabel_x)
+        plot.set_yticks(achsisticks_y)
+        plot.set_xticks(achsisticks_x)
         fig = plot.get_figure()
         if not os.path.exists(path_to_results + "/heatmap"):
             os.mkdir(path_to_results + "/heatmap")
