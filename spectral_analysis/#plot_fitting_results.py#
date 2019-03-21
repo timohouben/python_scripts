@@ -96,7 +96,7 @@ def plot_heatmap(results, path_to_results, abs = True):
         import numpy as np
         from matplotlib.colors import LogNorm
         cbar_ticks = [1,10,100,1000]
-        plot = sns.heatmap(pivotted, cmap="Spectral_r",vmax=1000, vmin=1, norm=LogNorm(vmin=1, vmax=1000),cbar_kws={"ticks": cbar_ticks})
+        plot = sns.heatmap(pivotted, cmap="RdBu",vmax=1000, vmin=1, norm=LogNorm(vmin=1, vmax=1000),cbar_kws={"ticks": cbar_ticks})
         fig = plot.get_figure()
         if not os.path.exists(path_to_results + "/heatmap"):
             os.mkdir(path_to_results + "/heatmap")
