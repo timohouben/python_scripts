@@ -117,12 +117,6 @@ def plot_heatmap(results, path_to_results, abs = True):
         if not os.path.exists(path_to_results + "/heatmap"):
             os.mkdir(path_to_results + "/heatmap")
 
-        ###
-        #log_norm = LogNorm(vmin=vmin, vmax=vmax)
-        #cbar_ticks = [math.pow(10, i) for i in range(math.floor(math.log10(vmin)), 1+math.ceil(math.log10(vmax)))]
-        #ax = sns.heatmap(pivot, cmap="jet",norm=log_norm,cbar_kws={"ticks": cbar_ticks})
-        ###
-
         fig.savefig(
             path_to_results + "/heatmap" + "/" + str(obs_loc) + "_" + error, dpi=dpi
         )
