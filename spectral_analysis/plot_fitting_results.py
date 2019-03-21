@@ -100,7 +100,8 @@ def plot_heatmap(results, path_to_results, abs = True):
         achsismin_y, achsismax_y = 1e-6, 1e-1
         achsismin_x, achsismax_x = 1e-5, 1
         barmin, barmax = 1, 1000
-        achisticks = [math.pow(10, i) for i in range(math.floor(math.log10()), 1+math.ceil(math.log10(vmax)))]
+        achisticks_x = [math.pow(10, i) for i in range(math.floor(math.log10(achsismin_x)), 1+math.ceil(math.log10(achsismax_x)))]
+        achisticks_y = [math.pow(10, i) for i in range(math.floor(math.log10(achsismin_y)), 1+math.ceil(math.log10(achsismax_y)))]
         cbar_ticks = [1,10,100,1000]
         log_norm = LogNorm(vmin=barmin, vmax=barmax)
         plot = sns.heatmap(pivotted, cmap="Spectral_r",cbar_kws={"ticks": cbar_ticks}, norm=log_norm, vmax=barmax, vmin=barmin)
