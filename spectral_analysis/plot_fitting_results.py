@@ -105,8 +105,8 @@ def plot_heatmap(results, path_to_results, abs = True):
         cbar_ticks = [1,10,100,1000]
         log_norm = LogNorm(vmin=barmin, vmax=barmax)
         plot = sns.heatmap(pivotted, cmap="Spectral_r",cbar_kws={"ticks": cbar_ticks}, norm=log_norm, vmax=barmax, vmin=barmin)
-        plot.set_yticks(achsisticks_y)
-        plot.set_xticks(achsisticks_x)
+#        plot.set_yticks(achsisticks_y)
+ #       plot.set_xticks(achsisticks_x)
         fig = plot.get_figure()
         if not os.path.exists(path_to_results + "/heatmap"):
             os.mkdir(path_to_results + "/heatmap")
