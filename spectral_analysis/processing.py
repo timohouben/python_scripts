@@ -125,3 +125,48 @@ def percent_difference_fraction(a, b):
 
     """
     return (a - b) / a * 100
+
+def combine_results(path_to_multiple_projects, filename="results.csv"):
+    """
+    Searches for results.csv in all subdirectories and combines these files. All csv files must have the same header!
+
+    Parameters
+    ----------
+
+    path_to_multiple_projects : string
+        Path in which you want to start searching. Results will be stored on this level.
+    filename : string
+        Name of .csv file. Default: results.csv
+    """
+
+    import os
+    import os.path
+
+    file_paths = []
+    for dirpath, dirnames, filenames in os.walk(path_to_multiple_projects):
+        for filename in [f for f in filenames if f.endswith(str(filename))]:
+            file_paths.append(dirpath + "/" + str(filename))
+
+    # get header from first file in list
+    with open(file_paths[0]) as f:
+        header = f.readline()
+        f.close()
+
+    csv_merge = open(path_to_multiple_projects + "/" + "csv_merge.csv", 'w')
+    csv_merge.write(header)
+    #csv_merge.write('\n')
+
+
+    for file in file_paths:
+        csv_in = open(file)
+        for line in csv_in:
+            if line.startswith(header):
+                continue
+            csv_merge.write(line)
+        csv_in.close()
+    csv_merge.close()
+    print('Verify consolidated CSV file : ' + "csv_merge.csv")
+
+if __name__ == "__main__":
+    # test for combine_results()
+    combine_results("/Users/houben/Desktop/TEST_combine")

@@ -250,7 +250,7 @@ for i, project_folder in enumerate(project_folder_list):
             n=5,
             norm=False,
         )
-        data = np.vstack((Shh_numerical, Shh_fitted, Shh_fitted))
+        data = np.vstack((Shh_numerical, Shh_fitted, Shh_theoretical))
         labels = ["Shh numerical", "Shh fitted", "Shh theoretical"]
         linestyle = ["-", "", ""]
         # lims = [(1e-8,1e-4),(1e-7,1e0)]
@@ -287,4 +287,4 @@ path_to_results_df = (
 results.to_csv(path_to_results_df)
 plot_errors_vs_loc(results, path_to_results)
 time_end = time.time() - time_begin
-print(str(time_end/60) + " m elapsed.)
+print("%1.1d min elapsed." (time_end/60))
