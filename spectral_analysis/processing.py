@@ -142,6 +142,9 @@ def combine_results(path_to_multiple_projects, filename="results.csv"):
     import os
     import os.path
 
+    if path_to_multiple_projects + "/combined_results" == False:
+        os.mkdir(path_to_multiple_projects + "/combined_results")
+
     file_paths = []
     for dirpath, dirnames, filenames in os.walk(path_to_multiple_projects):
         for filename in [f for f in filenames if f.endswith(str(filename))]:
@@ -152,10 +155,8 @@ def combine_results(path_to_multiple_projects, filename="results.csv"):
         header = f.readline()
         f.close()
 
-    csv_merge = open(path_to_multiple_projects + "/" + "csv_merge.csv", 'w')
+    csv_merge = open(path_to_multiple_projects + "/combined_results" + "/" + "csv_merge.csv", 'w')
     csv_merge.write(header)
-    #csv_merge.write('\n')
-
 
     for file in file_paths:
         csv_in = open(file)
