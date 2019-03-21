@@ -112,7 +112,8 @@ def plot_heatmap(results, path_to_results, abs = True):
         barmin, barmax = 1, 1000
         cbar_ticks = [1,10,100,1000]
         log_norm = LogNorm(vmin=barmin, vmax=barmax)
-        plot = sns.heatmap(pivotted, cmap="Spectral_r",cbar_kws={"ticks": cbar_ticks}, norm=log_norm, vmax=barmax, vmin=barmin, yticklabels=achsislabel_y, xticklabels=achsislabel_x, fmt="1.3e")
+        plot = sns.heatmap(pivotted, cmap="Spectral_r",cbar_kws={"ticks": cbar_ticks}, norm=log_norm, vmax=barmax, vmin=barmin, fmt="1.3e")
+        #yticklabels=achsislabel_y, xticklabels=achsislabel_x, 
         plot.set_yticks(achsisticks_y)
         plot.set_xticks(achsisticks_x)
         fig = plot.get_figure()
