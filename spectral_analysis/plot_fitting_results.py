@@ -94,6 +94,7 @@ def plot_heatmap(results, path_to_results, abs = True):
 
     # extract input values for achsis limits
     achsisticks_x = results["T_in"].unique()
+    achsislabel_x = [%1.2e i]
     achsisticks_y = results["S_in"].unique()
 
     def plot(pivotted, error):
