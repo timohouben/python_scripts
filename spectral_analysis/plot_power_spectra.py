@@ -140,8 +140,6 @@ def plot_shh_anal_loc(aquifer_length, time_step_size):
     spectrum = abs(spectrum[: round(len(spectrum) / 2)]) ** 2
     # erwase first data point
     spectrum = spectrum[1:]
-    print(len(spectrum))
-    print(spectrum)
     # X contains the different locations
     X = np.linspace(0, aquifer_length - 1, int((aquifer_length / 10)))
     print(X)

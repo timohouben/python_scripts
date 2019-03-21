@@ -287,4 +287,8 @@ path_to_results_df = (
 results.to_csv(path_to_results_df)
 plot_errors_vs_loc(results, path_to_results)
 time_end = time.time() - time_begin
+<<<<<<< HEAD
 print(str(time_end/60) + " m elapsed.")
+=======
+print("%1.1d min elapsed." (time_end/60))
+>>>>>>> 2744066e3953266311beb9b8ee98963f95b984f4
