@@ -97,8 +97,10 @@ def plot_heatmap(results, path_to_results, abs = True):
     achsisticks_x.sort()
     print(achsisticks_x)
     achsislabel_x = ["%1.2e" % i for i in achsisticks_x]
+    print(achsislabel_x)
     achsisticks_y = results["S_in"].unique()
     achsisticks_y.sort()
+    print(achsisticks_y)
     achsislabel_y = ["%1.2e" % i for i in achsisticks_y]
     print(achsislabel_y)
 
