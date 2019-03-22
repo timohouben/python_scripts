@@ -11,103 +11,9 @@ def calc_t_c(L, S, T):
 aquifer_length = 1000
 vmin = 0.001
 vmax = 1000000
-
 # define parameter space
-S = [
-    5.0e-1,
-    4.5e-1,
-    4.0e-1,
-    3.5e-1,
-    3.0e-1,
-    2.5e-1,
-    2.0e-1,
-    1.5e-1,
-    1.0e-1,
-    9.0e-2,
-    8.0e-2,
-    7.0e-2,
-    6.0e-2,
-    5.0e-2,
-    4.0e-2,
-    3.0e-2,
-    2.0e-2,
-    1.0e-2,
-    9.0e-3,
-    8.0e-3,
-    7.0e-3,
-    6.0e-3,
-    5.0e-3,
-    4.0e-3,
-    3.0e-3,
-    2.0e-3,
-    1.0e-3,
-    9.0e-4,
-    8.0e-4,
-    7.0e-4,
-    6.0e-4,
-    5.0e-4,
-    4.0e-4,
-    3.0e-4,
-    2.0e-4,
-    1.0e-4,
-    9.0e-5,
-    8.0e-5,
-    7.0e-5,
-    6.0e-5,
-    5.0e-5,
-    4.0e-5,
-    3.0e-5,
-    2.0e-5,
-    1.0e-5
-    ]
-
-T = [
-    9.0e-2,
-    8.0e-2,
-    7.0e-2,
-    6.0e-2,
-    5.0e-2,
-    4.0e-2,
-    3.0e-2,
-    2.0e-2,
-    1.0e-2,
-    9.0e-3,
-    8.0e-3,
-    7.0e-3,
-    6.0e-3,
-    5.0e-3,
-    4.0e-3,
-    3.0e-3,
-    2.0e-3,
-    1.0e-3,
-    9.0e-4,
-    8.0e-4,
-    7.0e-4,
-    6.0e-4,
-    5.0e-4,
-    4.0e-4,
-    3.0e-4,
-    2.0e-4,
-    1.0e-4,
-    9.0e-5,
-    8.0e-5,
-    7.0e-5,
-    6.0e-5,
-    5.0e-5,
-    4.0e-5,
-    3.0e-5,
-    2.0e-5,
-    1.0e-5,
-    9.0e-6,
-    8.0e-6,
-    7.0e-6,
-    6.0e-6,
-    5.0e-6,
-    4.0e-6,
-    3.0e-6,
-    2.0e-6,
-    1.0e-6,
-    ]
+S = np.power(10,np.linspace(-5,-1,41))
+T = np.power(10,np.linspace(-6,-2,41))
 
 
 #plt.semilogy(S)
@@ -138,11 +44,26 @@ def plot_heatmap(S, T, function):
     import math
 
     def plot(pivot, vmin, vmax):
+
+        #achsisticks_y = [1,5,10,15,20,25,30,35,40,45]
+        #achsislabel_y = [["%1.0e" % i for i in S][j-1] for j in achsisticks_y]
+        #achsisticks_x = [1,5,10,15,20]#,25,30,35,40,45]
+        #achsislabel_x = [["%1.0e" % i for i in S][j-1] for j in achsisticks_x]
+
         # normalize the ticks
         log_norm = LogNorm(vmin=vmin, vmax=vmax)
         cbar_ticks = [math.pow(10, i) for i in range(math.floor(math.log10(vmin)), 1+math.ceil(math.log10(vmax)))]
-        ax = sns.heatmap(pivot, cmap="Spectral_r",norm=log_norm,cbar_kws={"ticks": cbar_ticks})
-        ax.invert_yaxis()
+        ax = sns.heatmap(pivot, cmap="Spectral_r",norm=log_norm,cbar_kws={"ticks": cbar_ticks})#,yticklabels=achsislabel_y)#,xticklabels=achsislabel_x)
+        #ax.set_yticks(achsisticks_y)
+        #ax.set_xticks(achsisticks_x)
+        import matplotlib.ticker as ticker
+        #y_fmt = ticker.FormatStrFormatter('%2.2e')
+        #ax.yaxis.set_major_formatter(y_fmt)
+        tick_locator = ticker.MaxNLocator(12)
+        ax.xaxis.set_major_locator(tick_locator)
+        ax.yaxis.set_major_locator(tick_locator)
+
+        #ax.invert_yaxis()
         fig = ax.get_figure()
         plt.show()
 
