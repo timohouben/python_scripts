@@ -142,8 +142,6 @@ def plot_shh_anal_loc(aquifer_length, time_step_size):
     spectrum = spectrum[1:]
     # X contains the different locations
     X = np.linspace(0, aquifer_length - 1, int((aquifer_length / 10)))
-    print(X)
-    print(len(X))
     # Y contains the frequencies
     Y = abs(fftpack.fftfreq(len(input), time_step_size))[: round(len(input) / 2)][1:]
     print(len(Y))
