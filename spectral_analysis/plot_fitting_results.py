@@ -93,16 +93,10 @@ def plot_heatmap(results, path_to_results, abs = True):
     import os
 
     # extract input values for achsis limits
-    achsisticks_x = results["T_in"].unique()
-    achsisticks_x.sort()
-    print(achsisticks_x)
-    achsislabel_x = ["%1.2e" % i for i in achsisticks_x]
-    print(achsislabel_x)
-    achsisticks_y = results["S_in"].unique()
-    achsisticks_y.sort()
-    print(achsisticks_y)
-    achsislabel_y = ["%1.2e" % i for i in achsisticks_y]
-    print(achsislabel_y)
+    achsisticks_x = [1,5,10,15,20,25,30,35,40,45]
+    #achsislabel_x = ["%1.2e" % i for i in achsisticks_x]
+    achsisticks_y = [1,5,10,15,20,25,30,35,40,45]
+    #achsislabel_y = ["%1.2e" % i for i in achsisticks_y]
 
     def plot(pivotted, error):
         import numpy as np
@@ -116,10 +110,17 @@ def plot_heatmap(results, path_to_results, abs = True):
         barmin, barmax = 1, 1000
         cbar_ticks = [1,10,100,1000]
         log_norm = LogNorm(vmin=barmin, vmax=barmax)
-        plot = sns.heatmap(pivotted, cmap="Spectral_r",cbar_kws={"ticks": cbar_ticks}, norm=log_norm, vmax=barmax, vmin=barmin, fmt="1.3e")#, yticklabels=achsislabel_y, xticklabels=achsislabel_x)
-        plot.set_yticks(achsisticks_y)
-        plot.set_xticks(achsisticks_x)
-        fig = plot.get_figure()
+        ax = sns.heatmap(pivotted, cmap="Spectral_r",cbar_kws={"ticks": cbar_ticks}, norm=log_norm, vmax=barmax, vmin=barmin)#, yticklabels=achsislabel_y, xticklabels=achsislabel_x)
+        ax.set_yticks(achsisticks_y)
+        ax.set_xticks(achsisticks_x)
+        ax.invert_yaxis()
+
+        #import matplotlib.ticker as ticker
+        #tick_locator = ticker.MaxNLocator(12)
+        #ax.xaxis.set_major_locator(tick_locator)
+        #ax.yaxis.set_major_locator(tick_locator)
+
+        fig = ax.get_figure()
         if not os.path.exists(path_to_results + "/heatmap"):
             os.mkdir(path_to_results + "/heatmap")
 
