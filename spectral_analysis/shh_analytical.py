@@ -178,8 +178,9 @@ def shh_analytical_fit(Sww, Shh, f, x, L, m, n, norm):
     from functools import partial as prt
 
     partial = prt(shh_analytical, x=x, L=L, m=m, n=n, norm=norm)
-    initial_guess = [1, 1]
-    popt, pcov = optimization.curve_fit(partial, (f, Sww), Shh, p0=initial_guess)
+    initial_guess = [1e-3, 1e-3]
+    bounds = (1e-7,1)
+    popt, pcov = optimization.curve_fit(partial, (f, Sww), Shh, p0=initial_guess, bounds=bounds, method='trf')
     return popt, pcov
 
 

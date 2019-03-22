@@ -114,13 +114,13 @@ def plot_heatmap(results, path_to_results, abs = True):
         ax.set_yticks(achsisticks_y)
         ax.set_xticks(achsisticks_x)
         ax.invert_yaxis()
-
         #import matplotlib.ticker as ticker
         #tick_locator = ticker.MaxNLocator(12)
         #ax.xaxis.set_major_locator(tick_locator)
         #ax.yaxis.set_major_locator(tick_locator)
 
         fig = ax.get_figure()
+        fig.set_size_inches(5, 5)
         if not os.path.exists(path_to_results + "/heatmap"):
             os.mkdir(path_to_results + "/heatmap")
 
