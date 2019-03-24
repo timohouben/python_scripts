@@ -128,6 +128,7 @@ def plot_heatmap(results, path_to_results, abs = True):
             path_to_results + "/heatmap" + "/" + str(obs_loc) + "_" + error, dpi=dpi
         )
         fig.clf()
+        fig.close()
 
     for obs_loc in results["obs_loc"]:
         # extract only rows with obs_loc==obs_loc
