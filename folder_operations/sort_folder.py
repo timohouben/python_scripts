@@ -37,7 +37,7 @@ bin_temp = []
 for i, item in enumerate(integer_list):
     #bin_temp.append(folder_list[i])
     bin_temp.append(int(item))
-    if len(bin_temp) == 10:
+    if len(bin_temp) == group:
         bins.append((np.min(bin_temp),np.max(bin_temp)))
         bin_temp = []
 
