@@ -79,7 +79,9 @@ def plot_heatmap(S, T, function):
         'tc' : [sample_space[i][2] for i in np.arange(len(sample_space))]
         }
 
-    #np.save("/Users/houben/PhD/modelling/20190318_spectral_analysis_homogeneous/ogs_input_data",data)
+    import os
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    np.save(dir_path + "/samples",data)
 
     # create data frame from dictionary
     dataframe = pd.DataFrame(data,columns=['S','T','tc'])

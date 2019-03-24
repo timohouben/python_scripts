@@ -265,7 +265,7 @@ for i, project_folder in enumerate(project_folder_list):
             linestyle=linestyle,
             marker=marker,
             heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),
-            name="PSD_"
+            name=comment + "PSD_"
             + project_folder
             + "_"
             + str(obs_loc).zfill(len(str(aquifer_length))),

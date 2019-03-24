@@ -78,7 +78,6 @@ def plot_spectrum(
         )
     else:
         for i, spectrum in enumerate(data):
-            print(np.shape(spectrum))
             plt.loglog(
                 frequency,
                 spectrum,
@@ -144,7 +143,6 @@ def plot_shh_anal_loc(aquifer_length, time_step_size):
     X = np.linspace(0, aquifer_length - 1, int((aquifer_length / 10)))
     # Y contains the frequencies
     Y = abs(fftpack.fftfreq(len(input), time_step_size))[: round(len(input) / 2)][1:]
-    print(len(Y))
     Z = np.zeros((len(Y), len(X)))
     for i, loc in enumerate(X):
         Z[:, i] = np.log10(
@@ -159,9 +157,6 @@ def plot_shh_anal_loc(aquifer_length, time_step_size):
                 norm=False,
             )
         )
-    print(Z)
-    print(len(Z))
-    print(np.shape(Z))
     X, Y = np.meshgrid(X, Y)
     fig = plt.figure()
     ax = Axes3D(fig)
@@ -204,14 +199,11 @@ def plot_shh_anal_S(aquifer_length, time_step_size):
     spectrum = abs(spectrum[: round(len(spectrum) / 2)]) ** 2
     # erwase first data point
     spectrum = spectrum[1:]
-    print(len(spectrum))
-    print(spectrum)
     # X contains the different storativities
     # X = 10 ** np.linspace(1, 5, 5)
     X = [1e-2, 5e-3, 1e-3, 5e-4, 1e-4, 5e-5]
     # Y contains the frequencies
     Y = abs(fftpack.fftfreq(len(input), time_step_size))[: round(len(input) / 2)][1:]
-    print(len(Y))
     Z = np.zeros((len(Y), len(X)))
     for i, S in enumerate(X):
         Z[:, i] = np.log10(
@@ -226,9 +218,6 @@ def plot_shh_anal_S(aquifer_length, time_step_size):
                 norm=False,
             )
         )
-    print(Z)
-    print(len(Z))
-    print(np.shape(Z))
     X, Y = np.meshgrid(X, Y)
     fig = plt.figure()
     ax = Axes3D(fig)

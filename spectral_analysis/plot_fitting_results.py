@@ -110,17 +110,17 @@ def plot_heatmap(results, path_to_results, abs = True):
         barmin, barmax = 1, 1000
         cbar_ticks = [1,10,100,1000]
         log_norm = LogNorm(vmin=barmin, vmax=barmax)
-        ax = sns.heatmap(pivotted, cmap="Spectral_r",cbar_kws={"ticks": cbar_ticks}, norm=log_norm, vmax=barmax, vmin=barmin)#, yticklabels=achsislabel_y, xticklabels=achsislabel_x)
+        ax = sns.heatmap(pivotted, cmap="Spectral_r",cbar_kws={"ticks": cbar_ticks}, vmax=barmax, vmin=barmin)#, norm=log_norm)#, yticklabels=achsislabel_y, xticklabels=achsislabel_x)
         ax.set_yticks(achsisticks_y)
         ax.set_xticks(achsisticks_x)
         ax.invert_yaxis()
-
         #import matplotlib.ticker as ticker
         #tick_locator = ticker.MaxNLocator(12)
         #ax.xaxis.set_major_locator(tick_locator)
         #ax.yaxis.set_major_locator(tick_locator)
 
         fig = ax.get_figure()
+        fig.set_size_inches(5, 5)
         if not os.path.exists(path_to_results + "/heatmap"):
             os.mkdir(path_to_results + "/heatmap")
 

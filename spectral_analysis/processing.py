@@ -142,7 +142,7 @@ def combine_results(path_to_multiple_projects, filename="results.csv"):
     import os
     import os.path
 
-    if path_to_multiple_projects + "/combined_results" == False:
+    if os.path.exists(path_to_multiple_projects + "/combined_results") == False:
         os.mkdir(path_to_multiple_projects + "/combined_results")
 
     file_paths = []
@@ -166,7 +166,7 @@ def combine_results(path_to_multiple_projects, filename="results.csv"):
             csv_merge.write(line)
         csv_in.close()
     csv_merge.close()
-    print('Verify consolidated CSV file : ' + "csv_merge.csv")
+    print('Created consolidated CSV file : ' + "csv_merge.csv")
 
 if __name__ == "__main__":
     # test for combine_results()
