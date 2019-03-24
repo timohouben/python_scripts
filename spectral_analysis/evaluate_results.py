@@ -13,8 +13,8 @@ def identify_missfits(path):
     df = pd.read_csv(path + "/" + "results.csv")
     for i,item in enumerate(df["cov"][:]):
         try:
-        	if float(item[3:17]) > 1:
-    	    print(item[3:17], i,df["name"][i],"S_in: ",df["S_in"][i],"T_in: ", df["T_in"][i])
+            if float(item[3:17]) > 1:
+                print(item[3:17], i,df["name"][i],"S_in: ",df["S_in"][i],"T_in: ", df["T_in"][i])
         except TypeError:
             pass
         except ValueError:
