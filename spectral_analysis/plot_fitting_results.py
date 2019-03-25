@@ -120,7 +120,7 @@ def plot_heatmap(results, path_to_results, abs = True):
         #ax.yaxis.set_major_locator(tick_locator)
 
         fig = ax.get_figure()
-        fig.set_size_inches(5, 5)
+        #fig.set_size_inches(5, 5)
         if not os.path.exists(path_to_results + "/heatmap"):
             os.mkdir(path_to_results + "/heatmap")
 
