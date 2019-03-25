@@ -120,7 +120,7 @@ def plot_heatmap(results, path_to_results, abs = True):
         #ax.yaxis.set_major_locator(tick_locator)
 
         fig = ax.get_figure()
-        fig.set_size_inches(5, 5)
+        #fig.set_size_inches(5, 5)
         if not os.path.exists(path_to_results + "/heatmap"):
             os.mkdir(path_to_results + "/heatmap")
 
@@ -128,7 +128,6 @@ def plot_heatmap(results, path_to_results, abs = True):
             path_to_results + "/heatmap" + "/" + str(obs_loc) + "_" + error, dpi=dpi
         )
         fig.clf()
-        fig.close()
 
     for obs_loc in results["obs_loc"]:
         # extract only rows with obs_loc==obs_loc

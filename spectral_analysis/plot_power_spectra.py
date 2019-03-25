@@ -129,47 +129,52 @@ def plot_shh_anal_loc(aquifer_length, time_step_size):
     from mpl_toolkits.mplot3d import Axes3D
     import scipy.fftpack as fftpack
 
-    data_points = 100
-    time_step_size = 86400
+    data_points = 800
+    time_step_size = 8640
     aquifer_length = 1000
     # create an input signal
     np.random.seed(123456789)
     input = np.random.rand(data_points)
     spectrum = fftpack.fft(input)
     spectrum = abs(spectrum[: round(len(spectrum) / 2)]) ** 2
-    # erwase first data point
-    spectrum = spectrum[1:]
+    # erase first data point
+    spectrum = spectrum#[1:]
     # X contains the different locations
-    X = np.linspace(0, aquifer_length - 1, int((aquifer_length / 10)))
+    X = np.linspace(0, aquifer_length - 1, int((aquifer_length / 100)))
     # Y contains the frequencies
-    Y = abs(fftpack.fftfreq(len(input), time_step_size))[: round(len(input) / 2)][1:]
+    Y = np.log10(abs(fftpack.fftfreq(len(input), time_step_size))[: round(len(input) / 2)][1:])
     Z = np.zeros((len(Y), len(X)))
     for i, loc in enumerate(X):
-        Z[:, i] = np.log10(
-            shh_analytical(
+        Z[:, i] = np.log10(shh_analytical(
                 (Y, spectrum),
-                Sy=0.00001,
-                T=0.00001,
+                Sy=3.16e-2,
+                T=2e-4,
                 x=loc,
                 L=aquifer_length,
                 m=5,
                 n=5,
                 norm=False,
-            )
-        )
+            ))
+    # erase first data point from Z for each location
+    #Z = Z[10:,:]
+    #Y = Y[10:]
     X, Y = np.meshgrid(X, Y)
     fig = plt.figure()
     ax = Axes3D(fig)
-    surf = ax.plot_surface(
-        X, Y, Z, rstride=1, cstride=2, cmap=cm.jet, shade=False, linewidth=1
-    )
-    # surf = ax.plot_wireframe(X, Y, Z, rstride=0, cstride=5, cmap=cm.magma)
+    #surf = ax.plot_surface(
+    #    X, Y, Z, rstride=1, cstride=2, shade=False, linewidth=1, cmap="Spectral_r"
+    #)
+    surf = ax.plot_wireframe(X, Y, Z, rstride=0, cstride=5, cmap=cm.magma)
     # surf.set_edgecolors(surf.to_rgba(surf._A))
-    surf.set_facecolors("white")
+    #surf.set_facecolors("white")
     # ax1 = ax.plot_wireframe(X, Y, Z, rstride=1, cstride=0)
-    ax.set_xlabel("location")
-    ax.set_ylabel("frequency [Hz]")
-    ax.set_zlabel("spectral density")
+    ax.set_xlabel("Location [m]")
+    ax.set_ylabel("Frequency [Hz]")
+    ax.set_zlabel("log Spectral Density")
+    #ax.set_zscale("log")
+    #ax.yaxis.set_scale("log")
+    #ax.zaxis._set_scale('log')
+    #ax.set_yscale("log")
     plt.show()
 
 
@@ -233,32 +238,32 @@ def plot_shh_anal_S(aquifer_length, time_step_size):
 
 
 if __name__ == "__main__":
-    # plot_shh_anal_loc(aquifer_length=1000, time_step_size=86400)
+    plot_shh_anal_loc(aquifer_length=1000, time_step_size=86400)
     # plot_shh_anal_S(aquifer_length=1000, time_step_size=86400)
 
     # Test for function plot_spectrum
-    from power_spectrum import power_spectrum
-    import numpy as np
+#    from power_spectrum import power_spectrum
+#    import numpy as np
 
-    frequency, data1 = power_spectrum(
-        np.random.rand(1000), np.random.rand(1000), 86400, o_i="o"
-    )
-    frequency, data2 = power_spectrum(
-        np.random.rand(1000), np.random.rand(1000), 86400, o_i="o"
-    )
-    frequency, data3 = power_spectrum(
-        np.random.rand(1000), np.random.rand(1000), 86400, o_i="o"
-    )
-    data = np.vstack((data1, data2, data3))
-    labels = ["head1", "head2", "head3"]
-    linestyle = ["-", "--", ":"]
-    path = "/Users/houben/Desktop/TEST"
-    plot_spectrum(
-        data,
-        frequency,
-        labels,
-        path,
-        lims=None,
-        figtxt="nonoasndoand\nasdasd",
-        linestyle=linestyle,
-    )
+#    frequency, data1 = power_spectrum(
+#        np.random.rand(1000), np.random.rand(1000), 86400, o_i="o"
+#    )
+#    frequency, data2 = power_spectrum(
+#        np.random.rand(1000), np.random.rand(1000), 86400, o_i="o"
+#    )
+#    frequency, data3 = power_spectrum(
+#        np.random.rand(1000), np.random.rand(1000), 86400, o_i="o"
+#    )
+    #data = np.vstack((data1, data2, data3))
+    #labels = ["head1", "head2", "head3"]
+    #linestyle = ["-", "--", ":"]
+    #path = "/Users/houben/Desktop/TEST"
+    #plot_spectrum(
+#        data,
+#        frequency,
+#        labels,
+#        path,
+#        lims=None,
+#        figtxt="nonoasndoand\nasdasd",
+#        linestyle=linestyle,
+#    )
