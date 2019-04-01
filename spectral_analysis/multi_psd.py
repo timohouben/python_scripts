@@ -39,7 +39,7 @@ aquifer_thickness = 30
 which = "mean"
 m = 1
 n = 1
-comment = ""  # give a specific comment for the analysis e.g. "parameterset1_"
+comment = "cut_1000_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = 1000
