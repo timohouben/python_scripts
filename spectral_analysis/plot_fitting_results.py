@@ -244,7 +244,7 @@ def plot_heatmap(results, path_to_results, abs=True, comment=""):
         fig = ax.get_figure()
         #fig.set_size_inches(5, 5)
         if not os.path.exists(path_to_results + "/" + comment + "heatmap"):
-            os.mkdir(path_to_results + "/heatmap")
+            os.mkdir(path_to_results + "/" + comment + "heatmap")
 
         fig.savefig(
             path_to_results + "/" + comment + "heatmap" + "/" + str(obs_loc) + "_" + error, dpi=dpi
