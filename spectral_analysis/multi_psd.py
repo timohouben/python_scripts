@@ -275,6 +275,7 @@ for i, project_folder in enumerate(project_folder_list):
             + "_"
             + str(obs_loc).zfill(len(str(aquifer_length))),
             figtxt=figtxt,
+            comment=comment
         )
     time_1_model = time.time() - time_begin
     print(str(time_1_model) + " s elapsed for " + project_folder + "...")
