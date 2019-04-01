@@ -40,6 +40,9 @@ which = "mean"
 m = 1
 n = 1
 comment = ""  # give a specific comment for the analysis e.g. "parameterset1_"
+# set cut index and limit recharge and head time series to the first #cut_index values
+# set it to None to take all values
+cut_index = 1000
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
@@ -59,7 +62,6 @@ Description:
 
 ToBeDone
 --------
-- Use covariance matrix to evaluate the fit!
 - Find an appropriate measure to compare input and output parameters.
 - imporove labeling for legend in plot_errors_vs_loc
 
@@ -117,7 +119,6 @@ except ValueError:
 project_folder_list.sort()
 
 # initiate the dataframe
-placeholder = np.zeros(len(project_folder_list))
 pd.set_option("precision", 10)
 columns = [
     "name",
@@ -173,7 +174,13 @@ for i, project_folder in enumerate(project_folder_list):
             + ".txt"
         )
         # do some preprocessing on time series
-        #
+        # ------------------------------------
+
+        # cut the time series of head and recharge at a given point
+        # ony get the first cut_index values
+        head_time_series = head_time_series[:cut_index]
+        recharge_time_series = recharge_time_series[:cut_index]
+
         #
         #
         #
