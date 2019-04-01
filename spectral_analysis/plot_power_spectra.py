@@ -19,7 +19,7 @@ def plot_spectrum(
     unit="[Hz]",
     heading="None",
     figtxt=None,
-    comment=comment
+    comment=""
 ):
     """
     Function to plot one or multiple power spectra.
