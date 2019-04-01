@@ -113,132 +113,85 @@ def plot_spectrum(
     plt.close()
 
 
-def plot_shh_anal_loc(aquifer_length, time_step_size):
+def plot_shh_anal_loc():
     """
-    Function to plot multiple analytical power spectra along e.g. along aquifer.
-    """
-
-    import sys
-
-    # add search path for own modules
-    sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
-    from shh_analytical import shh_analytical
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from matplotlib import cm
-    from mpl_toolkits.mplot3d import Axes3D
-    import scipy.fftpack as fftpack
-
-    data_points = 800
-    time_step_size = 8640
-    aquifer_length = 1000
-    # create an input signal
-    np.random.seed(123456789)
-    input = np.random.rand(data_points)
-    spectrum = fftpack.fft(input)
-    spectrum = abs(spectrum[: round(len(spectrum) / 2)]) ** 2
-    # erase first data point
-    spectrum = spectrum#[1:]
-    # X contains the different locations
-    X = np.linspace(0, aquifer_length - 1, int((aquifer_length / 100)))
-    # Y contains the frequencies
-    Y = np.log10(abs(fftpack.fftfreq(len(input), time_step_size))[: round(len(input) / 2)][1:])
-    Z = np.zeros((len(Y), len(X)))
-    for i, loc in enumerate(X):
-        Z[:, i] = np.log10(shh_analytical(
-                (Y, spectrum),
-                Sy=3.16e-2,
-                T=2e-4,
-                x=loc,
-                L=aquifer_length,
-                m=5,
-                n=5,
-                norm=False,
-            ))
-    # erase first data point from Z for each location
-    #Z = Z[10:,:]
-    #Y = Y[10:]
-    X, Y = np.meshgrid(X, Y)
-    fig = plt.figure()
-    ax = Axes3D(fig)
-    #surf = ax.plot_surface(
-    #    X, Y, Z, rstride=1, cstride=2, shade=False, linewidth=1, cmap="Spectral_r"
-    #)
-    surf = ax.plot_wireframe(X, Y, Z, rstride=0, cstride=5, cmap=cm.magma)
-    # surf.set_edgecolors(surf.to_rgba(surf._A))
-    #surf.set_facecolors("white")
-    # ax1 = ax.plot_wireframe(X, Y, Z, rstride=1, cstride=0)
-    ax.set_xlabel("Location [m]")
-    ax.set_ylabel("Frequency [Hz]")
-    ax.set_zlabel("log Spectral Density")
-    #ax.set_zscale("log")
-    #ax.yaxis.set_scale("log")
-    #ax.zaxis._set_scale('log')
-    #ax.set_yscale("log")
-    plt.show()
-
-
-def plot_shh_anal_S(aquifer_length, time_step_size):
-    """
-    Function to plot multiple analytical power spectra along diff. storativities.
+    Function to plot multiple analytical power spectra along e.g. an aquifer in a 3D plot.
+    Still not working because plot3d has issues with log scale ...
     """
 
-    import sys
-
-    # add search path for own modules
-    sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
-    from shh_analytical import shh_analytical
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from matplotlib import cm
-    from mpl_toolkits.mplot3d import Axes3D
-    import scipy.fftpack as fftpack
-
-    data_points = 5000
+    # set parameters
+    data_points = 8000
     time_step_size = 86400
     aquifer_length = 1000
+    Sy = 1e-1
+    T = 0.001
+    from calc_tc import calc_tc
+
+    tc = calc_tc(aquifer_length, Sy, T)
+    print(tc)
+
+    import sys
+
+    # add search path for own modules
+    sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
+    from shh_analytical import shh_analytical
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from matplotlib import cm
+    from mpl_toolkits.mplot3d import Axes3D
+    import scipy.fftpack as fftpack
+
     # create an input signal
     np.random.seed(123456789)
     input = np.random.rand(data_points)
     spectrum = fftpack.fft(input)
+    # erase first half of spectrum
     spectrum = abs(spectrum[: round(len(spectrum) / 2)]) ** 2
-    # erwase first data point
-    spectrum = spectrum[1:]
-    # X contains the different storativities
-    # X = 10 ** np.linspace(1, 5, 5)
-    X = [1e-2, 5e-3, 1e-3, 5e-4, 1e-4, 5e-5]
-    # Y contains the frequencies
-    Y = abs(fftpack.fftfreq(len(input), time_step_size))[: round(len(input) / 2)][1:]
+    spectrum = spectrum  # [1:]
+    # X contains the different locations
+    X = np.linspace(0, aquifer_length - 1, 10)
+    X = [100, 900]
+    # Y contains the frequencies, erase first data point because it's 0
+    Y = abs(fftpack.fftfreq(len(input), time_step_size))[: round(len(input) / 2)]
+    Y = np.log10(Y[1:])
     Z = np.zeros((len(Y), len(X)))
-    for i, S in enumerate(X):
+    for i, loc in enumerate(X):
         Z[:, i] = np.log10(
             shh_analytical(
-                (Y, spectrum),
-                Sy=S,
-                T=0.05,
-                x=500,
-                L=aquifer_length,
-                m=5,
-                n=5,
-                norm=False,
+                (Y, spectrum), Sy=Sy, T=T, x=loc, L=aquifer_length, m=5, n=5, norm=False
             )
         )
-    X, Y = np.meshgrid(X, Y)
-    fig = plt.figure()
-    ax = Axes3D(fig)
-    # surf = ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.jet, shade=False, linewidth=1)
-    surf = ax.plot_wireframe(X, Y, Z, rstride=0, cstride=1, cmap=cm.magma)
+    # erase first data point from Z for each location
+    print(Z)
+    print(Y)
+    import matplotlib.pyplot as plt
+
+    plt.plot(Y, Z[:, 0])
+    # plt.loglog(Y,Z[:,0])
+    #    X, Y = np.meshgrid(X, Y)
+    #    fig = plt.figure()
+    #    ax = Axes3D(fig)
+    # surf = ax.plot_surface(
+    #    X, Y, Z, rstride=1, cstride=2, shade=False, linewidth=1, cmap="Spectral_r"
+    # )
+    #    surf = ax.plot_wireframe(X, Y, Z, rstride=0, cstride=1, cmap=cm.magma)
     # surf.set_edgecolors(surf.to_rgba(surf._A))
     # surf.set_facecolors("white")
     # ax1 = ax.plot_wireframe(X, Y, Z, rstride=1, cstride=0)
-    ax.set_xlabel("storativity")
-    ax.set_ylabel("frequency [Hz]")
-    ax.set_zlabel("spectral density")
+
+    #    ax.set_xlabel("Location [m]")
+    #    ax.set_ylabel("Frequency [Hz]")
+    #    ax.set_zlabel("log Spectral Density")
+
+    # ax.set_zscale("log")
+    # ax.yaxis.set_scale("log")
+    # ax.zaxis._set_scale('log')
+    # ax.set_yscale("log")
     plt.show()
 
 
 if __name__ == "__main__":
-    plot_shh_anal_loc(aquifer_length=1000, time_step_size=86400)
+    plot_shh_anal_loc()
     # plot_shh_anal_S(aquifer_length=1000, time_step_size=86400)
 
     # Test for function plot_spectrum
@@ -254,11 +207,11 @@ if __name__ == "__main__":
 #    frequency, data3 = power_spectrum(
 #        np.random.rand(1000), np.random.rand(1000), 86400, o_i="o"
 #    )
-    #data = np.vstack((data1, data2, data3))
-    #labels = ["head1", "head2", "head3"]
-    #linestyle = ["-", "--", ":"]
-    #path = "/Users/houben/Desktop/TEST"
-    #plot_spectrum(
+# data = np.vstack((data1, data2, data3))
+# labels = ["head1", "head2", "head3"]
+# linestyle = ["-", "--", ":"]
+# path = "/Users/houben/Desktop/TEST"
+# plot_spectrum(
 #        data,
 #        frequency,
 #        labels,
