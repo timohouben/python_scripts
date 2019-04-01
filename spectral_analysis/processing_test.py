@@ -5,7 +5,7 @@ import sys
 
 sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis/")
 
-from preprocessing import cut
+from processing import cut
 
 # import pytest
 
