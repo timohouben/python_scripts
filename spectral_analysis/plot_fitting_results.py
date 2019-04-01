@@ -10,7 +10,7 @@ dpi = 300
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
-def plot_error_vs_tc(results, path_to_results, comment=None, abs=True):
+def plot_error_vs_tc(results, path_to_results, comment="", abs=True):
     """
     Plot errors of input and output parameters (S, T, tc) vs input tc.
     This results in 3 (S,T,tc) plots with multiple graphs according to the
@@ -62,14 +62,11 @@ def plot_error_vs_tc(results, path_to_results, comment=None, abs=True):
         plt.ylabel(error + " [%]")
         plt.xlabel("t_c [days]")
         plt.legend()
-        if comment = None:
-            plt.savefig(path_to_results + "/error_vs_tc/" + error + "_vs_tc_abs_" + str(abs) + ".png", dpi=dpi)
-        else:
-            plt.savefig(path_to_results + "/error_vs_tc/" + error + "_vs_tc_abs_" + str(abs) + "_" + comment + ".png", dpi=dpi)
+        plt.savefig(path_to_results + "/error_vs_tc/" + error + "_vs_tc_abs_" + str(abs) + "_" + comment + ".png", dpi=dpi)
         plt.close()
 
 
-def plot_errors_vs_loc_aggregate(results, path_to_results, error, aggregate, bins, abs, comment):
+def plot_errors_vs_loc_aggregate(results, path_to_results, error, aggregate, bins, abs, comment=""):
     """
     Plot errors of input and output parameters (S, T, tc) vs the observation
     location in the aquifer (2D transect) and aggregated for specific ranges of tc.
@@ -131,7 +128,7 @@ def plot_errors_vs_loc_aggregate(results, path_to_results, error, aggregate, bin
 
 
 
-def plot_errors_vs_loc(results, path_to_results, comment):
+def plot_errors_vs_loc(results, path_to_results, comment=""):
     """
     Plot errors of input and output parameters (S, T, tc) vs the observation
     location in the aquifer (2D transect). This results in three plots per OGS
