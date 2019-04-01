@@ -168,7 +168,7 @@ def difference_fraction_log(a, b):
     return (np.log(a) - np.log(b)) / np.log(a)
 
 
-def combine_results(path_to_multiple_projects, filename="results.csv"):
+def combine_results(path_to_multiple_projects, filename):
     """
     Searches for results.csv in all subdirectories and combines these files. All csv files must have the same header!
 
@@ -178,7 +178,7 @@ def combine_results(path_to_multiple_projects, filename="results.csv"):
     path_to_multiple_projects : string
         Path in which you want to start searching. Results will be stored on this level.
     filename : string
-        Name of .csv file. Default: results.csv
+        Name of .csv file.
     """
 
     import os
