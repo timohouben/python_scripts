@@ -187,7 +187,7 @@ def plot_errors_vs_loc(results, path_to_results, comment=""):
         )
 
 
-def plot_heatmap(results, path_to_results, abs=True):
+def plot_heatmap(results, path_to_results, abs=True, comment=""):
     """
     Plot errors of input and output parameters (S, T, tc) vs the parameter
     range as heatmap. This results in three plots per location.
