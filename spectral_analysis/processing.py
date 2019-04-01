@@ -4,6 +4,13 @@
 from __future__ import division
 
 # ------------------------------------------------------------------------------
+def identify_numbers_from_string(string):
+    """
+    Pass a string and return a list of numbers in string.
+    """
+    import re
+
+    return re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", string)
 
 
 def detrend(timeseries, type="linear"):
@@ -115,7 +122,7 @@ def percent_fraction(a, b):
 def percent_difference_fraction(a, b):
     """
     Returns fraction of difference of a and b to a as %.
-    (a - b)/b * 100
+    (a - b)/a * 100
 
     Parameters
     ----------
@@ -125,6 +132,41 @@ def percent_difference_fraction(a, b):
 
     """
     return (a - b) / a * 100
+
+
+def percent_difference_fraction_log(a, b):
+    """
+    Returns fraction of difference of log10(a) and log10(b) to log10(a) as %.
+    ( log10(a) - log10(b) ) / log10(a) * 100
+
+    Parameters
+    ----------
+    a : float
+
+    b : float
+
+    """
+    import numpy as np
+
+    return (np.log10(a) - np.log10(b)) / np.log10(a) * 100
+
+
+def difference_fraction_log(a, b):
+    """
+    Returns fraction of difference of log10(a) and log10(b) to log10(a).
+    ( log10(a) - log10(b) ) / log10(a) * 100
+
+    Parameters
+    ----------
+    a : float
+
+    b : float
+
+    """
+    import numpy as np
+
+    return (np.log(a) - np.log(b)) / np.log(a)
+
 
 def combine_results(path_to_multiple_projects, filename="results.csv"):
     """
@@ -155,7 +197,9 @@ def combine_results(path_to_multiple_projects, filename="results.csv"):
         header = f.readline()
         f.close()
 
-    csv_merge = open(path_to_multiple_projects + "/combined_results" + "/" + "csv_merge.csv", 'w')
+    csv_merge = open(
+        path_to_multiple_projects + "/combined_results" + "/" + "csv_merge.csv", "w"
+    )
     csv_merge.write(header)
 
     for file in file_paths:
@@ -166,7 +210,8 @@ def combine_results(path_to_multiple_projects, filename="results.csv"):
             csv_merge.write(line)
         csv_in.close()
     csv_merge.close()
-    print('Created consolidated CSV file : ' + "csv_merge.csv")
+    print("Created consolidated CSV file : " + "csv_merge.csv")
+
 
 if __name__ == "__main__":
     # test for combine_results()

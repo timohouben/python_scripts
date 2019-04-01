@@ -1,6 +1,6 @@
-#!/usr/bin/env python2
-
-#!/home/houben/env1/bin/python2
+#!/usr/local/bin/python2
+###!/usr/bin/env python2
+###!/home/houben/env1/bin/python2
 # -*- coding: utf-8 -*-
 """
 Created on Wed Oct  3 11:56:07 2018
@@ -48,7 +48,8 @@ which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
 time_steps = 10950  # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_00000','obs_00050','obs_00100','obs_00200','obs_00400','obs_00500','obs_00600','obs_00800','obs_00850','obs_00900','obs_00910', 'obs_00920','obs_00930','obs_00940','obs_00950','obs_00960','obs_00970','obs_00980','obs_00990','obs_01000']
+obs_per_plot = ['obs_00200','obs_00400','obs_00600','obs_00800','obs_00990']
+#['obs_00000','obs_00050','obs_00100','obs_00200','obs_00400','obs_00500','obs_00600','obs_00800','obs_00850','obs_00900','obs_00910', 'obs_00920','obs_00930','obs_00940','obs_00950','obs_00960','obs_00970','obs_00980','obs_00990','obs_01000']
 #['obs_0000', 'obs_0200', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0800', 'obs_0950', 'obs_0990', 'obs_1000']
 # obs_per_plot = obs_point_list = obs("/work/houben/spectral_analysis/20181211_dupuit/5000/10/0091_5000_10_9.00e-05")[1]
 
@@ -414,7 +415,7 @@ for i,curr_dir in enumerate(list_dir):
         ax1.set_ylabel('recharge [mm/day]', color=color)  # we already handled the x-label with ax1
         ax1.bar(time_d, recharge, width=1, color=color)
         ax1.tick_params(axis='y', labelcolor=color)
-        #ax1.set_ylim(0,0.2)
+        ax1.set_ylim(0,2.5)
         #ax1.set_ylim([min(recharge), max(recharge)*2])
         #ax1.set_yticks([0, 1, 2, 3, 4, 5])
        
@@ -519,7 +520,7 @@ for i,curr_dir in enumerate(list_dir):
         ax2.tick_params(axis='y', labelcolor=color)
         ax2.grid(color='grey', linestyle='--', linewidth=0.5, which='both')
         handles, labels = ax2.get_legend_handles_labels()
-        ax1.legend(handles, labels, loc=2)
+        ax1.legend(handles, labels, loc=3, facecolor="white", framealpha=100)
         fig.tight_layout()  # otherwise the right y-label is slightly clipped
        
         #maximize the plot window

@@ -7,6 +7,7 @@ from __future__ import division
 
 # import modules
 import time
+
 time_begin = time.time()
 import sys
 import numpy as np
@@ -255,7 +256,10 @@ for i, project_folder in enumerate(project_folder_list):
         linestyle = ["-", "", ""]
         # lims = [(1e-8,1e-4),(1e-7,1e0)]
         marker = ["", "*", "."]
-        figtxt = "OGS Input Parameter: S = %1.3e, T = %1.3e" % (S,T) + "\nDerived Parameter:    S = %1.3e, T = %1.3e" % (popt[0],popt[1])
+        figtxt = "OGS Input Parameter: S = %1.3e, T = %1.3e" % (
+            S,
+            T,
+        ) + "\nDerived Parameter:    S = %1.3e, T = %1.3e" % (popt[0], popt[1])
         plot_spectrum(
             data,
             frequency,
@@ -265,7 +269,8 @@ for i, project_folder in enumerate(project_folder_list):
             linestyle=linestyle,
             marker=marker,
             heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),
-            name=comment + "PSD_"
+            name=comment
+            + "PSD_"
             + project_folder
             + "_"
             + str(obs_loc).zfill(len(str(aquifer_length))),
@@ -287,4 +292,4 @@ path_to_results_df = (
 results.to_csv(path_to_results_df)
 plot_errors_vs_loc(results, path_to_results)
 time_end = time.time() - time_begin
-print("%1.1d min elapsed." % str(time_end/60))
+print("%1.1d min elapsed." % str(time_end / 60))
