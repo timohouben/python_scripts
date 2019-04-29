@@ -421,7 +421,7 @@ for i,curr_dir in enumerate(list_dir):
        
         # second axis for head
         ax2 = ax1.twinx()
-        #ax2.set_ylim(29,35)
+        ax2.set_ylim(27,35)
         #ax2.set_yticks(np.arange(26,40,0.5))
         color = 'tab:red'
     
@@ -520,7 +520,8 @@ for i,curr_dir in enumerate(list_dir):
         ax2.tick_params(axis='y', labelcolor=color)
         ax2.grid(color='grey', linestyle='--', linewidth=0.5, which='both')
         handles, labels = ax2.get_legend_handles_labels()
-        ax1.legend(handles, labels, loc=3, facecolor="white", framealpha=100)
+        ax1.legend(handles, labels, loc=6, facecolor="white", framealpha=100)
+
         fig.tight_layout()  # otherwise the right y-label is slightly clipped
        
         #maximize the plot window

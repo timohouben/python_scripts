@@ -21,6 +21,7 @@ def get_ogs_parameters(path):
     # this configuration is probably only working for this kind of OGS setups
     # because it is indexing the contents of the mmp file and not refering to a
     # dictionary with keys!!!
+    # alternative: mpd.get_block(0)[""]
     Ss = float(ogsmodel.mmp.cont[0][1][0][1])
     kf = float(ogsmodel.mmp.cont[0][2][0][1])
     time_step_size = float(ogsmodel.tim.cont[0][3][0][1])
