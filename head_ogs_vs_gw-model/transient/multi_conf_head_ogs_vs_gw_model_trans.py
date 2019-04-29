@@ -1,5 +1,5 @@
-#!/usr/local/bin/python2
-###!/usr/bin/env python2
+###!/usr/local/bin/python2
+#!/usr/bin/env python2
 ###!/home/houben/env1/bin/python2
 # -*- coding: utf-8 -*-
 """
