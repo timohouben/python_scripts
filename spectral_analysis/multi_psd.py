@@ -37,12 +37,12 @@ from plot_fitting_results import plot_errors_vs_loc
 aquifer_length = 1000
 aquifer_thickness = 30
 which = "mean"
-m = 1
-n = 1
-comment = "cut_1000_"  # give a specific comment for the analysis e.g. "parameterset1_"
+m = 5
+n = 5
+comment = "eq_limits_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
-cut_index = 1000
+cut_index = None
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------s
 
@@ -261,7 +261,7 @@ for i, project_folder in enumerate(project_folder_list):
         data = np.vstack((Shh_numerical, Shh_fitted, Shh_theoretical))
         labels = ["Shh numerical", "Shh fitted", "Shh theoretical"]
         linestyle = ["-", "", ""]
-        # lims = [(1e-8,1e-4),(1e-7,1e0)]
+        lims = [(1e-9,6e-6),(1e-6,1e5)]
         marker = ["", "*", "."]
         figtxt = "OGS Input Parameter: S = %1.3e, T = %1.3e" % (
             S,
@@ -272,7 +272,7 @@ for i, project_folder in enumerate(project_folder_list):
             frequency,
             labels=labels,
             path=path_to_project,
-            lims=None,
+            lims=lims,
             linestyle=linestyle,
             marker=marker,
             heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),

@@ -4,3 +4,7 @@
 
 ## multi_psd.py
 - save covariance matrix as numbers!!
+
+## General stuff
+- equalize the matplotlib stuff (e.g. fonts, latex or not etc)
+- structure the module load ins

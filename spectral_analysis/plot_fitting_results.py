@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*
+    # -*- coding: utf-8 -*
 # ------------------------------------------------------------------------------
 # python 2 and 3 compatible
 from __future__ import division
@@ -35,20 +35,24 @@ def plot_error_vs_tc(results, path_to_results, comment="", abs=True):
     from cycler import cycler
 
 #['#f1eef6', '#d0d1e6', '#a6bddb', '#74a9cf','#3690c0','#0570b0','#034e7b']
-    plt.rc('axes', prop_cycle=(cycler('color', ['#edf8b1',
+    plt.rc('axes', prop_cycle=(cycler('color', [
+#    '#edf8b1',
     '#c7e9b4',
-    '#7fcdbb',
+#    '#7fcdbb',
     '#41b6c4',
     '#1d91c0',
     '#225ea8',
     '#253494'])))
+    font = {'family' : 'normal',
+            'weight' : 'normal',
+            'size'   : 14}
+    plt.rc('font', **font)
     if not os.path.exists(path_to_results + "/error_vs_tc"):
         os.mkdir(path_to_results + "/error_vs_tc")
-
     for error in ["err_S","err_T","err_tc"]:
         tc_agg = results["tc_in"].apply(lambda x: np.around(x,2)).unique()
         tc_agg.sort()
-        for loc in [100,200,400,500,600,900,990]:#results.obs_loc.unique():
+        for loc in [200,400,600,800,990]:#results.obs_loc.unique():
             results_loc = results[error][results["obs_loc"] == loc]
             err_vs_tc_at_loc = []
             for tc in tc_agg:
@@ -59,6 +63,8 @@ def plot_error_vs_tc(results, path_to_results, comment="", abs=True):
                 if abs == False:
                     err_vs_tc_at_loc.append(np.mean(results_loc[results["tc_in"].apply(lambda x: np.around(x,2)) == tc]))
             plt.loglog(tc_agg,err_vs_tc_at_loc, label=str(loc) + " m")
+
+
         plt.ylabel(error + " [%]")
         plt.xlabel("t_c [days]")
         plt.legend()

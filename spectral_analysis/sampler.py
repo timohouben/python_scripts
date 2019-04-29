@@ -64,7 +64,7 @@ def plot_heatmap(S, T, function):
             cmap="PuBu",
             norm=log_norm,
             cbar_kws={"ticks": cbar_ticks},
-            annot=False,
+            annot=True,
         )  # ,yticklabels=achsislabel_y)#,xticklabels=achsislabel_x)
         # ax.set_yticks(achsisticks_y)
         # ax.set_xticks(achsisticks_x)
@@ -96,7 +96,7 @@ def plot_heatmap(S, T, function):
     import os
 
     dir_path = os.path.dirname(os.path.realpath("__file__"))
-    np.save(dir_path + "/samples", data)
+    #np.save(dir_path + "/samples", data)
 
     # create data frame from dictionary
     dataframe = pd.DataFrame(data, columns=["S", "T", "tc"])
