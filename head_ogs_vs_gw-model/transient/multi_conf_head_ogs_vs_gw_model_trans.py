@@ -1,6 +1,9 @@
+#!/usr/local/python/3.6.0-1/bin/python3
+'''
 ###!/usr/local/bin/python2
-#!/usr/bin/env python2
+###!/usr/bin/env python2
 ###!/home/houben/env1/bin/python2
+'''
 # -*- coding: utf-8 -*-
 
 """
@@ -16,11 +19,12 @@ with an additional routine to perform multiple runs in a directory
 # import modules
 # =============================================================================
 import matplotlib
-matplotlib.use('Agg')
+#matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import sys
 sys.path.append("/home/houben/python_pkg/python_scripts/python_scripts/frequency_analysis")
 sys.path.append("/Users/houben/PhD/python/scripts/frequency_analysis")
+sys.path.append("/home/houben/python_pkg/scripts/spectral_analysis")
 from get_obs import get_obs
 from ogs5py.reader import readtec_polyline
 import numpy as np
