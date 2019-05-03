@@ -6,7 +6,7 @@ from __future__ import division
 # ------------------------------------------------------------------------------
 
 
-def get_ogs_parameters(path):
+def get_ogs_parameters(path, noKf=False):
     from ogs5py import OGS
 
     ogsmodel = OGS(task_root=path)
@@ -26,7 +26,10 @@ def get_ogs_parameters(path):
     kf = float(ogsmodel.mmp.cont[0][2][0][1])
     time_step_size = float(ogsmodel.tim.cont[0][3][0][1])
     time_steps = float(ogsmodel.tim.cont[0][3][0][0])
-    return Ss, kf, time_step_size, time_steps
+    if noKf == True:
+        return Ss, time_step_size, time_steps
+    else:
+        return Ss, kf, time_step_size, time_steps
 
 
 if __name__ == "__main__":

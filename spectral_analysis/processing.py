@@ -212,6 +212,13 @@ def combine_results(path_to_multiple_projects, filename):
     csv_merge.close()
     print("Created consolidated CSV file : " + "csv_merge.csv")
 
+def get_filename_from_rfd_top_com(path="/Users/houben/phd/modelling/20190430_spectral_analysis_heterogeneous/models/var_1_len_100_mean_-10_seed_12345_results", t_id="transect"):
+    rfd_file = open(path + '/' + t_id + ".rfd","r")
+    for line in rfd_file:
+        position_slash = line.rfind("/")
+        position_newline = line.rfind("\n")
+        break
+    return line[position_slash+1:position_newline]
 
 if __name__ == "__main__":
     # test for combine_results()

@@ -68,7 +68,7 @@ def plot_error_vs_tc(results, path_to_results, comment="", abs=True):
         plt.ylabel(error + " [%]")
         plt.xlabel("t_c [days]")
         plt.legend()
-        plt.savefig(path_to_results + "/error_vs_tc/" + error + "_vs_tc_abs_" + str(abs) + "_" + comment + ".png", dpi=dpi)
+        plt.savefig(path_to_results + "/error_vs_tc/" + error + "_vs_tc_abs_" + str(abs) + "_" + comment + ".png", dpi=dpi, bbox_inches='tight')
         plt.close()
 
 
@@ -129,7 +129,7 @@ def plot_errors_vs_loc_aggregate(results, path_to_results, error, aggregate, bin
     plt.title(("Plot: " + error + ", " + "Aggregation: " + aggregate))
     plt.ylabel(error)
     plt.xlabel("location [m]")
-    plt.savefig(path_to_results + "/" + error + "-" + aggregate)
+    plt.savefig(path_to_results + "/" + error + "-" + aggregate, bbox_inches='tight')
     plt.close()
 
 
@@ -162,7 +162,7 @@ def plot_errors_vs_loc(results, path_to_results, comment=""):
         plt.ylabel("Error in %")
         plt.title(title)
         plt.legend()
-        plt.savefig(path, dpi=dpi)
+        plt.savefig(path, dpi=dpi, bbox_inches='tight')
         plt.close()
 
     for project_folder in results.name.unique():
@@ -253,7 +253,7 @@ def plot_heatmap(results, path_to_results, abs=True, comment=""):
             os.mkdir(path_to_results + "/" + comment + "heatmap")
 
         fig.savefig(
-            path_to_results + "/" + comment + "heatmap" + "/" + str(obs_loc) + "_" + error, dpi=dpi
+            path_to_results + "/" + comment + "heatmap" + "/" + str(obs_loc) + "_" + error, dpi=dpi, bbox_inches='tight'
         )
         fig.clf(fig)
 
