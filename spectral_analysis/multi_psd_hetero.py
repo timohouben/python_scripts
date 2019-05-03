@@ -21,6 +21,7 @@ sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
 
 
 # own modules
+from transect_plot import extract_timeseries, plot_head_timeseries_vs_recharge
 from calc_tc import calc_tc
 from processing import *
 from power_spectrum import power_spectrum
@@ -147,8 +148,10 @@ print(results)
 # outer loop over all project_folders containing OGS model runs
 for i, project_folder in enumerate(project_folder_list):
     path_to_project = path_to_multiple_projects + "/" + project_folder
-    # read the OGS model run and its parameters
-    recharge_time_series = np.loadtxt(path_to_project + "/" + "rfd_curve#1.txt")
+    # extract the time series from the tec files
+    time, recharge_time_series = extract_timeseries(path=path_to_project, rfd=0)
+    # plot the time series vs recharge
+    plot_head_timeseries_vs_recharge(path=path_to_project)
     # write OGS input parameters in DataFrame and multiply Ss and kf by thickness
     Ss, time_step_size, time_steps = get_ogs_parameters(path_to_project, noKf=True)
     # set kf to the geometric or arithmetic mean of the generated conductivity field
