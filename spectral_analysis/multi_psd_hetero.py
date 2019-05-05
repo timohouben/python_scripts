@@ -149,7 +149,7 @@ print(results)
 for i, project_folder in enumerate(project_folder_list):
     path_to_project = path_to_multiple_projects + "/" + project_folder
     # extract the time series from the tec files
-    time, recharge_time_series = extract_timeseries(path=path_to_project, rfd=0)
+    time, recharge_time_series = extract_timeseries(path=path_to_project, rfd=1)
     # plot the time series vs recharge
     plot_head_timeseries_vs_recharge(path=path_to_project)
     # write OGS input parameters in DataFrame and multiply Ss and kf by thickness
