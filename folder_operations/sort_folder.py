@@ -27,6 +27,7 @@ for i in np.arange(len(folder_list_split)):
         integer_list.append(int(folder_list_split[i][0]))
 print("Folder list: ", folder_list)
 print("Integer List: ", integer_list)
+np.savetxt(directory + "/new_directories.txt", integer_list)
 
 # how many new folder
 n_new_folders = len(integer_list) // group
