@@ -1,4 +1,4 @@
-def extract_timeseries(path, which="mean", process="GROUNDWATER_FLOW", rfd=0):
+def extract_timeseries(path, which="mean", process="GROUNDWATER_FLOW", rfd=1):
     """
     Function to extract time series for each observation point and store them as .txt.
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*
 
 ## This script generates OGS setups for a heterogeneous, 2D, vertical model domain. Every model setup ist first generated with a steady state configuration, afterwards the OGS run starts, output is redirected into the "output folder" and input files are changed to input files with transient settings. THIS IS NOT YET WORKING FINE!!! YOU NEED TO ADJUST THE PCS FILE MANUALLY (ERASE THE KEYWORD STEADY).
-# Depending on where you start the script (loca, EVE) you have to set the path to the OGS executable first and also the CWD!!
+# Depending on where you start the script (loca, EVE) you have to set the path to the OGS executable first and also the CWD and the path to the recharge files!!!
 
 
 import sys
@@ -248,14 +248,14 @@ for var in var_list:
                                               TIME_STEPS=zip(time_steps, step_size))
 
                         # --------------run OGS simulation------------------------------------------- #
-                        #ogs.write_input()
+                        ogs.write_input()
                         if state == 'steady':
-                            file = open(dire+"/"+t_id+'.tim', 'w')
-                            file.write('#STOP')
-                            file.close()
+                           file = open(dire+"/"+t_id+'.tim', 'w')
+                           file.write('#STOP')
+                           file.close()
                         if state == 'steady':
                             print("calculating steady state...")
-                            #ogs.run_model(ogs_root='/home/houben/OGS_source/ogs')
+                            ogs.run_model(ogs_root='/home/houben/OGS_source/ogs')
 
 
 
