@@ -33,6 +33,7 @@ def extract_timeseries(path, which="mean", process="GROUNDWATER_FLOW", rfd=1):
         from ogs5py import OGS
         ogs = OGS(task_root = path + "/", task_id = task_id)
         ogs.rfd.read_file(path = path + "/" + task_id + ".rfd")
+        print(ogs.rfd.get_block(rfd-1)[''])
         values = np.asarray([values[1] for values in ogs.rfd.get_block(rfd-1)['']])
         time = np.asarray([time[0] for time in ogs.rfd.get_block(rfd-1)['']])
         np.savetxt(str(path) + '/' + 'rfd_curve#'+ str(rfd) + '.txt', values)
