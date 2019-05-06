@@ -39,6 +39,7 @@ def extract_timeseries(path, which="mean", process="GROUNDWATER_FLOW", rfd=1):
         np.savetxt(str(path) + '/' + 'time' + '.txt', time)
 
     # read all tec files
+    print("Reading tec-files from " + path)
     tecs = readtec_polyline(task_id=task_id,task_root=path)
 
     # extract the time series and save them as .txt
