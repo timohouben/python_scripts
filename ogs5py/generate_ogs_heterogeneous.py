@@ -94,8 +94,8 @@ for var in var_list:
                     field = srf((x, z), mesh_type='unstructured', force_moments=True)#, mode_no=100)
                     # conductivities as log-normal distributed from the field data
                     cond = np.exp(field)
-                    from scipy.stats.mstats import gmean, hmean, mean
-                    arimean = mean(cond)
+                    from scipy.stats.mstats import gmean, hmean
+                    arimean = np.mean(cond)
                     harmean = hmean(cond)
                     geomean = gmean(cond)
                     print("The geometric mean is: " + str(geomean))
@@ -126,7 +126,7 @@ for var in var_list:
 
                     # save a file with information about the generated field
                     field_info = open(dire+"/"+'field_info'+'.dat', 'w')
-                    field_info.write('dim var len_scale mean seed geomean harmean arimean' + '\n' + (str(dim) + ' ' + str(var) + ' ' + str(len_scale) + ' ' + str(mean) + ' ' + str(seed)) + ' ' + str(geomean) + ' ' + str(harmean) ' ' + str(arimean))
+                    field_info.write('dim var len_scale mean seed geomean harmean arimean' + '\n' + (str(dim) + ' ' + str(var) + ' ' + str(len_scale) + ' ' + str(mean) + ' ' + str(seed)) + ' ' + str(geomean) + ' ' + str(harmean) + ' ' + str(arimean))
                     field_info.close()
 
                     # ------------------------  GLI -------------------------------- #
