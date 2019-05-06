@@ -108,7 +108,7 @@ for var in var_list:
                     plt.title("log-normal K field [log10 K]")
                     plt.savefig(dire + '/' + name + '.png', dpi=300, bbox_inches='tight')
                     plt.close()
-                    
+
                     # generate MPD file (media properties distributed)
                     mpd = MPD(ogs.task_id)
                     mpd.add_block(MSH_TYPE=pcs_type_flow,
@@ -248,15 +248,15 @@ for var in var_list:
                                               TIME_STEPS=zip(time_steps, step_size))
 
                         # --------------run OGS simulation------------------------------------------- #
-                        ogs.write_input()
+                        #ogs.write_input()
                         if state == 'steady':
                             file = open(dire+"/"+t_id+'.tim', 'w')
                             file.write('#STOP')
                             file.close()
                         if state == 'steady':
                             print("calculating steady state...")
-                            ogs.run_model(ogs_root='/home/houben/OGS_source/ogs')
-    
+                            #ogs.run_model(ogs_root='/home/houben/OGS_source/ogs')
+
 
 
 #print("run model")

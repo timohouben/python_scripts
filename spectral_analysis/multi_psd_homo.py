@@ -298,8 +298,7 @@ path_to_results_df = (
 )
 # if os.path.isfile(path_to_results_df): # override = true, not necesarry
 results.to_csv(path_to_results_df)
-plot_errors_vs_loc(results, path_to_results,comment=comment)
+plot_errors_vs_loc_homo(results, path_to_results,comment=comment)
 time_end = time.time() - time_begin
 
 print("%1.1d min elapsed." % str(time_end / 60))
-

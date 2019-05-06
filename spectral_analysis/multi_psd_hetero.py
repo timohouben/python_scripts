@@ -81,15 +81,23 @@ Yields
 dataframe : len(project_folder_list) x 15
     name : Name of OGS model run (project_folder)
     S_in : input storativity from OGS model
-    T_in : input transmissivity from OGS model
-    tc_in : input characteristic time scale calculated from T_in and S_in
+    T_in_geo : geometric mean of input conductivity field * thicknes
+    T_in_har : harmonic mean of input conductivity field * thicknes
+    T_in_ari : arithmetic mean of input conductivity field * thicknes
+    tc_in_geo : input characteristic time scale calculated from T_in_geo and S_in
+    tc_in_har : input characteristic time scale calculated from T_in_har and S_in
+    tc_in_ari : input characteristic time scale calculated from T_in_ari and S_in
     S_out : output storativity from shh_analytical_fit
     T_out : output transmissivity from shh_analytical_fit
     tc_out : output characteristic time scale calculatet from T_out and S_out
     cov : covariance matrix of fit
-    err_T : Error in T in % (T_in/T_out)*100
+    err_T_geo : Error in T in % (T_in/T_out)*100
+    err_T_har : Error in T in % (T_in/T_out)*100
+    err_T_ari : Error in T in % (T_in/T_out)*100
     err_S : Error in S in % (S_in/S_out)*100
-    err_tc : Error in tc in % (tc_in/tc_out)*100
+    err_tc_geo : Error in tc in % (tc_in/tc_out)*100
+    err_tc_har : Error in tc in % (tc_in/tc_out)*100
+    err_tc_ari : Error in tc in % (tc_in/tc_out)*100
     loc : location of the observation point. loc = 0 : water divide
     time_step_size : size of time step in seconds [s]
     time_steps : number of time steps
@@ -125,16 +133,24 @@ project_folder_list.sort()
 pd.set_option("precision", 10)
 columns = [
     "name",
-    "T_in",
+    "T_in_geo",
+    "T_in_har",
+    "T_in_ari",
     "S_in",
-    "tc_in",
+    "tc_in_geo",
+    "tc_in_har",
+    "tc_in_ari",
     "T_out",
     "S_out",
     "tc_out",
     "cov",
-    "err_T",
+    "err_T_geo",
+    "err_T_har",
+    "err_T_ari",
     "err_S",
-    "err_tc",
+    "err_tc_geo",
+    "err_tc_har",
+    "err_tc_ari",
     "obs_loc",
     "time_step_size",
     "time_steps",
@@ -158,11 +174,15 @@ for i, project_folder in enumerate(project_folder_list):
     # load from a file with information about the generated field
     field_info = open(path_to_project + '/field_info'+'.dat', 'r')
     for line in field_info:
-        dim, var, len_scale, mean, seed, geomean = line.split()
+        dim, var, len_scale, mean, seed, geomean, harmean, arimean = line.split()
     field_info.close()
-    kf = float(geomean)
+    kf_geo = float(geomean)
+    kf_har = float(harmean)
+    kf_ari = float(arimean)
     S = Ss * aquifer_thickness
-    T = kf * aquifer_thickness
+    T_geo = kf_geo + aquifer_thickness
+    T_har = kf_har + aquifer_thickness
+    T_ari = kf_ari + aquifer_thickness
     # get list of observation points in current porject_folder
     obs_point_list = get_obs(path_to_project)[1]
     obs_loc_list = get_obs(path_to_project)[2]
@@ -237,16 +257,28 @@ for i, project_folder in enumerate(project_folder_list):
         results_temp = {
             "name": project_folder,
             "S_in": S,
-            "T_in": T,
-            "tc_in": calc_tc(aquifer_length, S, T),
+            "T_in_geo": T_in_geo,
+            "T_in_har": T_in_har,
+            "T_in_ari": T_in_ari,
+            "tc_in_geo": calc_tc(aquifer_length, S, T_in_geo),
+            "tc_in_har": calc_tc(aquifer_length, S, T_in_har),
+            "tc_in_ari": calc_tc(aquifer_length, S, T_in_ari),
             "S_out": popt[0],
             "T_out": popt[1],
             "tc_out": calc_tc(aquifer_length, popt[0], popt[1]),
             "cov": pcov,
             "err_S": percent_difference_fraction(S, popt[0]),
-            "err_T": percent_difference_fraction(T, popt[1]),
-            "err_tc": percent_difference_fraction(
-                calc_tc(aquifer_length, S, T), calc_tc(aquifer_length, popt[0], popt[1])
+            "err_T_geo": percent_difference_fraction(T_in_geo, popt[1]),
+            "err_T_har": percent_difference_fraction(T_in_har, popt[1]),
+            "err_T_ari": percent_difference_fraction(T_in_ari, popt[1]),
+            "err_tc_geo": percent_difference_fraction(
+                calc_tc(aquifer_length, S, T_in_geo), calc_tc(aquifer_length, popt[0], popt[1])
+            ),
+            "err_tc_har": percent_difference_fraction(
+                calc_tc(aquifer_length, S, T_in_har), calc_tc(aquifer_length, popt[0], popt[1])
+            ),
+            "err_tc_ari": percent_difference_fraction(
+                calc_tc(aquifer_length, S, T_in_ari), calc_tc(aquifer_length, popt[0], popt[1])
             ),
             "obs_loc": obs_loc,
             "time_step_size": time_step_size,
@@ -272,14 +304,16 @@ for i, project_folder in enumerate(project_folder_list):
             n=5,
             norm=False,
         )
-        data = np.vstack((Shh_numerical, Shh_fitted, Shh_theoretical))
-        labels = ["Shh numerical", "Shh fitted", "Shh theoretical"]
-        linestyle = ["-", "", ""]
+        data = np.vstack((Shh_numerical, Shh_fitted, Shh_geo, Shh_har, Shh_ari))
+        labels = ["Shh numerical", "Shh fitted", "Shh geometric mean", "Shh harmonic mean", "Shh arithmetic mean"]
+        linestyle = ["-", "-", "--", "--", "--"]
         #lims = [(1e-9,6e-6),(1e-6,1e5)]
-        marker = ["", "*", "."]
-        figtxt = "OGS Input Parameter: S = %1.3e, T = %1.3e" % (
+        marker = ["", "d", "*", "+", "^"]
+        figtxt = "OGS Input Parameter: S = %1.3e, T_geo = %1.3e, T_har = %1.3e, T_ari = %1.3e" % (
             S,
-            T,
+            T_in_geo,
+            T_in_har,
+            T_in_ari
         ) + "\nDerived Parameter:    S = %1.3e, T = %1.3e" % (popt[0], popt[1])
         plot_spectrum(
             data,
@@ -312,6 +346,6 @@ path_to_results_df = (
 )
 # if os.path.isfile(path_to_results_df): # override = true, not necesarry
 results.to_csv(path_to_results_df)
-plot_errors_vs_loc(results, path_to_results,comment=comment)
+plot_errors_vs_loc_hetero(obs=obs_loc_list, error_list=[results["err_T_geo"], results["err_T_har"],results["err_T_ari"]], ylabel=["Error T_geo", "Error T_har", "Error T_ari"], path_to_results)
 time_end = time.time() - time_begin
 print("%1.1d min elapsed." % (time_end / 60))

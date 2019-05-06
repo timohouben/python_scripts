@@ -133,8 +133,44 @@ def plot_errors_vs_loc_aggregate(results, path_to_results, error, aggregate, bin
     plt.close()
 
 
+def plot_errors_vs_loc_hetero(obs, error_list, ylabel, path):
+    """
+    Plot the error vs location in the aquifer.
 
-def plot_errors_vs_loc(results, path_to_results, comment=""):
+    Parameters
+    ----------
+
+    obs : list
+        List of x value of observations points
+    error_list : list of lists for different errors
+        List of errors for each observation point.
+    ylabel : list of strings for different errors
+        String for ylabel
+    path : string
+        Path where to srote the images.
+
+    Yields
+    ------
+
+    Saves a plot in the path directory.
+    """
+
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import os.path
+
+    for i, error in enumerate(error_list):
+        plt.plot(obs, error, label=ylabel[i])
+    plt.legend()
+    plt.ylabel(ylabel)
+    plt.title("Error vs location: " + os.path.basename(path))
+    plt.savefig(path + "/" + ylabel + "_vs_loc_", dpi=dpi)
+
+
+
+
+
+def plot_errors_vs_loc_homo(results, path_to_results, comment=""):
     """
     Plot errors of input and output parameters (S, T, tc) vs the observation
     location in the aquifer (2D transect). This results in three plots per OGS
