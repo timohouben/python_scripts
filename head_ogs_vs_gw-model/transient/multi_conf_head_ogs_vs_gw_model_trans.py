@@ -11,6 +11,10 @@ Created on Wed Oct  3 11:56:07 2018
 
 @author: houben
 
+This file has to be be executed on the same level as parent directories of multiple ogs model runs.
+Furthermore, edit manually which observation points should be plotted.
+
+
 This is an exact copy of the file conf_head_ogs_vs_gw_model_trans.py from Wed Oct  3 11:56:07 2018
 with an additional routine to perform multiple runs in a directory
 
@@ -53,7 +57,24 @@ which_data_to_plot = 2 # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = 'GROUNDWATER_FLOW'
 which = 'mean'       # min, max, mean
 time_steps = 10950  # this is the value which is given in the ogs input file .tim. It will result in a total of time_steps+1 times because the initial time is added.
-obs_per_plot = ['obs_00000','obs_00050','obs_00100','obs_00200','obs_00400','obs_00500','obs_00600','obs_00800','obs_00850','obs_00900','obs_00910', 'obs_00920','obs_00930','obs_00940','obs_00950','obs_00960','obs_00970','obs_00980','obs_00990','obs_01000']
+obs_per_plot = ['obs_00000',
+  'obs_00050',
+  'obs_00100',
+  'obs_00200',
+  'obs_00300',
+  'obs_00400',
+  'obs_00500',
+  'obs_00600',
+  'obs_00700',
+  'obs_00800',
+  'obs_00850',
+  'obs_00900',
+  'obs_00920',
+  'obs_00940',
+  'obs_00960',
+  'obs_00990',
+  'obs_01000'],
+#['obs_00000','obs_00050','obs_00100','obs_00200','obs_00400','obs_00500','obs_00600','obs_00800','obs_00850','obs_00900','obs_00910', 'obs_00920','obs_00930','obs_00940','obs_00950','obs_00960','obs_00970','obs_00980','obs_00990','obs_01000']
 #['obs_00200','obs_00400','obs_00600','obs_00800','obs_00990']
 #['obs_00000','obs_00050','obs_00100','obs_00200','obs_00400','obs_00500','obs_00600','obs_00800','obs_00850','obs_00900','obs_00910', 'obs_00920','obs_00930','obs_00940','obs_00950','obs_00960','obs_00970','obs_00980','obs_00990','obs_01000']
 #['obs_0000', 'obs_0200', 'obs_0400', 'obs_0500', 'obs_0600', 'obs_0800', 'obs_0950', 'obs_0990', 'obs_1000']
@@ -141,6 +162,7 @@ for i,curr_dir in enumerate(list_dir):
         tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project)
         #print(tecs)
         #print(name_of_project_ogs, path_to_project)
+        print(obs_per_plot[0])
         time_s = tecs[process][obs_per_plot[0]]["TIME"]
         time_d = time_s / 86400
 
