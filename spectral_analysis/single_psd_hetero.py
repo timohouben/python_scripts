@@ -104,7 +104,6 @@ dataframe : n_observation_points x n_parameters
     thickness : aquifer_thickness
 """
 
-ERSTMAL NUR BIS HIER GEKOMMEN! NOCH NICHT FERTIG!
 # specify the path to the parent directory of multiple OGS model runs
 try:
     path_to_multiple_projects = sys.argv[1]
