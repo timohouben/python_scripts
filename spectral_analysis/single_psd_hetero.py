@@ -1,7 +1,6 @@
-#! /Library/Frameworks/Python.framework/Versions/3.6/bin/python3
 # -*- coding: utf-8 -*
 """
-Script to perform the spectral analysis on a single directory of an ogs model run.
+Script to perform the spectral analysis on a single directory of an ogs model run and stores the results in a folder called "fitting results" in the specific ogs project folder.
 """
 # ------------------------------------------------------------------------------
 # python 2 and 3 compatible
@@ -30,7 +29,8 @@ from plot_power_spectra import plot_spectrum
 from get_obs import get_obs
 from get_ogs_parameters import get_ogs_parameters
 from shh_analytical import shh_analytical_fit, shh_analytical
-from plot_fitting_results import plot_errors_vs_loc
+from plot_fitting_results import plot_errors_vs_loc_hetero
+from tools import get_ogs_folders
 
 
 # ------------------------------------------------------------------------------
@@ -116,9 +116,8 @@ except IndexError:
 # )
 
 # get a list of all directories containing OGS model runs
-project_folder_list = [
-    f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
-]
+project_folder_list = get_ogs_folders(path_to_multiple_projects)
+print("Spectral analysis startet for parent folder of multiple ogs runs: " + path_to_multiple_projects)
 
 # remove folder "fitting_results" from list and sort
 try:
@@ -161,14 +160,14 @@ print(results)
 
 # outer loop over all project_folders containing OGS model runs
 for i, project_folder in enumerate(project_folder_list):
+    print("Starting spectral analysis for folder " + project_folder)
     path_to_project = path_to_multiple_projects + "/" + project_folder
     # extract the time series from the tec files
     time, recharge_time_series = extract_timeseries(path=path_to_project, rfd=1)
     # plot the time series vs recharge
     plot_head_timeseries_vs_recharge(path=path_to_project)
-    # write OGS input parameters in DataFrame and multiply Ss and kf by thickness
+    # write OGS input parameters in DataFrame, but don't return kf because it is ditrubuted
     Ss, time_step_size, time_steps = get_ogs_parameters(path_to_project, noKf=True)
-    # set kf to the geometric or arithmetic mean of the generated conductivity field
     # load from a file with information about the generated field
     field_info = open(path_to_project + '/field_info'+'.dat', 'r')
     for line in field_info:
@@ -178,12 +177,16 @@ for i, project_folder in enumerate(project_folder_list):
     kf_har = float(harmean)
     kf_ari = float(arimean)
     S = Ss * aquifer_thickness
-    T_geo = kf_geo + aquifer_thickness
-    T_har = kf_har + aquifer_thickness
-    T_ari = kf_ari + aquifer_thickness
+    T_in_geo = kf_geo * aquifer_thickness
+    T_in_har = kf_har * aquifer_thickness
+    T_in_ari = kf_ari * aquifer_thickness
     # get list of observation points in current porject_folder
     obs_point_list = get_obs(path_to_project)[1]
     obs_loc_list = get_obs(path_to_project)[2]
+    # make directory for results
+    path_to_results = path_to_multiple_projects + "/" + project_folder + "/" + "spectral_analysis"
+    if not os.path.exists(path_to_results):
+        os.mkdir(path_to_results)
     # inner loop over all observation points of current OGS model run
     for j, (obs_point, obs_loc) in enumerate(zip(obs_point_list, obs_loc_list)):
         # Do not perform the fit on observation point x=L
@@ -206,16 +209,13 @@ for i, project_folder in enumerate(project_folder_list):
         )
         # do some preprocessing on time series
         # ------------------------------------
+        # DETREND THE HEAD TIME SERIES?
 
         # cut the time series of head and recharge at a given point
         # ony get the first cut_index values
         head_time_series = head_time_series[:cut_index]
         recharge_time_series = recharge_time_series[:cut_index]
 
-        #
-        #
-        #
-        #
         # calculate the power spectrum
         frequency, Shh = power_spectrum(
             input=recharge_time_series,
@@ -248,8 +248,10 @@ for i, project_folder in enumerate(project_folder_list):
         print("Sy fit: ", "{0:.3e}".format(popt[0]))
         print("Sy input: ", "{0:.3e}".format(S))
         print("T fit: ", "{0:.3e}".format(popt[1]))
-        print("T input: ", "{0:.3e}".format(T))
-        print(popt, pcov)
+        print("T geomean: ", "{0:.3e}".format(T_in_geo))
+        print("T harmean: ", "{0:.3e}".format(T_in_har))
+        print("T arimean: ", "{0:.3e}".format(T_in_ari))
+        print("Covariance of fit:" + str([i for i in pcov]))
 
         # fill temporal dataframe for one model run
         results_temp = {
@@ -287,10 +289,16 @@ for i, project_folder in enumerate(project_folder_list):
         }
         results = results.append(other=results_temp, ignore_index=True, sort=False)
 
-        # plot the power spectra: Shh from ogs runs, Shh theoretical, Shh fitted
+        # plot the power spectra: Shh from ogs runs, Shh theoretical (geo, har, ari), Shh fitted
         Shh_numerical = Shh
-        Shh_theoretical = shh_analytical(
-            (frequency, Sww), S, T, obs_loc, aquifer_length, m=5, n=5, norm=False
+        Shh_geo = shh_analytical(
+            (frequency, Sww), S, T_in_geo, obs_loc, aquifer_length, m=5, n=5, norm=False
+        )
+        Shh_har = shh_analytical(
+            (frequency, Sww), S, T_in_har, obs_loc, aquifer_length, m=5, n=5, norm=False
+        )
+        Shh_ari = shh_analytical(
+            (frequency, Sww), S, T_in_ari, obs_loc, aquifer_length, m=5, n=5, norm=False
         )
         Shh_fitted = shh_analytical(
             (frequency, Sww),
@@ -313,37 +321,39 @@ for i, project_folder in enumerate(project_folder_list):
             T_in_har,
             T_in_ari
         ) + "\nDerived Parameter:    S = %1.3e, T = %1.3e" % (popt[0], popt[1])
+
         plot_spectrum(
             data,
             frequency,
             labels=labels,
-            path=path_to_project,
+            path=path_to_results,
          #   lims=lims,
             linestyle=linestyle,
             marker=marker,
             heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),
-            name=comment
-            + "PSD_"
+            name="PSD_"
             + project_folder
             + "_"
             + str(obs_loc).zfill(len(str(aquifer_length))),
             figtxt=figtxt,
             comment=comment
         )
-    time_1_model = time.time() - time_begin
-    print(str(time_1_model) + " s elapsed for " + project_folder + "...")
+    #time_1_model = time.time() - time_begin
+    #print(str(time_1_model) + " s elapsed for " + project_folder + "...")
+    # set path to results incl file name of results
+    path_to_results_df = (
+        path_to_results + "/" + comment + "results.csv"
+    )
+    # if os.path.isfile(path_to_results_df): # override = true, not necesarry
+    results.to_csv(path_to_results_df)
+
+    #path_to_project = "/Users/houben/Desktop/DELETE_single_hetero_test/1252_var_10_len_500_mean_-12_seed_12345_stor_0.001_rech_mHM"
+    #obs_loc_list = get_obs(path_to_project)[2]
+    #path_to_results = "/Users/houben/Desktop/DELETE_single_hetero_test/1252_var_10_len_500_mean_-12_seed_12345_stor_0.001_rech_mHM/spectral_analysis"
+    #results = pd.read_csv("/Users/houben/Desktop/DELETE_single_hetero_test/1252_var_10_len_500_mean_-12_seed_12345_stor_0.001_rech_mHM/spectral_analysis/1_results.csv")
+    plot_errors_vs_loc_hetero(obs=obs_loc_list, error_list=[results["err_T_geo"], results["err_T_har"], results["err_T_ari"]], legend=["Error T geo.mean", "Error T har.mean", "Error T ari.mean"], ylabel="Error [%] " + r"$\frac{T_in - T_out}{T_in} * 100$", path=path_to_results)
 print(results)
 
-# make directory for results
-path_to_results = path_to_multiple_projects + "/" + "fitting_results"
-if not os.path.exists(path_to_results):
-    os.mkdir(path_to_results)
-# set path to results incl file name of results
-path_to_results_df = (
-    path_to_multiple_projects + "/" + "fitting_results" + "/" + comment + "results.csv"
-)
-# if os.path.isfile(path_to_results_df): # override = true, not necesarry
-results.to_csv(path_to_results_df)
-plot_errors_vs_loc_hetero(obs=obs_loc_list, error_list=[results["err_T_geo"], results["err_T_har"],results["err_T_ari"]], ylabel=["Error T_geo", "Error T_har", "Error T_ari"], path_to_results)
+
 time_end = time.time() - time_begin
-print("%1.1d min elapsed." % (time_end / 60))
+print("%1.1d min elapsed." % str(time_end / 60))

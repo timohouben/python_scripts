@@ -1,6 +1,8 @@
 def get_ogs_folders(path):
     """
-    Returns a list of directories where OGS model runs have been setup. It does not decide whether the model has run or not.
+    Returns a list of directories where OGS model runs have been setup based on the following file types. It does not decide whether the model has run or not.
+
+    file_extensions_list = ["*.gli", "*.msh", "*.out", "*.pcs", "*.num"]
 
     Parameters
     ----------
@@ -21,18 +23,18 @@ def get_ogs_folders(path):
         f for f in os.listdir(str(path)) if not f.startswith(".")
     ]
 
-    print(project_folder_list)
+    #print(project_folder_list)
     for folder in project_folder_list:
-        print(folder)
+    #    print(folder)
         check_extensions = []
-        print(len(project_folder_list))
+    #    print(len(project_folder_list))
         for extension in file_extensions_list:
             if glob.glob(path + "/" + folder + "/" + extension):
                 check_extensions.append(True)
 
         if len(check_extensions) != len(file_extensions_list):
             project_folder_list.remove(folder)
+    return project_folder_list
 
-get_ogs_folders("/Users/houben/Desktop")
 
-THIS FUNCTION ISNT WORKING FINE!!!! I DONT KNOW YET Y
+get_ogs_folders("/Users/houben/Desktop/DELETE_single_hetero_test")

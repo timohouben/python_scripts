@@ -133,7 +133,7 @@ def plot_errors_vs_loc_aggregate(results, path_to_results, error, aggregate, bin
     plt.close()
 
 
-def plot_errors_vs_loc_hetero(obs, error_list, ylabel, path):
+def plot_errors_vs_loc_hetero(obs, error_list, legend, ylabel, path):
     """
     Plot the error vs location in the aquifer.
 
@@ -144,8 +144,10 @@ def plot_errors_vs_loc_hetero(obs, error_list, ylabel, path):
         List of x value of observations points
     error_list : list of lists for different errors
         List of errors for each observation point.
-    ylabel : list of strings for different errors
+    legend : list of strings for different errors
         String for ylabel
+    ylabel : string
+        ylabel
     path : string
         Path where to srote the images.
 
@@ -160,15 +162,11 @@ def plot_errors_vs_loc_hetero(obs, error_list, ylabel, path):
     import os.path
 
     for i, error in enumerate(error_list):
-        plt.plot(obs, error, label=ylabel[i])
+        plt.plot(obs, error, label=legend[i])
     plt.legend()
     plt.ylabel(ylabel)
     plt.title("Error vs location: " + os.path.basename(path))
     plt.savefig(path + "/" + ylabel + "_vs_loc_", dpi=dpi)
-
-
-
-
 
 def plot_errors_vs_loc_homo(results, path_to_results, comment=""):
     """

@@ -107,7 +107,7 @@ def plot_spectrum(
         )
     if path != None:
         import datetime
-
+        
         if name == None:
             name = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
         plt.savefig(path + "/" + comment + name + ".png", pad_inches=0.5, bbox_inches="tight")

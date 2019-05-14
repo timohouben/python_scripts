@@ -30,6 +30,7 @@ from get_obs import get_obs
 from get_ogs_parameters import get_ogs_parameters
 from shh_analytical import shh_analytical_fit, shh_analytical
 from plot_fitting_results import plot_errors_vs_loc
+from tools import get_ogs_folders
 
 
 # ------------------------------------------------------------------------------
@@ -118,9 +119,8 @@ except IndexError:
 # )
 
 # get a list of all directories containing OGS model runs
-project_folder_list = [
-    f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
-]
+project_folder_list = get_ogs_folders(path_to_multiple_projects)
+print("Spectral analysis startet for parent folder of multiple ogs runs: " + path_to_multiple_projects)
 
 # remove folder "fitting_results" from list and sort
 try:
@@ -159,7 +159,6 @@ columns = [
     "recharge"
 ]
 results = pd.DataFrame(columns=columns)
-print(results)
 
 # outer loop over all project_folders containing OGS model runs
 for i, project_folder in enumerate(project_folder_list):
