@@ -42,7 +42,7 @@ which = "mean"
 # also has m and n as arguments but is not using them.
 m = None
 n = None
-comment = "norm2_"  # give a specific comment for the analysis e.g. "parameterset1_"
+comment = "1_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = None
@@ -323,13 +323,13 @@ for i, project_folder in enumerate(project_folder_list):
 
         # calculate the power spectra: Shh from ogs runs, Shh theoretical (geo, har, ari), Shh fitted
         Shh_geo = shh_analytical(
-            (frequency, Sww), S, T_in_geo, obs_loc, aquifer_length, m=m, n=n, norm=True
+            (frequency, Sww), S, T_in_geo, obs_loc, aquifer_length, m=m, n=n, norm=False
         )
         Shh_har = shh_analytical(
-            (frequency, Sww), S, T_in_har, obs_loc, aquifer_length, m=m, n=n, norm=True
+            (frequency, Sww), S, T_in_har, obs_loc, aquifer_length, m=m, n=n, norm=False
         )
         Shh_ari = shh_analytical(
-            (frequency, Sww), S, T_in_ari, obs_loc, aquifer_length, m=m, n=n, norm=True
+            (frequency, Sww), S, T_in_ari, obs_loc, aquifer_length, m=m, n=n, norm=False
         )
         Shh_fitted = shh_analytical(
             (frequency, Sww),
@@ -339,9 +339,9 @@ for i, project_folder in enumerate(project_folder_list):
             aquifer_length,
             m=n,
             n=m,
-            norm=True,
+            norm=False,
         )
-        data = np.vstack((Shh_Sww, Shh_fitted, Shh_geo, Shh_har, Shh_ari))
+        data = np.vstack((Shh, Shh_fitted, Shh_geo, Shh_har, Shh_ari))
         labels = [
             "Shh numerical",
             "Shh fitted",
