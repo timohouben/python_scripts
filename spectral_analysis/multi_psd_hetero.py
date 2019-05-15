@@ -62,13 +62,6 @@ Description:
 - power spectrum will be calculated
 - fit of power spectrum and parameters will be stored in array.
 
-ToBeDone
---------
-- Find an appropriate measure to compare input and output parameters.
-- imporove labeling for legend in plot_errors_vs_loc
-
-- get the geometric and arithmetic mean from the field
-
 Requirements
 ------------
 - Head time series must be stored in advace for each obs point in file called:
@@ -164,7 +157,7 @@ results = pd.DataFrame(columns=columns)
 for i, project_folder in enumerate(project_folder_list):
     path_to_project = path_to_multiple_projects + "/" + project_folder
     # extract the time series from the tec files
-    time, recharge_time_series = extract_timeseries(path=path_to_project, rfd=1)
+    time_time_series, recharge_time_series = extract_rfd(path=path_to_project, rfd=1)
     # plot the time series vs recharge
     plot_head_timeseries_vs_recharge(path=path_to_project)
     # write OGS input parameters in DataFrame and multiply Ss and kf by thickness

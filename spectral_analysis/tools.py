@@ -19,15 +19,13 @@ def get_ogs_folders(path):
     import glob
 
     file_extensions_list = ["*.gli", "*.msh", "*.out", "*.pcs", "*.num"]
-    project_folder_list = [
-        f for f in os.listdir(str(path)) if not f.startswith(".")
-    ]
+    project_folder_list = [f for f in os.listdir(str(path)) if not f.startswith(".")]
 
-    #print(project_folder_list)
+    # print(project_folder_list)
     for folder in project_folder_list:
-    #    print(folder)
+        #    print(folder)
         check_extensions = []
-    #    print(len(project_folder_list))
+        #    print(len(project_folder_list))
         for extension in file_extensions_list:
             if glob.glob(path + "/" + folder + "/" + extension):
                 check_extensions.append(True)
@@ -37,4 +35,21 @@ def get_ogs_folders(path):
     return project_folder_list
 
 
-get_ogs_folders("/Users/houben/Desktop/DELETE_single_hetero_test")
+def get_ogs_task_id(path):
+    """
+    Grabs the name of the ogs task id from .bc file.
+
+    Parameters
+    ----------
+
+    path : strig
+        Path to ogs directoy.
+
+    """
+    import glob
+    # glob the name of the ogs run
+    string = str(glob.glob(path + "/*.bc"))
+    pos1 = string.rfind("/")
+    task_id = string[pos1 + 1 : -5]
+
+    return task_id

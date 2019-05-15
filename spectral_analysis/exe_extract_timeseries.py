@@ -17,7 +17,7 @@ try:
     plot = sys.argv[5]
 except IndexError:
     which = "mean"
-    process="GROUNDWATER_FLOW"
+    process = "GROUNDWATER_FLOW"
     rfd = 1
     plot = True
 
@@ -26,4 +26,5 @@ extract_timeseries(path_to_project, which=which, process=process, rfd=rfd)
 
 if plot == True:
     from transect_plot import plot_head_timeseries_vs_recharge
+
     plot_head_timeseries_vs_recharge(path_to_project, which=which)

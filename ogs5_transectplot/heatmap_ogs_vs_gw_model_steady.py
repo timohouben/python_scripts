@@ -1,21 +1,73 @@
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+
 # sphinx_gallery_thumbnail_number = 2
 
 vegetables = ["126 mm/a", "189 mm/a", "252 mm/a", "315 mm/a"]
-farmers = ["complete \n offset 20", "complete \n offset 60", "complete \n offset 100",
-           "incomplete \n offset 20", "incomplete \n offset 60", "incomplete \n offset 100",
-           "incomplete 2m \n 20", "incomlete 2m \n offset 60", "incomlete 2m \n offset 100"]
+farmers = [
+    "complete \n offset 20",
+    "complete \n offset 60",
+    "complete \n offset 100",
+    "incomplete \n offset 20",
+    "incomplete \n offset 60",
+    "incomplete \n offset 100",
+    "incomplete 2m \n 20",
+    "incomlete 2m \n offset 60",
+    "incomlete 2m \n offset 100",
+]
 
-harvest = np.array([[7.91E-03,	1.90E-01,	1.15E+00,	4.91E-01,	1.06E+00,	2.73E+00,	3.22E+01,	3.57E+01,	4.27E+01],
-[2.03E-02,	4.48E-01,	2.62E+00,	1.10E+00,	2.39E+00,	6.12E+00,	7.25E+01,	8.03E+01,	9.61E+01],
-[3.58E-02,	7.83E-01,	4.61E+00,	1.96E+00,	4.25E+00,	1.09E+01,	1.29E+02,	1.43E+02,	1.71E+02],
-[5.25E-02,	1.22E+00,	7.16E+00,	3.01E+00,	6.58E+00,	1.69E+01,	2.01E+02,	2.23E+02,	2.67E+02]])
+harvest = np.array(
+    [
+        [
+            7.91e-03,
+            1.90e-01,
+            1.15e00,
+            4.91e-01,
+            1.06e00,
+            2.73e00,
+            3.22e01,
+            3.57e01,
+            4.27e01,
+        ],
+        [
+            2.03e-02,
+            4.48e-01,
+            2.62e00,
+            1.10e00,
+            2.39e00,
+            6.12e00,
+            7.25e01,
+            8.03e01,
+            9.61e01,
+        ],
+        [
+            3.58e-02,
+            7.83e-01,
+            4.61e00,
+            1.96e00,
+            4.25e00,
+            1.09e01,
+            1.29e02,
+            1.43e02,
+            1.71e02,
+        ],
+        [
+            5.25e-02,
+            1.22e00,
+            7.16e00,
+            3.01e00,
+            6.58e00,
+            1.69e01,
+            2.01e02,
+            2.23e02,
+            2.67e02,
+        ],
+    ]
+)
 
 
-def heatmap(data, row_labels, col_labels, ax=None,
-            cbar_kw={}, cbarlabel="", **kwargs):
+def heatmap(data, row_labels, col_labels, ax=None, cbar_kw={}, cbarlabel="", **kwargs):
     """
     Create a heatmap from a numpy array and two lists of labels.
 
@@ -53,28 +105,31 @@ def heatmap(data, row_labels, col_labels, ax=None,
     ax.set_yticklabels(row_labels)
 
     # Let the horizontal axes labeling appear on top.
-    ax.tick_params(top=True, bottom=False,
-                   labeltop=True, labelbottom=False)
+    ax.tick_params(top=True, bottom=False, labeltop=True, labelbottom=False)
 
     # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=-30, ha="right",
-             rotation_mode="anchor")
+    plt.setp(ax.get_xticklabels(), rotation=-30, ha="right", rotation_mode="anchor")
 
     # Turn spines off and create white grid.
     for edge, spine in ax.spines.items():
         spine.set_visible(False)
 
-    ax.set_xticks(np.arange(data.shape[1]+1)-.5, minor=True)
-    ax.set_yticks(np.arange(data.shape[0]+1)-.5, minor=True)
-    ax.grid(which="minor", color="w", linestyle='-', linewidth=3)
+    ax.set_xticks(np.arange(data.shape[1] + 1) - 0.5, minor=True)
+    ax.set_yticks(np.arange(data.shape[0] + 1) - 0.5, minor=True)
+    ax.grid(which="minor", color="w", linestyle="-", linewidth=3)
     ax.tick_params(which="minor", bottom=False, left=False)
 
     return im, cbar
 
 
-def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
-                     textcolors=["black", "white"],
-                     threshold=None, **textkw):
+def annotate_heatmap(
+    im,
+    data=None,
+    valfmt="{x:.2f}",
+    textcolors=["black", "white"],
+    threshold=None,
+    **textkw
+):
     """
     A function to annotate a heatmap.
 
@@ -102,14 +157,13 @@ def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
     if threshold is not None:
         threshold = im.norm(threshold)
     else:
-        threshold = im.norm(data.max())/2.
+        threshold = im.norm(data.max()) / 2.0
 
     threshold = 0.1
 
     # Set default alignment to center, but allow it to be
     # overwritten by textkw.
-    kw = dict(horizontalalignment="center",
-              verticalalignment="center")
+    kw = dict(horizontalalignment="center", verticalalignment="center")
     kw.update(textkw)
 
     # Get the formatter in case a string is supplied
@@ -130,10 +184,11 @@ def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
 
 fig, ax = plt.subplots()
 
-im, cbar = heatmap(harvest, vegetables, farmers, ax=ax,
-                   cmap="RdYlGn_r", cbarlabel="RMSE [mm]")
-#YlGn
-#texts = annotate_heatmap(im, valfmt="{x:.1f} t")
+im, cbar = heatmap(
+    harvest, vegetables, farmers, ax=ax, cmap="RdYlGn_r", cbarlabel="RMSE [mm]"
+)
+# YlGn
+# texts = annotate_heatmap(im, valfmt="{x:.1f} t")
 texts = annotate_heatmap(im, valfmt="{x:.1f}")
 
 fig.tight_layout()
