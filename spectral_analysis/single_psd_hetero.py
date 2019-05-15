@@ -46,6 +46,8 @@ comment = "norm2_"  # give a specific comment for the analysis e.g. "parameterse
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = None
+# plot the power spectrum normalized by recharge or not
+norm = False
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------s
 
@@ -92,8 +94,17 @@ dataframe : n_observation_points x n_parameters
     time_steps : number of time steps
     model_period : Modelling period in days [d]
     which : Screening deapth of observation point. "mean", "min", "max"
-    length : aquifer_length
-    thickness : aquifer_thickness
+    recharge : type of recharge
+    aquifer_length : aquifer_length
+    aquifer_thickness : aquifer_thickness
+    len_scale : correlation length of conductivity field
+    variance : variance of conductivity field
+    geomean : geomean of conductivity field
+    harmean : harmean of conductivity field
+    arimean : arimean of conductivity field
+    mean
+    seed
+    dim
 """
 
 # specify the path to the parent directory of multiple OGS model runs
@@ -149,6 +160,16 @@ columns = [
     "model_period",
     "which",
     "recharge",
+    "aquifer_length",
+    "aquifer_thickness",
+    "len_scale",
+    "variance",
+    "geomean",
+    "harmean",
+    "arimean",
+    "mean",
+    "seed",
+    "dim"
 ]
 results = pd.DataFrame(columns=columns)
 
@@ -237,7 +258,7 @@ for i, project_folder in enumerate(project_folder_list):
                 + " values remained."
             )
         # calculate the power spectrum: Shh/Sww, output/input to PLOT only!
-        frequency_oi, Shh_Sww = power_spectrum(
+        frequency_oi,  = power_spectrum(
             input=recharge_time_series,
             output=head_time_series,
             time_step_size=time_step_size,
@@ -318,18 +339,28 @@ for i, project_folder in enumerate(project_folder_list):
             "model_period": time_step_size * time_steps / 86400,
             "which": which,
             "recharge": get_filename_from_rfd_top_com(path_to_project),
+            "aquifer_length": aquifer_length,
+            "aquifer_thickness": aquifer_thickness,
+            "len_scale": len_scale,
+            "variance": var,
+            "geomean": geomean,
+            "harmean": harmean,
+            "arimean": arimean,
+            "mean": mean,
+            "seed": seed,
+            "dim": dim
         }
         results = results.append(other=results_temp, ignore_index=True, sort=False)
 
         # calculate the power spectra: Shh from ogs runs, Shh theoretical (geo, har, ari), Shh fitted
         Shh_geo = shh_analytical(
-            (frequency, Sww), S, T_in_geo, obs_loc, aquifer_length, m=m, n=n, norm=True
+            (frequency, Sww), S, T_in_geo, obs_loc, aquifer_length, m=m, n=n, norm=norm
         )
         Shh_har = shh_analytical(
-            (frequency, Sww), S, T_in_har, obs_loc, aquifer_length, m=m, n=n, norm=True
+            (frequency, Sww), S, T_in_har, obs_loc, aquifer_length, m=m, n=n, norm=norm
         )
         Shh_ari = shh_analytical(
-            (frequency, Sww), S, T_in_ari, obs_loc, aquifer_length, m=m, n=n, norm=True
+            (frequency, Sww), S, T_in_ari, obs_loc, aquifer_length, m=m, n=n, norm=norm
         )
         Shh_fitted = shh_analytical(
             (frequency, Sww),
@@ -339,9 +370,13 @@ for i, project_folder in enumerate(project_folder_list):
             aquifer_length,
             m=n,
             n=m,
-            norm=True,
+            norm=norm,
         )
-        data = np.vstack((Shh_Sww, Shh_fitted, Shh_geo, Shh_har, Shh_ari))
+        if norm = True:
+            data = np.vstack((Shh_Sww, Shh_fitted, Shh_geo, Shh_har, Shh_ari))
+        elif norm = False:
+            data = np.vstack((Shh, Shh_fitted, Shh_geo, Shh_har, Shh_ari))
+
         labels = [
             "Shh numerical",
             "Shh fitted",
