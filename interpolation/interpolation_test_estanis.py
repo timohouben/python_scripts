@@ -12,19 +12,19 @@ import pandas
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 
-array = np.random.rand(1000,2)
-array[:,0].sort()
-#df = pandas.DataFrame(array)
-#interpolate = df.interpolate(method='time', axis=1)
+array = np.random.rand(1000, 2)
+array[:, 0].sort()
+# df = pandas.DataFrame(array)
+# interpolate = df.interpolate(method='time', axis=1)
 
-d = interp1d(array[:,0], array[:,1])
-d2 = interp1d(array[:,0], array[:,1], kind='cubic')
+d = interp1d(array[:, 0], array[:, 1])
+d2 = interp1d(array[:, 0], array[:, 1], kind="cubic")
 
 
-xnew = np.arange(min(array[:,0]),max(array[:,0]),0.001)
+xnew = np.arange(min(array[:, 0]), max(array[:, 0]), 0.001)
 
 plt.figure()
-plt.plot(array[:,0],array[:,1])
-plt.plot(xnew,d(xnew))
-test = np.column_stack((xnew,d(xnew)))
-plt.plot(test[:,0], test[:,1])
+plt.plot(array[:, 0], array[:, 1])
+plt.plot(xnew, d(xnew))
+test = np.column_stack((xnew, d(xnew)))
+plt.plot(test[:, 0], test[:, 1])

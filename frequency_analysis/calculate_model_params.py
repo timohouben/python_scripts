@@ -69,9 +69,12 @@ def calc_aq_param(Ss, kf, L, b, model, distance=None, a_alterna=False):
         if distance == None:
             a = (T * 3.0) / L ** 2
         else:
-            print("Discharge constant a for linear model is calculated with respect to the location in the aquifer. Distance to the river: " + str(distance))
-            beta = np.sqrt(4 / (1 - ( distance/L - 1)**4 ))
-            a = beta * T / L**2
+            print(
+                "Discharge constant a for linear model is calculated with respect to the location in the aquifer. Distance to the river: "
+                + str(distance)
+            )
+            beta = np.sqrt(4 / (1 - (distance / L - 1) ** 4))
+            a = beta * T / L ** 2
         t = S / a
         D = T / S
         returns = [T, kf, Ss, D, a, t]
@@ -86,11 +89,13 @@ def calc_aq_param(Ss, kf, L, b, model, distance=None, a_alterna=False):
             T = kf * b
             if distance == 0:
                 a = np.nan
-            else:    
+            else:
                 if a_alterna == True:
-                    print('Discharge constant a for Dupui model is calculated with alternative formulation beta = pi^2/4, see Gelhar 1974.')
-                    a = np.pi**2 * T / L**2 / 4
-                else:   
+                    print(
+                        "Discharge constant a for Dupui model is calculated with alternative formulation beta = pi^2/4, see Gelhar 1974."
+                    )
+                    a = np.pi ** 2 * T / L ** 2 / 4
+                else:
                     a = T / (b * distance)
             S = Ss * b
             t = (L ** 2.0 * S) / T

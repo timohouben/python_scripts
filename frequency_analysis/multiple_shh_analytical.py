@@ -11,6 +11,7 @@ script to generate multiple Shh anaytical with different transmissivities and st
 from shh_analytical import shh_analytical
 import numpy as np
 import matplotlib.pyplot as plt
+
 plt.ioff()
 
 T_list = [1e-2, 1e-3, 1e-4, 1e-5]
@@ -25,12 +26,44 @@ X = (frequency, sww)
 for T in T_list:
     for S in S_list:
         for L in length_list:
-            for x in np.linspace(0,L,5):
+            for x in np.linspace(0, L, 5):
                 shh = shh_analytical(X, S, T, x, L, m=5, n=5, norm=False)
-                plt.title("Transmissivity: " + str(T) + "\n" + "Storativity: " + str(S) + "\n" + "Length: " + str(L) + "\n" + "Location: " + str(x))
-                plt.loglog(frequency,shh)
-                plt.ylim(10e-7,10e13)
-                plt.savefig(directory + "/" + str(T) + "_" + str(S) + "_" + str(L) + "_" + str(x) + ".png")
-                print("saving " + str(T) + "_" + str(S) + "_" + str(L) + "_" + str(x) + ".png")
+                plt.title(
+                    "Transmissivity: "
+                    + str(T)
+                    + "\n"
+                    + "Storativity: "
+                    + str(S)
+                    + "\n"
+                    + "Length: "
+                    + str(L)
+                    + "\n"
+                    + "Location: "
+                    + str(x)
+                )
+                plt.loglog(frequency, shh)
+                plt.ylim(10e-7, 10e13)
+                plt.savefig(
+                    directory
+                    + "/"
+                    + str(T)
+                    + "_"
+                    + str(S)
+                    + "_"
+                    + str(L)
+                    + "_"
+                    + str(x)
+                    + ".png"
+                )
+                print(
+                    "saving "
+                    + str(T)
+                    + "_"
+                    + str(S)
+                    + "_"
+                    + str(L)
+                    + "_"
+                    + str(x)
+                    + ".png"
+                )
                 plt.close()
-                                

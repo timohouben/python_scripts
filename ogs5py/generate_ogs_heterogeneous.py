@@ -212,8 +212,8 @@ for var in var_list:
                     for state in ['steady','transient']:
                         # --------------    ST  ------------------------- #
                         if state == 'transient':
-                            #ogs.st.reset
-                            ogs.st.update_block(PCS_TYPE=pcs_type_flow,
+                            ogs.st.reset()
+                            ogs.st.add_block(PCS_TYPE=pcs_type_flow,
                                              PRIMARY_VARIABLE=var_name_flow,
                                              GEO_TYPE=[['POLYLINE', 'top']],
                                              DIS_TYPE=[['CONSTANT_NEUMANN', 1]],
@@ -226,8 +226,8 @@ for var in var_list:
 
                         # --------------    PCS ------------------------- #
                         if state == 'transient':
-                            #ogs.pcs.reset
-                            ogs.pcs.update_block(PCS_TYPE=pcs_type_flow,
+                            ogs.pcs.reset()
+                            ogs.pcs.add_block(PCS_TYPE=pcs_type_flow,
                                               NUM_TYPE='NEW',
                                               PRIMARY_VARIABLE=var_name_flow,
                                               RELOAD=[[2,1]],
@@ -241,8 +241,8 @@ for var in var_list:
                                               BOUNDARY_CONDITION_OUTPUT=[[]])
                         # --------------    TIM ------------------------- #
                         if state == 'transient':
-                            #ogs.tim.reset
-                            ogs.tim.update_block(PCS_TYPE=pcs_type_flow,
+                            ogs.tim.reset()
+                            ogs.tim.add_block(PCS_TYPE=pcs_type_flow,
                                               TIME_START=time_start,
                                               TIME_END=time_end,
                                               TIME_STEPS=zip(time_steps, step_size))

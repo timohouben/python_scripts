@@ -145,7 +145,7 @@ print(results)
 for i, project_folder in enumerate(project_folder_list):
     path_to_project = path_to_multiple_projects + "/" + project_folder
     # read the OGS model run and its parameters
-    recharge_time_series = np.loadtxt(path_to_project + "/" + "rfd_curve#1.txt")
+    recharge_time_series = np.loadtxt(path_to_project + "/" + "rfd_curve#1_x_values.txt")
     # write OGS input parameters in DataFrame and multiply Ss and kf by thickness
     Ss, kf, time_step_size, time_steps = get_ogs_parameters(path_to_project)
     S = Ss * aquifer_thickness
@@ -261,7 +261,7 @@ for i, project_folder in enumerate(project_folder_list):
         data = np.vstack((Shh_numerical, Shh_fitted, Shh_theoretical))
         labels = ["Shh numerical", "Shh fitted", "Shh theoretical"]
         linestyle = ["-", "", ""]
-        lims = [(1e-9,6e-6),(1e-6,1e5)]
+        lims = [(1e-9, 6e-6), (1e-6, 1e5)]
         marker = ["", "*", "."]
         figtxt = "OGS Input Parameter: S = %1.3e, T = %1.3e" % (
             S,
@@ -282,7 +282,7 @@ for i, project_folder in enumerate(project_folder_list):
             + "_"
             + str(obs_loc).zfill(len(str(aquifer_length))),
             figtxt=figtxt,
-            comment=comment
+            comment=comment,
         )
     time_1_model = time.time() - time_begin
     print(str(time_1_model) + " s elapsed for " + project_folder + "...")
@@ -298,7 +298,7 @@ path_to_results_df = (
 )
 # if os.path.isfile(path_to_results_df): # override = true, not necesarry
 results.to_csv(path_to_results_df)
-plot_errors_vs_loc_homo(results, path_to_results,comment=comment)
+plot_errors_vs_loc_homo(results, path_to_results, comment=comment)
 time_end = time.time() - time_begin
 
 print("%1.1d min elapsed." % str(time_end / 60))

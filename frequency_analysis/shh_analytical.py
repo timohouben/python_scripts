@@ -9,9 +9,8 @@ from __future__ import division
 import numpy as np
 
 
-
-#def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10, norm=False):
-def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):    
+# def shh_analytical(Sww, f, Sy, T, x, L, m=10, n=10, norm=False):
+def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
     """
     Function to analyticaly compute the power spectrum of head with a given
     spectrum of the coresponding recharge process Sww in a phreatic aquifer,
@@ -81,11 +80,9 @@ def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
     asd
 
     """
-    
-    
+
     f, Sww = X
 
-    
     # define a (discharge constant)
     a = np.pi ** 2 * T / (4 * L ** 2)
     # define tc (characteristic time scale)
@@ -98,7 +95,6 @@ def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
     # define dimensionless coordinate
     x_dim = x / L
 
-    
     # calculate angular frequency omega from f
     omega = [i * 2 * np.pi for i in f]
 
@@ -110,7 +106,7 @@ def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
         return np.cos((2 * n + 1) * np.pi * x_dim / 2) / (2 * n + 1)
 
     Shh = []
-    #print("Omega has length of " + str(len(omega)))
+    # print("Omega has length of " + str(len(omega)))
     for i, freq in enumerate(omega):
         outer_sum = 0
         # print("Currently calculating value " + str(i) + " of " + str(len(omega)))
@@ -128,14 +124,14 @@ def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
             outer_sum += inner_sum
             # print(outer_sum)
         Shh.append(outer_sum * (16 / np.pi ** 2 / Sy ** 2))
-    #print("Finished")
+    # print("Finished")
 
     # approximation for t >> 1, beta = 2, Shh(omega) prop. omega**2, for more
     # info see Liang and Zhang 2013
     # Shh = [Sww[i]/Sy**2/omega[i] for i in range(0, len(omega))]
-    
+
     if norm == True:
-        Shh_Sww = [value/Sww[i] for i, value in enumerate(Shh)]
+        Shh_Sww = [value / Sww[i] for i, value in enumerate(Shh)]
         Shh_Sww = np.asarray(Shh_Sww)
         return Shh_Sww
     else:

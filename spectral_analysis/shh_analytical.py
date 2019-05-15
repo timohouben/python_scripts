@@ -6,7 +6,7 @@ from __future__ import division
 # ------------------------------------------------------------------------------
 
 
-def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
+def shh_analytical_man(X, Sy, T, x, L, m=7, n=4, norm=False):
     """
     Function to analyticaly compute the power spectrum of head with a given
     spectrum of the coresponding recharge process Sww in a phreatic aquifer,
@@ -43,9 +43,9 @@ def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
     L : float
         aquifer length [L] from water divide to point of discharge (i.e. stream)
     m : integer
-        number of terms of outer sum, dafault
+        number of terms of outer sum, dafault = 7
     n : integer
-        number of terms of inner sum, default
+        number of terms of inner sum, default = 4
     norm : bool
         normalize the output spectrum Shh by the input spectrum Sww
 
@@ -115,6 +115,169 @@ def shh_analytical(X, Sy, T, x, L, m=5, n=5, norm=False):
     # approximation for t >> 1, beta = 2, Shh(omega) prop. omega**2, for more
     # info see Liang and Zhang 2013
     # Shh = [Sww[i]/Sy**2/omega[i] for i in range(0, len(omega))]
+
+    if norm == True:
+        Shh_Sww = [value / Sww[i] for i, value in enumerate(Shh)]
+        Shh_Sww = np.asarray(Shh_Sww)
+        return Shh_Sww
+    else:
+        Shh = np.asarray(Shh)
+        return Shh
+
+
+def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01):
+    """
+    Function to analyticaly compute the power spectrum of head with a given
+    spectrum of the coresponding recharge process Sww in a phreatic aquifer,
+    modeled by a linearized Boussinesq-Equation.
+    For further explanations see:
+        Liang and Zhang, 2013. Temporal and spatial variation and scaling of
+        groundwater levels in a bounded unconfined aquifer. Journal of
+        Hydrology. http://dx.doi.org/10.1016/j.jhydrol.2012.11.044
+
+    In contrast to shh_analytical_man, where you have to specifiy the number of
+    iterations manuallay, here you have to provide a convergence criterion.
+
+
+    Parameters
+    ----------
+    X : tuple (f, Sww)
+        f : 1D array
+            frequencies [1/T], will be internally converted to angular
+            frequency omega
+        Sww : 1D array
+            power spectrum of recharge as function of frequency omega.
+    Sy : float
+        specific yield [-]
+        The specific storage (Ss) in an unconfined aquifer is usually much
+        smaller than the specific yield (Sy). Therefore, storativity (S[-]) can
+        be approximated with Sy. For an unconfined aquifer:
+        S = Sy + Ss * b
+        with b = saturated thickness?
+    T : float
+        transmissivity [L^2/T]
+        T = k * b
+        with b = saturated thickness [L] and k = hydr. conductivity [L/T]
+        Is used to calculate the discharge parameter a.
+    x : float
+        Location of observed head time series [L]
+        x = 0 : dh/dx = 0, x = L : h = h0 (h0 = constant head)
+    L : float
+        aquifer length [L] from water divide to point of discharge (i.e. stream)
+    m : integer
+        number of terms of outer sum, dafault = None
+        In this function, m is actually doing nothing. Is is still there to ensure
+        compatibility with the function to fit (shh_analytical_fit) which should
+        be taken for both, shh_analytical and shh_analytical_man.
+    n : integer
+        number of terms of inner sum, default = None
+        In this function, m is actually doing nothing. Is is still there to ensure
+        compatibility with the function to fit (shh_analytical_fit) which should
+        be taken for both, shh_analytical and shh_analytical_man.
+    norm : bool
+        normalize the output spectrum Shh by the input spectrum Sww
+    convergence : float
+        Convergence criterion. If new iteration of series adds less than this
+        %-value the series is truncated.
+
+
+    Yields
+    ------
+    array
+        Power spectrum of groundwater head as function of omega
+
+
+    References
+    ----------
+    Liang and Zhang, 2013. Temporal and spatial variation and scaling of
+        groundwater levels in a bounded unconfined aquifer. Journal of
+        Hydrology. http://dx.doi.org/10.1016/j.jhydrol.2012.11.044
+
+
+    Examples
+    --------
+
+    """
+
+    import numpy as np
+
+    f, Sww = X
+
+    # define a (discharge constant)
+    a = np.pi ** 2 * T / (4 * L ** 2)
+    # define tc (characteristic time scale)
+    tc = Sy / a
+
+    # check if distance to river is 0
+    if x == L:
+        return [np.nan for i in Sww]
+
+    # define dimensionless coordinate
+    x_dim = x / L
+
+    # calculate angular frequency omega from f
+    omega = [i * 2 * np.pi for i in f]
+
+    # define two helper functions
+    def Bm(m, x_dim):
+        return np.cos((2 * m + 1) * np.pi * x_dim / 2) / (2 * m + 1)
+
+    def Bn(n, x_dim):
+        return np.cos((2 * n + 1) * np.pi * x_dim / 2) / (2 * n + 1)
+
+    # Count the number of iteration
+    # counter_inner = []
+    # counter_outer = []
+
+    Shh = []
+    for i, freq in enumerate(omega):
+        # set outer_sum and single_inner_sum = 1 to pass the first while condition
+        outer_sum = 1
+        single_outer_sum = 1
+        j = 0
+        while (single_outer_sum / outer_sum) > convergence:
+            # set inner_sum and single_inner_sum = 1 to pass the first while condition
+            inner_sum = 1
+            single_inner_sum = 1
+            k = 0
+            while (single_inner_sum / inner_sum) > convergence:
+                single_inner_sum = (
+                    ((-1) ** (j + k) * Bm(j, x_dim) * Bn(k, x_dim) * Sww[i])
+                    / (2 * j ** 2 + 2 * k ** 2 + 2 * j + 2 * k + 1)
+                    * (
+                        (2 * j + 1) ** 2
+                        / (((2 * j + 1) ** 4 / tc ** 2) + omega[i] ** 2)
+                    )
+                )
+                # set inner_sum = single_inner_sum in first iteration
+                if k == 0:
+                    inner_sum = single_inner_sum
+                # increase inner_sum by single_inner_sum for all further iteration
+                else:
+                    inner_sum += single_inner_sum
+                k += 1
+            # counter_inner.append(k)
+            # print("Needed " + str(k) + " iterations for " + str(j) + ". outer sum.")
+            # the result from inner_sum is equal to single_outer_sum. This step ist redundand.
+            single_outer_sum = inner_sum
+            # set outer_sum = single_outer_sum in first iteration
+            if j == 0:
+                outer_sum = inner_sum
+            # increase outer_sum by single_outer_sum for all further iteration
+            else:
+                outer_sum += inner_sum
+            j += 1
+        # counter_outer.append(j)
+        # print("Needed " + str(j) + " iterations for " + str(i) + ". value of Sww.")
+        Shh.append(outer_sum * (16 / np.pi ** 2 / Sy ** 2))
+
+    # approximation for t >> 1, beta = 2, Shh(omega) prop. omega**2, for more
+    # info see Liang and Zhang 2013
+    # Shh = [Sww[i]/Sy**2/omega[i] for i in range(0, len(omega))]
+
+    # Show how many iterations where needed to meet the criterion
+    # print(counter_inner)
+    # print(counter_inner)
 
     if norm == True:
         Shh_Sww = [value / Sww[i] for i, value in enumerate(Shh)]

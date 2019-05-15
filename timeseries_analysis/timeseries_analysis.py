@@ -11,22 +11,32 @@ Created on Wed Oct  3 15:26:55 2018
 @author: houben
 """
 import numpy as np
-path_to_multiple_projects = '/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient_compare/run_3'
-obs_points = ['obs_0100', 'obs_0500', 'obs_0950', 'obs_0990']
 
-def pearson_corr(path_to_multiple_projects=path_to_multiple_projects, obs_points=obs_points):
-    
+path_to_multiple_projects = (
+    "/Users/houben/PhD/modelling/ogs_vs_derooij12/con_transient_compare/run_3"
+)
+obs_points = ["obs_0100", "obs_0500", "obs_0950", "obs_0990"]
+
+
+def pearson_corr(
+    path_to_multiple_projects=path_to_multiple_projects, obs_points=obs_points
+):
+
     import numpy as np
     import os
     from scipy.stats import pearsonr
-    
+
     # sort key
     def sort_key_1(elem):
         return elem[7]
+
     def sort_key_2(elem):
         return elem[0]
-    #list_dir = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith('.')]
-    list_dir = [f for f in os.listdir(str(path_to_multiple_projects)) if f.endswith('28')]
+
+    # list_dir = [f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith('.')]
+    list_dir = [
+        f for f in os.listdir(str(path_to_multiple_projects)) if f.endswith("28")
+    ]
     list_dir.sort(key=sort_key_2, reverse=True)
     list_dir.sort(key=sort_key_1)
     list_dir.reverse()
@@ -34,28 +44,37 @@ def pearson_corr(path_to_multiple_projects=path_to_multiple_projects, obs_points
     pearson_corr = np.zeros((len(obs_points), len(list_dir)))
     nse = np.zeros((len(obs_points), len(list_dir)))
     rmse = np.zeros((len(obs_points), len(list_dir)))
-    for i,curr_dir in enumerate(list_dir):
-        path_to_project = str(path_to_multiple_projects) + '/' + str(curr_dir)
-        #print('Creating timeseries for: ' + str(path_to_project) + '. ' + str(i+1) + ' of ' + str(len(list_dir)) + ' in progress...')
-    
-        for j,obs_point in enumerate(obs_points):
-            head_gw_model = np.loadtxt(str(path_to_project) + '/' + 'head_gw_model_' + str(obs_point[5:-1] + '.txt'))
-            head_ogs = np.loadtxt(str(path_to_project) + '/' + 'head_ogs_' + str(obs_point) + '_max.txt')
-    
+    for i, curr_dir in enumerate(list_dir):
+        path_to_project = str(path_to_multiple_projects) + "/" + str(curr_dir)
+        # print('Creating timeseries for: ' + str(path_to_project) + '. ' + str(i+1) + ' of ' + str(len(list_dir)) + ' in progress...')
+
+        for j, obs_point in enumerate(obs_points):
+            head_gw_model = np.loadtxt(
+                str(path_to_project)
+                + "/"
+                + "head_gw_model_"
+                + str(obs_point[5:-1] + ".txt")
+            )
+            head_ogs = np.loadtxt(
+                str(path_to_project) + "/" + "head_ogs_" + str(obs_point) + "_max.txt"
+            )
 
             # calculation of RMSE
-            rmse[j,i] = np.sqrt((sum((head_ogs[:]-head_gw_model[:])**2) / len(head_gw_model)))
-            #rmse[:] = rmse[:] * 1000
-
+            rmse[j, i] = np.sqrt(
+                (sum((head_ogs[:] - head_gw_model[:]) ** 2) / len(head_gw_model))
+            )
+            # rmse[:] = rmse[:] * 1000
 
             # calculation of the NSE
-            nse[j,i] = 1 - (sum((head_ogs[:]-head_gw_model[:])**2) / sum((head_ogs[:]-np.mean(head_ogs))**2))
-#            nse[j,i] = (sum((head_gw_model[:]-head_ogs[:])**2) / sum((head_gw_model[:]-np.mean(head_gw_model))**2))
-            pearson_corr[j,i] = pearsonr(head_gw_model, head_ogs)[0]
-            #pearson_corr = np.round(pearson_corr,6)
-    #return pearson_corr[:,-15:], obs_points, list_dir[-15:]
+            nse[j, i] = 1 - (
+                sum((head_ogs[:] - head_gw_model[:]) ** 2)
+                / sum((head_ogs[:] - np.mean(head_ogs)) ** 2)
+            )
+            #            nse[j,i] = (sum((head_gw_model[:]-head_ogs[:])**2) / sum((head_gw_model[:]-np.mean(head_gw_model))**2))
+            pearson_corr[j, i] = pearsonr(head_gw_model, head_ogs)[0]
+            # pearson_corr = np.round(pearson_corr,6)
+    # return pearson_corr[:,-15:], obs_points, list_dir[-15:]
     return nse, obs_points, list_dir
-
 
 
 ####
@@ -67,8 +86,7 @@ import matplotlib
 harvest, vegetables, farmers = pearson_corr()
 
 
-def heatmap(data, row_labels, col_labels, ax=None,
-            cbar_kw={}, cbarlabel="", **kwargs):
+def heatmap(data, row_labels, col_labels, ax=None, cbar_kw={}, cbarlabel="", **kwargs):
     """
     Create a heatmap from a numpy array and two lists of labels.
 
@@ -106,28 +124,32 @@ def heatmap(data, row_labels, col_labels, ax=None,
     ax.set_yticklabels(row_labels)
 
     # Let the horizontal axes labeling appear on top.
-    ax.tick_params(top=True, bottom=False,
-                   labeltop=True, labelbottom=False)
+    ax.tick_params(top=True, bottom=False, labeltop=True, labelbottom=False)
 
     # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=-30, ha="right",
-             rotation_mode="anchor")
+    plt.setp(ax.get_xticklabels(), rotation=-30, ha="right", rotation_mode="anchor")
 
     # Turn spines off and create white grid.
     for edge, spine in ax.spines.items():
         spine.set_visible(False)
 
-    ax.set_xticks(np.arange(data.shape[1]+1)-.5, minor=True)
-    ax.set_yticks(np.arange(data.shape[0]+1)-.5, minor=True)
-    ax.grid(which="minor", color="w", linestyle='-', linewidth=3)
+    ax.set_xticks(np.arange(data.shape[1] + 1) - 0.5, minor=True)
+    ax.set_yticks(np.arange(data.shape[0] + 1) - 0.5, minor=True)
+    ax.grid(which="minor", color="w", linestyle="-", linewidth=3)
     ax.tick_params(which="minor", bottom=False, left=False)
 
     return im, cbar
 
 
-def annotate_heatmap(data_for_colors, im, data=None, valfmt="{x:.2f}",
-                     textcolors=["black", "white"],
-                     threshold=None, **textkw):
+def annotate_heatmap(
+    data_for_colors,
+    im,
+    data=None,
+    valfmt="{x:.2f}",
+    textcolors=["black", "white"],
+    threshold=None,
+    **textkw
+):
     """
     A function to annotate a heatmap.
 
@@ -155,12 +177,11 @@ def annotate_heatmap(data_for_colors, im, data=None, valfmt="{x:.2f}",
     if threshold is not None:
         threshold = im.norm(threshold)
     else:
-        threshold = im.norm(data_for_colors.max())/2.
+        threshold = im.norm(data_for_colors.max()) / 2.0
 
     # Set default alignment to center, but allow it to be
     # overwritten by textkw.N
-    kw = dict(horizontalalignment="center",
-              verticalalignment="center")
+    kw = dict(horizontalalignment="center", verticalalignment="center")
     kw.update(textkw)
 
     # Get the formatter in case a string is supplied
@@ -181,12 +202,18 @@ def annotate_heatmap(data_for_colors, im, data=None, valfmt="{x:.2f}",
 
 fig, ax = plt.subplots()
 
-#im, cbar = heatmap(harvest[:,:13], vegetables, farmers[:13], ax=ax,
-im, cbar = heatmap(harvest[:,-13:], vegetables, farmers[-13:], ax=ax,
-#im, cbar = heatmap(harvest, vegetables, farmers, ax=ax,
-                   cmap="RdYlGn", cbarlabel="NSE")
-#YlGn
-#texts = annotate_heatmap(im, valfmt="{x:.1f} t")
+# im, cbar = heatmap(harvest[:,:13], vegetables, farmers[:13], ax=ax,
+im, cbar = heatmap(
+    harvest[:, -13:],
+    vegetables,
+    farmers[-13:],
+    ax=ax,
+    # im, cbar = heatmap(harvest, vegetables, farmers, ax=ax,
+    cmap="RdYlGn",
+    cbarlabel="NSE",
+)
+# YlGn
+# texts = annotate_heatmap(im, valfmt="{x:.1f} t")
 texts = annotate_heatmap(harvest, im, valfmt="{x:.2f}")
 
 fig.tight_layout()

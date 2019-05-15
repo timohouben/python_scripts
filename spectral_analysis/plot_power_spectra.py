@@ -19,7 +19,7 @@ def plot_spectrum(
     unit="[Hz]",
     heading="None",
     figtxt=None,
-    comment=""
+    comment="",
 ):
     """
     Function to plot one or multiple power spectra.
@@ -64,7 +64,7 @@ def plot_spectrum(
     import matplotlib.pyplot as plt
     import numpy as np
 
-    font = {"family": "Helvetica", "weight": "normal", "size": 20}
+    font = {"family": "DejaVu Sans", "weight": "normal", "size": 20}
     plt.rc("font", **font)
     plt.rc("legend", fontsize=15)
     plt.figure(figsize=[20, 10], dpi=100)
@@ -110,7 +110,9 @@ def plot_spectrum(
 
         if name == None:
             name = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
-        plt.savefig(path + "/" + comment + name + ".png", pad_inches=0.5, bbox_inches="tight")
+        plt.savefig(
+            path + "/" + comment + name + ".png", pad_inches=0.5, bbox_inches="tight"
+        )
     plt.close()
 
 

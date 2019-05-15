@@ -9,7 +9,8 @@ Created on Thu Sep 28 13:12:42 2017
 from __future__ import print_function, division
 
 import ogs5py_mesh as ogs
-#from ogs5py_mesh import generator as gen
+
+# from ogs5py_mesh import generator as gen
 import numpy as np
 
 mesh = ogs.mesh()
@@ -21,8 +22,8 @@ knopjes = mesh.NODES[:]
 np.savetxt("knopjes.txt", knopjes)
 
 
-source_begin = 13                           # Anzahl der händischen Punkte
-source_end = 511                            #
+source_begin = 13  # Anzahl der händischen Punkte
+source_end = 511  #
 length = source_end - source_begin
 inter_begin = 611
 inter_end = inter_begin + length
@@ -40,13 +41,12 @@ i = 0
 while i < rotations:
     start = rest_begin + i * (length + 1)
     end = rest_end + i * (length + 1)
-    mesh.NODES[start:end + 1, 0] = mesh.NODES[source_begin:source_end + 1, 0]
+    mesh.NODES[start : end + 1, 0] = mesh.NODES[source_begin : source_end + 1, 0]
     i = i + 1
 
 
-
-#mesh.NODES[:, 0] = np.around(mesh.NODES[:, 0], 1)
-#mesh.NODES[:, 2] = np.around(mesh.NODES[:, 2], 6)
+# mesh.NODES[:, 0] = np.around(mesh.NODES[:, 0], 1)
+# mesh.NODES[:, 2] = np.around(mesh.NODES[:, 2], 6)
 
 mesh.show()
-#mesh.save("RESULT.msh")
+# mesh.save("RESULT.msh")

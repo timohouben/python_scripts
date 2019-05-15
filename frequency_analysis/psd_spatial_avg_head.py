@@ -47,97 +47,122 @@ for project_folder in project_folder_list:
 
     if cutoff != None:
         print(
-                "First "
-                + str(cutoff)
-                + " data points in time series were deleted due to instationary of the aquifer."
-                )
+            "First "
+            + str(cutoff)
+            + " data points in time series were deleted due to instationary of the aquifer."
+        )
         fft_data = fft_data[cutoff:]
         recharge = recharge[cutoff:]
 
-
-    results.append(fft_psd(
-        fft_data=fft_data,
-        recharge=recharge,
-        method="scipyffthalf",
-        aquifer_thickness=30,
-        aquifer_length=1000,
-        path_to_project=path_to_multiple_projects + "/" + project_folder,
-        obs_point="spatial_averaged_head",
-        fit=True,
-        time_step_size=86400,
-        savefig=True,
-        detrend=detrend
-    )[:4]
+    results.append(
+        fft_psd(
+            fft_data=fft_data,
+            recharge=recharge,
+            method="scipyffthalf",
+            aquifer_thickness=30,
+            aquifer_length=1000,
+            path_to_project=path_to_multiple_projects + "/" + project_folder,
+            obs_point="spatial_averaged_head",
+            fit=True,
+            time_step_size=86400,
+            savefig=True,
+            detrend=detrend,
+        )[:4]
     )
-    
-Ss = [1.20E-03,
-1.10E-03,
-1.00E-03,
-9.00E-04,
-8.00E-04,
-7.00E-04,
-6.00E-04,
-5.00E-04,
-4.00E-04,
-3.00E-04,
-2.00E-04,
-1.00E-04,
-9.00E-05
+
+Ss = [
+    1.20e-03,
+    1.10e-03,
+    1.00e-03,
+    9.00e-04,
+    8.00e-04,
+    7.00e-04,
+    6.00e-04,
+    5.00e-04,
+    4.00e-04,
+    3.00e-04,
+    2.00e-04,
+    1.00e-04,
+    9.00e-05,
 ]
 
-plt.plot(Ss,[x[2] for x in results], label="Spec. Storage", lw="0.001", marker="o")
-plt.plot(Ss,Ss,color="black")
+plt.plot(Ss, [x[2] for x in results], label="Spec. Storage", lw="0.001", marker="o")
+plt.plot(Ss, Ss, color="black")
 plt.xlabel("input values")
 plt.ylabel("derived values")
 plt.legend()
-plt.savefig(path_to_multiple_projects + "/" + "Ss_spat_averaged_head_" + str(detrend) + "_" + str(cutoff) + ".png")
+plt.savefig(
+    path_to_multiple_projects
+    + "/"
+    + "Ss_spat_averaged_head_"
+    + str(detrend)
+    + "_"
+    + str(cutoff)
+    + ".png"
+)
 plt.close()
 
 
-D = [8.33E-03,
-9.09E-03,
-1.00E-02,
-1.11E-02,
-1.25E-02,
-1.43E-02,
-1.67E-02,
-2.00E-02,
-2.50E-02,
-3.33E-02,
-5.00E-02,
-1.00E-01,
-1.11E-01]
+D = [
+    8.33e-03,
+    9.09e-03,
+    1.00e-02,
+    1.11e-02,
+    1.25e-02,
+    1.43e-02,
+    1.67e-02,
+    2.00e-02,
+    2.50e-02,
+    3.33e-02,
+    5.00e-02,
+    1.00e-01,
+    1.11e-01,
+]
 
-plt.plot(D,[x[3] for x in results], label="Diffusivity", lw="0.001", marker="o")
-plt.plot(D,D,color="black")
+plt.plot(D, [x[3] for x in results], label="Diffusivity", lw="0.001", marker="o")
+plt.plot(D, D, color="black")
 plt.xlabel("input values")
 plt.ylabel("derived values")
 plt.legend()
-plt.savefig(path_to_multiple_projects + "/" + "D_spat_averaged_head_" + str(detrend) + "_" + str(cutoff) + ".png")
+plt.savefig(
+    path_to_multiple_projects
+    + "/"
+    + "D_spat_averaged_head_"
+    + str(detrend)
+    + "_"
+    + str(cutoff)
+    + ".png"
+)
 plt.close()
-   
-K = [1.00E-05,
-1.00E-05,
-1.00E-05,
-1.00E-05,
-1.00E-05,
-1.00E-05,
-1.00E-05,
-1.00E-05,
-1.00E-05,
-1.00E-05,
-1.00E-05,
-1.00E-05,
-1.00E-05]
 
-plt.plot(K,[x[1] for x in results], label="hydr. Cond.", lw="0.001", marker="o")
-plt.plot(K,K,color="red",lw="0.001", marker="o")
+K = [
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+    1.00e-05,
+]
+
+plt.plot(K, [x[1] for x in results], label="hydr. Cond.", lw="0.001", marker="o")
+plt.plot(K, K, color="red", lw="0.001", marker="o")
 plt.xlabel("input values")
 plt.ylabel("derived values")
 plt.legend()
-plt.savefig(path_to_multiple_projects + "/" + "K_spat_averaged_" + str(detrend) + "_" + str(cutoff) + ".png")
+plt.savefig(
+    path_to_multiple_projects
+    + "/"
+    + "K_spat_averaged_"
+    + str(detrend)
+    + "_"
+    + str(cutoff)
+    + ".png"
+)
 plt.close()
-    
-    
-    
-    

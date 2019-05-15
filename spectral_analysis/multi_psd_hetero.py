@@ -30,6 +30,7 @@ from get_obs import get_obs
 from get_ogs_parameters import get_ogs_parameters
 from shh_analytical import shh_analytical_fit, shh_analytical
 from plot_fitting_results import plot_errors_vs_loc
+from tools import get_ogs_folders
 
 
 # ------------------------------------------------------------------------------
@@ -60,13 +61,6 @@ Description:
 - preprocessing on time series
 - power spectrum will be calculated
 - fit of power spectrum and parameters will be stored in array.
-
-ToBeDone
---------
-- Find an appropriate measure to compare input and output parameters.
-- imporove labeling for legend in plot_errors_vs_loc
-
-- get the geometric and arithmetic mean from the field
 
 Requirements
 ------------
@@ -118,9 +112,8 @@ except IndexError:
 # )
 
 # get a list of all directories containing OGS model runs
-project_folder_list = [
-    f for f in os.listdir(str(path_to_multiple_projects)) if not f.startswith(".")
-]
+project_folder_list = get_ogs_folders(path_to_multiple_projects)
+print("Spectral analysis startet for parent folder of multiple ogs runs: " + path_to_multiple_projects)
 
 # remove folder "fitting_results" from list and sort
 try:
@@ -159,13 +152,12 @@ columns = [
     "recharge"
 ]
 results = pd.DataFrame(columns=columns)
-print(results)
 
 # outer loop over all project_folders containing OGS model runs
 for i, project_folder in enumerate(project_folder_list):
     path_to_project = path_to_multiple_projects + "/" + project_folder
     # extract the time series from the tec files
-    time, recharge_time_series = extract_timeseries(path=path_to_project, rfd=1)
+    time_time_series, recharge_time_series = extract_rfd(path=path_to_project, rfd=1)
     # plot the time series vs recharge
     plot_head_timeseries_vs_recharge(path=path_to_project)
     # write OGS input parameters in DataFrame and multiply Ss and kf by thickness
