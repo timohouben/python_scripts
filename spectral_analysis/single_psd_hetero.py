@@ -33,7 +33,7 @@ from plot_fitting_results import plot_errors_vs_loc_hetero
 from tools import get_ogs_folders
 
 # ------------------------------------------------------------------------------
-# set some parameters for the analysis manually
+# set some arameters for the analysis manually
 # ------------------------------------------------------------------------------
 aquifer_length = 1000
 aquifer_thickness = 30

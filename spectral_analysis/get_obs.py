@@ -41,6 +41,8 @@ def get_obs(path_to_project, without_max=False):
     file_names = [f for f in os.listdir(path_to_project) if f.endswith(".tec")]
     file_names.sort()
 
+    print(file_names)
+    
     string_begin = "ply_"
     string_end = "_t"
     obs_names = []
