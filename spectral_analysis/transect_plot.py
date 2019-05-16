@@ -128,7 +128,7 @@ def plot_head_timeseries_vs_recharge(path, which="mean"):
     file_names_obs_list = glob.glob(path + "/*obs*" + which + "*.txt")
     file_names_obs_list.sort()
     file_name_rfd = str(glob.glob(path + "/*rfd*.txt")[0])
-    file_name_time = str(glob.glob(path + "/*time*.txt")[0])
+    file_name_time = str(glob.glob(path + "/*1_y_values.txt")[0])
 
     rfd = np.loadtxt(file_name_rfd)
     time = np.loadtxt(file_name_time)

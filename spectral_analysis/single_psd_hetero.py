@@ -428,7 +428,7 @@ for i, project_folder in enumerate(project_folder_list):
         obs=obs_loc_list,
         error_list=[results["err_T_geo"], results["err_T_har"], results["err_T_ari"]],
         legend=["Error T geo.mean", "Error T har.mean", "Error T ari.mean"],
-        ylabel="Error [%] " + r"$\frac{T_(in) - T_(out)}{T_(in)} * 100$",
+        ylabel="Error [%] " + r"$\frac{T_{in} - T_{out}}{T_{in}} * 100$",
         comment=comment,
         path=path_to_results,
     )
