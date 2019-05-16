@@ -8,13 +8,34 @@ import os
 import re
 
 
-def get_obs(path_to_project):
+def get_obs(path_to_project, without_max=False):
     """
     Give the path to the ogs project and get a list with the names of the
     observation points, the file names and the number included in the name from
     .tec-files!
     This number can be used as a distance or coordinate of a transect.
     This function ONLY WORKS FOR POLYLINES currently!
+
+    Parameters
+    ----------
+
+    path_to_project : string
+        Path to project of ogs containing the .tec files.
+    without_max : bool
+        True: Based on the maximum of the extracted numbers from the observation
+        points, this entry will be deleted from all three lists which are returned. 
+
+    Yields
+    ------
+
+    file_names : list
+        List of .tec files.
+    obs_names : list
+        List of observation names
+    obs_locs : list
+        List of obervation distances (which are extracted from the file names)
+
+
     """
 
     file_names = [f for f in os.listdir(path_to_project) if f.endswith(".tec")]
@@ -30,6 +51,15 @@ def get_obs(path_to_project):
         ]
         obs_names.append(obs_name_temp)
         obs_locs.append(int(re.search(r"\d+", obs_name_temp).group()))
+
+    if without_max == True:
+        import numpy as np
+        # find the index of the maximum entry in obs_loc
+        index = obs_locs.index(np.max(obs_locs))
+        # remove by index from all lists
+        del obs_locs[index]
+        del file_names[index]
+        del obs_names[index]
     return file_names, obs_names, obs_locs
 
 
