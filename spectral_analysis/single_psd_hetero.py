@@ -42,7 +42,7 @@ which = "mean"
 # also has m and n as arguments but is not using them.
 m = None
 n = None
-comment = "norm2_"  # give a specific comment for the analysis e.g. "parameterset1_"
+comment = "try_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = None
@@ -176,6 +176,7 @@ results = pd.DataFrame(columns=columns)
 
 # outer loop over all project_folders containing OGS model runs
 for i, project_folder in enumerate(project_folder_list):
+    time_1_folder_begin = time.time()
     # initialize the dataframe
     results = pd.DataFrame(columns=columns)
     print("###################################################################")
@@ -183,8 +184,8 @@ for i, project_folder in enumerate(project_folder_list):
     print("###################################################################")
     path_to_project = path_to_multiple_projects + "/" + project_folder
     # get list of observation points in current porject_folder
-    obs_point_list = get_obs(path_to_project)[1]
-    obs_loc_list = get_obs(path_to_project)[2]
+    obs_point_list = get_obs(path_to_project, without_max=True)[1]
+    obs_loc_list = get_obs(path_to_project, without_max=True)[2]
     # check if time series for different observation points have already been extracted
     checker = []
     for item in obs_point_list:
@@ -224,7 +225,8 @@ for i, project_folder in enumerate(project_folder_list):
         os.mkdir(path_to_results)
     # inner loop over all observation points of current OGS model run
     for j, (obs_point, obs_loc) in enumerate(zip(obs_point_list, obs_loc_list)):
-        # Do not perform the fit on observation point x=L
+        # Do not perform the fit on observation point x=L, not necessary any more
+        # because get_obs has been modified with "without_max" argument
         if obs_loc == aquifer_length:
             break
         print("###################################################################")
@@ -258,7 +260,7 @@ for i, project_folder in enumerate(project_folder_list):
                 + " values remained."
             )
         # calculate the power spectrum: Shh/Sww, output/input to PLOT only!
-        frequency_oi,  = power_spectrum(
+        frequency_oi, Shh_Sww = power_spectrum(
             input=recharge_time_series,
             output=head_time_series,
             time_step_size=time_step_size,
@@ -372,9 +374,9 @@ for i, project_folder in enumerate(project_folder_list):
             n=m,
             norm=norm,
         )
-        if norm = True:
+        if norm == True:
             data = np.vstack((Shh_Sww, Shh_fitted, Shh_geo, Shh_har, Shh_ari))
-        elif norm = False:
+        elif norm == False:
             data = np.vstack((Shh, Shh_fitted, Shh_geo, Shh_har, Shh_ari))
 
         labels = [
@@ -415,8 +417,8 @@ for i, project_folder in enumerate(project_folder_list):
         )
 
 
-    time_1_model = time.time() - time_begin
-    print(str(time_1_model) + " s elapsed for " + project_folder + "...")
+    time_1_folder_end = time.time() - time_1_folder_begin
+    print(str(time_1_folder_end) + " s elapsed for " + project_folder + "...")
     # set path to results incl file name of results
     path_to_results_df = path_to_results + "/" + comment + "results.csv"
     # if os.path.isfile(path_to_results_df): # override = true, not necesarry
