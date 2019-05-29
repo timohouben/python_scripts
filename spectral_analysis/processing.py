@@ -198,7 +198,7 @@ def combine_results(path_to_multiple_projects, filename):
         f.close()
 
     csv_merge = open(
-        path_to_multiple_projects + "/combined_results" + "/" + "csv_merge.csv", "w"
+        path_to_multiple_projects + "/combined_results" + "/" + filename[:-4] + "_merge.csv", "w"
     )
     csv_merge.write(header)
 
@@ -210,7 +210,7 @@ def combine_results(path_to_multiple_projects, filename):
             csv_merge.write(line)
         csv_in.close()
     csv_merge.close()
-    print("Created consolidated CSV file : " + "csv_merge.csv")
+    print("Created consolidated CSV file : " + filename[:-4] + "_merge.csv")
 
 
 def get_filename_from_rfd_top_com(

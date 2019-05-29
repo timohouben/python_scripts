@@ -14,6 +14,7 @@ import sys
 import numpy as np
 import os
 import pandas as pd
+import os.path
 
 # add search path for own modules
 sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
@@ -189,14 +190,14 @@ for i, project_folder in enumerate(project_folder_list):
     # check if time series for different observation points have already been extracted
     checker = []
     for item in obs_point_list:
-        if (str(path_to_project) + "/" + "head_ogs_" + str(item) + "_" + str(which) + ".txt"):
+        if os.path.exists(str(path_to_project) + "/" + "head_ogs_" + str(item) + "_" + str(which) + ".txt"):
             checker.append(True)
-    if all(checker) == True:
+    if all(checker) == True and checker != []:
         print("All time series have already been extracted. Continuing without checking if content is correct.")
     else:
         # extract the time series from the tec files
         print("Extracting time series...")
-        extract_timeseries(path, which="mean", process="GROUNDWATER_FLOW")
+        extract_timeseries(path_to_project, which="mean", process="GROUNDWATER_FLOW")
     # extract the rfd curve
     time_time_series, recharge_time_series = extract_rfd(
         path=path_to_project, rfd=1
@@ -268,7 +269,7 @@ for i, project_folder in enumerate(project_folder_list):
             o_i="oi",
         )
 
-        # calculate the power spectrum: Shh, output to FIT with analy sol only!
+        # calculate the power spectrum: Shh, output to FIT with analy solution only!
         frequency, Shh = power_spectrum(
             input=recharge_time_series,
             output=head_time_series,
@@ -284,16 +285,21 @@ for i, project_folder in enumerate(project_folder_list):
             o_i="i",
         )
         # fit the power spectrum with the analytical solution
-        popt, pcov = shh_analytical_fit(
-            Sww=Sww,
-            Shh=Shh,
-            f=frequency,
-            x=obs_loc,
-            m=m,
-            n=n,
-            L=aquifer_length,
-            norm=False,
-        )
+        try:
+            popt, pcov = shh_analytical_fit(
+                Sww=Sww,
+                Shh=Shh,
+                f=frequency,
+                x=obs_loc,
+                m=m,
+                n=n,
+                L=aquifer_length,
+                norm=False,
+            )
+        except RuntimeError:
+            print("Optimal parameters not found...")
+            popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
+            print("popt and pcov have been set to np.nan")
         # absolute values for popt because T and S are squared in equation of shh_anlytical
         popt = [abs(i) for i in popt]
         # add values to dataframe
