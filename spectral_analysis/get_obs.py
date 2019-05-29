@@ -23,7 +23,7 @@ def get_obs(path_to_project, without_max=False):
         Path to project of ogs containing the .tec files.
     without_max : bool
         True: Based on the maximum of the extracted numbers from the observation
-        points, this entry will be deleted from all three lists which are returned. 
+        points, this entry will be deleted from all three lists which are returned.
 
     Yields
     ------
@@ -41,8 +41,12 @@ def get_obs(path_to_project, without_max=False):
     file_names = [f for f in os.listdir(path_to_project) if f.endswith(".tec")]
     file_names.sort()
 
-    print(file_names)
-    
+    # remove DEFAULT_NotSpecified_PROPERTIES.tec from list
+    try:
+        file_names.remove("DEFAULT_NotSpecified_PROPERTIES.tec")
+    except ValueError:
+        pass
+
     string_begin = "ply_"
     string_end = "_t"
     obs_names = []

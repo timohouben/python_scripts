@@ -208,6 +208,7 @@ def plot_errors_vs_loc_hetero(obs, error_list, legend, ylabel, path, comment):
 
     for i, error in enumerate(error_list):
         plt.plot(obs, error, label=legend[i])
+    plt.hlines(0, 0, np.max(obs), colors='k', linestyles="dashed")
     plt.legend()
     plt.ylabel(ylabel)
     plt.title("Error vs location: " + os.path.basename(path))

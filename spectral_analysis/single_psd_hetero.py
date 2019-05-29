@@ -14,6 +14,7 @@ import sys
 import numpy as np
 import os
 import pandas as pd
+import os.path
 
 # add search path for own modules
 sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
@@ -189,14 +190,15 @@ for i, project_folder in enumerate(project_folder_list):
     # check if time series for different observation points have already been extracted
     checker = []
     for item in obs_point_list:
-        if (str(path_to_project) + "/" + "head_ogs_" + str(item) + "_" + str(which) + ".txt"):
+        if os.path.exists(str(path_to_project) + "/" + "head_ogs_" + str(item) + "_" + str(which) + ".txt"):
             checker.append(True)
-    if all(checker) == True:
+    print(checker)
+    if all(checker) == True and checker != []:
         print("All time series have already been extracted. Continuing without checking if content is correct.")
     else:
         # extract the time series from the tec files
         print("Extracting time series...")
-        extract_timeseries(path, which="mean", process="GROUNDWATER_FLOW")
+        extract_timeseries(path_to_project, which="mean", process="GROUNDWATER_FLOW")
     # extract the rfd curve
     time_time_series, recharge_time_series = extract_rfd(
         path=path_to_project, rfd=1
@@ -429,7 +431,7 @@ for i, project_folder in enumerate(project_folder_list):
         obs=obs_loc_list,
         error_list=[results["err_T_geo"], results["err_T_har"], results["err_T_ari"]],
         legend=["Error T geo.mean", "Error T har.mean", "Error T ari.mean"],
-        ylabel="Error [%] " + r"$\frac{T_(in) - T_(out)}{T_(in)} * 100$",
+        ylabel="Error [%] " + r"$\frac{T_{in} - T_{out}}{T_{in}} * 100$",
         comment=comment,
         path=path_to_results,
     )
