@@ -295,7 +295,7 @@ def shh_analytical_2015(
     Function to analytically compute the power spectrum of head with a given
     spectrum of the coresponding recharge process Sww AND a spectrum of a
     fluctuating river SHH AND a flux to the left boundary SQQ in a phreatic
-    aquifer, modeled by a linearized Boussinesq-Equation. Default values for SWW,
+    aquifer, modelled by a linearized Boussinesq-Equation. Default values for SWW,
     SQQ and SHH are "none". If data is provided the corresponding term will be
     switched on and power spectrum of head (Shh) will be calculated.
 
@@ -364,15 +364,21 @@ def shh_analytical_2015(
     """
 
     import numpy as np
-
-    #if type(SWW) == None:
-    #    SWW = [0 for i in f]
-    #if type(SQQ) == None:
-    #    SQQ = [0 for i in f]
-    #if type(SHH) == None:
-    #    SHH = [0 for i in f]
-
-    print(SHH,SWW,SQQ)
+    try:
+        if SWW == None:
+            SWW = np.zeros(len(f))
+    except ValueError:
+        pass
+    try:
+        if SQQ == None:
+            SQQ = np.zeros(len(f))
+    except ValueError:
+        pass
+    try:
+        if SHH == None:
+            SHH = np.zeros(len(f))
+    except ValueError:
+        pass
 
     # define beta
     beta = T / Sy
@@ -380,7 +386,7 @@ def shh_analytical_2015(
     tc = Sy * L ** 2 / T
     # check if distance to river is 0
     if x == L:
-        return [np.nan for i in Sww]
+        return [np.nan for i in SWW]
     # define dimensionless coordinate
     x_dim = x / L
     # calculate angular frequency omega from f
@@ -446,21 +452,21 @@ def shh_analytical_2015(
                 outer_sum += inner_sum
             j += 1
         # counter_outer.append(j)
-        # print("Needed " + str(j) + " iterations for " + str(i) + ". value of Sww.")
+        # print("Needed " + str(j) + " iterations for " + str(i) + ". value of SWW.")
         Shh.append(outer_sum * (16 / np.pi ** 2 / Sy ** 2))
 
     # approximation for t >> 1, beta = 2, Shh(omega) prop. omega**2, for more
     # info see Liang and Zhang 2013
-    # Shh = [Sww[i]/Sy**2/omega[i] for i in range(0, len(omega))]
+    # Shh = [SWW[i]/Sy**2/omega[i] for i in range(0, len(omega))]
 
     # Show how many iterations where needed to meet the criterion
     # print(counter_inner)
     # print(counter_inner)
 
     if norm == True:
-        Shh_Sww = [value / Sww[i] for i, value in enumerate(Shh)]
-        Shh_Sww = np.asarray(Shh_Sww)
-        return Shh_Sww
+        Shh_SWW = [value / SWW[i] for i, value in enumerate(Shh)]
+        Shh_SWW = np.asarray(Shh_SWW)
+        return Shh_SWW
     else:
         Shh = np.asarray(Shh)
         return Shh
@@ -553,4 +559,11 @@ if __name__ == "__main__":
     )
     plt.legend()
     plt.show()
+
+    # generate test data
+    import numpy as np
+    SHH = np.random.rand(100)
+    SQQ = np.random.rand(100)
+    SWW = np.random.rand(100)
+    f = [1/i for i in np.arange(0,8640000,86400)]
 '''

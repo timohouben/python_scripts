@@ -300,6 +300,15 @@ for i, project_folder in enumerate(project_folder_list):
             print("Optimal parameters not found...")
             popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
             print("popt and pcov have been set to np.nan")
+        except ValueError:
+            print("either ydata or xdata contain NaNs, or if incompatible options are used")
+            popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
+        except OptimizeWarning:
+            print("Covariance of the parameters could not be estimated.")
+            popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
+
+
+
         # absolute values for popt because T and S are squared in equation of shh_anlytical
         popt = [abs(i) for i in popt]
         # add values to dataframe
