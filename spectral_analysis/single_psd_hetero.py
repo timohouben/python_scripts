@@ -307,7 +307,8 @@ for i, project_folder in enumerate(project_folder_list):
             popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
         except OptimizeWarning:
             print("Covariance of the parameters could not be estimated.")
-            popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
+            #popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
+
 
 
 
