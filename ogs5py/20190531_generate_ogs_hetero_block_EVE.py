@@ -13,11 +13,11 @@ import shutil
 from ogs5py.reader import readpvd, readtec_point
 from gstools import SRF, Gaussian
 import matplotlib.pyplot as plt
-import mpi4py
+from mpi4py import MPI
 import platform
 
 # ------------------------mpi4py configurations---------------------------------- #
-number_of_slots = sys.arg[2]
+number_of_slots = int(sys.argv[2])
 if number_of_slots != 100:
     print("Only 100 slots allowed.")
     sys.exit()
@@ -57,7 +57,7 @@ border_list = np.arange(10,1000,10)
 for storage in storage_list:
     for recharge_path, rech_abv in zip(recharge_list, rech_abv_list):
         for border in border_list:
-            if rank == int(str((overall_count - 1000)[-2:])):
+            if rank == int(str((overall_count - 1000))[-2:]):
                 overall_count = overall_count + 1
                 rfd_top_com = recharge_path
                 name=str(overall_count) + '_border_' + str(border) + '_stor_' + str(storage) + '_rech_' + str(rech_abv)
@@ -237,12 +237,13 @@ for storage in storage_list:
                        file.close()
                     if state == 'steady':
                         print("calculating steady state...")
-                        if platform.system() == 'Darwin':
+                        ogs.run_model(ogs_root='/home/houben/OGS_source/ogs')
+#                        if platform.system() == 'Darwin':
                             # path for local Mac
-                            ogs.run_model(ogs_root='/Users/houben/phd/ogs5/sources_bugfix_RWPT/ogs5/build/bin/ogs')
-                        if platform.system() == 'Linux':
+#                            ogs.run_model(ogs_root='/Users/houben/phd/ogs5/sources_bugfix_RWPT/ogs5/build/bin/ogs')
+#                        if platform.system() == 'Linux':
                             # path for eve
-                            ogs.run_model(ogs_root='/home/houben/OGS_source/ogs')
+#                            ogs.run_model(ogs_root='/home/houben/OGS_source/ogs')
 
 
 #print("run model")
@@ -251,5 +252,5 @@ for storage in storage_list:
 #from ogs5py.reader import readtec_polyline
 #tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project)
 
-shutil.copyfile(str(CWD) + '/' + file_name, parent_dir + '/' + file_name)
-print('OGS-model generation finished!')
+#shutil.copyfile(str(CWD) + '/' + file_name, parent_dir + '/' + file_name)
+#print('OGS-model generation finished!')
