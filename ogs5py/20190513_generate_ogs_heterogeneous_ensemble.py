@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 # CWD = os.getcwd()
 CWD = "/work/houben/20190513_spec_anal_hetero_ensemble_1/"
 # the name of this script
-file_name = "generate_ogs.py"
+file_name = "20190231_generate_ogs_heterogeneous_ensemble.py"
 # ------------------------domain configuration-------------------------------- #
 length = 1000
 thickness = 30

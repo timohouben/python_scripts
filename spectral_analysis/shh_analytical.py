@@ -424,7 +424,7 @@ def shh_analytical_2015(
                         * np.cos(bn(k) * x_dim)
                     )
                     / (
-                        (bn(k) ** 2 + bm(j) ** 2)
+                        tc * (bn(k) ** 2 + bm(j) ** 2)
                         * (beta ** 2 * bm(j) ** 2 / L ** 4 + omega[i] ** 2)
                     )
                     * (
@@ -453,7 +453,7 @@ def shh_analytical_2015(
             j += 1
         # counter_outer.append(j)
         # print("Needed " + str(j) + " iterations for " + str(i) + ". value of SWW.")
-        Shh.append(outer_sum * (16 / np.pi ** 2 / Sy ** 2))
+        Shh.append(outer_sum)
 
     # approximation for t >> 1, beta = 2, Shh(omega) prop. omega**2, for more
     # info see Liang and Zhang 2013
@@ -566,4 +566,82 @@ if __name__ == "__main__":
     SQQ = np.random.rand(100)
     SWW = np.random.rand(100)
     f = [1/i for i in np.arange(0,8640000,86400)]
+
+'''
+
+'''
+# check for consistency of shh_analytical_2015 and shh_analytical_2013
+
+
+
+import numpy as np
+f = [1/i for i in np.arange(0,8640000,86400)]
+Ts = [0.1,0.01,0.001,0.0001]
+Ss = [0.1,0.01,0.001,0.0001,0.00001]
+locs = [100,200,300,400,500,600,700,800,900]
+error = []
+
+for T in Ts:
+    for S in Ss:
+        for loc in locs:
+            ensemble_error_max = []
+            ensemble_error_mean = []
+            ensemble_error_min = []
+            for i in np.arange(0,10):
+                SHH = np.random.rand(100)
+                SQQ = np.random.rand(100)
+                SWW = np.random.rand(100)
+                spec_13 = shh_analytical((f,SWW),S,T,loc,1000)
+                spec_15 = shh_analytical_2015(f,S,T,loc,1000,SWW=SWW)
+                error_list = [1 - abs(i/j) for i,j in zip(spec_13.tolist(),spec_15.tolist()) if i != 0 and j != 0]
+                ensemble_error_max.append(np.max(error_list))
+                ensemble_error_mean.append(np.mean(error_list))
+                ensemble_error_min.append(np.min(error_list))
+            error.append([[np.mean(ensemble_error_max), np.mean(ensemble_error_mean), np.mean(ensemble_error_min)], [T,S,loc]])
+
+
+# index of errors
+error[0][0][0] # max
+error[0][0][1] # mean
+error[0][0][2] # min
+# index of other parameters
+error[0][1][0] # transmissivitites
+error[0][1][1] # storativities
+error[0][1][2] # locations
+
+
+import matplotlib.pyplot as plt
+
+# for maximum error
+for T in Ts:
+    plt.plot([error[i][0][0] for i in np.arange(0,len(error)) if error[i][1][1] == 0.1 and error[i][1][0] == T], label="T = " + str(T))
+    plt.title("Deviation between shh_analytical from 2015 and 2013 for different T")
+    plt.legend()
+
+for S in Ss:
+    plt.plot([error[i][0][0] for i in np.arange(0,len(error)) if error[i][1][0] == 0.1 and error[i][1][1] == S], label="S = " + str(S))
+    plt.title("Deviation between shh_analytical from 2015 and 2013 for different S")
+    plt.legend()
+
+# for mean error
+for T in Ts:
+    plt.plot([error[i][0][1] for i in np.arange(0,len(error)) if error[i][1][1] == 0.1 and error[i][1][0] == T], label="T = " + str(T))
+    plt.title("Deviation between shh_analytical from 2015 and 2013 for different T")
+    plt.legend()
+
+for S in Ss:
+    plt.plot([error[i][0][1] for i in np.arange(0,len(error)) if error[i][1][0] == 0.1 and error[i][1][1] == S], label="S = " + str(S))
+    plt.title("Deviation between shh_analytical from 2015 and 2013 for different S")
+    plt.legend()
+
+# for minimum error
+for T in Ts:
+    plt.plot([error[i][0][2] for i in np.arange(0,len(error)) if error[i][1][1] == 0.1 and error[i][1][0] == T], label="T = " + str(T))
+    plt.title("Deviation between shh_analytical from 2015 and 2013 for different T")
+    plt.legend()
+
+for S in Ss:
+    plt.plot([error[i][0][2] for i in np.arange(0,len(error)) if error[i][1][0] == 0.1 and error[i][1][1] == S], label="S = " + str(S))
+    plt.title("Deviation between shh_analytical from 2015 and 2013 for different S")
+    plt.legend()
 '''
