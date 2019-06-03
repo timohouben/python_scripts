@@ -192,6 +192,8 @@ for i, project_folder in enumerate(project_folder_list):
     for item in obs_point_list:
         if os.path.exists(str(path_to_project) + "/" + "head_ogs_" + str(item) + "_" + str(which) + ".txt"):
             checker.append(True)
+        else:
+            checker.append(False)
     if all(checker) == True and checker != []:
         print("All time series have already been extracted. Continuing without checking if content is correct.")
     else:
