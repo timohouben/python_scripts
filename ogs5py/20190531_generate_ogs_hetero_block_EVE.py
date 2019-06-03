@@ -21,9 +21,9 @@ rank = comm.Get_rank()
 # ------------------------ogs5py configurations---------------------------------- #
 # get the current working directory
 # CWD = os.getcwd()
-CWD = "/work/houben/20190531_SP_hetero_block"
+CWD = sys.argv[1]
 # the name of this script
-file_name = "20190531_generate_ogs_hetero_block_EVE.py"
+file_name = sys.argv[0]
 # ------------------------domain configuration-------------------------------- #
 length = 1000
 thickness = 30
