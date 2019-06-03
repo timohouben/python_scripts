@@ -2,6 +2,8 @@
 ##################################
 ## RUNS ONLY ON EVE DUE TO MPI ###
 ##################################
+# first argument = current working direcotry
+# second argument = number of slots (100 FIXED!!! Script not yet running fine for different number of slots)
 
 import sys
 import os
@@ -15,15 +17,18 @@ import mpi4py
 import platform
 
 # ------------------------mpi4py configurations---------------------------------- #
-number_of_slots = 100
+number_of_slots = sys.arg[2]
+if number_of_slots != 100:
+    print("Only 100 slots allowed.")
+    sys.exit()
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 # ------------------------ogs5py configurations---------------------------------- #
 # get the current working directory
 # CWD = os.getcwd()
-CWD = "/work/houben/20190531_SP_hetero_block"
+CWD = sys.argv[1]
 # the name of this script
-file_name = "20190531_generate_ogs_hetero_block_EVE.py"
+file_name = sys.argv[0]
 # ------------------------domain configuration-------------------------------- #
 length = 1000
 thickness = 30
@@ -52,7 +57,7 @@ border_list = np.arange(10,1000,10)
 for storage in storage_list:
     for recharge_path, rech_abv in zip(recharge_list, rech_abv_list):
         for border in border_list:
-            if rank == (overall_count - 1000):
+            if rank == int(str((overall_count - 1000)[-2:])):
                 overall_count = overall_count + 1
                 rfd_top_com = recharge_path
                 name=str(overall_count) + '_border_' + str(border) + '_stor_' + str(storage) + '_rech_' + str(rech_abv)
