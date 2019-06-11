@@ -34,7 +34,7 @@ from plot_fitting_results import plot_errors_vs_loc_hetero
 from tools import get_ogs_folders
 
 # ------------------------------------------------------------------------------
-# set some parameters for the analysis manually
+# set some arameters for the analysis manually
 # ------------------------------------------------------------------------------
 aquifer_length = 1000
 aquifer_thickness = 30
@@ -43,7 +43,7 @@ which = "mean"
 # also has m and n as arguments but is not using them.
 m = None
 n = None
-comment = "try_"  # give a specific comment for the analysis e.g. "parameterset1_"
+comment = "1_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = None
@@ -392,6 +392,7 @@ for i, project_folder in enumerate(project_folder_list):
             n=m,
             norm=norm,
         )
+
         if norm == True:
             data = np.vstack((Shh_Sww, Shh_fitted, Shh_geo, Shh_har, Shh_ari))
         elif norm == False:

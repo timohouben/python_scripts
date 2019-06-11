@@ -65,7 +65,7 @@ def extract_timeseries(path, which="mean", process="GROUNDWATER_FLOW"):
         )
 
 
-def extract_rfd(path, rfd=1):
+def extract_rfd(path, rfd=1, export=True):
     """
     Function to extract the x and y values of a given rfd.
 
@@ -105,9 +105,11 @@ def extract_rfd(path, rfd=1):
             # print(ogs.rfd.get_block(rfd-1)[''])
             y_values = np.asarray([y_values[1] for y_values in ogs.rfd.get_block(rfd - 1)[""]])
             x_values = np.asarray([x_values[0] for x_values in ogs.rfd.get_block(rfd - 1)[""]])
-            np.savetxt(str(path) + "/" + "rfd_curve#" + str(rfd) + "_x_values.txt", x_values)
-            np.savetxt(str(path) + "/" + "rfd_curve#" + str(rfd) + "_y_values.txt", y_values)
-
+            if export == True:
+                np.savetxt(str(path) + "/" + "rfd_curve#" + str(rfd) + "_x_values.txt", x_values)
+                np.savetxt(str(path) + "/" + "rfd_curve#" + str(rfd) + "_y_values.txt", y_values)
+            else:
+                pass
     return x_values, y_values
 
 
@@ -126,12 +128,25 @@ def plot_head_timeseries_vs_recharge(path, which="mean"):
 
     # glob the name of the .txt files
     file_names_obs_list = glob.glob(path + "/*obs*" + which + "*.txt")
-    file_names_obs_list.sort()
-    file_name_rfd = str(glob.glob(path + "/*rfd*.txt")[0])
-    file_name_time = str(glob.glob(path + "/*1_y_values.txt")[0])
+    if file_names_obs_list == []:
+        print("No head.txt files have been extracted previously. Running function extract_timeseries with default parameters.")
+        extract_timeseries(path, which="mean", process="GROUNDWATER_FLOW")
+        file_names_obs_list = glob.glob(path + "/*obs*" + which + "*.txt")
 
-    rfd = np.loadtxt(file_name_rfd)
+    file_names_obs_list.sort()
+
+    try:
+        file_name_values = str(glob.glob(path + "/*1_y_values.txt")[0])
+        file_name_time = str(glob.glob(path + "/*1_x_values.txt")[0])
+    except IndexError:
+        print("No rfd.txt files have been extracted previously. Running extract_rfd with default parameters.")
+        extract_rfd(path, rfd=1, export=True)
+        file_name_values = str(glob.glob(path + "/*1_y_values.txt")[0])
+        file_name_time = str(glob.glob(path + "/*1_x_values.txt")[0])
+
+    rfd = np.loadtxt(file_name_values)
     time = np.loadtxt(file_name_time)
+
     # calculate mm/day from m/s
     rfd = rfd * 86400 * 1000
     time = time / 86400
@@ -144,9 +159,9 @@ def plot_head_timeseries_vs_recharge(path, which="mean"):
     ax1.set_ylabel(
         "recharge [mm/day]", color=color
     )  # we already handled the x-label with ax1
-    ax1.bar(time, rfd, width=1, color=color)
+    ax1.bar(time, rfd, width=0.8, color=color)
     ax1.tick_params(axis="y", labelcolor=color)
-    ax1.set_ylim(0, 2.5)
+    # ax1.set_ylim(0, 2.5)
     # ax1.set_ylim([min(recharge), max(recharge)*2])
     # ax1.set_yticks([0, 1, 2, 3, 4, 5])
 
@@ -161,34 +176,34 @@ def plot_head_timeseries_vs_recharge(path, which="mean"):
         for obs in file_names_obs_list:
             # derive the head for the given observation point from ogs
             head_ogs = np.loadtxt(obs)
-            ax2.plot(time, head_ogs, label=str(obs)[-13:-5] + " OGS", linestyle="-")
+            ax2.plot(time[:len(head_ogs)], head_ogs, label=str(obs)[-13:-5] + " OGS", linestyle="-")
     elif which == "max":
         for obs in file_names_obs_list:
             # derive the head for the given observation point from ogs
             head_ogs = np.loadtxt(obs)
-            ax2.plot(time, head_ogs, label=str(obs)[-13:-5] + " OGS", linestyle="-")
+            ax2.plot(time[:len(head_ogs)], head_ogs, label=str(obs)[-13:-5] + " OGS", linestyle="-")
     elif which == "mean":
         for obs in file_names_obs_list:
             # derive the head for the given observation point from ogs
             head_ogs = np.loadtxt(obs)
-            ax2.plot(time, head_ogs, label=str(obs)[-14:-4] + " OGS", linestyle="-")
+            ax2.plot(time[:len(head_ogs)], head_ogs, label=str(obs)[-14:-4] + " OGS", linestyle="-")
 
-        ax2.set_ylabel("head [m]", color=color)
-        ax2.tick_params(axis="y", labelcolor=color)
-        ax2.grid(color="grey", linestyle="--", linewidth=0.5, which="both")
-        handles, labels = ax2.get_legend_handles_labels()
-        ax1.legend(handles, labels, loc=6, facecolor="white", framealpha=100)
+    ax2.set_ylabel("head [m]", color=color)
+    ax2.tick_params(axis="y", labelcolor=color)
+    ax2.grid(color="grey", linestyle="--", linewidth=0.5, which="both")
+    handles, labels = ax2.get_legend_handles_labels()
+    ax1.legend(handles, labels, loc=6, facecolor="white", framealpha=100)
 
-        fig.tight_layout()
-
-        # make a string from list obs_per_plot
-        fig.savefig(
-            str(path)
-            + "/"
-            + str(os.path.basename(str(path)))
-            + "_"
-            + str(which)
-            + "_"
-            + ".png"
-        )
-        plt.close("all")
+    fig.tight_layout()
+    plt.show()
+    # make a string from list obs_per_plot
+    fig.savefig(
+        str(path)
+        + "/"
+        + str(os.path.basename(str(path)))
+        + "_"
+        + str(which)
+        + "_"
+        + ".png"
+    )
+    plt.close("all")

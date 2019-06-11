@@ -55,7 +55,6 @@ else:
     path_to_multiple_projects = raw_input("Insert path to multiple projects: ")
 
 
-print(path_to_multiple_projects)
 first_part_of_name_of_project_ogs = ""
 which_data_to_plot = 2  # 1: ogs vs gw_model, 2: ogs, 3: gw_model
 process = "GROUNDWATER_FLOW"
@@ -185,10 +184,10 @@ for i, curr_dir in enumerate(list_dir):
         except IOError:
             print("Failed to load input data.")
 
-        tecs = readtec_polyline(task_id=name_of_project_ogs, task_root=path_to_project)
-        # print(tecs)
-        # print(name_of_project_ogs, path_to_project)
-        print(obs_per_plot[0])
+
+        tecs = readtec_polyline(task_id=name_of_project_ogs,task_root=path_to_project)
+        #print(tecs)
+        #print(name_of_project_ogs, path_to_project)
         time_s = tecs[process][obs_per_plot[0]]["TIME"]
         time_d = time_s / 86400
 

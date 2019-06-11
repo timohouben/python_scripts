@@ -635,7 +635,7 @@ for S in Ss:
     plt.legend()
 
 # for minimum error
-for T in Ts:
+for T in Ts:a
     plt.plot([error[i][0][2] for i in np.arange(0,len(error)) if error[i][1][1] == 0.1 and error[i][1][0] == T], label="T = " + str(T))
     plt.title("Deviation between shh_analytical from 2015 and 2013 for different T")
     plt.legend()

@@ -57,8 +57,14 @@ border_list = np.arange(10,1000,10)
 for storage in storage_list:
     for recharge_path, rech_abv in zip(recharge_list, rech_abv_list):
         for border in border_list:
+<<<<<<< HEAD
             if rank == int(str((overall_count - 1000))[-2:]):
                 overall_count = overall_count + 1
+=======
+            overall_count = overall_count + 1
+            if rank == int(str((overall_count - 1001))[-2:]):
+                print("Rank " + str(rank) + " starts to generate the ogs setup files...")
+>>>>>>> 6bfa3d64b6e9114a020cb282ff46898e2c88cd97
                 rfd_top_com = recharge_path
                 name=str(overall_count) + '_border_' + str(border) + '_stor_' + str(storage) + '_rech_' + str(rech_abv)
                 dim_no = 2
@@ -238,12 +244,12 @@ for storage in storage_list:
                     if state == 'steady':
                         print("calculating steady state...")
                         ogs.run_model(ogs_root='/home/houben/OGS_source/ogs')
-#                        if platform.system() == 'Darwin':
+                        if platform.system() == 'Darwin':
                             # path for local Mac
-#                            ogs.run_model(ogs_root='/Users/houben/phd/ogs5/sources_bugfix_RWPT/ogs5/build/bin/ogs')
-#                        if platform.system() == 'Linux':
+                            ogs.run_model(ogs_root='/Users/houben/phd/ogs5/sources_bugfix_RWPT/ogs5/build/bin/ogs')
+                        if platform.system() == 'Linux':
                             # path for eve
-#                            ogs.run_model(ogs_root='/home/houben/OGS_source/ogs')
+                            ogs.run_model(ogs_root='/home/houben/OGS_source/ogs')
 
 
 #print("run model")
