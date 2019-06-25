@@ -286,8 +286,8 @@ for i, project_folder in enumerate(project_folder_list):
             results_temp = {
                 "name": project_folder,
                 "S_in": S,
-                "T_in_1": ,
-                "T_in_2": ,
+                "T_in_1": T_in_1,
+                "T_in_2": T_in_2,
                 "T_out": popt[1],
                 "S_out": popt[0],
                 "tc_out": calc_tc(aquifer_length, popt[0], popt[1]),
