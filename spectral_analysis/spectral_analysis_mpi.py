@@ -175,7 +175,7 @@ for i, project_folder in enumerate(project_folder_list):
             extract_timeseries(path_to_project, which="mean", process="GROUNDWATER_FLOW")
         # extract the rfd curve
         time_time_series, recharge_time_series = extract_rfd(
-            ,path=path_to_project, rfd=recharge_rfd
+            path=path_to_project, rfd=recharge_rfd
         ),
         # plot the time series vs recharge
         plot_head_timeseries_vs_recharge(path=path_to_project)
