@@ -1,5 +1,5 @@
-def plot_violins_for_ensemble_runs(
-    path, filename, order, len_scales, y, savename="", bw=None
+def plot_combined_violins_for_ensemble_runs(
+    path, filename, order, len_scales, y, savename="", y_lims=None, bw=None
 ):
     """
     Make violin plots for ensemble runs. Each side of a violin represents a
@@ -19,7 +19,11 @@ def plot_violins_for_ensemble_runs(
     len_scales : list
         give a list of size 2 with correlation lenghts
     y : string
-        Which column to use for violins.
+        Which column of data frame to use for violins.
+    ylims : tuple (y_min,y_max)
+        Tuple of limits for y-axis:
+    bw : float
+        Bandwith of violin plots.
 
 
     Yields
@@ -75,7 +79,6 @@ def plot_violins_for_ensemble_runs(
             alpha=0.005,
         )
         ax1.set_ylabels("$T\;[m^2/s]$ derived by fit")
-        plt.ylim(-0.002, 0.008)
     if y == "S_out":
         ax2 = plt.hlines(
             y=data.S_in.unique(),
@@ -88,6 +91,7 @@ def plot_violins_for_ensemble_runs(
         ax1.set_ylabels("$S\;[-]$ derived by fit")
     plt.legend(loc="upper left")
     ax1.set_xlabels("location of observation point [m]")
+    plt.ylim(y_lims)
     plt.savefig(
         path
         + "/"
@@ -105,11 +109,11 @@ def plot_violins_for_ensemble_runs(
     )
 
 if __name__ == '__main__':
+    pass
 #    order = [[],[]]
 #    len_scale = [[],[]]
 #    y = [,]
 #    for orderT in order:
 #        for len_scalesT in len_scales:
 #            for yT in y:
-#                plot_violins_for_ensemble_runs("/Users/houben/phd/results/20190513_spec_anal_hetero_ensemble_1", "merge_results.csv", orderT, len_scalesT,yT,bw=0.2)
-#
+#                plot_combined_violins_for_ensemble_runs("/Users/houben/phd/results/20190513_spec_anal_hetero_ensemble_1", "merge_results.csv", orderT, len_scalesT,yT,bw=0.2)

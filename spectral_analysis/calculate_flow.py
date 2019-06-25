@@ -33,7 +33,6 @@ def get_baseflow_from_polyline(
     tec = readtec_polyline(
         task_id=task_id, task_root=task_root, single_file=single_file
     )
-
     # time_steps = number of timesteps + initial values
     try:
         time_steps = tec["VELOCITY_X1"].shape[0]
@@ -43,6 +42,7 @@ def get_baseflow_from_polyline(
         flow_timeseries = []
 
         for i in range(0, time_steps):
+            print("Time step " + str(i) + "of " + str(time_steps) + "...")
             # get the node values of the velocities for ith time step
             node_velocity = tec["VELOCITY_X1"][i, :]
             # get the node values of the distances measured from starting point of polyline
@@ -179,8 +179,8 @@ def plot_recharge_vs_baseflow(task_root, flow_timeseries, aquifer_length=None, c
 if __name__ == "__main__":
 
     task_id = "transect"
-    task_root = "/Users/houben/phd/modelling/20190602_Tc_vs_Tr/1b_outdated/1b_steady_gw_flow_stor_0"
-    single_file = task_root + "/transect_ply_obs_01000_t5_GROUNDWATER_FLOW.tec"
+    task_root = "/Users/houben/phd/modelling/20190602_Tc_vs_Tr/transport/setup/2a_transportstor_0.01_kf_0.001"
+    single_file = task_root + "/" + "transect_ply_obs_01000_t5.tec"
     orientation = "vertical"
     aquifer_length = 1000
 

@@ -67,7 +67,7 @@ def extract_timeseries(path, which="mean", process="GROUNDWATER_FLOW"):
 
 def extract_rfd(path, rfd=1, export=True):
     """
-    Function to extract the x and y values of a given rfd.
+    Function to extract the x and y values of a given rfd or to load it from previosly exportet .txt-files.
 
     Parameters
     ----------
@@ -80,7 +80,7 @@ def extract_rfd(path, rfd=1, export=True):
     Yields
     ------
 
-    A txt file for x and y values of given rfd.
+    A txt file for x and y values of given rfd and returns x_values and y_values as tuple of lists.
 
     """
 
@@ -102,7 +102,7 @@ def extract_rfd(path, rfd=1, export=True):
             from ogs5py import OGS
             ogs = OGS(task_root=path + "/", task_id=task_id)
             ogs.rfd.read_file(path=path + "/" + task_id + ".rfd")
-            # print(ogs.rfd.get_block(rfd-1)[''])
+            #print(ogs.rfd.get_block(rfd-1)[''])
             y_values = np.asarray([y_values[1] for y_values in ogs.rfd.get_block(rfd - 1)[""]])
             x_values = np.asarray([x_values[0] for x_values in ogs.rfd.get_block(rfd - 1)[""]])
             if export == True:

@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*
 """
+For log normal heterogeneous conductivity fields only!
 Script to perform the spectral analysis on a single directory of an ogs model run and stores the results in a folder called "fitting results" in the specific ogs project folder.
+But you have to call it from a parent director including all subdirectories of ogs model runs. It will get a list of the subdirectories and work through this list one after another.
+It should be used for ogs model runs which have been grouped in a parent directory containing 2-10 runs maximum to ensure quick compoutation of the spectral analysis. Results have to
+be combined afterwards. It will also take the statistical moments of the heterogeneous field from the field.dat.
 """
 # ------------------------------------------------------------------------------
 # python 2 and 3 compatible
@@ -15,6 +19,7 @@ import numpy as np
 import os
 import pandas as pd
 import os.path
+
 
 # add search path for own modules
 sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
