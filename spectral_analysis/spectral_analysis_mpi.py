@@ -46,7 +46,7 @@ from plot_power_spectra import plot_spectrum
 from get_obs import get_obs
 from get_ogs_parameters import get_ogs_parameters
 from shh_analytical import shh_analytical_fit, shh_analytical
-from plot_fitting_results import plot_errors_vs_loc_hetero
+from plot_fitting_results import plot_errors_vs_loc_hetero, plot_parameter_vs_location
 from tools import get_ogs_folders
 
 # ------------------------------------------------------------------------------
@@ -278,6 +278,8 @@ for i, project_folder in enumerate(project_folder_list):
             print("Sy fit: ", "{0:.3e}".format(popt[0]))
             print("Sy input: ", "{0:.3e}".format(S))
             print("T fit: ", "{0:.3e}".format(popt[1]))
+            print("T 1: ", "{0:.3e}".format(T_in_1))
+            print("T 2: ", "{0:.3e}".format(T_in_2))
             print("Covariance of fit:" + str([i for i in pcov]))
 
             # fill temporal dataframe for one model run
@@ -354,7 +356,7 @@ for i, project_folder in enumerate(project_folder_list):
 
 
         time_1_folder_end = time.time() - time_1_folder_begin
-        print("Ready!" + str(time_1_folder_end) + " s elapsed for " + project_folder + "...")
+        print("Ready! " + str(time_1_folder_end) + " s elapsed for " + project_folder + "...")
         # set path to results incl file name of results
         path_to_results_df = path_to_results + "/" + comment + "results.csv"
         # if os.path.isfile(path_to_results_df): # override = true, not necesarry
