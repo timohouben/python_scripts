@@ -371,7 +371,7 @@ def plot_heatmap(results, path_to_results, abs=True, comment=""):
             # plot heatmap
             plot(pivot_df_obs_loc_cut, error)
 
-def plot_parameter_vs_location(path_to_results, parameter, location, x_label):
+def plot_parameter_vs_location(path_to_results, parameter, location, y_label):
     """
     Plots a list/array of parameters along location and saves it in path_to_results
 
@@ -384,8 +384,8 @@ def plot_parameter_vs_location(path_to_results, parameter, location, x_label):
         Parameter to plot
     location : 1D list, array
         Locations
-    x_label : string
-        Give the x-achsis a name.
+    y_label : string
+        Give the y-achsis a name.
 
     Yields
     ------
@@ -396,11 +396,11 @@ def plot_parameter_vs_location(path_to_results, parameter, location, x_label):
     import matplotlib.pyplot as plt
     import os.path
 
-    plt.plot(location, parameter, label=x_label)
-    plt.ylabel("location [m]")
-    plt.xlabel(x_label)
+    plt.plot(location, parameter, label=y_label)
+    plt.xlabel("location [m]")
+    plt.ylabel(y_label)
     plt.title(os.path.basename(path_to_results))
-    plt.savefig(path_to_results + "/" + x_label + "_vs_location.png", bbox_inches="tight", dpi=300)
+    plt.savefig(path_to_results + "/" + y_label + "_vs_location.png", bbox_inches="tight", dpi=300)
 
 
 if __name__ == "__main__":

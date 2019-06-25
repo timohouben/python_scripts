@@ -361,4 +361,4 @@ for i, project_folder in enumerate(project_folder_list):
         path_to_results_df = path_to_results + "/" + comment + "results.csv"
         # if os.path.isfile(path_to_results_df): # override = true, not necesarry
         results.to_csv(path_to_results_df)
-        plot_parameter_vs_location(path_to_results, results["T_out"], obs_loc_list, x_label)
+        plot_parameter_vs_location(path_to_results, results["T_out"], obs_loc_list, y_label="T_out")
