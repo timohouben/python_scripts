@@ -58,8 +58,8 @@ which = "mean"
 recharge_rfd = 1
 T_in_1 = 0.001 * aquifer_thickness
 T_in_2 = 0.00001 * aquifer_thickness
-# m and n are only taken into account if shh_anlytical_man is used. shh_analytical
-# also has m and n as arguments but is not using them.
+# m an,d n are only taken into account if shh_anlytical_man is used. shh_analytical
+# also ,has m and n as arguments but is not using them.
 m = None
 n = None
 comment = ""  # give a specific comment for the analysis e.g. "parameterset1_"
@@ -100,8 +100,8 @@ dataframe : n_observation_points x n_parameters
     tc_out : output characteristic time scale calculatet from T_out and S_out
     cov : covariance matrix of fit
     loc : location of the observation point. loc = 0 : water divide
-    time_step_size : size of time step in seconds [s]
-    time_steps : number of time steps
+    ti,me_step_size : size of time step in seconds [s]
+    tim,e_steps : number of time steps
     model_period : Modelling period in days [d]
     which : Screening deapth of observation point. "mean", "min", "max"
     recharge : type of recharge
@@ -175,8 +175,8 @@ for i, project_folder in enumerate(project_folder_list):
             extract_timeseries(path_to_project, which="mean", process="GROUNDWATER_FLOW")
         # extract the rfd curve
         time_time_series, recharge_time_series = extract_rfd(
-            path=path_to_project, rfd=recharge_rfd
-        )
+            ,path=path_to_project, rfd=recharge_rfd
+        ),
         # plot the time series vs recharge
         plot_head_timeseries_vs_recharge(path=path_to_project)
         # write OGS input parameters in DataFrame, but don't return kf because it is ditrubuted
@@ -330,8 +330,8 @@ for i, project_folder in enumerate(project_folder_list):
             marker = ["", "d"]
             figtxt = "OGS Input Parameter: S = %1.3e, T1 = %1.3e, T2 = %1.3e" % (
                 S,
-                T_in_1
-                T_in_2
+                T_in_1,
+                T_in_2,
             ) + "\nDerived Parameter:    S = %1.3e, T = %1.3e" % (
                 popt[0],
                 popt[1],
