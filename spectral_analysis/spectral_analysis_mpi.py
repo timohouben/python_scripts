@@ -361,4 +361,10 @@ for i, project_folder in enumerate(project_folder_list):
         path_to_results_df = path_to_results + "/" + comment + "results.csv"
         # if os.path.isfile(path_to_results_df): # override = true, not necesarry
         results.to_csv(path_to_results_df)
+
+        # a few lines to plot the error, variance of the fit also as an error plot, not working yet!!!
+        #results["cov_numbers"] = results["cov"].apply(identify_numbers_from_string)
+        #results["sigma_T"] = results["cov_numbers"].apply(lambda x: x[3] if x != [] else np.nan)
+        #results["sigma_S"] = results["cov_numbers"].apply(lambda x: x[0] if x != [] else np.nan)
+
         plot_parameter_vs_location(path_to_results, results["T_out"], obs_loc_list, y_label="T_out")

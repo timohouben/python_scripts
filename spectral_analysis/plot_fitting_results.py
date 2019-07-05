@@ -10,6 +10,73 @@ dpi = 300
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
+def plot_parameter_vs_location_block(results, path_to_results, borders,threshold = 0.1, comment=""):
+    """
+    Plot the derived parameter (T or S) along the different observation points
+    and for a selection of positions of the boarder between a high and a low
+    conductive zone.
+
+    Parameters
+    ----------
+
+    results : pandas dataframe
+        Dataframe with results from spectral analysis.
+    path_to_results : string
+        Path where to store the images.
+    borders : list of integers
+        List of values for the boarder between two zones.
+    threshold : float
+        Maximum and minimum value of variance. All other entries will be dropped from data frame.
+    comment : string
+        Give a commment.
+
+    Yields
+    ------
+
+    A/multiple plot(s) in path_to_results directory.
+    """
+
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import numpy as np
+    from processing import identify_numbers_from_string
+
+    # convert strings to numbers
+    results["cov_numbers"] = results["cov"].apply(identify_numbers_from_string)
+    results["sigma_S"] = results["cov_numbers"].apply(lambda x: float(x[0]) if x != [] else np.nan)
+    results["sigma_T"] = results["cov_numbers"].apply(lambda x: float(x[3]) if x != [] else np.nan)
+    # remove all lines where the covariance is higher than 1 or lower than -1
+    results = results[results["sigma_T"] > -threshold]
+    results = results[results["sigma_T"] < threshold]
+
+
+    fig, axs = plt.subplots(len(borders), 1, sharex=True)
+    for i, border in enumerate(borders):
+        results_temp = results
+        border_str = "border_" + str(border) + "_"
+        # get a new column with border values
+        results_temp = results_temp[results_temp.name.str.contains(border_str)]
+        # only values with S_in == 0.03
+        results_temp = results_temp[results_temp["S_in"] == 0.003]
+        # only for a specific recharge
+        #results_temp = results_temp[results_temp["recharge"] == "recharge_daily.txt"]
+        results_temp = results_temp[results_temp.recharge.str.contains("mHM")]
+        axs[i].errorbar(results_temp.obs_loc, results_temp.T_out, results_temp.sigma_T, label="Border at " + str(border) + " m")
+        # plot the T in
+        T_in = [float(results_temp.T_in_1.unique()) if obs < border else float(results_temp.T_in_2.unique()) for obs in np.arange(0,1010,10)]
+        axs[i].semilogy(np.arange(0,1010,10), T_in, linestyle="", marker="o")
+        # Remove horizontal space between axes
+        fig.subplots_adjust(hspace=1)
+        #axs[i].set_title("Border at " + str(border) + " m")
+        axs[i].axvline(x=border, color='black')
+        axs[i].spines['right'].set_visible(False)
+        axs[i].spines['top'].set_visible(False)
+        axs[i].spines['bottom'].set_visible(False)
+        axs[i].spines['left'].set_visible(True)
+        axs[i].set_ylim(ymin=np.min(T_in + results_temp.T_out.tolist())*0.5, ymax=np.max(T_in + results_temp.T_out.tolist())*1.5)
+        axs[i].set_facecolor('#57595D')
+    plt.show()
+
 
 def plot_error_vs_tc(results, path_to_results, comment="", abs=True):
     """
@@ -371,7 +438,7 @@ def plot_heatmap(results, path_to_results, abs=True, comment=""):
             # plot heatmap
             plot(pivot_df_obs_loc_cut, error)
 
-def plot_parameter_vs_location(path_to_results, parameter, location, y_label):
+def plot_parameter_vs_location(path_to_results, parameter, location, y_label, error=None):
     """
     Plots a list/array of parameters along location and saves it in path_to_results
 
@@ -386,6 +453,9 @@ def plot_parameter_vs_location(path_to_results, parameter, location, y_label):
         Locations
     y_label : string
         Give the y-achsis a name.
+    error : 1D-array
+        If None, no errors will be plotted.
+        If 1D array, error bars will be used for plotting.
 
     Yields
     ------
@@ -396,7 +466,10 @@ def plot_parameter_vs_location(path_to_results, parameter, location, y_label):
     import matplotlib.pyplot as plt
     import os.path
 
-    plt.plot(location, parameter, label=y_label)
+    if error == None:
+        plt.plot(location, parameter, label=y_label)
+    elif error != None:
+        plt.errorbar(location, parameter, error, label=y_label)
     plt.xlabel("location [m]")
     plt.ylabel(y_label)
     plt.title(os.path.basename(path_to_results))
@@ -407,10 +480,10 @@ if __name__ == "__main__":
     import pandas as pd
     import numpy as np
 
-    results = pd.read_csv("/Users/houben/Desktop/test/csv_merge.csv")
-    path_to_results = "/Users/houben/Desktop/test"
+    results = pd.read_csv("/Users/houben/phd/results/20190531_SA_hetero_block/results_merge.csv")
+    path_to_results = "/Users/houben/phd/results/20190531_SA_hetero_block"
 
-    plot_error_vs_tc(results, path_to_results, abs=True)
+    # plot_error_vs_tc(results, path_to_results, abs=True)
     # plot_errors_vs_loc(results, path_to_results)
     # plot_heatmap(results, path_to_results)
 
@@ -427,3 +500,8 @@ if __name__ == "__main__":
     #    for i,agg in enumerate(aggregate):
     #        #print(err,agg,bins[i])
     #        plot_errors_vs_loc_aggregate(results, path_to_results, err, agg, bins[i], abs=True)
+
+    #borders = [10,20,30,40,50,60,70,80,90,100,200]
+    borders = np.arange(50,1000,50).tolist()
+    #borders = np.arange(800,1000,20).tolist()
+    plot_parameter_vs_location_block(results, path_to_results, borders=borders, comment="")

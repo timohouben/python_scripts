@@ -4,13 +4,23 @@
 from __future__ import division
 
 # ------------------------------------------------------------------------------
-def identify_numbers_from_string(string):
+def identify_numbers_from_string(string, index=None):
     """
-    Pass a string and return a list of numbers in string.
+    Pass a string and return a list of numbers in this string.
+
+    Parameters
+    ----------
+    string : string
+        Give the string which should be searched for numbers of any kind.
+    index : integer
+        Return only one value with index.
+
     """
     import re
-
-    return re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", string)
+    if index == None:
+        return re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", string)
+    elif index != None:
+        return re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", string)[index]
 
 
 def detrend(timeseries, type="linear"):
