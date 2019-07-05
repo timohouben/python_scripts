@@ -35,12 +35,12 @@ import matplotlib.pyplot as plt
 from mpi4py import MPI
 
 # -------------------- other configurations
-ogs_root = "Path/to/your/ogs/executable/ogs"
-
+#ogs_root = "/Path/to/your/ogs/executable/ogs"
+ogs_root = "/home/houben/OGS_source/ogs"
 # -------------------- get the arguments and pass them into variables
 file_name = sys.argv[0]
 CWD = sys.argv[1]
-number_of_slots = int(sys.argv[2])
+slots = int(sys.argv[2])
 
 # -------------------- configure mpi4py
 comm = MPI.COMM_WORLD
@@ -92,6 +92,14 @@ t_id = "transect"
 # the aquifer. They will be rounded!!
 percents_of_length = [0, 0.05, 0.2, 0.5, 0.8, 0.9, 0.95, 1]
 
+# -------------------- Make some folders
+dim_no = 2
+# Setups will be stored in CWD + "/setup", this folder is called
+# the "parent directory"
+parent_dir = CWD + "/setup"
+if not os.path.exists(parent_dir):
+    os.mkdir(parent_dir)
+
 # This loop iterates over all combinations of storage, recharge and border
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
@@ -119,15 +127,9 @@ for storage in storage_list:
                     + "_rech_"
                     + str(rech_abv)
                 )
-                dim_no = 2
-                # Setups will be stored in CWD + "/setup", this folder is called
-                # the "parent directory"
-                parent_dir = CWD + "/setup"
                 # Name of directory (entire path) of one single ogs run
                 dire = parent_dir + "/" + name
                 # Make folders
-                if not os.path.exists(parent_dir):
-                    os.mkdir(parent_dir)
                 if not os.path.exists(dire):
                     os.mkdir(dire)
                 # -------------------- generate ogs base class
@@ -384,5 +386,3 @@ for storage in storage_list:
                         file.close()
                         print("Running steady state...")
                         ogs.run_model(ogs_root=ogs_root)
-
-print("OGS-model generation finished!")
