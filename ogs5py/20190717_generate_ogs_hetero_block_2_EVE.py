@@ -314,9 +314,10 @@ for storage in storage_list:
                     NOD_VALUES=[
                         [var_name_flow],
                         ["VELOCITY_X1"],
+                        ["VELOCITY_Y1"],
                         ["VELOCITY_Z1"],
                     ],
-                    ELE_VALUES=[["VELOCITY1_X"], ["VELOCITY1_Z"]],
+                    ELE_VALUES=[["VELOCITY1_X"], [["VELOCITY1_Y"], ["VELOCITY1_Z"]],
                     GEO_TYPE="DOMAIN",
                     # Write a PVD output for the whole domain.
                     DAT_TYPE="PVD",
@@ -331,8 +332,10 @@ for storage in storage_list:
                         NOD_VALUES=[
                             [var_name_flow],
                             ["VELOCITY_X1"],
+                            ["VELOCITY_Y1"],
                             ["VELOCITY_Z1"],
                         ],
+                        ELE_VALUES=[["VELOCITY1_X"], [["VELOCITY1_Y"], ["VELOCITY1_Z"]],
                         GEO_TYPE=[["POLYLINE", obs_point]],
                         DAT_TYPE="TECPLOT",
                         # For every time step.
