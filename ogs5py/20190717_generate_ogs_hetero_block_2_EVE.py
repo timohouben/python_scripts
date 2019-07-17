@@ -35,7 +35,7 @@ import matplotlib.pyplot as plt
 from mpi4py import MPI
 
 # -------------------- other configurations
-ogs_root = "/Path/to/your/ogs/executable/ogs"
+ogs_root = "/home/houben/OGS_source/ogs"
 # -------------------- get the arguments and pass them into variables
 file_name = sys.argv[0]
 CWD = sys.argv[1]
@@ -63,15 +63,18 @@ step_size = np.array([86400])
 time_end = np.sum(time_steps * step_size)
 
 # -------------------- parameter configuration
-# Give a list of arbitrary length.
+# Give a list of arbitrary length. Storage = specific storage
 storage_list = [0.01, 0.0001]
 # Give a list with strings to files which contain the recharge you want to apply.
-recharge_path_list = ["/home/houben/recharge/recharge_daily.txt"]
+recharge_path_list = [
+    "/home/houben/recharge/recharge_daily.txt",
+    "/home/houben/recharge/recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt",
+]
 # According to your recharge_list give a name for each recharge.
-rech_abv_list = ["whitenoise"]
+rech_abv_list = ["whitenoise", "mHM"]
 # Hydraulic conductivity values for each block. kf1 = left, kf2 = right
-kf1 = 0.001
-kf2 = 0.00001
+kf1 = 0.00001
+kf2 = 0.001
 # Set a start value for "overall_count" which is the index. I recommend to use
 # as much digits as you will be generating new ogs models to end up with a
 # consistant naming. I.e. if more than 100 take 1000 as start.
@@ -79,7 +82,16 @@ start = 1000
 overall_count = start
 # Generate a list where you want to set the boarders between high and low cond.
 # zone.
-border_list = [100, 200, 500, 900]
+border_list = np.arange(50, 900, 50).tolist() + [
+    920,
+    930,
+    940,
+    950,
+    960,
+    970,
+    980,
+    990,
+]
 
 # -------------------- model configurations
 # Specify the PROCESS and PRIMARY_VARIABLE
@@ -89,7 +101,25 @@ var_name_flow = "HEAD"
 t_id = "transect"
 # Specify the position of the observation points relative to the length of
 # the aquifer. They will be rounded!!
-percents_of_length = [0, 0.05, 0.2, 0.5, 0.8, 0.9, 0.95, 1]
+percents_of_length = [
+    0,
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.85,
+    0.9,
+    0.92,
+    0.94,
+    0.96,
+    0.99,
+    1,
+]
 
 # -------------------- Make some folders
 dim_no = 2
