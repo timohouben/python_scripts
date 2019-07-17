@@ -10,11 +10,13 @@ dpi = 300
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
-def plot_parameter_vs_location_block(results, path_to_results, borders,threshold = 0.1, comment=""):
+def plot_parameter_vs_location_block(results, path_to_results, borders, S_in, recharge1, recharge2, threshold = 0.1, comment=""):
     """
     Plot the derived parameter (T or S) along the different observation points
     and for a selection of positions of the boarder between a high and a low
     conductive zone.
+
+    CHANGE MANUALLY: The RECHARGE, THE PARAMETER and THE VALUE OF THE PARAMETER
 
     Parameters
     ----------
@@ -25,6 +27,12 @@ def plot_parameter_vs_location_block(results, path_to_results, borders,threshold
         Path where to store the images.
     borders : list of integers
         List of values for the boarder between two zones.
+    S_in : float
+        For which S input.
+    recharge1 : string
+        Name of the first recharge.
+    recharge2 : string
+        Name of the second recharge.
     threshold : float
         Maximum and minimum value of variance. All other entries will be dropped from data frame.
     comment : string
@@ -45,10 +53,9 @@ def plot_parameter_vs_location_block(results, path_to_results, borders,threshold
     results["cov_numbers"] = results["cov"].apply(identify_numbers_from_string)
     results["sigma_S"] = results["cov_numbers"].apply(lambda x: float(x[0]) if x != [] else np.nan)
     results["sigma_T"] = results["cov_numbers"].apply(lambda x: float(x[3]) if x != [] else np.nan)
-    # remove all lines where the covariance is higher than 1 or lower than -1
+    # remove all lines where the covariance is higher than threshold
     results = results[results["sigma_T"] > -threshold]
     results = results[results["sigma_T"] < threshold]
-
 
     fig, axs = plt.subplots(len(borders), 1, sharex=True)
     for i, border in enumerate(borders):
@@ -57,24 +64,39 @@ def plot_parameter_vs_location_block(results, path_to_results, borders,threshold
         # get a new column with border values
         results_temp = results_temp[results_temp.name.str.contains(border_str)]
         # only values with S_in == 0.03
-        results_temp = results_temp[results_temp["S_in"] == 0.003]
-        # only for a specific recharge
-        #results_temp = results_temp[results_temp["recharge"] == "recharge_daily.txt"]
-        results_temp = results_temp[results_temp.recharge.str.contains("mHM")]
-        axs[i].errorbar(results_temp.obs_loc, results_temp.T_out, results_temp.sigma_T, label="Border at " + str(border) + " m")
+        results_temp = results_temp[results_temp["S_in"] == S_in]
         # plot the T in
         T_in = [float(results_temp.T_in_1.unique()) if obs < border else float(results_temp.T_in_2.unique()) for obs in np.arange(0,1010,10)]
-        axs[i].semilogy(np.arange(0,1010,10), T_in, linestyle="", marker="o")
+        axs[i].semilogy(np.arange(0,border,10), T_in[:len(np.arange(0,border,10))], linestyle="--", linewidth=5, marker="", label="high conductive part")
+        axs[i].semilogy(np.arange(border,1010,10), T_in[len(np.arange(0,border,10)):], linestyle="--", linewidth=5, marker="", label="low conductive part")
+        # for both recharges
+        results_temp_r1 = results_temp[results_temp["recharge"] == recharge1]
+        results_temp_r2 = results_temp[results_temp["recharge"] == recharge2]
+        axs[i].plot(results_temp_r1.obs_loc, results_temp_r1.T_out, label="derived Transmissivity, white noise", linewidth=3, marker="^")
+        axs[i].plot(results_temp_r2.obs_loc, results_temp_r2.T_out, label="derived Transmissivity, mHM", linewidth=1, marker="*")
         # Remove horizontal space between axes
-        fig.subplots_adjust(hspace=1)
+        fig.subplots_adjust(hspace=0.2)
         #axs[i].set_title("Border at " + str(border) + " m")
+        axs[i].annotate("Boundary \n" + str(border), (border+10, 1e-3))
         axs[i].axvline(x=border, color='black')
         axs[i].spines['right'].set_visible(False)
         axs[i].spines['top'].set_visible(False)
         axs[i].spines['bottom'].set_visible(False)
         axs[i].spines['left'].set_visible(True)
-        axs[i].set_ylim(ymin=np.min(T_in + results_temp.T_out.tolist())*0.5, ymax=np.max(T_in + results_temp.T_out.tolist())*1.5)
-        axs[i].set_facecolor('#57595D')
+        #axs[i].set_ylim(ymin=np.min(T_in + results_temp.T_out.tolist())*0.5, ymax=np.max(T_in + results_temp.T_out.tolist())*4)
+        axs[i].set_ylim(bottom=1e-4, top=1e-1)
+        axs[i].set_facecolor('#C0C0C0')
+        # set second y achsis
+        #axs_twin = axs[i].twinx()
+        #axs_twin.bar(results_temp.obs_loc, results_temp.sigma_T)
+        #axs_twin.errorbar(results_temp.obs_loc, results_temp.T_out, results_temp.sigma_T, label="Border at " + str(border) + " m", marker="+")
+    fig.text(0.04, 0.5, 'Transmissivity $[m^2/s]$', va='center', rotation='vertical')
+    plt.xlabel("location [m]")
+    fig.suptitle("Derived Transmissivity vs input Transmissivity" + comment)
+    plt.legend(loc="lower left")
+    axs[len(borders)-1].legend(loc='upper center', bbox_to_anchor=(0.5, -1),
+          fancybox=True, shadow=True, ncol=5)
+    #fig.tight_layout()
     plt.show()
 
 
@@ -501,7 +523,12 @@ if __name__ == "__main__":
     #        #print(err,agg,bins[i])
     #        plot_errors_vs_loc_aggregate(results, path_to_results, err, agg, bins[i], abs=True)
 
-    #borders = [10,20,30,40,50,60,70,80,90,100,200]
-    borders = np.arange(50,1000,50).tolist()
-    #borders = np.arange(800,1000,20).tolist()
-    plot_parameter_vs_location_block(results, path_to_results, borders=borders, comment="")
+    ## execute plot_parameter_vs_location_block
+    #borders = [800,810,820,830,840,850,860,870,880,890,900]
+    #borders = [700,710,720,730,740,750,760,770,780,790,800]
+    #borders = [200,210,250,280,290,300,310,320,330,340,500]
+    #borders = [110,120,130,140,150,160,170,180,190,200]
+    borders = [50,100,200,300,400,500,600,800,950,970,990]
+    recharge1 = "recharge_daily.txt"
+    recharge2 = "recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt"
+    plot_parameter_vs_location_block(results, path_to_results, borders=borders, S_in = 0.003, recharge1=recharge1, recharge2=recharge2, comment="S = 0.003")
