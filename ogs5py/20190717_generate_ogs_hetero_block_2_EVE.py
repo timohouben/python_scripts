@@ -126,6 +126,9 @@ dim_no = 2
 # Setups will be stored in CWD + "/setup", this folder is called
 # the "parent directory"
 parent_dir = CWD + "/setup"
+# sleep a random amount of seconds
+import time
+time.sleep(np.random.rand()*5)
 if not os.path.exists(parent_dir):
     os.mkdir(parent_dir)
 
