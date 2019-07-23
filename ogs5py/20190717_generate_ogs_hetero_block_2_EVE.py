@@ -26,6 +26,7 @@ How To
 
 """
 # -------------------- import modules
+import time
 import sys
 import os
 import numpy as np
@@ -126,8 +127,8 @@ dim_no = 2
 # Setups will be stored in CWD + "/setup", this folder is called
 # the "parent directory"
 parent_dir = CWD + "/setup"
-# sleep a random amount of seconds
-import time
+# sleep a random amount of seconds so that folder creation has been completed
+# for at least one core
 time.sleep(np.random.rand()*5)
 if not os.path.exists(parent_dir):
     os.mkdir(parent_dir)
@@ -419,6 +420,10 @@ for storage in storage_list:
 
                     # -------------------- run OGS simulation
                     ogs.write_input()
+                    # sleep 1 second so that file creation has been completed
+                    time.sleep(1)
+                    if not os.path.exists(parent_dir):
+                        os.mkdir(parent_dir)
                     if state == "steady":
                         file = open(dire + "/" + t_id + ".tim", "w")
                         file.write("#STOP")
