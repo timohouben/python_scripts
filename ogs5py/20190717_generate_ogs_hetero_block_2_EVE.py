@@ -418,11 +418,6 @@ for storage in storage_list:
 
                     # -------------------- run OGS simulation
                     ogs.write_input()
-                    # sleep 1 second so that file creation has been completed
-                    time.sleep(5)
-
-                    if not os.path.exists(parent_dir):
-                        os.mkdir(parent_dir)
                     if state == "steady":
                         file = open(dire + "/" + t_id + ".tim", "w")
                         file.write("#STOP")
@@ -431,4 +426,5 @@ for storage in storage_list:
                         ogs.run_model(ogs_root=ogs_root)
             # Increase the counter for the naming.
             # First folder will be equal to the value of start
+            time.sleep(5)
             overall_count = overall_count + 1
