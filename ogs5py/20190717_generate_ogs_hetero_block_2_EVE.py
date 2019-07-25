@@ -421,7 +421,7 @@ for storage in storage_list:
                     # -------------------- run OGS simulation
                     ogs.write_input()
                     # sleep 1 second so that file creation has been completed
-                    time.sleep(1)
+                    time.sleep(5)
                     if not os.path.exists(parent_dir):
                         os.mkdir(parent_dir)
                     if state == "steady":
