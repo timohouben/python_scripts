@@ -426,4 +426,5 @@ for storage in storage_list:
                         ogs.run_model(ogs_root=ogs_root)
             # Increase the counter for the naming.
             # First folder will be equal to the value of start
+            time.sleep(5)
             overall_count = overall_count + 1
