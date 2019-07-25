@@ -78,8 +78,8 @@ kf1 = 0.00001
 kf2 = 0.001
 # Set a start value for "overall_count" which is the index. I recommend to use
 # as much digits as you will be generating new ogs models to end up with a
-# consistant naming. I.e. if more than 100 take 1000 as start.
-start = 1000
+# consistant naming. I.e. if more than 100 take 1001 as start.
+start = 1001
 overall_count = start
 # Generate a list where you want to set the boarders between high and low cond.
 # zone.
@@ -139,8 +139,6 @@ if not os.path.exists(parent_dir):
 for storage in storage_list:
     for recharge_path, rech_abv in zip(recharge_path_list, rech_abv_list):
         for border in border_list:
-            # First folder will be 1001
-            overall_count = overall_count + 1
             # Only run the fllowing code "on the right rank":
             if (overall_count - start) % slots == rank:
                 print(
@@ -422,11 +420,15 @@ for storage in storage_list:
                     ogs.write_input()
                     # sleep 1 second so that file creation has been completed
                     time.sleep(5)
+
                     if not os.path.exists(parent_dir):
                         os.mkdir(parent_dir)
                     if state == "steady":
                         file = open(dire + "/" + t_id + ".tim", "w")
                         file.write("#STOP")
                         file.close()
-                        print("Running steady state...")
+                        print("Running steady state for folder " + name + " on rank "  + str(rank))
                         ogs.run_model(ogs_root=ogs_root)
+            # Increase the counter for the naming.
+            # First folder will be equal to the value of start
+            overall_count = overall_count + 1
