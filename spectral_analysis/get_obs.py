@@ -50,7 +50,9 @@ def get_obs(path_to_project, without_max=False):
 
     # Remove all file names which don't have "ply" in name
     for item in file_names:
-        if "ply" not in item:
+        if "ply" in item:
+            pass
+        else:
             file_names.remove(item)
 
     string_begin = "ply_"

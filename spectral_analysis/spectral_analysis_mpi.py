@@ -21,6 +21,37 @@ number of cores as second argument
 T_in_1
 T_in_2
 """
+# ------------------------------------------------------------------------------
+# python 2 and 3 compatible
+from __future__ import division
+# ------------------------------------------------------------------------------
+
+# import modules
+import time
+import sys
+import numpy as np
+import os
+import pandas as pd
+import os.path
+from mpi4py import MPI
+
+
+# add search path for own modules
+sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
+# add search path for owdn modules on eve
+sys.path.append("/home/houben/python/scripts/spectral_analysis")
+
+# own modules
+from transect_plot import extract_timeseries, plot_head_timeseries_vs_recharge, extract_rfd
+from calc_tc import calc_tc
+from processing import *
+from power_spectrum import power_spectrum
+from plot_power_spectra import plot_spectrum
+from get_obs import get_obs
+from get_ogs_parameters import get_ogs_parameters
+from shh_analytical import shh_analytical_fit, shh_analytical
+from plot_fitting_results import plot_errors_vs_loc_hetero, plot_parameter_vs_location
+from tools import get_ogs_folders
 
 # ------------------------------------------------------------------------------
 # set some arameters for the analysis manually
