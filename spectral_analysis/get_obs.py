@@ -41,11 +41,17 @@ def get_obs(path_to_project, without_max=False):
     file_names = [f for f in os.listdir(path_to_project) if f.endswith(".tec")]
     file_names.sort()
 
-    # remove DEFAULT_NotSpecified_PROPERTIES.tec from list
-    try:
-        file_names.remove("DEFAULT_NotSpecified_PROPERTIES.tec")
-    except ValueError:
-        pass
+#    DEPRECATED
+#    # remove DEFAULT_NotSpecified_PROPERTIES.tec from list
+#    try:
+#        file_names.remove("DEFAULT_NotSpecified_PROPERTIES.tec")
+#    except ValueError:
+#        pass
+
+    # Remove all file names which don't have "ply" in name
+    for item in file_names:
+        if "ply" not in item:
+            file_names.remove(item)
 
     string_begin = "ply_"
     string_end = "_t"
