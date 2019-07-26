@@ -220,7 +220,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
         cond_log = np.log10(cond)
         plt.tricontourf(x, z, cond_log.T)
         plt.colorbar(ticks=[np.min(cond_log),np.mean(cond_log),np.max(cond_log)])
-        plt.title("log-normal K field [log10 K]\niso_x = " + str(isox) + ' ' + 'iso_y = ' + str(isoy))
+        plt.title("log-normal K field [log10 K]\nanisotropy = " + str(anis))
         plt.savefig(dire + "/gstools/" + name + '.png', dpi=300, bbox_inches='tight')
         plt.close()
 
@@ -241,7 +241,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
 
         # save a file with information about the generated field
         field_info = open(dire + '/gstools/field_info.dat', 'w')
-        field_info.write('dim var len_scale mean seed geomean harmean arimean isox isoy' + '\n' + (str(dim) + ' ' + str(var) + ' ' + str(len_scale) + ' ' + str(mean) + ' ' + str(seed)) + ' ' + str(geomean) + ' ' + str(harmean) + ' ' + str(arimean) + str(isox) + ' ' + str(isoy))
+        field_info.write('dim var len_scale mean seed geomean harmean arimean anisotropy' + '\n' + (str(dim) + ' ' + str(var) + ' ' + str(len_scale) + ' ' + str(mean) + ' ' + str(seed)) + ' ' + str(geomean) + ' ' + str(harmean) + ' ' + str(arimean) + str(anis)))
         field_info.close()
 
         # -------------------- GLI
