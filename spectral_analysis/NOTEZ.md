@@ -1,4 +1,14 @@
+## Calculate flow - or mass balance!
+- basic function to calculate the flow for a single polyline of arbitrary orientation
+    - return: time series of flow
+- take node or element values
+- specify a set of input and output polylines, or BETTER: take the ogs results and just use this as basis for input and output based on the boundary conditions and source terms
+- consider not only flow but also other components
+- write a test!
+
+
 ## evaluate_results.py
+
 ## identify_misfits()
 - add check for [inf] at covariance matrix
 

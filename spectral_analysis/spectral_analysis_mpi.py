@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*
 """
-Script to perform the spectral analysis independent of the model domain. Distance to the river will be taken from the obeservation points numbering still.
+For 'block' aquifer with 2 zones with different hydraulic conductivity.
+
+Script to perform the spectral analysis independent of the model domain. Distance to the river will be taken from the numbering of the obeservation points.
 Results will be saved in a results.csv. This has to be conbined afterwards for postprocessing.
 
 Parameters
@@ -10,10 +12,12 @@ aquifer_length
 aquifer_thickness
 which
 comment
+# the number of the curve (1st == 1)
 recharge_rfd
 
 path_to_multiple_projects as first argument
 number of cores as second argument
+
 T_in_1
 T_in_2
 """
@@ -35,7 +39,7 @@ from mpi4py import MPI
 # add search path for own modules
 sys.path.append("/Users/houben/PhD/python/scripts/spectral_analysis")
 # add search path for owdn modules on eve
-sys.path.append("/home/houben/python_pkg/scripts/spectral_analysis")
+sys.path.append("/home/houben/python/scripts/spectral_analysis")
 
 # own modules
 from transect_plot import extract_timeseries, plot_head_timeseries_vs_recharge, extract_rfd
@@ -55,14 +59,15 @@ from tools import get_ogs_folders
 aquifer_length = 1000
 aquifer_thickness = 30
 which = "mean"
+# the number of the curve (1st == 1)
 recharge_rfd = 1
-T_in_1 = 0.001 * aquifer_thickness
-T_in_2 = 0.00001 * aquifer_thickness
+T_in_1 = 0.00001 * aquifer_thickness
+T_in_2 = 0.001 * aquifer_thickness
 # m an,d n are only taken into account if shh_anlytical_man is used. shh_analytical
 # also ,has m and n as arguments but is not using them.
 m = None
 n = None
-comment = ""  # give a specific comment for the analysis e.g. "parameterset1_"
+comment = "1_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = None
@@ -76,6 +81,7 @@ slots = int(sys.argv[2])
 comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
+
 """
 Description:
 
@@ -100,8 +106,8 @@ dataframe : n_observation_points x n_parameters
     tc_out : output characteristic time scale calculatet from T_out and S_out
     cov : covariance matrix of fit
     loc : location of the observation point. loc = 0 : water divide
-    ti,me_step_size : size of time step in seconds [s]
-    tim,e_steps : number of time steps
+    time_step_size : size of time step in seconds [s]
+    time_steps : number of time steps
     model_period : Modelling period in days [d]
     which : Screening deapth of observation point. "mean", "min", "max"
     recharge : type of recharge
