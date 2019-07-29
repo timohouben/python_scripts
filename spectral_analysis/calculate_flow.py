@@ -2,7 +2,7 @@ def get_baseflow_from_polyline(
     task_id, task_root, single_file, orientation="vertical", save_flow=True
 ):
     """
-    Calculate the baseflow based on a vertical polyline from an OGS run.
+    Calculates the horizontal flow through a vertical polyline from an OGS run.
     The file type should be .tec and it must contain VELOCITY_X1 values.
 
     Parameters
@@ -42,7 +42,7 @@ def get_baseflow_from_polyline(
         flow_timeseries = []
 
         for i in range(0, time_steps):
-            print("Time step " + str(i) + "of " + str(time_steps) + "...")
+            #print("Time step " + str(i) + " of " + str(time_steps) + "...")
             # get the node values of the velocities for ith time step
             node_velocity = tec["VELOCITY_X1"][i, :]
             # get the node values of the distances measured from starting point of polyline
@@ -110,6 +110,8 @@ def plot_recharge_vs_baseflow(task_root, flow_timeseries, aquifer_length=None, c
     import numpy as np
     import os
 
+    print("Starting with task root: " + task_root)
+
     rfd = extract_rfd(path=task_root, export=False)
 
     if aquifer_length != None:
@@ -156,7 +158,7 @@ def plot_recharge_vs_baseflow(task_root, flow_timeseries, aquifer_length=None, c
     ax1.set_ylabel("discharge $[m^2/s]$", color="b")
     ax1.tick_params("y", colors="b")
     y_lims = (0,0.0002)
-    ax1.set_ylim((0, 0.0002))
+    #ax1.set_ylim((0, 0.0002))
     ax2 = ax1.twinx()
 
     if aquifer_length == None:
@@ -165,14 +167,14 @@ def plot_recharge_vs_baseflow(task_root, flow_timeseries, aquifer_length=None, c
     elif aquifer_length != None:
         ax2.plot(time,rfd[1][:]*aquifer_length, "r", linewidth=2)
         ax2.set_ylabel("recharge $[m^2/s]$", color="r")
-        ax2.set_ylim((0, y_lims[1]))
+        #ax2.set_ylim((0, y_lims[1]))
         if 'stop_time' in locals():
             plt.vlines(x=[start_time,stop_time], ymin=0, ymax=y_lims[1], color='g')
             plt.annotate("$\Delta t$ = " + str(delta_t), (stop_time + 1 ,0.8*y_lims[1]))
     ax2.tick_params("y", colors="r")
     fig.tight_layout()
     plt.savefig(task_root + "/baseflow_vs_recharge.png", dpi=300)
-    plt.show()
+    #plt.show()
 
 
 
