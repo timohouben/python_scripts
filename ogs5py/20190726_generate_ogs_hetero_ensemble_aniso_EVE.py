@@ -32,6 +32,7 @@ import os
 import numpy as np
 from ogs5py import OGS, MPD, MSH
 from ogs5py.reader import readpvd, readtec_point
+from gstools import SRF, Gaussian
 import matplotlib.pyplot as plt
 from mpi4py import MPI
 from itertools import product
@@ -41,7 +42,7 @@ ogs_root = "/home/houben/OGS_source/ogs"
 # -------------------- get the arguments and pass them into variables
 file_name = sys.argv[0]
 CWD = sys.argv[1]
-# slots = int(sys.argv[2])
+slots = int(sys.argv[2])
 
 # -------------------- configure mpi4py
 comm = MPI.COMM_WORLD
