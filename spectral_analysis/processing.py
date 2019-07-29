@@ -236,5 +236,6 @@ def get_filename_from_rfd_top_com(
 
 
 if __name__ == "__main__":
+    pass
     # test for combine_results()
-    combine_results("/Users/houben/Desktop/TEST_combine")
+    # combine_results("/Users/houben/Desktop/TEST_combine")
