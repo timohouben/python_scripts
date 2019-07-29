@@ -42,7 +42,7 @@ ogs_root = "/home/houben/OGS_source/ogs"
 # -------------------- get the arguments and pass them into variables
 file_name = sys.argv[0]
 CWD = sys.argv[1]
-slots = int(sys.argv[2])
+#slots = int(sys.argv[2])
 
 # -------------------- configure mpi4py
 comm = MPI.COMM_WORLD
@@ -75,9 +75,6 @@ recharge_path_list = [
 ]
 # According to your recharge_list give a name for each recharge.
 rech_abv_list = ["whitenoise", "mHM"]
-# Hydraulic conductivity values for each block. kf1 = left, kf2 = right
-kf1 = 0.00001
-kf2 = 0.001
 # Set a start value for "overall_count" which is the index. I recommend to use
 # as much digits as you will be generating new ogs models to end up with a
 # consistant naming. I.e. if more than 100 take 1001 as start.
@@ -86,10 +83,10 @@ overall_count = start
 
 # -------------------- heterogeneous field configuration
 dim = 2
-var_list = [1]  # ,5,10]
-len_scale_list = [5]  # , 15]
-anis_list = [0.1]
-mean_list = [-10]  # , -10, -12]
+var_list = [1]
+len_scale_list = [5, 15]
+anis_list = [0.01, 0.1, 0.5]
+mean_list = [-10]#, -10, -12]
 # Set seed and random numbers for ensembles and reproducibility
 n_realizations = 200
 np.random.seed(123456789)
@@ -134,9 +131,9 @@ time.sleep(np.random.rand() * 5)
 if not os.path.exists(parent_dir):
     os.mkdir(parent_dir)
 
-
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
+list = []
 for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in product(
     storage_list,
     var_list,
@@ -160,7 +157,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
             + str(len_scale)
             + "_mean_"
             + str(mean)
-            + "anis"
+            + "_anis_"
             + str(anis)
             + "_seed_"
             + str(seed)
