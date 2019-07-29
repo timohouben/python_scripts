@@ -32,6 +32,7 @@ import os
 import numpy as np
 from ogs5py import OGS, MPD, MSH
 from ogs5py.reader import readpvd, readtec_point
+from gstools import SRF, Gaussian
 import matplotlib.pyplot as plt
 from mpi4py import MPI
 from itertools import product
@@ -41,7 +42,7 @@ ogs_root = "/home/houben/OGS_source/ogs"
 # -------------------- get the arguments and pass them into variables
 file_name = sys.argv[0]
 CWD = sys.argv[1]
-# slots = int(sys.argv[2])
+slots = int(sys.argv[2])
 
 # -------------------- configure mpi4py
 comm = MPI.COMM_WORLD
@@ -87,7 +88,7 @@ overall_count = start
 dim = 2
 var_list = [1]  # ,5,10]
 len_scale_list = [5]  # , 15]
-anis_list = [0.5]
+anis_list = [0.1]
 mean_list = [-10]  # , -10, -12]
 # Set seed and random numbers for ensembles and reproducibility
 n_realizations = 200
@@ -159,6 +160,8 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
             + str(len_scale)
             + "_mean_"
             + str(mean)
+            + "anis"
+            + str(anis)
             + "_seed_"
             + str(seed)
             + "_stor_"
@@ -224,7 +227,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
         cond_log = np.log10(cond)
         plt.tricontourf(x, z, cond_log.T)
         plt.colorbar(ticks=[np.min(cond_log), np.mean(cond_log), np.max(cond_log)])
-        plt.title("log-normal K field [log10 K]\nanisotropy = " + str(anis))
+        plt.title("log-normal K field [log10 K]\n" + name)
         plt.savefig(dire + "/gstools/" + name + ".png", dpi=300, bbox_inches="tight")
         plt.close()
 
