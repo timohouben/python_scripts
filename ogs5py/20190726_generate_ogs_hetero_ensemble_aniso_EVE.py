@@ -41,7 +41,7 @@ ogs_root = "/home/houben/OGS_source/ogs"
 # -------------------- get the arguments and pass them into variables
 file_name = sys.argv[0]
 CWD = sys.argv[1]
-#slots = int(sys.argv[2])
+# slots = int(sys.argv[2])
 
 # -------------------- configure mpi4py
 comm = MPI.COMM_WORLD
@@ -84,15 +84,15 @@ start = 1001
 overall_count = start
 
 # -------------------- heterogeneous field configuration
-dim=2
-var_list=[1]#,5,10]
-len_scale_list=[5]#, 15]
-anis_list=[0.5]
-mean_list=[-10]#, -10, -12]
+dim = 2
+var_list = [1]  # ,5,10]
+len_scale_list = [5]  # , 15]
+anis_list = [0.5]
+mean_list = [-10]  # , -10, -12]
 # Set seed and random numbers for ensembles and reproducibility
 n_realizations = 200
 np.random.seed(123456789)
-seed_list = np.random.randint(n_realizations*10,n_realizations*100,n_realizations)
+seed_list = np.random.randint(n_realizations * 10, n_realizations * 100, n_realizations)
 
 # -------------------- model configurations
 # Specify the PROCESS and PRIMARY_VARIABLE
@@ -129,38 +129,43 @@ dim_no = 2
 parent_dir = CWD + "/setup"
 # sleep a random amount of seconds so that folder creation has been completed
 # for at least one core
-time.sleep(np.random.rand()*5)
+time.sleep(np.random.rand() * 5)
 if not os.path.exists(parent_dir):
     os.mkdir(parent_dir)
 
 
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
-for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in product(storage_list, var_list, len_scale_list, anis_list, mean_list, seed_list, zip(recharge_path_list, rech_abv_list)):
+for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in product(
+    storage_list,
+    var_list,
+    len_scale_list,
+    anis_list,
+    mean_list,
+    seed_list,
+    zip(recharge_path_list, rech_abv_list),
+):
     # Only run the fllowing code "on the right rank":
     if (overall_count - start) % slots == rank:
-        print(
-            "Rank "
-            + str(rank)
-            + " starts to generate the ogs setup files..."
-        )
+        print("Rank " + str(rank) + " starts to generate the ogs setup files...")
         # Use the path to the recharge.txt as top comment in the .rfd-file
         rfd_top_com = recharge_path
         # Name the folder
-        name =
-        str(overall_count)
-        + '_var_'
-        + str(var)
-        + '_len_'
-        + str(len_scale)
-        + '_mean_'
-        + str(mean)
-        + '_seed_'
-        + str(seed)
-        + '_stor_'
-        + str(storage)
-        + '_rech_'
-        + str(rech_abv)
+        name = (
+            str(overall_count)
+            + "_var_"
+            + str(var)
+            + "_len_"
+            + str(len_scale)
+            + "_mean_"
+            + str(mean)
+            + "_seed_"
+            + str(seed)
+            + "_stor_"
+            + str(storage)
+            + "_rech_"
+            + str(rech_abv)
+        )
         # Name of directory (entire path) of one single ogs run
         dire = parent_dir + "/" + name
         # Make folders
@@ -168,9 +173,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
             os.mkdir(dire)
         # -------------------- generate ogs base class
         ogs = OGS(
-            task_root=dire + "/",
-            task_id=t_id,
-            output_dir=dire + "/" + "steady" + "/",
+            task_root=dire + "/", task_id=t_id, output_dir=dire + "/" + "steady" + "/"
         )
         # -------------------- MSH
         # Generate a rectangular mesh in x-z-plane. The mesh in
@@ -183,9 +186,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
             element_size=(s_cellsx, s_cellsz),
         )
         # Rotate mesh to obtain a cross section in x-z-plane.
-        ogs.msh.rotate(
-            angle=np.pi / 2.0, rotation_axis=(1.0, 0.0, 0.0)
-        )
+        ogs.msh.rotate(angle=np.pi / 2.0, rotation_axis=(1.0, 0.0, 0.0))
         # Round the values of the nodes.
         ogs.msh.NODES[:, 1] = np.around(ogs.msh.NODES[:, 1], 0)
         ogs.msh.NODES[:, 0] = np.around(ogs.msh.NODES[:, 0], 4)
@@ -206,42 +207,67 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
         cov_model = Gaussian(dim=dim, var=var, len_scale=len_scale, anis=anis)
         srf = SRF(cov_model, mean=mean, seed=seed)
         # use unstructured for a 2D vertical mesh
-        field = srf((x, z), mesh_type='unstructured', force_moments=True)#, mode_no=100)
+        field = srf(
+            (x, z), mesh_type="unstructured", force_moments=True
+        )  # , mode_no=100)
         # conductivities as log-normal distributed from the field data
         cond = np.exp(field)
         from scipy.stats.mstats import gmean, hmean
+
         arimean = np.mean(cond)
         harmean = hmean(cond)
         geomean = gmean(cond)
         print("The geometric mean is: " + str(geomean))
-        #plt.hist(field)
+        # plt.hist(field)
         # show the heterogeneous field
-        plt.figure(figsize=(20, thickness/length*20))
+        plt.figure(figsize=(20, thickness / length * 20))
         cond_log = np.log10(cond)
         plt.tricontourf(x, z, cond_log.T)
-        plt.colorbar(ticks=[np.min(cond_log),np.mean(cond_log),np.max(cond_log)])
+        plt.colorbar(ticks=[np.min(cond_log), np.mean(cond_log), np.max(cond_log)])
         plt.title("log-normal K field [log10 K]\nanisotropy = " + str(anis))
-        plt.savefig(dire + "/gstools/" + name + '.png', dpi=300, bbox_inches='tight')
+        plt.savefig(dire + "/gstools/" + name + ".png", dpi=300, bbox_inches="tight")
         plt.close()
 
         # generate MPD file (media properties distributed)
         mpd = MPD(ogs.task_id)
-        mpd.add_block(MSH_TYPE=pcs_type_flow,
-                      MMP_TYPE="PERMEABILITY",
-                      DIS_TYPE="ELEMENT",
-                      DATA=list(zip(range(len(cond)),cond))
-                      )
+        mpd.add_block(
+            MSH_TYPE=pcs_type_flow,
+            MMP_TYPE="PERMEABILITY",
+            DIS_TYPE="ELEMENT",
+            DATA=list(zip(range(len(cond)), cond)),
+        )
 
         # add the field to the ogs model
         ogs.add_mpd(mpd)
         # export mesh and field for checking
-        ogs.msh.export_mesh(dire + '/gstools/' + t_id + "_hetero_field.vtk",
-                            file_format="vtk-ascii",
-                            add_data_by_id=cond)
+        ogs.msh.export_mesh(
+            dire + "/gstools/" + t_id + "_hetero_field.vtk",
+            file_format="vtk-ascii",
+            add_data_by_id=cond,
+        )
 
         # save a file with information about the generated field
-        field_info = open(dire + '/gstools/field_info.dat', 'w')
-        field_info.write('dim var len_scale mean seed geomean harmean arimean anisotropy' + '\n' + (str(dim) + ' ' + str(var) + ' ' + str(len_scale) + ' ' + str(mean) + ' ' + str(seed)) + ' ' + str(geomean) + ' ' + str(harmean) + ' ' + str(arimean) + str(anis)))
+        field_info = open(dire + "/gstools/field_info.dat", "w")
+        field_info.write(
+            "dim var len_scale mean seed geomean harmean arimean anisotropy"
+            + "\n"
+            + str(dim)
+            + " "
+            + str(var)
+            + " "
+            + str(len_scale)
+            + " "
+            + str(mean)
+            + " "
+            + str(seed)
+            + " "
+            + str(geomean)
+            + " "
+            + str(harmean)
+            + " "
+            + str(arimean)
+            + str(anis)
+        )
         field_info.close()
 
         # -------------------- GLI
@@ -272,8 +298,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
             obs.sort()
             # Add upper and lower points:
             ogs.gli.add_points(
-                points=[obs_loc, 0.0, 0.0],
-                names=str("obs_" + str(obs_str) + "_bottom"),
+                points=[obs_loc, 0.0, 0.0], names=str("obs_" + str(obs_str) + "_bottom")
             )
             ogs.gli.add_points(
                 points=[obs_loc, 0.0, thickness],
@@ -281,11 +306,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
             )
             # Create a polyline in between.
             ogs.gli.add_polyline(
-                name=obs_str,
-                points=[
-                    [obs_loc, 0.0, 0.0],
-                    [obs_loc, 0.0, thickness],
-                ],
+                name=obs_str, points=[[obs_loc, 0.0, 0.0], [obs_loc, 0.0, thickness]]
             )
 
         # -------------------- generate .rfd
@@ -318,9 +339,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
         # -------------------- MFP
         # Standard fluid properties.
         ogs.mfp.add_block(
-            FLUID_TYPE="WATER",
-            DENSITY=[[1, 0.9997e3]],
-            VISCOSITY=[[1, 1.309e-3]],
+            FLUID_TYPE="WATER", DENSITY=[[1, 0.9997e3]], VISCOSITY=[[1, 1.309e-3]]
         )
 
         # -------------------- MMP
@@ -329,7 +348,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
             GEOMETRY_DIMENSION=dim_no,
             STORAGE=[[1, storage]],
             PERMEABILITY_TENSOR=[["ISOTROPIC", 1]],
-            PERMEABILITY_DISTRIBUTION=ogs.task_id+'.mpd',
+            PERMEABILITY_DISTRIBUTION=ogs.task_id + ".mpd",
         )
 
         # -------------------- NUM
@@ -351,9 +370,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
                 ["VELOCITY_Y1"],
                 ["VELOCITY_Z1"],
             ],
-            ELE_VALUES=[["VELOCITY1_X"],
-                        ["VELOCITY1_Y"],
-                        ["VELOCITY1_Z"]],
+            ELE_VALUES=[["VELOCITY1_X"], ["VELOCITY1_Y"], ["VELOCITY1_Z"]],
             GEO_TYPE="DOMAIN",
             # Write a PVD output for the whole domain.
             DAT_TYPE="PVD",
@@ -371,9 +388,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
                     ["VELOCITY_Y1"],
                     ["VELOCITY_Z1"],
                 ],
-                ELE_VALUES=[["VELOCITY1_X"],
-                            ["VELOCITY1_Y"],
-                            ["VELOCITY1_Z"]],
+                ELE_VALUES=[["VELOCITY1_X"], ["VELOCITY1_Y"], ["VELOCITY1_Z"]],
                 GEO_TYPE=[["POLYLINE", obs_point]],
                 DAT_TYPE="TECPLOT",
                 # For every time step.
@@ -401,9 +416,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
                     PCS_TYPE=pcs_type_flow,
                     PRIMARY_VARIABLE=var_name_flow,
                     GEO_TYPE=[["POLYLINE", "top"]],
-                    DIS_TYPE=[
-                        ["CONSTANT_NEUMANN", np.mean(rfd_data[:, 1])]
-                    ],
+                    DIS_TYPE=[["CONSTANT_NEUMANN", np.mean(rfd_data[:, 1])]],
                 )
 
             # -------------------- PCS
@@ -442,7 +455,9 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
                 file = open(dire + "/" + t_id + ".tim", "w")
                 file.write("#STOP")
                 file.close()
-                print("Running steady state for folder " + name + " on rank "  + str(rank))
+                print(
+                    "Running steady state for folder " + name + " on rank " + str(rank)
+                )
                 ogs.run_model(ogs_root=ogs_root)
     # Increase the counter for the naming.
     # First folder will be equal to the value of start
