@@ -42,7 +42,7 @@ ogs_root = "/home/houben/OGS_source/ogs"
 # -------------------- get the arguments and pass them into variables
 file_name = sys.argv[0]
 CWD = sys.argv[1]
-#slots = int(sys.argv[2])
+slots = int(sys.argv[2])
 
 # -------------------- configure mpi4py
 comm = MPI.COMM_WORLD
@@ -133,7 +133,6 @@ if not os.path.exists(parent_dir):
 
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
-list = []
 for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in product(
     storage_list,
     var_list,
