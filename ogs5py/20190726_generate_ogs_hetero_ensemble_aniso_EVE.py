@@ -397,7 +397,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
         # Write the steady state input files , run it , copy steady
         # files into "steady" folder and write the transient input
         # files.
-        for state in ["steady"]#, "transient"]:
+        for state in ["steady"]:#, "transient"]:
 
             # -------------------- ST
             if state == "transient":
