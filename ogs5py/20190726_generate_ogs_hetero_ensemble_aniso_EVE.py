@@ -459,7 +459,11 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
                 print("###RANK### " + str(rank) +
                     "Running steady state for folder " + name + " on rank " + str(rank)
                 )
-                ogs.run_model(ogs_root=ogs_root)
+                from shutil import copyfile
+                import time
+                time.sleep(np.random.rand()*5)
+                copyfile(ogs_root, dire)
+                ogs.run_model(ogs_root=dire + "/ogs")
                 print("###RANK### " + str(rank) +
                     "Finished running steady state for folder " + name + " on rank " + str(rank)
                 )
