@@ -397,8 +397,8 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
         # Write the steady state input files , run it , copy steady
         # files into "steady" folder and write the transient input
         # files.
-        for state in ["steady"]:#, "transient"]:
 
+        for state in ["steady", "transient"]:
             # -------------------- ST
             if state == "transient":
                 # Apply the recharge on the top of the model domain.
@@ -456,13 +456,13 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
                 file = open(dire + "/" + t_id + ".tim", "w")
                 file.write("#STOP")
                 file.close()
-#                print("###RANK### " + str(rank) +
-#                    "Running steady state for folder " + name + " on rank " + str(rank)
-#                )
-#                ogs.run_model(ogs_root=ogs_root)
-#                print("###RANK### " + str(rank) +
-#                    "Finished running steady state for folder " + name + " on rank " + str(rank)
-#                )
+                print("###RANK### " + str(rank) +
+                    "Running steady state for folder " + name + " on rank " + str(rank)
+                )
+                ogs.run_model(ogs_root=ogs_root)
+                print("###RANK### " + str(rank) +
+                    "Finished running steady state for folder " + name + " on rank " + str(rank)
+                )
     # Increase the counter for the naming.
     # First folder will be equal to the value of start
     overall_count = overall_count + 1
