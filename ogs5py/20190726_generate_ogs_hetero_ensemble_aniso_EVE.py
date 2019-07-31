@@ -30,6 +30,8 @@ import time
 import sys
 import os
 import numpy as np
+import subprocess
+import shutil
 from ogs5py import OGS, MPD, MSH
 from ogs5py.reader import readpvd, readtec_point
 from gstools import SRF, Gaussian
@@ -398,7 +400,6 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
         # files into "steady" folder and write the transient input
         # files.
         for state in ["steady", "transient"]:
-
             # -------------------- ST
             if state == "transient":
                 # Apply the recharge on the top of the model domain.
@@ -460,8 +461,16 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
                     " ## Running steady state for folder " + name + " on rank " + str(rank)
                 )
                 # run the simulation manually
-                import subprocess
-                subprocess.run([ogs_root, dire + "/" + t_id], stdout=subprocess.PIPE)
+                # make a directory for the steady output
+                if not os.path.exists(dire + "/steady"):
+                    os.mkdir(dire + "/steady")
+                # open a file for the stdout
+                ogs_stdout_steady = open(dire + "/steady/ogs_stdout_steady.log")
+                subprocess.run([ogs_root, dire + "/" + t_id], stdout=ogs_stdout_steady, stderr=subprocess.PIPE)
+                ogs_stdout_steady.close()
+                # copy all steady files to the steady folder
+                for file in os.listdir(dire):
+                    shutil.copy(dire+"/"+file, dire+"/"+steady+"/"+file)
                 #ogs.run_model(ogs_root=ogs_root)
                 print("###RANK### " + str(rank) +
                     " ## Finished running steady state for folder " + name + " on rank " + str(rank)
