@@ -144,7 +144,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
 ):
     # Only run the fllowing code "on the right rank":
     if (overall_count - start) % slots == rank:
-        print("###RANK### " + str(rank) + " starts to generate the ogs setup files...")
+        print("###RANK### " + str(rank) + " ## starts to generate the ogs setup files...")
         # Use the path to the recharge.txt as top comment in the .rfd-file
         rfd_top_com = recharge_path
         # Name the folder
@@ -216,9 +216,9 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
         arimean = np.mean(cond)
         harmean = hmean(cond)
         geomean = gmean(cond)
-        print("###RANK### " + str(rank) + "The geometric mean is: " + str(geomean))
+        print("###RANK### " + str(rank) + " ## The geometric mean is: " + str(geomean))
         # plt.hist(field)
-        # show the heterogeneous field
+        # show the heterogeneous field##
         plt.figure(figsize=(20, thickness / length * 20))
         cond_log = np.log10(cond)
         plt.tricontourf(x, z, cond_log.T)
@@ -397,7 +397,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
         # Write the steady state input files , run it , copy steady
         # files into "steady" folder and write the transient input
         # files.
-        for state in ["transient"]:#, "transient"]:
+        for state in ["steady", "transient"]:
 
             # -------------------- ST
             if state == "transient":
@@ -449,20 +449,23 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
                 )
 
             # -------------------- run OGS simulation
-            print("###RANK### " + str(rank) + " Writing input files for " + state)
+            print("###RANK### " + str(rank) + " ## Writing input files for " + state)
             ogs.write_input()
-            print("###RANK### " + str(rank) + " Finished writing input files for " + state)
+            print("###RANK### " + str(rank) + " ## Finished writing input files for " + state)
             if state == "steady":
                 file = open(dire + "/" + t_id + ".tim", "w")
                 file.write("#STOP")
                 file.close()
-#                print("###RANK### " + str(rank) +
-#                    "Running steady state for folder " + name + " on rank " + str(rank)
-#                )
-#                ogs.run_model(ogs_root=ogs_root)
-#                print("###RANK### " + str(rank) +
-#                    "Finished running steady state for folder " + name + " on rank " + str(rank)
-#                )
+                print("###RANK### " + str(rank) +
+                    " ## Running steady state for folder " + name + " on rank " + str(rank)
+                )
+                # run the simulation manually
+                import subprocess
+                subprocess.run([ogs_root, dire + "/" + t_id], stdout=subprocess.PIPE)
+                #ogs.run_model(ogs_root=ogs_root)
+                print("###RANK### " + str(rank) +
+                    " ## Finished running steady state for folder " + name + " on rank " + str(rank)
+                )
     # Increase the counter for the naming.
     # First folder will be equal to the value of start
     overall_count = overall_count + 1
