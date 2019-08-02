@@ -267,8 +267,6 @@ for i, project_folder in enumerate(project_folder_list):
                 # calculate the fitted power spectra
                 Sqq_fitted = discharge_ftf(frequency, D, aquifer_length)
 
-                print(len(Sqq))
-                print(len(Sqq_fitted))
                 data = np.vstack((Sqq, Sqq_fitted))
 
                 labels = [
