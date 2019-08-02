@@ -41,12 +41,11 @@ def discharge_ftf(f, d, aquifer_length):
     for w in omega:
         theta_q.append(1 / w / t_c * abs(np.tanh(p(w,t_c)))**2)
 
-    print(theta_q)
     print("davor")
     print(np.shape(theta_q))
-    theta_q = np.array(theta_q)
-    print("danach")
     print(np.reshape(theta_q, (len(theta_q),)))
+    print("danach")
+    print(np.shape(theta_q))
 
     return theta_q
 
