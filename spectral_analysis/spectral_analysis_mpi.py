@@ -362,7 +362,7 @@ for i, project_folder in enumerate(project_folder_list):
                     f=frequency,
                     x=obs_loc,
                     m=m,
-                    n=n, aquifer_length,
+                    n=n,
                     L=aquifer_length,
                     norm=False,
                 )
