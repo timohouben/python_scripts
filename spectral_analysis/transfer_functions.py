@@ -46,7 +46,7 @@ def discharge_ftf(f, d, aquifer_length):
     print(np.shape(theta_q))
     theta_q = np.array(theta_q)
     print("danach")
-    print(np.shape(theta_q))
+    print(np.reshape(theta_q, (len(theta_q),)))
 
     return theta_q
 
@@ -107,5 +107,5 @@ def discharge_ftf_fit(input, output, time_step_size, aquifer_length, method='sci
 
 
 
-    power_spectrum_result = np.asarray(power_spectrum_result)
+
     return popt, pcov, frequency_input, power_spectrum_result
