@@ -203,6 +203,8 @@ for i, project_folder in enumerate(project_folder_list):
         # inner loop over all observation points of current OGS model run
         for j, (obs_point, obs_loc) in enumerate(zip(obs_point_list, obs_loc_list)):
             print("###################################################################")
+            if obs_loc < 1000:
+                break
             print("Project folder: " + project_folder)
             print("Observation point: " + obs_point)
             print("Observation point location: " + str(obs_loc))
@@ -217,7 +219,7 @@ for i, project_folder in enumerate(project_folder_list):
                 from tools import get_ogs_task_id
                 from transfer_functions import discharge_ftf_fit
                 task_id = get_ogs_task_id(path_to_project)
-                baseflow = get_baseflow_from_polyline(t_id, path_to_project, path_to_project + "/" + task_id + "_ply_obs_01000_t" + str(len(obs_point_list)+1) + "_GROUNDWATER_FLOW.tec")
+                baseflow = get_baseflow_from_polyline(task_id, path_to_project, path_to_project + "/" + task_id + "_ply_obs_01000_t" + str(len(obs_point_list)+1) + "_GROUNDWATER_FLOW.tec")
                 # multiply the recharge time series with the aquifer length to get the total inflow
                 recharge = recharge_time_series * aquifer_length
                 try:
