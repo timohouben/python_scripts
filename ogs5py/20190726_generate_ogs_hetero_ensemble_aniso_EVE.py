@@ -469,7 +469,7 @@ for storage, var, len_scale, anis, mean, seed, (recharge_path, rech_abv) in prod
                 subprocess.run([ogs_root, dire + "/" + t_id], stdout=ogs_stdout_steady, stderr=subprocess.PIPE)
                 ogs_stdout_steady.close()
                 # copy all steady files to the steady folder
-                for file in [f for f in os.listdir(dire) if os.path.isfile(f)]:
+                for file in [f for f in os.listdir(dire) if os.path.isfile(dire + "/" + f)]:
                     shutil.copy(dire+"/"+file, dire+"/steady/"+file)
                 #ogs.run_model(ogs_root=ogs_root)
                 print("###RANK### " + str(rank) +
