@@ -220,10 +220,14 @@ for i, project_folder in enumerate(project_folder_list):
                 from calculate_flow import plot_recharge_vs_baseflow, get_baseflow_from_polyline
                 from tools import get_ogs_task_id
                 from transfer_functions import discharge_ftf_fit
+                print("1")
                 task_id = get_ogs_task_id(path_to_project)
+                print("2")
                 baseflow = get_baseflow_from_polyline(task_id, path_to_project, path_to_project + "/" + task_id + "_ply_obs_01000_t" + str(len(obs_point_list)+1) + "_GROUNDWATER_FLOW.tec")
+                print("3")
                 # multiply the recharge time series with the aquifer length to get the total inflow
                 recharge = recharge_time_series * aquifer_length
+                print("4")
                 try:
                     D[0], D_cov[0], frequency, Sqq = discharge_ftf_fit(recharge, baseflow, time_step_size, aquifer_length)
                 except RuntimeError:
