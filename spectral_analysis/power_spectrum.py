@@ -25,9 +25,9 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
         Time series of and input process of e.g. a LTI system. If considering an
         aquifer as filter of the LTI, the ouput signal would be euqual to the
         head time seires of the aquifer.
-    time_ste_size : integer
+    time_step_size : integer
         The size of the time step between every data point in seconds.
-    method : string
+    method : string, Default: 'scipyffthalf'
         Method which will be used to derive the spectrum.
         'scipyffthalf'
         # ======================================================================
@@ -79,7 +79,26 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
     # methodologies for power spectral density
     # -------------------------------------------------------------------------
 
-    if method == "scipyffthalf":
+    if method == "scipyffthalf_russian":
+        import scipy.fftpack as fftpack
+        # first value was popped because frequencies are very low (=0) and cause errors while fitting
+        power_spectrum_input = fftpack.fft(input)
+        power_spectrum_output = fftpack.fft(output)
+        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        power_spectrum_result = abs(power_spectrum_result[: int(round(len(power_spectrum_result) / 2))]) ** 2
+        power_spectrum_result = power_spectrum_result[1:]
+        frequency_input = (
+            abs(fftpack.fftfreq(len_output, time_step_size))[
+                : int(round(len_output / 2))
+            ]
+        )[1:]
+        frequency_output = (
+            abs(fftpack.fftfreq(len_output, time_step_size))[
+                : int(round(len_output / 2))
+            ]
+        )[1:]
+
+    elif method == "scipyffthalf":
         import scipy.fftpack as fftpack
 
         # first value was popped because frequencies are very low (=0) and cause errors while fitting
@@ -101,7 +120,7 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
             ]
         )[1:]
 
-    if method == "scipywelch":
+    elif method == "scipywelch":
         from scipy import signal
 
         nperseg = int(round(len(input) / 10))
@@ -113,7 +132,7 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
         )
         power_spectrum_result = power_spectrum_output / power_spectrum_input
 
-    if method == "scipyperio":
+    elif method == "scipyperio":
         from scipy import signal
 
         frequency_input, power_spectrum_input = signal.periodogram(
@@ -127,6 +146,8 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
         power_spectrum_input = power_spectrum_input[1:]
         power_spectrum_output = power_spectrum_output[1:]
         power_spectrum_result = power_spectrum_output / power_spectrum_input
+    else:
+        print("Method not valid.")
 
     if o_i == "i":
         return np.asarray(frequency_input), np.asarray(power_spectrum_input)
