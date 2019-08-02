@@ -56,7 +56,9 @@ from get_ogs_parameters import get_ogs_parameters
 from shh_analytical import shh_analytical_fit, shh_analytical
 from plot_fitting_results import plot_errors_vs_loc_hetero, plot_parameter_vs_location
 from tools import get_ogs_folders
-
+from calculate_flow import plot_recharge_vs_baseflow, get_baseflow_from_polyline
+from tools import get_ogs_task_id
+from transfer_functions import discharge_ftf_fit, discharge_ftf
 # ------------------------------------------------------------------------------
 # set some arameters for the analysis manually
 # ------------------------------------------------------------------------------
@@ -217,9 +219,6 @@ for i, project_folder in enumerate(project_folder_list):
                 # velocities to calculate the baseflow. First, the baseflow
                 # is calculated and afterwards, the diffusivity is derived
                 # with the spectral analysis.
-                from calculate_flow import plot_recharge_vs_baseflow, get_baseflow_from_polyline
-                from tools import get_ogs_task_id
-                from transfer_functions import discharge_ftf_fit
                 task_id = get_ogs_task_id(path_to_project)
                 baseflow = get_baseflow_from_polyline(task_id, path_to_project, path_to_project + "/" + task_id + "_ply_obs_01000_t" + str(len(obs_point_list)) + "_GROUNDWATER_FLOW.tec")
                 # multiply the recharge time series with the aquifer length to get the total inflow
