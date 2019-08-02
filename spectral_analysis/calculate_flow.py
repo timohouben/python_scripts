@@ -28,11 +28,12 @@ def get_baseflow_from_polyline(
     from ogs5py.reader import readtec_polyline
     import numpy as np
     import os
-
+    print("2.1")
     # read only 1 tec file for polyline for which the flow should be calculated
     tec = readtec_polyline(
         task_id=task_id, task_root=task_root, single_file=single_file
     )
+    print("2.2")
     # time_steps = number of timesteps + initial values
     try:
         time_steps = tec["VELOCITY_X1"].shape[0]
