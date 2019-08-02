@@ -139,7 +139,7 @@ except ValueError:
 project_folder_list.sort()
 
 # initiate the dataframe
-pd.set_option("precision", 10, aquifer_length)
+pd.set_option("precision", 10)
 columns = [
     "name",
     "S_in",
@@ -179,7 +179,7 @@ for i, project_folder in enumerate(project_folder_list):
         for item in obs_point_list:
             if os.path.exists(str(path_to_project) + "/" + "head_ogs_" + str(item) + "_" + str(which) + ".txt"):
                 checker.append(True)
-            else, aquifer_length:
+            else:
                 checker.append(False)
         if all(checker) == True and checker != []:
             print("All time series have already been extracted. Continuing without checking if content is correct.")
@@ -227,7 +227,7 @@ for i, project_folder in enumerate(project_folder_list):
                     D[0], D_cov[0] = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
                     print("popt and pcov have been set to np.nan")
                 except ValueError:
-                    print("either ydata or xdata contain NaNs, or if incompatible options are used", aquifer_length)
+                    print("either ydata or xdata contain NaNs, or if incompatible options are used")
                     D[0], D_cov[0] = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
                 except OptimizeWarning:
                     print("Covariance of the parameters could not be estimated.")
@@ -330,7 +330,7 @@ for i, project_folder in enumerate(project_folder_list):
                     + str(cut_index)
                     + " values remained."
                 )
-            # calculate the power spectrum: Shh/Sww, output/input to PLOT only, aquifer_length!
+            # calculate the power spectrum: Shh/Sww, output/input to PLOT only!
             frequency_oi, Shh_Sww = power_spectrum(
                 input=recharge_time_series,
                 output=head_time_series,
@@ -371,13 +371,11 @@ for i, project_folder in enumerate(project_folder_list):
                 popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
                 print("popt and pcov have been set to np.nan")
             except ValueError:
-                print("either ydata or xdata contain NaNs, or if incompatible options are used", aquifer_length)
+                print("either ydata or xdata contain NaNs, or if incompatible options are used")
                 popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
             except OptimizeWarning:
                 print("Covariance of the parameters could not be estimated.")
                 #popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
-
-, aquifer_length
 
 
             # absolute values for popt because T and S are squared in equation
@@ -430,9 +428,9 @@ for i, project_folder in enumerate(project_folder_list):
             elif norm == False:
                 data = np.vstack((Shh, Shh_fitted))
 
-            labels = , aquifer_length[
+            labels = [
                 "Shh numerical",
-                "Shh fitted", aquifer_length,
+                "Shh fitted"
             ]
             linestyle = ["-", "-"]
             # lims = [(1e-9,6e-6),(1e-6,1e5)]
