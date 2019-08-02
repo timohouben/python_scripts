@@ -268,7 +268,7 @@ for i, project_folder in enumerate(project_folder_list):
                 #def discharge_ftf(f, d, aquifer_length):
                 Sqq_fitted = discharge_ftf(frequency, D, aquifer_length)
 
-                data = np.vstack((Sqq, Shh_fitted))
+                data = np.vstack((Sqq, Sqq_fitted))
 
                 labels = [
                     "Sqq numerical",
