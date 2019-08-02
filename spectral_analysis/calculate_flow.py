@@ -30,6 +30,9 @@ def get_baseflow_from_polyline(
     import os
     print("2.1")
     # read only 1 tec file for polyline for which the flow should be calculated
+    print(task_id)
+    print(task_root)
+    print(single_file)
     tec = readtec_polyline(
         task_id=task_id, task_root=task_root, single_file=single_file
     )
