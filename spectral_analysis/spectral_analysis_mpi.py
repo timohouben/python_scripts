@@ -201,10 +201,11 @@ for i, project_folder in enumerate(project_folder_list):
         if not os.path.exists(path_to_results):
             os.mkdir(path_to_results)
         # inner loop over all observation points of current OGS model run
+        # change the order of the lists
+        myorder = np.arange(-len(obs_point_list)+1,1)*-1
+        obs_point_list = [obs_point_list[i] for i in myorder]
         for j, (obs_point, obs_loc) in enumerate(zip(obs_point_list, obs_loc_list)):
             print("###################################################################")
-            if obs_loc < 1000:
-                break
             print("Project folder: " + project_folder)
             print("Observation point: " + obs_point)
             print("Observation point location: " + str(obs_loc))
