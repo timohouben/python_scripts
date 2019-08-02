@@ -69,8 +69,8 @@ def plot_parameter_vs_location_block(results, path_to_results, borders, S_in, re
         results_temp = results_temp[results_temp["S_in"] == S_in]
         # plot the T in
         T_in = [float(results_temp.T_in_1.unique()) if obs < border else float(results_temp.T_in_2.unique()) for obs in np.arange(0,1010,10)]
-        axs[i].semilogy(np.arange(0,border,10), T_in[:len(np.arange(0,border,10))], linestyle="--", linewidth=5, marker="", label="low conductive part", color="#ff7f0e")
-        axs[i].semilogy(np.arange(border,1010,10), T_in[len(np.arange(0,border,10)):], linestyle="--", linewidth=5, marker="", label="high conductive part", color="#1f77b4")
+        axs[i].semilogy(np.arange(0,border,10), T_in[:len(np.arange(0,border,10))], linestyle="--", linewidth=5, marker="", label="high conductive part", color="#1f77b4")
+        axs[i].semilogy(np.arange(border,1010,10), T_in[len(np.arange(0,border,10)):], linestyle="--", linewidth=5, marker="", label="low conductive part", color="#ff7f0e")
         axs[i].grid(which="major", color="white", linestyle=":")
         # for both recharges in one plot
         results_temp_r1 = results_temp[results_temp["recharge"] == recharge1]
