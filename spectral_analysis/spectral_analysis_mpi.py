@@ -204,6 +204,7 @@ for i, project_folder in enumerate(project_folder_list):
         # change the order of the lists
         myorder = np.arange(-len(obs_point_list)+1,1)*-1
         obs_point_list = [obs_point_list[i] for i in myorder]
+        obs_loc_list = [obs_loc_list[i] for i in myorder]
         for j, (obs_point, obs_loc) in enumerate(zip(obs_point_list, obs_loc_list)):
             print("###################################################################")
             print("Project folder: " + project_folder)
