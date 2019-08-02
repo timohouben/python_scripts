@@ -238,8 +238,8 @@ for i, project_folder in enumerate(project_folder_list):
                     #popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
 
                 # add values to dataframe
-                print("D: ", "{0:.3e}".format(D))
-                print("Covariance of fit:" + str(D_cov))
+                print("D: ", "{0:.3e}".format(D[0]))
+                print("Covariance of fit:" + str(D_cov[0]))
 
                 # fill temporal dataframe for one model run
                 results_temp = {
