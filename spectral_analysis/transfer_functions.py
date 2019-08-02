@@ -102,5 +102,5 @@ def discharge_ftf_fit(input, output, time_step_size, aquifer_length, method='sci
 
 
 
-
+    power_spectrum_result = np.asarray(power_spectrum_result)
     return popt, pcov, frequency_input, power_spectrum_result
