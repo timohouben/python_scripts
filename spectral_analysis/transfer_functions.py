@@ -43,9 +43,9 @@ def discharge_ftf(f, d, aquifer_length):
 
     print("davor")
     print(np.shape(theta_q))
-    print(np.reshape(theta_q, (len(theta_q),)))
-    print("danach")
-    print(np.shape(theta_q))
+    #print(np.reshape(theta_q, (len(theta_q),)))
+    #print("danach")
+    #print(np.shape(theta_q))
 
     return theta_q
 
