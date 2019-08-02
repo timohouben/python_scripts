@@ -127,7 +127,7 @@ def shh_analytical_man(X, Sy, T, x, L, m=7, n=4, norm=False):
 
 def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01):
     """
-    Function to analyticaly compute the power spectrum of head with a given
+    Function to compute the analytical power spectrum of head with a given
     spectrum of the coresponding recharge process Sww in a phreatic aquifer,
     modeled by a linearized Boussinesq-Equation.
     For further explanations see:
@@ -166,19 +166,19 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
         aquifer length [L] from water divide to point of discharge (i.e. stream)
     m : integer
         number of terms of outer sum, dafault = None
-        In this function, m is actually doing nothing. Is is still there to ensure
+        In this function, m is actually doing nothing. It is still there to ensure
         compatibility with the function to fit (shh_analytical_fit) which should
         be taken for both, shh_analytical and shh_analytical_man.
     n : integer
         number of terms of inner sum, default = None
-        In this function, m is actually doing nothing. Is is still there to ensure
+        In this function, m is actually doing nothing. It is still there to ensure
         compatibility with the function to fit (shh_analytical_fit) which should
         be taken for both, shh_analytical and shh_analytical_man.
     norm : bool
         normalize the output spectrum Shh by the input spectrum Sww
     convergence : float
         Convergence criterion. If new iteration of series adds less than this
-        %-value the series is truncated.
+        value the series is truncated.
 
 
     Yields

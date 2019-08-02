@@ -67,7 +67,7 @@ def plot_spectrum(
     font = {"family": "DejaVu Sans", "weight": "normal", "size": 20}
     plt.rc("font", **font)
     plt.rc("legend", fontsize=15)
-    plt.figure(figsize=[20, 10], dpi=100)
+    plt.figure(figsize=[20, 10], dpi=300)
     if np.ndim(data) == 1:
         plt.loglog(
             frequency,

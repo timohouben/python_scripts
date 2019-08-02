@@ -42,7 +42,7 @@ def get_baseflow_from_polyline(
         flow_timeseries = []
 
         for i in range(0, time_steps):
-            #print("Time step " + str(i) + " of " + str(time_steps) + "...")
+            # print("Time step " + str(i) + " of " + str(time_steps) + "...")
             # get the node values of the velocities for ith time step
             node_velocity = tec["VELOCITY_X1"][i, :]
             # get the node values of the distances measured from starting point of polyline
@@ -81,7 +81,14 @@ def get_baseflow_from_polyline(
     return flow_timeseries
 
 
-def plot_recharge_vs_baseflow(task_root, flow_timeseries, aquifer_length=None, calculate_tc_tr=False, percent=0.95, normalizer=86400):
+def plot_recharge_vs_baseflow(
+    task_root,
+    flow_timeseries,
+    aquifer_length=None,
+    calculate_tc_tr=False,
+    percent=0.95,
+    normalizer=86400,
+):
     """
     Plot the discharge from the model with the recharge extracted from the rfd file.
 
@@ -116,9 +123,17 @@ def plot_recharge_vs_baseflow(task_root, flow_timeseries, aquifer_length=None, c
 
     if aquifer_length != None:
         q_total = np.sum(flow_timeseries)
-        print("Total discharge rate in modelling period: {:.5f} [m^2/s]".format(q_total))
+        print(
+            "Total discharge rate in modelling period: {:.5f} [m^2/s]".format(
+                q_total
+            )
+        )
         r_total = np.sum(rfd[1][1:] * aquifer_length)
-        print("Total recharge rate in modelling period: {:.5f} [m^2/s]".format(r_total))
+        print(
+            "Total recharge rate in modelling period: {:.5f} [m^2/s]".format(
+                r_total
+            )
+        )
         print(
             "{:.5f} % of recharge has reached the outflow of the model.".format(
                 q_total / r_total
@@ -132,19 +147,35 @@ def plot_recharge_vs_baseflow(task_root, flow_timeseries, aquifer_length=None, c
                     print("Time of max recharge: " + str(start_time))
                     break
 
-            #switch(recharge_case):
-            #case 1:
+            # switch(recharge_case):
+            # case 1:
             # calculation of tc based on 95 % of recharge volume has reached the outflow
             sum_recharge = 0
             sum_discharge = 0
-            for i, (item, jtem) in enumerate(zip(rfd[1]*aquifer_length, flow_timeseries)):
-                if rfd[0][i]/normalizer > start_time and jtem >= percent*item:
+            for i, (item, jtem) in enumerate(
+                zip(rfd[1] * aquifer_length, flow_timeseries)
+            ):
+                if (
+                    rfd[0][i] / normalizer > start_time
+                    and jtem >= percent * item
+                ):
                     stop_time = rfd[0][i] / normalizer
                     delta_t = stop_time - start_time
-                    print("Discharge has reached " + str(percent) + " % of recharge at time: " + str(stop_time) + ". Delta t = " + str(delta_t))
+                    print(
+                        "Discharge has reached "
+                        + str(percent)
+                        + " % of recharge at time: "
+                        + str(stop_time)
+                        + ". Delta t = "
+                        + str(delta_t)
+                    )
                     break
-                if i == len(flow_timeseries)-1:
-                    print("Discharge has not reached " +str(percent) + " % of recharge.")
+                if i == len(flow_timeseries) - 1:
+                    print(
+                        "Discharge has not reached "
+                        + str(percent)
+                        + " % of recharge."
+                    )
 
     elif aquifer_length == None and calculate_tc_tr == True:
         print("You need to specify the aquifer length to calculate tc and tr.")
@@ -152,51 +183,61 @@ def plot_recharge_vs_baseflow(task_root, flow_timeseries, aquifer_length=None, c
     time = rfd[0][:] / normalizer
     fig, ax1 = plt.subplots()
     ax1.set_title(os.path.basename(task_root))
-    ax1.plot(time[:len(flow_timeseries)], flow_timeseries, "b", linewidth=4)
+    ax1.plot(time[: len(flow_timeseries)], flow_timeseries, color="#1f77b4", linewidth=4)
     ax1.set_xlabel("time [d]")
     # Make the y-axis label, ticks and tick labels match the line color.
-    ax1.set_ylabel("discharge $[m^2/s]$", color="b")
-    ax1.tick_params("y", colors="b")
-    y_lims = (0,0.0002)
-    #ax1.set_ylim((0, 0.0002))
+    ax1.set_ylabel("discharge $[m^2/s]$", color="#1f77b4")
+    ax1.tick_params("y", colors="#1f77b4")
+    y_lims = (0, 0.0002)
+    # ax1.set_ylim((0, 0.0002))
     ax2 = ax1.twinx()
 
     if aquifer_length == None:
-        ax2.plot(time, rfd[1][:], "r")
-        ax2.set_ylabel("recharge $[m/s]$", color="r")
+        ax2.plot(time, rfd[1][:], color="#ff7f0e")
+        ax2.set_ylabel("recharge $[m/s]$", color="#ff7f0e")
     elif aquifer_length != None:
-        ax2.plot(time,rfd[1][:]*aquifer_length, "r", linewidth=2)
-        ax2.set_ylabel("recharge $[m^2/s]$", color="r")
-        #ax2.set_ylim((0, y_lims[1]))
-        if 'stop_time' in locals():
-            plt.vlines(x=[start_time,stop_time], ymin=0, ymax=y_lims[1], color='g')
-            plt.annotate("$\Delta t$ = " + str(delta_t), (stop_time + 1 ,0.8*y_lims[1]))
-    ax2.tick_params("y", colors="r")
+        ax2.plot(time, rfd[1][:] * aquifer_length, "#ff7f0e", linewidth=0.5)
+        ax2.set_ylabel("recharge $[m^2/s]$", color="#ff7f0e")
+        # ax2.set_ylim((0, y_lims[1]))
+        if "stop_time" in locals():
+            plt.vlines(
+                x=[start_time, stop_time], ymin=0, ymax=y_lims[1], color="g"
+            )
+            plt.annotate(
+                "$\Delta t$ = " + str(delta_t),
+                (stop_time + 1, 0.8 * y_lims[1]),
+            )
+    ax2.tick_params("y", colors="#ff7f0e")
     fig.tight_layout()
     plt.savefig(task_root + "/baseflow_vs_recharge.png", dpi=300)
     #plt.show()
 
 
-
 if __name__ == "__main__":
+    pass
+    #task_id = "transect"
+    #task_root = "/Users/houben/phd/modelling/20190602_Tc_vs_Tr/transport/setup/2a_transportstor_0.01_kf_0.001"
+    #single_file = task_root + "/" + "transect_ply_obs_01000_t5.tec"
+    #orientation = "vertical"
+    #aquifer_length = 1000
 
-    task_id = "transect"
-    task_root = "/Users/houben/phd/modelling/20190602_Tc_vs_Tr/transport/setup/2a_transportstor_0.01_kf_0.001"
-    single_file = task_root + "/" + "transect_ply_obs_01000_t5.tec"
-    orientation = "vertical"
-    aquifer_length = 1000
+    #flow_timeseries = get_baseflow_from_polyline(
+    #    task_id=task_id,
+    #    task_root=task_root,
+    #    single_file=single_file,
+    #    orientation="vertical",
+    #)
 
-    flow_timeseries = get_baseflow_from_polyline(
-        task_id=task_id,
-        task_root=task_root,
-        single_file=single_file,
-        orientation="vertical",
-        )
-
-    plot_recharge_vs_baseflow(task_root=task_root, flow_timeseries=flow_timeseries, aquifer_length=1000, calculate_tc_tr=True, percent=0.95)
+    #plot_recharge_vs_baseflow(
+    #    task_root=task_root,
+    #    flow_timeseries=flow_timeseries,
+    #    aquifer_length=1000,
+    #    calculate_tc_tr=True,
+    #    percent=0.95,
+    #)
 
     ## to execute for multiple folders in a directory: dir has to contain the complete path of every folder
-    #for dir in roots:
+    # for dir in roots:
     #    flow_timeseries = get_baseflow_from_polyline(
     #    task_id="transect",
     #    task_root=dir,

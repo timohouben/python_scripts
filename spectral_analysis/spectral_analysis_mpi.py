@@ -2,8 +2,12 @@
 """
 For 'block' aquifer with 2 zones with different hydraulic conductivity.
 
-Script to perform the spectral analysis independent of the model domain. Distance to the river will be taken from the numbering of the obeservation points.
-Results will be saved in a results.csv. This has to be conbined afterwards for postprocessing.
+Script to perform the spectral analysis independent of the model domain.
+Distance to the river will be taken from the numbering of the obeservation
+points. Results will be saved in a results.csv. This has to be conbined
+afterwards for postprocessing.
+For the polyline at location == aquifer length the diffusivity is derived
+with the spectral analysis of the baseflow.
 
 Parameters
 ----------
@@ -67,7 +71,7 @@ T_in_2 = 0.001 * aquifer_thickness
 # also ,has m and n as arguments but is not using them.
 m = None
 n = None
-comment = "1_"  # give a specific comment for the analysis e.g. "parameterset1_"
+comment = "baseflow_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = None
@@ -113,6 +117,8 @@ dataframe : n_observation_points x n_parameters
     recharge : type of recharge
     aquifer_length : aquifer_length
     aquifer_thickness : aquifer_thickness
+    D : Diffusivity
+    D_cov : Covariance of fit or Diffusivity
 """
 
 # specify the path to the parent directory of multiple OGS model runs
@@ -133,7 +139,7 @@ except ValueError:
 project_folder_list.sort()
 
 # initiate the dataframe
-pd.set_option("precision", 10)
+pd.set_option("precision", 10, aquifer_length)
 columns = [
     "name",
     "S_in",
@@ -151,6 +157,8 @@ columns = [
     "recharge",
     "aquifer_length",
     "aquifer_thickness",
+    "D",
+    "D_cov",
 ]
 
 # outer loop over all project_folders containing OGS model runs
@@ -164,14 +172,14 @@ for i, project_folder in enumerate(project_folder_list):
         print("###################################################################")
         path_to_project = path_to_multiple_projects + "/" + project_folder
         # get list of observation points in current porject_folder
-        obs_point_list = get_obs(path_to_project, without_max=True)[1]
-        obs_loc_list = get_obs(path_to_project, without_max=True)[2]
+        obs_point_list = get_obs(path_to_project, without_max=False)[1]
+        obs_loc_list = get_obs(path_to_project, without_max=False)[2]
         # check if time series for different observation points have already been extracted
         checker = []
         for item in obs_point_list:
             if os.path.exists(str(path_to_project) + "/" + "head_ogs_" + str(item) + "_" + str(which) + ".txt"):
                 checker.append(True)
-            else:
+            else, aquifer_length:
                 checker.append(False)
         if all(checker) == True and checker != []:
             print("All time series have already been extracted. Continuing without checking if content is correct.")
@@ -194,14 +202,108 @@ for i, project_folder in enumerate(project_folder_list):
             os.mkdir(path_to_results)
         # inner loop over all observation points of current OGS model run
         for j, (obs_point, obs_loc) in enumerate(zip(obs_point_list, obs_loc_list)):
-            # Do not perform the fit on observation point x=L, not necessary any more
-            # because get_obs has been modified with "without_max" argument
-            if obs_loc == aquifer_length:
-                break
             print("###################################################################")
             print("Project folder: " + project_folder)
             print("Observation point: " + obs_point)
             print("Observation point location: " + str(obs_loc))
+            if obs_loc == aquifer_length:
+                print("Spectral analysis for the baseflow (not every functionality is considered (e.g. cut_index, norm))")
+                # If the current observation point is equal to the aquifer
+                # length, it is assumed that this polyline-file contains the
+                # velocities to calculate the baseflow. First, the baseflow
+                # is calculated and afterwards, the diffusivity is derived
+                # with the spectral analysis.
+                from calculate_flow import plot_recharge_vs_baseflow, get_baseflow_from_polyline
+                from tools import get_ogs_task_id
+                from transfer_functions import discharge_ftf_fit
+                task_id = get_ogs_task_id(path_to_project)
+                baseflow = get_baseflow_from_polyline(t_id, path_to_project, path_to_project + "/" + task_id + "_ply_obs_01000_t" + str(len(obs_point_list)+1) + "_GROUNDWATER_FLOW.tec")
+                # multiply the recharge time series with the aquifer length to get the total inflow
+                recharge = recharge_time_series * aquifer_length
+                try:
+                    D[0], D_cov[0], frequency, Sqq = discharge_ftf_fit(recharge, baseflow, time_step_size, aquifer_length)
+                except RuntimeError:
+                    print("Optimal parameters not found...")
+                    D[0], D_cov[0] = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
+                    print("popt and pcov have been set to np.nan")
+                except ValueError:
+                    print("either ydata or xdata contain NaNs, or if incompatible options are used", aquifer_length)
+                    D[0], D_cov[0] = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
+                except OptimizeWarning:
+                    print("Covariance of the parameters could not be estimated.")
+                    #popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
+
+                # add values to dataframe
+                print("D: ", "{0:.3e}".format(D))
+                print("Covariance of fit:" + str(D_cov))
+
+                # fill temporal dataframe for one model run
+                results_temp = {
+                    "name": project_folder,
+                    "S_in": np.nan,
+                    "T_in_1": T_in_1,
+                    "T_in_2": T_in_2,
+                    "T_out": np.nan,
+                    "S_out": np.nan,
+                    "tc_out": np.nan,
+                    "cov": np.nan,
+                    "obs_loc": obs_loc,
+                    "time_step_size": time_step_size,
+                    "time_steps": time_steps,
+                    "model_period": time_step_size * time_steps / 86400,
+                    "which": which,
+                    "recharge": get_filename_from_rfd_top_com(path_to_project),
+                    "aquifer_length": aquifer_length,
+                    "aquifer_thickness": aquifer_thickness,
+                    "D": D[0],
+                    "D_cov": D_cov[0],
+                }
+
+                results = results.append(other=results_temp, ignore_index=True, sort=False)
+
+                # calculate the fitted power spectra
+                #def discharge_ftf(f, d, aquifer_length):
+                Sqq_fitted = discharge_ftf(frequency, D, aquifer_length)
+
+                data = np.vstack((Sqq, Shh_fitted))
+
+                labels = [
+                    "Sqq numerical",
+                    "Sqq fitted"
+                ]
+
+                linestyle = ["-", "-"]
+                # lims = [(1e-9,6e-6),(1e-6,1e5)]
+                marker = ["", "d"]
+                figtxt = "OGS Input Parameter: S = %1.3e, T1 = %1.3e, T2 = %1.3e, D1 = %1.3e, D2 = %1.3e" % (
+                    S,
+                    T_in_1,
+                    T_in_2,
+                    T_in_1/S,
+                    T_in_2/S
+                ) + "\nDerived Parameter:    D = %1.3e" % (
+                    D[0],
+                    D_cov[0],
+                )
+
+                plot_spectrum(
+                    data,
+                    frequency,
+                    labels=labels,
+                    path=path_to_results,
+                    #   lims=lims,
+                    linestyle=linestyle,
+                    marker=marker,
+                    heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),
+                    name="SA_"
+                    + project_folder
+                    + "_"
+                    + str(obs_loc).zfill(len(str(aquifer_length)))
+                    + "_baseflow",
+                    figtxt=figtxt,
+                    comment=comment,
+                )
+
             # load head time series
             head_time_series = np.loadtxt(
                 path_to_multiple_projects
@@ -228,7 +330,7 @@ for i, project_folder in enumerate(project_folder_list):
                     + str(cut_index)
                     + " values remained."
                 )
-            # calculate the power spectrum: Shh/Sww, output/input to PLOT only!
+            # calculate the power spectrum: Shh/Sww, output/input to PLOT only, aquifer_length!
             frequency_oi, Shh_Sww = power_spectrum(
                 input=recharge_time_series,
                 output=head_time_series,
@@ -260,7 +362,7 @@ for i, project_folder in enumerate(project_folder_list):
                     f=frequency,
                     x=obs_loc,
                     m=m,
-                    n=n,
+                    n=n, aquifer_length,
                     L=aquifer_length,
                     norm=False,
                 )
@@ -269,16 +371,17 @@ for i, project_folder in enumerate(project_folder_list):
                 popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
                 print("popt and pcov have been set to np.nan")
             except ValueError:
-                print("either ydata or xdata contain NaNs, or if incompatible options are used")
+                print("either ydata or xdata contain NaNs, or if incompatible options are used", aquifer_length)
                 popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
             except OptimizeWarning:
                 print("Covariance of the parameters could not be estimated.")
                 #popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
 
+, aquifer_length
 
 
-
-            # absolute values for popt because T and S are squared in equation of shh_anlytical
+            # absolute values for popt because T and S are squared in equation
+            # of shh_anlytical and negative values are possible
             popt = [abs(i) for i in popt]
             # add values to dataframe
             print("Sy fit: ", "{0:.3e}".format(popt[0]))
@@ -327,9 +430,9 @@ for i, project_folder in enumerate(project_folder_list):
             elif norm == False:
                 data = np.vstack((Shh, Shh_fitted))
 
-            labels = [
+            labels = , aquifer_length[
                 "Shh numerical",
-                "Shh fitted",
+                "Shh fitted", aquifer_length,
             ]
             linestyle = ["-", "-"]
             # lims = [(1e-9,6e-6),(1e-6,1e5)]
