@@ -309,7 +309,7 @@ for i, project_folder in enumerate(project_folder_list):
                     comment=comment,
                 )
                 # break this itearation and continue with next obs point
-                break
+                continue
             # load head time series
             head_time_series = np.loadtxt(
                 path_to_multiple_projects
