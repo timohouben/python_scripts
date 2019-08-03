@@ -271,6 +271,10 @@ for i, project_folder in enumerate(project_folder_list):
                 Sqq = np.reshape(Sqq_fitted,(len(Sqq),))
 
                 data = np.vstack((Sqq, Sqq_fitted))
+                print("The shape of data ist:")
+                print(np.shape(data))
+                print("The dim of data is:")
+                print(np.dim(data))
 
                 labels = [
                     "Sqq numerical",
@@ -286,7 +290,7 @@ for i, project_folder in enumerate(project_folder_list):
                     T_in_2,
                     T_in_1/S,
                     T_in_2/S
-                ) + "\nDerived Parameter:    D = %1.3e D_cov = %1.1e" % (
+                ) + "\nDerived Parameter:    D = %1.3e, D_cov = %1.1e" % (
                     D[0],
                     D_cov[0],
                 )
