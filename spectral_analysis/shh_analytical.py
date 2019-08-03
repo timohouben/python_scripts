@@ -167,12 +167,12 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
     m : integer
         number of terms of outer sum, dafault = None
         In this function, m is actually doing nothing. It is still there to ensure
-        compatibility with the function to fit (shh_analytical_fit) which should
+        compatibility with the function to fit (it) which should
         be taken for both, shh_analytical and shh_analytical_man.
     n : integer
         number of terms of inner sum, default = None
         In this function, m is actually doing nothing. It is still there to ensure
-        compatibility with the function to fit (shh_analytical_fit) which should
+        compatibility with the function to fit (it) which should
         be taken for both, shh_analytical and shh_analytical_man.
     norm : bool
         normalize the output spectrum Shh by the input spectrum Sww
@@ -336,12 +336,12 @@ def shh_analytical_2015(
     m : integer
         number of terms of outer sum, dafault = None
         In this function, m is actually doing nothing. Is is still there to ensure
-        compatibility with the function to fit (shh_analytical_fit) which should
+        compatibility with the function to fit (it) which should
         be taken for both, shh_analytical and shh_analytical_man.
     n : integer
         number of terms of inner sum, default = None
         In this function, m is actually doing nothing. Is is still there to ensure
-        compatibility with the function to fit (shh_analytical_fit) which should
+        compatibility with the function to fit (it) which should
         be taken for both, shh_analytical and shh_analytical_man.
     norm : bool
         normalize the output spectrum Shh by the input spectrum Sww
@@ -472,7 +472,7 @@ def shh_analytical_2015(
         return Shh
 
 
-def shh_analytical_fit(Sww, Shh, f, x, L, m, n, norm):
+def shh_analytical_fit(Sww, Shh, f, x, L, m, n, norm, convergence):
     """
     Function which should be used to fit the power spectrum to a given
     experimental data set (Shh). Since the shh_anlytical takes additional parameters
@@ -524,7 +524,7 @@ def shh_analytical_fit(Sww, Shh, f, x, L, m, n, norm):
     import scipy.optimize as optimization
     from functools import partial as prt
 
-    partial = prt(shh_analytical, x=x, L=L, m=m, n=n, norm=norm)
+    partial = prt(shh_analytical, x=x, L=L, m=m, n=n, norm=norm, convergence=convergence)
     initial_guess = [1e-3, 1e-3]
     bounds = (1e-7, 1)
     popt, pcov = optimization.curve_fit(
