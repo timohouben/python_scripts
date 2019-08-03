@@ -273,6 +273,7 @@ for i, project_folder in enumerate(project_folder_list):
                 print(Sqq)
                 print("the sqq_fitted is")
                 print(Sqq_fitted)
+
                 data = np.vstack((Sqq, Sqq_fitted))
                 print("The shape of data ist:")
                 print(np.shape(data))
