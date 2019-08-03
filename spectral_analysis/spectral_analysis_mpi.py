@@ -269,16 +269,8 @@ for i, project_folder in enumerate(project_folder_list):
 
                 Sqq_fitted = np.reshape(Sqq_fitted,(len(Sqq_fitted),))
                 Sqq = np.reshape(Sqq,(len(Sqq),))
-                print("the sqq is")
-                print(Sqq)
-                print("the sqq_fitted is")
-                print(Sqq_fitted)
 
                 data = np.vstack((Sqq, Sqq_fitted))
-                print("The shape of data ist:")
-                print(np.shape(data))
-                print("The dim of data is:")
-                print(np.ndim(data))
 
                 labels = [
                     "Sqq numerical",
@@ -287,7 +279,7 @@ for i, project_folder in enumerate(project_folder_list):
 
                 linestyle = ["-", "-"]
                 # lims = [(1e-9,6e-6),(1e-6,1e5)]
-                marker = ["", "d"]
+                marker = ["", ""]
                 figtxt = "OGS Input Parameter: S = %1.3e, T1 = %1.3e, T2 = %1.3e, D1 = %1.3e, D2 = %1.3e" % (
                     S,
                     T_in_1,
@@ -316,7 +308,8 @@ for i, project_folder in enumerate(project_folder_list):
                     figtxt=figtxt,
                     comment=comment,
                 )
-
+                # break this itearation and continue with next obs point
+                break
             # load head time series
             head_time_series = np.loadtxt(
                 path_to_multiple_projects
