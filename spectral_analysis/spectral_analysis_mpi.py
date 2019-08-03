@@ -204,9 +204,9 @@ for i, project_folder in enumerate(project_folder_list):
             os.mkdir(path_to_results)
         # inner loop over all observation points of current OGS model run
         # change the order of the lists
-        myorder = np.arange(-len(obs_point_list)+1,1)*-1
-        obs_point_list = [obs_point_list[i] for i in myorder]
-        obs_loc_list = [obs_loc_list[i] for i in myorder]
+        #myorder = np.arange(-len(obs_point_list)+1,1)*-1
+        #obs_point_list = [obs_point_list[i] for i in myorder]
+        #obs_loc_list = [obs_loc_list[i] for i in myorder]
         for j, (obs_point, obs_loc) in enumerate(zip(obs_point_list, obs_loc_list)):
             print("###################################################################")
             print("Project folder: " + project_folder)
@@ -371,6 +371,7 @@ for i, project_folder in enumerate(project_folder_list):
                     n=n,
                     L=aquifer_length,
                     norm=False,
+                    convergence=0.1,
                 )
             except RuntimeError:
                 print("Optimal parameters not found...")
