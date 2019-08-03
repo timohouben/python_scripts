@@ -65,6 +65,9 @@ from transfer_functions import discharge_ftf_fit, discharge_ftf
 aquifer_length = 1000
 aquifer_thickness = 30
 which = "mean"
+# convergence criterion: Series of Shh analytical will be truncated when next
+# iteration adds less than this realtive value
+convergence = 0.01
 # the number of the curve (1st == 1)
 recharge_rfd = 1
 T_in_1 = 0.00001 * aquifer_thickness
@@ -243,7 +246,7 @@ for i, project_folder in enumerate(project_folder_list):
                 # fill temporal dataframe for one model run
                 results_temp = {
                     "name": project_folder,
-                    "S_in": np.nan,
+                    "S_in": S,
                     "T_in_1": T_in_1,
                     "T_in_2": T_in_2,
                     "T_out": np.nan,
@@ -371,7 +374,7 @@ for i, project_folder in enumerate(project_folder_list):
                     n=n,
                     L=aquifer_length,
                     norm=False,
-                    convergence=0.1,
+                    convergence=convergence,
                 )
             except RuntimeError:
                 print("Optimal parameters not found...")
