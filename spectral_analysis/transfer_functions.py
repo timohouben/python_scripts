@@ -94,12 +94,9 @@ def discharge_ftf_fit(input, output, time_step_size, aquifer_length, method='sci
     theta_q = discharge_ftf(frequency_input, popt[0],1000)
 
     # check results
-    import matplotlib.pyplot as plt
-    plt.loglog(frequency_input, theta_q)
-    plt.loglog(frequency_input, power_spectrum_result)
+    #import matplotlib.pyplot as plt
+    #plt.loglog(frequency_input, theta_q)
+    #plt.loglog(frequency_input, power_spectrum_result)
     #plt.show()
-
-
-
 
     return popt, pcov, frequency_input, power_spectrum_result
