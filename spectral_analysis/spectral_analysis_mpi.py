@@ -266,9 +266,10 @@ for i, project_folder in enumerate(project_folder_list):
 
                 # calculate the fitted power spectra
                 Sqq_fitted = discharge_ftf(frequency, D, aquifer_length)
-                # making lists from arrays because shapes are not the same...
-                Sqq_fitted = Sqq_fitted.tolist()
-                Sqq = Sqq.tolist()
+
+                Sqq_fitted = np.reshape(Sqq_fitted,(len(Sqq_fitted),))
+                Sqq = np.reshape(Sqq_fitted,(len(Sqq),))
+
                 data = np.vstack((Sqq, Sqq_fitted))
 
                 labels = [
