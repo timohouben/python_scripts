@@ -268,7 +268,7 @@ for i, project_folder in enumerate(project_folder_list):
                 Sqq_fitted = discharge_ftf(frequency, D, aquifer_length)
 
                 Sqq_fitted = np.reshape(Sqq_fitted,(len(Sqq_fitted),))
-                Sqq = np.reshape(Sqq_fitted,(len(Sqq),))
+                Sqq = np.reshape(Sqq,(len(Sqq),))
                 print("the sqq is")
                 print(Sqq)
                 print("the sqq_fitted is")
