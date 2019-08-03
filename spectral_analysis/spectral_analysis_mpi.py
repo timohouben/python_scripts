@@ -269,6 +269,10 @@ for i, project_folder in enumerate(project_folder_list):
 
                 Sqq_fitted = np.reshape(Sqq_fitted,(len(Sqq_fitted),))
                 Sqq = np.reshape(Sqq_fitted,(len(Sqq),))
+                print("the sqq is")
+                print(Sqq)
+                print("the sqq_fitted is")
+                print(Sqq_fitted)
 
                 data = np.vstack((Sqq, Sqq_fitted))
                 print("The shape of data ist:")
