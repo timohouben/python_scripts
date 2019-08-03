@@ -274,7 +274,7 @@ for i, project_folder in enumerate(project_folder_list):
                 print("The shape of data ist:")
                 print(np.shape(data))
                 print("The dim of data is:")
-                print(np.dim(data))
+                print(np.ndim(data))
 
                 labels = [
                     "Sqq numerical",
