@@ -79,7 +79,7 @@ def plot_spectrum(
         )
     else:
         for i, spectrum in enumerate(data):
-            peint(spectrum,i)
+            print(spectrum,i)
             plt.loglog(
                 frequency,
                 spectrum,
