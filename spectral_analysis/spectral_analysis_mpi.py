@@ -286,7 +286,7 @@ for i, project_folder in enumerate(project_folder_list):
                     T_in_2,
                     T_in_1/S,
                     T_in_2/S
-                ) + "\nDerived Parameter:    D = %1.3e" % (
+                ) + "\nDerived Parameter:    D = %1.3e D_cov = %1.1e" % (
                     D[0],
                     D_cov[0],
                 )
