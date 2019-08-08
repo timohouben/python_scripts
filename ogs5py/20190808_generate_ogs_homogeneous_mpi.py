@@ -296,7 +296,7 @@ for storage in storage_list:
                 ogs.mmp.add_block(
                     GEOMETRY_DIMENSION=dim_no,
                     STORAGE=[[1, storage]],
-                    PERMEABILITY_TENSOR=[["ISOTROPIC", kf1]],
+                    PERMEABILITY_TENSOR=[["ISOTROPIC", kf]],
                 )
                 # -------------------- NUM
                 # Set the linear solver.
