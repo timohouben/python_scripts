@@ -78,34 +78,37 @@ recharge_path_list = [
 # According to your recharge_list give a name for each recharge.
 rech_abv_list = ["whitenoise", "mHM"]
 # Hydraulic conductivity values. Will be taken from a log-normal distribution.
-if not os.path.exists(CWD + "/kf_values"):
-    os.mkdir(CWD + "/kf_values")
 np.random.seed(1337)
 mean=-10
 sigma=2
 size=100
 kf_list = np.random.lognormal(mean=-10,sigma=2,size=100)
-hist_kf = plt.hist(kf_list, bins=30)
-plt.tick_params(rotation=20)
-plt.title("histogramm of kf values")
-plt.savefig(CWD + "/kf_values" + "/hist_kf.png", dpi=300)
-plt.close()
-plt.semilogy(sorted(kf_list))
-plt.title("kf values")
-plt.savefig(CWD + "/kf_values" + "/plot_kf.png", dpi=300)
-plt.close()
-import seaborn as sns
-sns.distplot(kf_list, hist=False, rug=True)
-plt.title("kerne density of kf values")
-plt.tick_params(rotation=45)
-plt.savefig(CWD + "/kf_values" + "/kde_kf.png", dpi=300)
-kf_list_file = open(CWD + "/kf_values" + "/kf_list_file.txt", "w")
-from scipy.stats.mstats import gmean, hmean
-kf_list_file.write("geomean, harmean, arimean\n")
-kf_list_file.write(str(gmean(kf_list)) + ", " + str(hmean(kf_list)) + ", " + str(np.mean(kf_list)) + "\n")
-kf_list_file.write("list of kf values\n")
-kf_list_file.write("\n".join([str(i) for i in kf_list]))
-kf_list_file.close()
+# save plots and .txt for kf values but only on one rank
+if rank == 0:
+    import seaborn as sns
+    from scipy.stats.mstats import gmean, hmean
+    hist_kf = plt.hist(kf_list, bins=30)
+    plt.tick_params(rotation=20)
+    plt.title("histogramm of kf values")
+    plt.savefig(CWD + "/kf_values" + "/hist_kf.png", dpi=300)
+    plt.close()
+    plt.semilogy(sorted(kf_list))
+    plt.title("kf values")
+    plt.savefig(CWD + "/kf_values" + "/plot_kf.png", dpi=300)
+    plt.close()
+    sns.distplot(kf_list, hist=False, rug=True)
+    plt.title("kerne density of kf values")
+    plt.tick_params(rotation=45)
+    plt.savefig(CWD + "/kf_values" + "/kde_kf.png", dpi=300)
+    kf_list_file = open(CWD + "/kf_values" + "/kf_list_file.txt", "w")
+    kf_list_file.write("geomean, harmean, arimean\n")
+    kf_list_file.write(str(gmean(kf_list)) + ", " + str(hmean(kf_list)) + ", " + str(np.mean(kf_list)) + "\n")
+    kf_list_file.write("list of kf values\n")
+    kf_list_file.write("\n".join([str(i) for i in kf_list]))
+    kf_list_file.close()
+    if not os.path.exists(CWD + "/kf_values"):
+        os.mkdir(CWD + "/kf_values")
+
 # Set a start value for "overall_count" which is the index. I recommend to use
 # as much digits as you will be generating new ogs models to end up with a
 # consistant naming. I.e. if more than 100 take 1001 as start.
