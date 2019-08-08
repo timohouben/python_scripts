@@ -100,7 +100,7 @@ plt.savefig(CWD + "/kf_values" + "/kde_kf.png", dpi=300)
 kf_list_file = open(CWD + "/kf_values" + "/kf_list_file.txt", "w")
 from scipy.stats.mstats import gmean, hmean
 kf_list_file.write("geomean, harmean, arimean\n")
-kf_list_file.write(str(gmean(kf)) + ", " + str(hmean(kf)) + ", " + str(np.mean(kf)) + "\n")
+kf_list_file.write(str(gmean(kf_list)) + ", " + str(hmean(kf_list)) + ", " + str(np.mean(kf_list)) + "\n")
 kf_list_file.write("list of kf values\n")
 kf_list_file.write("\n".join([str(i) for i in kf_list]))
 kf_list_file.close()
@@ -407,8 +407,24 @@ for storage in storage_list:
                         file = open(dire + "/" + t_id + ".tim", "w")
                         file.write("#STOP")
                         file.close()
-                        print("Running steady state for folder " + name + " on rank "  + str(rank))
-                        ogs.run_model(ogs_root=ogs_root)
+                        print("###RANK### " + str(rank) +
+                            " ## Running steady state for folder " + name + " on rank " + str(rank)
+                        )
+                        # run the simulation manually
+                        # make a directory for the steady output
+                        if not os.path.exists(dire + "/steady"):
+                            os.mkdir(dire + "/steady")
+                        # open a file for the stdout
+                        ogs_stdout_steady = open(dire + "/steady/ogs_stdout_steady.log", "w")
+                        subprocess.run([ogs_root, dire + "/" + t_id], stdout=ogs_stdout_steady, stderr=subprocess.PIPE)
+                        ogs_stdout_steady.close()
+                        # copy all steady files to the steady folder
+                        for file in [f for f in os.listdir(dire) if os.path.isfile(dire + "/" + f)]:
+                            shutil.copy(dire+"/"+file, dire+"/steady/"+file)
+                        #ogs.run_model(ogs_root=ogs_root)
+                        print("###RANK### " + str(rank) +
+                            " ## Finished running steady state for folder " + name + " on rank " + str(rank)
+                        )
             # Increase the counter for the naming.
             # First folder will be equal to the value of start
             overall_count = overall_count + 1
