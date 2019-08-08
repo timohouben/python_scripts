@@ -168,8 +168,8 @@ for storage in storage_list:
                 # Name the folder
                 name = (
                     str(overall_count)
-                    + "_border_"
-                    + str(border)
+                    + "_kf_"
+                    + str("{:.3e}".format(kf))
                     + "_stor_"
                     + str(storage)
                     + "_rech_"
