@@ -109,7 +109,7 @@ if rank == 0:
     if not os.path.exists(CWD + "/kf_values"):
         os.mkdir(CWD + "/kf_values")
 else:
-    time.sleep(5) 
+    time.sleep(10) 
 
 # Set a start value for "overall_count" which is the index. I recommend to use
 # as much digits as you will be generating new ogs models to end up with a
