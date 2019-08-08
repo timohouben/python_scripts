@@ -36,6 +36,8 @@ from ogs5py import OGS, MPD, MSH
 from ogs5py.reader import readpvd, readtec_point
 import matplotlib.pyplot as plt
 from mpi4py import MPI
+import subprocess
+import shutil
 
 # -------------------- other configurations
 ogs_root = "/home/houben/OGS_source/ogs"
@@ -296,7 +298,7 @@ for storage in storage_list:
                 ogs.mmp.add_block(
                     GEOMETRY_DIMENSION=dim_no,
                     STORAGE=[[1, storage]],
-                    PERMEABILITY_TENSOR=[["ISOTROPIC", kf1]],
+                    PERMEABILITY_TENSOR=[["ISOTROPIC", kf]],
                 )
                 # -------------------- NUM
                 # Set the linear solver.
