@@ -10,6 +10,31 @@ dpi = 300
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
+def plot_baseflow_sa_vs_boundary_block(results, path_to_results):
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import numpy as np
+    results_temp = results[results["recharge"] == "recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt"]
+    results_temp = results_temp[results_temp["S_in"] == 0.003]
+    results_temp = results_temp[results_temp["obs_loc"] == 1000]
+    results_temp = results_temp.sort_values(by="name")
+    boundary = [50,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,920,930,940,950,960,970,980,990]
+    #plt.semilogy(boundary, results_temp["D"])
+    plt.semilogy(boundary, [float(i[1:-1]) for i in results_temp["D_cov"]])
+    plt.grid(which="both")
+    plt.ylabel("covariance of optimization")
+    #plt.ylabel("Diffusivity [m^2/s]")
+    plt.xlabel("boundary")
+    plt.show()
+
+# execute plot_baseflow_sa_vs_boundary_block
+import pandas as pd
+results = pd.read_csv("/Users/houben/phd/results/20190717_SA_hetero_block_2/combined_results/baseflow_results_merge.csv")
+plot_baseflow_sa_vs_boundary_block(results,"/Users/houben/phd/results/20190717_SA_hetero_block_2/combined_results/baseflow_results_merge.csv")
+
+
+
+
 def plot_parameter_vs_location_block(results, path_to_results, borders, S_in, recharge1, recharge2, threshold = 0.1, comment="", saveimg=True):
     """
     Plot the derived parameter (T or S) along the different observation points
