@@ -27,10 +27,7 @@ def plot_baseflow_sa_vs_boundary_block(results, path_to_results):
     plt.xlabel("boundary")
     plt.show()
 
-# execute plot_baseflow_sa_vs_boundary_block
-import pandas as pd
-results = pd.read_csv("/Users/houben/phd/results/20190717_SA_hetero_block_2/combined_results/baseflow_results_merge.csv")
-plot_baseflow_sa_vs_boundary_block(results,"/Users/houben/phd/results/20190717_SA_hetero_block_2/combined_results/baseflow_results_merge.csv")
+
 
 
 
@@ -568,3 +565,9 @@ if __name__ == "__main__":
 #    results = pd.read_csv("/Users/houben/phd/results/20190717_SA_hetero_block_2/1_results_merge.csv")
 #    path_to_results = "/Users/houben/phd/results/20190717_SA_hetero_block_2"
 #    plot_parameter_vs_location_block(results, path_to_results, borders=borders, S_in = 0.3, recharge1=recharge1, recharge2=recharge2, comment="S = 0.3")
+
+
+    # execute plot_baseflow_sa_vs_boundary_block
+    #import pandas as pd
+    #results = pd.read_csv("/Users/houben/phd/results/20190717_SA_hetero_block_2/combined_results/baseflow_results_merge.csv")
+    #plot_baseflow_sa_vs_boundary_block(results,"/Users/houben/phd/results/20190717_SA_hetero_block_2/combined_results/baseflow_results_merge.csv")
