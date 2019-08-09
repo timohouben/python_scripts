@@ -392,7 +392,7 @@ for i, project_folder in enumerate(project_folder_list):
             popt = [abs(i) for i in popt]
             # add values to dataframe
             print("S fit: ", "{0:.3e}".format(popt[0]))
-            print("S input: ", "{0:.3e}".format(S))
+            print("S input: ", "{0:.3e}".format(S_in))
             print("T fit: ", "{0:.3e}".format(popt[1]))
             print("T input: ", "{0:.3e}".format(T_in))
             print("Covariance of fit:" + str([i for i in pcov]))
