@@ -66,7 +66,7 @@ aquifer_thickness = 30
 which = "mean"
 # convergence criterion: Series of Shh analytical will be truncated when next
 # iteration adds less than this realtive value
-convergence = 0.01
+convergence = 0.1
 # the number of the curve (1st == 1)
 recharge_rfd = 1
 # m an,d n are only taken into account if shh_anlytical_man is used. shh_analytical
