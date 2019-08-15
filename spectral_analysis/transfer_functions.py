@@ -17,9 +17,9 @@ def discharge_ftf(f, d, aquifer_length):
     Parameters
     ----------
 
-    f : float
+    f : 1D-array, float
         The frequency, not angular frequency.
-    d : float
+    d : scalar, float
         Aquifer diffusivity.
     aquifer_length : float
         The length of the aquifer from the water divide to the stream.

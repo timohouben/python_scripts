@@ -113,6 +113,8 @@ def plot_spectrum(
         plt.savefig(
             path + "/" + comment + name + ".png", pad_inches=0.5, bbox_inches="tight"
         )
+    else:
+        plt.show()
     plt.close()
 
 

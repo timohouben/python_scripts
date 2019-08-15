@@ -66,11 +66,9 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
     import numpy as np
 
     if np.shape(input) != np.shape(output):
-        raise ValueError
-        print("x and y must have same length.")
+        raise ValueError("x and y must have same length.")
     if np.asarray(input).ndim != 1:
-        raise ValueError
-        print("x and y must have dimension = 1.")
+        raise ValueError("x and y must have dimension = 1.")
     len_input = len(input)
     len_output = len(output)
     # define the sampling frequency/time step
