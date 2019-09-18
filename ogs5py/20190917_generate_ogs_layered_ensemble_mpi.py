@@ -45,9 +45,9 @@ import shutil
 
 # -------------------- other configurations
 # root for local
-ogs_root = "/Users/houben/phd/ogs5/sources_bugfix_RWPT/ogs5/build/bin/ogs"
+#ogs_root = "/Users/houben/phd/ogs5/sources_bugfix_RWPT/ogs5/build/bin/ogs"
 # root for eve
-#ogs_root = "/home/houben/OGS_source/ogs"
+ogs_root = "/home/houben/OGS_source/ogs"
 # -------------------- get the arguments and pass them into variables
 file_name = sys.argv[0]
 CWD = sys.argv[1]
@@ -80,17 +80,14 @@ number_of_realizations = 100
 # Give a list of arbitrary length. Storage = specific storage
 storage_list = [0.01, 0.0001]
 # Give a list with strings to files which contain the recharge you want to apply.
-recharge_path_list = ["/Users/houben/phd/modelling/recharge/20190304_recharge_daily.txt",
+recharge_path_list = ["/home/houben/recharge/recharge_daily.txt",
+    "/home/houben/recharge/recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt",
+    ]
+''' path for local
+["/Users/houben/phd/modelling/recharge/20190304_recharge_daily.txt",
                         "/Users/houben/phd/modelling/recharge/realistic/recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt"
                         ]
-
-''' for eve
-[
-    "/home/houben/recharge/recharge_daily.txt",
-    "/home/houben/recharge/recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt",
-]
 '''
-
 # According to your recharge_list give a name for each recharge.
 rech_abv_list = ["whitenoise", "mHM"]
 # Hydraulic conductivity values. Will be taken from a log-normal distribution.
