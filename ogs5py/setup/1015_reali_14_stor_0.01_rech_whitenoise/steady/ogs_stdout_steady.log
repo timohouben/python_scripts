@@ -1,0 +1,108 @@
+
+          ###################################################
+          ##                                               ##
+          ##               OpenGeoSys-Project              ##
+          ##                                               ##
+          ##  Helmholtz Center for Environmental Research  ##
+          ##    UFZ Leipzig - Environmental Informatics    ##
+          ##                  TU Dresden                   ##
+          ##              University of Kiel               ##
+          ##            University of Edinburgh            ##
+          ##         University of Tuebingen (ZAG)         ##
+          ##       Federal Institute for Geosciences       ##
+          ##          and Natural Resources (BGR)          ##
+          ##  German Research Centre for Geosciences (GFZ) ##
+          ##                                               ##
+          ##  Version 5.7.1-153-ga9def71  Date 09.08.2016  ##
+          ##                                               ##
+          ###################################################
+
+          File name (without extension): 
+---------------------------------------------
+Data input:
+GEOLIB::readGLIFile open stream from file /Users/houben/phd/python/scripts/ogs5py/setup/1015_reali_14_stor_0.01_rech_whitenoise/transect.gli ... done
+read points from stream ...  ok, 16 points read
+read polylines from stream ...  ok, 12 polylines read
+PCSRead ... done, read 1 processes
+MFPRead
+BCRead ... done, read 1 boundary conditions
+STRead ... done, read 1 source terms
+ICRead
+OUTRead
+TIMRead
+MMPRead ... done, read 30 medium properties
+NUMRead
+MSHRead:  ASCII file
+Executing ConstructGrid() ...  done.
+CURRead
+DOMRead: no DDC file
+---------------------------------------------
+Create PCS processes
+.............................................
+Create: GROUNDWATER_FLOW
+
+->Create MMP
+->Create NUM
+->Create EQS
+->Create TIM
+->Config ELE values
+->Config NOD values
+->Assign IC
+->  Gass flow is formulated as mass balance.
+-> Create BC
+	[BC] set BC took 0.001595
+	[BC] set transient BC took 1e-06
+-> Create ST
+-> recognized XZ plane for PVD output.
+RFR: no restart data
+Checking output data 
+
+
+***Start time steps
+Data output: Polyline profile - obs_00000
+Data output: Polyline profile - obs_00050
+Data output: Polyline profile - obs_00250
+Data output: Polyline profile - obs_00500
+Data output: Polyline profile - obs_00750
+Data output: Polyline profile - obs_00900
+Data output: Polyline profile - obs_00990
+Data output: Polyline profile - obs_01000
+
+
+#############################################################
+Time step: 1|  Time: 1.79769e+308|  Time step size: 1.79769e+308
+
+      ================================================
+    ->Process 0: GROUNDWATER_FLOW
+      ================================================
+    PCS non-linear iteration: 0/1
+      Assembling equation system...
+      Calling linear solver...
+	  SpBICGSTAB iteration: 381/1000 
+      -->LINEAR solution complete. 
+         PCS error DOF[0]: 0.56372
+->Calculate velocity
+
+This step is accepted.
+Write solutions for timestep 1 into file /Users/houben/phd/python/scripts/ogs5py/setup/1015_reali_14_stor_0.01_rech_whitenoise/transect_GROUNDWATER_FLOW_HEAD_primary_value.asc
+Data output: Polyline profile - obs_00000
+Data output: Polyline profile - obs_00050
+Data output: Polyline profile - obs_00250
+Data output: Polyline profile - obs_00500
+Data output: Polyline profile - obs_00750
+Data output: Polyline profile - obs_00900
+Data output: Polyline profile - obs_00990
+Data output: Polyline profile - obs_01000
+
+#############################################################
+
+----------------------------------------------------
+
+For process: GROUNDWATER_FLOW
+Accepted time steps:                1
+Rejected time steps:                0
+
+----------------------------------------------------
+
+^O^: Your simulation is terminated normally ^O^ 
+Simulation time: 5s

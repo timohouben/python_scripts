@@ -1,0 +1,10 @@
+|------------------ Written with ogs5py ------------------|
+#FLUID_PROPERTIES
+  $FLUID_TYPE
+   WATER
+  $DENSITY
+   1 999.7
+  $VISCOSITY
+   1 0.001309
+#STOP
+|-- Written with ogs5py (1.0.4) on: 2019-09-18_15-20-20 --|

@@ -1,0 +1,13 @@
+|------------------ Written with ogs5py ------------------|
+#PROCESS
+  $PCS_TYPE
+   GROUNDWATER_FLOW
+  $NUM_TYPE
+   NEW
+  $PRIMARY_VARIABLE
+   HEAD
+  $BOUNDARY_CONDITION_OUTPUT
+  $RELOAD
+   2 1
+#STOP
+|-- Written with ogs5py (1.0.4) on: 2019-09-18_15-20-20 --|
