@@ -66,7 +66,7 @@ aquifer_thickness = 30
 which = "mean"
 # convergence criterion: Series of Shh analytical will be truncated when next
 # iteration adds less than this realtive value
-convergence = 0.1
+convergence = 0.01
 # the number of the curve (1st == 1)
 recharge_rfd = 1
 # m an,d n are only taken into account if shh_anlytical_man is used. shh_analytical
@@ -208,9 +208,9 @@ for i, project_folder in enumerate(project_folder_list):
             os.mkdir(path_to_results)
         # inner loop over all observation points of current OGS model run
         # change the order of the lists
-        #myorder = np.arange(-len(obs_point_list)+1,1)*-1
-        #obs_point_list = [obs_point_list[i] for i in myorder]
-        #obs_loc_list = [obs_loc_list[i] for i in myorder]
+        myorder = np.arange(-len(obs_point_list)+1,1)*-1
+        obs_point_list = [obs_point_list[i] for i in myorder]
+        obs_loc_list = [obs_loc_list[i] for i in myorder]
         for j, (obs_point, obs_loc) in enumerate(zip(obs_point_list, obs_loc_list)):
             print("###################################################################")
             print("Project folder: " + project_folder)
@@ -311,7 +311,8 @@ for i, project_folder in enumerate(project_folder_list):
                     comment=comment,
                 )
                 # break this itearation and continue with next obs point
-                continue
+                #continue
+                break
             # load head time series
             head_time_series = np.loadtxt(
                 path_to_multiple_projects
@@ -483,4 +484,4 @@ for i, project_folder in enumerate(project_folder_list):
         #results["sigma_T"] = results["cov_numbers"].apply(lambda x: x[3] if x != [] else np.nan)
         #results["sigma_S"] = results["cov_numbers"].apply(lambda x: x[0] if x != [] else np.nan)
 
-        plot_parameter_vs_location(path_to_results, results["T_out"], obs_loc_list, y_label="T_out")
+#        plot_parameter_vs_location(path_to_results, results["T_out"], obs_loc_list, y_label="T_out")
