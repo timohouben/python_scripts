@@ -5,6 +5,20 @@ from __future__ import division
 
 # ------------------------------------------------------------------------------
 
+def get_kf_from_blocks(path,number_of_blocks):
+    """
+    This function returns a list with kf values from the mmp blocks in the
+    ogs .mmp-file. It's sorted like the blocks are sorted, i.e. like the material
+    groups.
+    """
+    from ogs5py import OGS
+    ogsmodel = OGS(task_root=path)
+    ogsmodel.load_model(task_root=path)
+    kf_list = []
+    for i in range(number_of_blocks):
+        kf_list.append(ogsmodel.mmp.get_block(i)['PERMEABILITY_TENSOR'][0][1])
+    return kf_list
+
 
 def get_ogs_parameters(path, noKf=False):
     from ogs5py import OGS
@@ -33,5 +47,6 @@ def get_ogs_parameters(path, noKf=False):
 
 
 if __name__ == "__main__":
-    path = "/Users/houben/PhD/modelling/20190304_spectral_analysis_homogeneous/models/100_sample2_351_1.10e-05_1.00e-03"
-    print(get_ogs_parameters(path))
+    #path = "/Users/houben/PhD/modelling/20190304_spectral_analysis_homogeneous/models/100_sample2_351_1.10e-05_1.00e-03"
+    #print(get_ogs_parameters(path))
+    print(get_kf_from_blocks("/Users/houben/Desktop/eve_work/20190917_generate_ogs_layered_ensemble/setup/1001_reali_0_stor_0.01_rech_whitenoise", 30))
