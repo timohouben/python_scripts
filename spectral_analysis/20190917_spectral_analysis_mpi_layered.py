@@ -286,7 +286,7 @@ for i, project_folder in enumerate(project_folder_list):
                 results = results.append(other=results_temp, ignore_index=True, sort=False)
 
                 # calculate the fitted power spectra
-                Sqq_fitted = discharge_ftf(frequency, D, aquifer_length)
+                Sqq_fitted = discharge_ftf(frequency, D_out, aquifer_length)
 
                 Sqq_fitted = np.reshape(Sqq_fitted,(len(Sqq_fitted),))
                 Sqq = np.reshape(Sqq,(len(Sqq),))
