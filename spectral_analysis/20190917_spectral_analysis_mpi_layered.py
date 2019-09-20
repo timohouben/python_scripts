@@ -34,7 +34,7 @@ import numpy as np
 import os
 import pandas as pd
 import os.path
-from mpi4py import MPIx
+from mpi4py import MPI
 from scipy.stats import hmean,gmean
 
 
