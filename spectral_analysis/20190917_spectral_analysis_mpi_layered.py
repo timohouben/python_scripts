@@ -50,7 +50,7 @@ from processing import *
 from power_spectrum import power_spectrum
 from plot_power_spectra import plot_spectrum
 from get_obs import get_obs
-from get_ogs_parameters import get_ogs_parameters
+from get_ogs_parameters import get_ogs_parameters, get_kf_from_blocks
 from shh_analytical import shh_analytical_fit, shh_analytical
 from plot_fitting_results import plot_errors_vs_loc_hetero, plot_parameter_vs_location
 from tools import get_ogs_folders
