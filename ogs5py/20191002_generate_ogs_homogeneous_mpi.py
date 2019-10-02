@@ -6,9 +6,7 @@ configuration, afterwards the OGS run starts, output is redirected into the
 settings.
 
 Kf values for models will be sampled from a log-normal dristribution!!
-
-THIS IS ACTUALLY THE SAME SETUP AS 20190808 BUT WITH ANOTHER SAMPLES DISTRIBUTION
-
+In contrast to 20190808, recharge is applied from the left side of the model domain!
 
 How To
 ------
@@ -83,11 +81,9 @@ rech_abv_list = ["whitenoise", "mHM"]
 # Hydraulic conductivity values. Will be taken from a log-normal distribution.
 np.random.seed(1337)
 mean=-10
-sigma=1
+sigma=2
 size=100
-kf_list = np.random.lognormal(mean=mean,sigma=sigma,size=size)
-plt.hist(kf_list, bins=30)
-
+kf_list = np.random.lognormal(mean=-10,sigma=2,size=100)
 # save plots and .txt for kf values but only on one rank
 if rank != 0:
     time.sleep(10)
@@ -115,8 +111,6 @@ else:
     kf_list_file.write("list of kf values\n")
     kf_list_file.write("\n".join([str(i) for i in kf_list]))
     kf_list_file.close()
-
-sys.exit()
 
 # Set a start value for "overall_count" which is the index. I recommend to use
 # as much digits as you will be generating new ogs models to end up with a
@@ -371,7 +365,7 @@ for storage in storage_list:
                         ogs.st.add_block(
                             PCS_TYPE=pcs_type_flow,
                             PRIMARY_VARIABLE=var_name_flow,
-                            GEO_TYPE=[["POLYLINE", "top"]],
+                            GEO_TYPE=[["POLYLINE", "left"]],
                             DIS_TYPE=[["CONSTANT_NEUMANN", 1]],
                             TIM_TYPE=[["CURVE", 1]],
                         )
@@ -379,7 +373,7 @@ for storage in storage_list:
                         ogs.st.add_block(
                             PCS_TYPE=pcs_type_flow,
                             PRIMARY_VARIABLE=var_name_flow,
-                            GEO_TYPE=[["POLYLINE", "top"]],
+                            GEO_TYPE=[["POLYLINE", "left"]],
                             DIS_TYPE=[
                                 ["CONSTANT_NEUMANN", np.mean(rfd_data[:, 1])]
                             ],
