@@ -5,7 +5,7 @@ from __future__ import division
 
 # ------------------------------------------------------------------------------
 
-def get_kf_from_blocks(path,number_of_blocks):
+def get_kf_from_blocks(path):
     """
     This function returns a list with kf values from the mmp blocks in the
     ogs .mmp-file. It's sorted like the blocks are sorted, i.e. like the material
@@ -15,6 +15,7 @@ def get_kf_from_blocks(path,number_of_blocks):
     ogsmodel = OGS(task_root=path)
     ogsmodel.load_model(task_root=path)
     kf_list = []
+    number_of_blocks = ogsmodel.mmp.get_block_no()
     for i in range(number_of_blocks):
         kf_list.append(ogsmodel.mmp.get_block(i)['PERMEABILITY_TENSOR'][0][1])
     return kf_list
