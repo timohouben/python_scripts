@@ -15,6 +15,7 @@ the stuff for every time step.
 filename = "transect_ply_obs_01000_t8_GROUNDWATER_FLOW_flow_timeseries.txt"
 path_to_multiple_projects = "/Users/houben/Desktop/eve_work/20190808_generate_ogs_homogeneous_baseflow_sa/setup"
 
+import sys
 import numpy as np
 import os
 import matplotlib.pyplot as plt
@@ -62,32 +63,32 @@ for dir in clean_listdir:
         listdir_1301_1400.append(dir)
 
 # get the baseflow from every folder and sum it up
-baseflow = np.loadtxt(path_to_multiple_projects + "/" + listdir_1001_1100[0] + "/" + filename)
+baseflow_array_1001_1100 = np.loadtxt(path_to_multiple_projects + "/" + listdir_1001_1100[0] + "/" + filename)
 for dir in listdir_1001_1100[1:]:
     baseflow_tmp = np.loadtxt(path_to_multiple_projects + "/" + dir + "/" + filename)
-    baseflow = np.column_stack((baseflow_tmp, baseflow))
-baseflow_sum_1001_1100 = np.sum(baseflow,axis=1)
+    baseflow_array_1001_1100 = np.column_stack((baseflow_tmp, baseflow_array_1001_1100))
+baseflow_sum_1001_1100 = np.sum(baseflow_array_1001_1100,axis=1)
 
 # get the baseflow from every folder and sum it up
-baseflow = np.loadtxt(path_to_multiple_projects + "/" + listdir_1101_1200[0] + "/" + filename)
+baseflow_array_1101_1200 = np.loadtxt(path_to_multiple_projects + "/" + listdir_1101_1200[0] + "/" + filename)
 for dir in listdir_1101_1200[1:]:
     baseflow_tmp = np.loadtxt(path_to_multiple_projects + "/" + dir + "/" + filename)
-    baseflow = np.column_stack((baseflow_tmp, baseflow))
-baseflow_sum_1101_1200 = np.sum(baseflow,axis=1)
+    baseflow_array_1101_1200 = np.column_stack((baseflow_tmp, baseflow_array_1101_1200))
+baseflow_sum_1101_1200 = np.sum(baseflow_array_1101_1200,axis=1)
 
 # get the baseflow from every folder and sum it up
-baseflow = np.loadtxt(path_to_multiple_projects + "/" + listdir_1201_1300[0] + "/" + filename)
+baseflow_array_1201_1300 = np.loadtxt(path_to_multiple_projects + "/" + listdir_1201_1300[0] + "/" + filename)
 for dir in listdir_1201_1300[1:]:
     baseflow_tmp = np.loadtxt(path_to_multiple_projects + "/" + dir + "/" + filename)
-    baseflow = np.column_stack((baseflow_tmp, baseflow))
-baseflow_sum_1201_1300 = np.sum(baseflow,axis=1)
+    baseflow_array_1201_1300 = np.column_stack((baseflow_tmp, baseflow_array_1201_1300))
+baseflow_sum_1201_1300 = np.sum(baseflow_array_1201_1300,axis=1)
 
 # get the baseflow from every folder and sum it up
-baseflow = np.loadtxt(path_to_multiple_projects + "/" + listdir_1301_1400[0] + "/" + filename)
+baseflow_array_1301_1400 = np.loadtxt(path_to_multiple_projects + "/" + listdir_1301_1400[0] + "/" + filename)
 for dir in listdir_1301_1400[1:]:
     baseflow_tmp = np.loadtxt(path_to_multiple_projects + "/" + dir + "/" + filename)
-    baseflow = np.column_stack((baseflow_tmp, baseflow))
-baseflow_sum_1301_1400 = np.sum(baseflow,axis=1)
+    baseflow_array_1301_1400 = np.column_stack((baseflow_tmp, baseflow_array_1301_1400))
+baseflow_sum_1301_1400 = np.sum(baseflow_array_1301_1400,axis=1)
 
 def moving_variance(timeseries):
     variance=[]
@@ -96,15 +97,7 @@ def moving_variance(timeseries):
     varnorm = [i/np.nanmax(variance) for i in variance]
     return variance, varnorm
 
-####
-# execute from here
-####
-
-
-plt.figure(figsize=(16,10))
-for baseflow, name, color in zip([baseflow_sum_1001_1100, baseflow_sum_1101_1200, baseflow_sum_1201_1300, baseflow_sum_1301_1400],["0.01, white noise, ensemble", "0.01, mHM, ensemble", "0.0001, white noise, ensemble", "0.0001, mHM, ensemble"],["red", "blue", "green", "black"]):
-    plt.plot(moving_variance(baseflow)[1], label=name, linestyle="-", color=color)
-
+print("Data loading finished!")
 
 ## add the other models with single setups
 folders = os.listdir("/Users/houben/Desktop/eve_work/20190910_ogs_homogeneous_baseflow_sa_means" + "/setup")
@@ -121,6 +114,50 @@ except ValueError:
 baseflows = []
 variances = []
 
+plt.figure(figsize=(16,10))
+
+####
+# Plot The variance of the baseflow
+####
+#x, y = extract_rfd("/Users/houben/Desktop/eve_work/20190910_ogs_homogeneous_baseflow_sa_means/setup/1400_kf_ari_stor_0.0001_rech_mHM",1,export=False)
+#plt.plot(np.var(baseflow_array_1301_1400, axis=1), label="ensemble variance")
+#plt.plot([i/10000 for i in y], label="recharge")
+#plt.legend()
+#plt.savefig("/Users/houben/Desktop/eve_work/20190808_generate_ogs_homogeneous_baseflow_sa/variance_analysis/ensemble_variance_vs_recharge.png", dpi=300)
+#plt.show()
+####
+# Plot The temporal evolution of the baseflows
+####
+from scipy.stats import gmean, hmean
+plt.plot(np.mean(baseflow_array_1201_1300,axis=1), label="ensemble arimean")
+plt.plot(gmean(baseflow_array_1201_1300,axis=1), label="ensemble geomean")
+#plt.plot(hmean([i*-1 if i < 0 else i for i in baseflow_array_1301_1400],axis=1), label="ensemble harmean")
+for folder, style, color in zip(sorted(folders),["--",":","-.","--",":","-.","--",":","-.","--",":","-."],["red", "red", "red", "blue","blue","blue", "green","green","green", "black", "black", "black"]):
+    if folder[:4] != "1300":
+        continue
+    basetemp = np.loadtxt("/Users/houben/Desktop/eve_work/20190910_ogs_homogeneous_baseflow_sa_means" + "/setup/" + folder + "/" + "transect_ply_obs_01000_t8_GROUNDWATER_FLOW_flow_timeseries.txt")
+    plt.plot(basetemp, label=folder[8:], linestyle=style, color=color)
+    print("Finished " + folder + ".")
+plt.legend()
+plt.title("Evolution of Baseflow over Time")
+plt.ylabel("baseflow")
+plt.xlabel("time step [days]")
+plt.xlim(5800,6000)
+#plt.ylim(0.000005,0.000006)
+plt.savefig("/Users/houben/Desktop/eve_work/20190808_generate_ogs_homogeneous_baseflow_sa/variance_analysis/1201_1300_baseflow.png", dpi=300)
+plt.show()
+plt.close()
+
+sys.exit()
+
+
+####
+# Plot The temporal evolution of the variances
+####
+for baseflow, name, color in zip([baseflow_sum_1001_1100, baseflow_sum_1101_1200, baseflow_sum_1201_1300, baseflow_sum_1301_1400],["0.01, white noise, ensemble", "0.01, mHM, ensemble", "0.0001, white noise, ensemble", "0.0001, mHM, ensemble"],["red", "blue", "green", "black"]):
+    plt.plot(moving_variance(baseflow)[1], label=name, linestyle="-", color=color)
+
+
 for folder, style, color in zip(sorted(folders),["--",":","-.","--",":","-.","--",":","-.","--",":","-."],["red", "red", "red", "blue","blue","blue", "green","green","green", "black", "black", "black"]):
     basetemp = np.loadtxt("/Users/houben/Desktop/eve_work/20190910_ogs_homogeneous_baseflow_sa_means" + "/setup/" + folder + "/" + "transect_ply_obs_01000_t8_GROUNDWATER_FLOW_flow_timeseries.txt")
     vartemp = moving_variance(basetemp)[1]
@@ -134,3 +171,4 @@ plt.title("Evolution of Baseflow Variance over Time")
 plt.ylabel("normalized variance")
 plt.xlabel("time step [days]")
 plt.savefig("/Users/houben/Desktop/eve_work/20190808_generate_ogs_homogeneous_baseflow_sa/variance_analysis/variance.png", dpi=300)
+plt.close()

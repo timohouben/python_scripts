@@ -76,6 +76,8 @@ def extract_rfd(path, rfd=1, export=True):
         path to ogs directory
     rfd : int
         Extract the #rfd curve from the rfd file and save it as txt. rfd = 0 : no extraction
+    export : bool (Default: True)
+        If True .txt-files will be saved to the path.
 
     Yields
     ------
