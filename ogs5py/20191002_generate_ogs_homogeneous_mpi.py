@@ -5,10 +5,8 @@ configuration, afterwards the OGS run starts, output is redirected into the
 "steady" folder and steady input files are changed to input files with transient
 settings.
 
-Kf values for the layers will be sampled from a log-normal dristribution!!
-
-The OGS domain is a layered domain with another Kf value for every layer.
-The kf values will be randomly drawn from the distribution.
+Kf values for models will be sampled from a log-normal dristribution!!
+In contrast to 20190808, recharge is applied from the left side of the model domain!
 
 How To
 ------
@@ -31,7 +29,6 @@ How To
 
 """
 # -------------------- import modules
-import random
 import time
 import sys
 import os
@@ -44,9 +41,6 @@ import subprocess
 import shutil
 
 # -------------------- other configurations
-# root for local
-#ogs_root = "/Users/houben/phd/ogs5/sources_bugfix_RWPT/ogs5/build/bin/ogs"
-# root for eve
 ogs_root = "/home/houben/OGS_source/ogs"
 # -------------------- get the arguments and pass them into variables
 file_name = sys.argv[0]
@@ -75,19 +69,13 @@ step_size = np.array([86400])
 time_end = np.sum(time_steps * step_size)
 
 # -------------------- parameter configuration
-# set a number of realization
-number_of_realizations = 100
 # Give a list of arbitrary length. Storage = specific storage
 storage_list = [0.01, 0.0001]
 # Give a list with strings to files which contain the recharge you want to apply.
-recharge_path_list = ["/home/houben/recharge/recharge_daily.txt",
+recharge_path_list = [
+    "/home/houben/recharge/recharge_daily.txt",
     "/home/houben/recharge/recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt",
-    ]
-''' path for local
-["/Users/houben/phd/modelling/recharge/20190304_recharge_daily.txt",
-                        "/Users/houben/phd/modelling/recharge/realistic/recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt"
-                        ]
-'''
+]
 # According to your recharge_list give a name for each recharge.
 rech_abv_list = ["whitenoise", "mHM"]
 # Hydraulic conductivity values. Will be taken from a log-normal distribution.
@@ -95,7 +83,7 @@ np.random.seed(1337)
 mean=-10
 sigma=2
 size=100
-kf_list = np.random.lognormal(mean=-10,sigma=2,size=30)
+kf_list = np.random.lognormal(mean=-10,sigma=2,size=100)
 # save plots and .txt for kf values but only on one rank
 if rank != 0:
     time.sleep(10)
@@ -175,7 +163,7 @@ if not os.path.exists(parent_dir):
 # -----------------------------------------------------------------------------
 for storage in storage_list:
     for recharge_path, rech_abv in zip(recharge_path_list, rech_abv_list):
-        for realization in np.arange(0,number_of_realizations):
+        for kf in kf_list:
             # Only run the fllowing code "on the right rank":
             if (overall_count - start) % slots == rank:
                 print(
@@ -188,8 +176,8 @@ for storage in storage_list:
                 # Name the folder
                 name = (
                     str(overall_count)
-                    + "_reali_"
-                    + str("{:.0f}".format(realization))
+                    + "_kf_"
+                    + str("{:.3e}".format(kf))
                     + "_stor_"
                     + str(storage)
                     + "_rech_"
@@ -207,7 +195,11 @@ for storage in storage_list:
                     output_dir=dire + "/" + "steady" + "/",
                 )
                 # -------------------- MSH
-                # Generate a rectangular mesh in x-z-plane.
+                # Generate a rectangular mesh in x-z-plane. The first and the
+                # second part of the mesh will be generated independently.
+                # Afterwards, the two parts will be combined to one single
+                # mesh. First part on the left side. This generates a mesh in
+                # x-y-plane which will be rotated in a few steps.
                 ogs.msh.generate(
                     "rectangular",
                     dim=2,
@@ -215,17 +207,8 @@ for storage in storage_list:
                     element_no=(n_cellsx, n_cellsz),
                     element_size=(s_cellsx, s_cellsz),
                 )
-                # get the centroids of the mesh
-                cent = ogs.msh.centroids_flat
-                x = cent[:, 0]
-                y = cent[:, 1]
-                # get the y-coordinates for the top of the layers
-                y_layers = [i for i in np.arange(0,thickness,s_cellsz)]
-                for y_layer, mat_id in zip(y_layers,range(len(y_layers))):
-                    element_mask = np.logical_and(y > y_layer, y < (y_layer + s_cellsz))
-                    ogs.msh.set_material_id(mat_id, element_mask=element_mask)
-                # show the mesh with mayavi
-                #ogs.msh.show(show_material_id=True)
+                # Use a MATERIAL_ID to be able to distinguish afer combination.
+                ogs.msh.MATERIAL_ID = 0
                 # Rotate mesh to obtain a cross section in x-z-plane.
                 ogs.msh.rotate(
                     angle=np.pi / 2.0, rotation_axis=(1.0, 0.0, 0.0)
@@ -235,7 +218,7 @@ for storage in storage_list:
                 ogs.msh.NODES[:, 0] = np.around(ogs.msh.NODES[:, 0], 4)
                 ogs.msh.NODES[:, 2] = np.around(ogs.msh.NODES[:, 2], 4)
                 # Export the mesh if you like.
-                #ogs.msh.export_mesh("/Users/houben/phd/python/scripts/ogs5py/20190917_mesh.vtk", file_format="vtk-ascii")
+                # ogs.msh.export_mesh("Path/and/name/for/your/mesh.msh")
 
                 # -------------------- GLI
                 # Add points on every edge of the model and name them.
@@ -254,8 +237,6 @@ for storage in storage_list:
                 ogs.gli.add_polyline(name="right", points=["B", "C"])
                 ogs.gli.add_polyline(name="top", points=["D", "C"])
                 ogs.gli.add_polyline(name="left", points=["A", "D"])
-                print("asdad")
-                sys.exit()
                 # Add the points and polylines based on the aquifer length and
                 # desired relative position of the observation points.
                 obs = []
@@ -319,16 +300,12 @@ for storage in storage_list:
                 )
 
                 # -------------------- MMP
-                # generate a mmp-block for every layer
-                # shuffle the kf_list
-                np.random.shuffle(kf_list)
-                # HERE I SHOULD INCLUDE A FILE SAVING THE SHUFFLED KF LIST!!!!
-                for kf in kf_list:
-                    ogs.mmp.add_block(
-                        GEOMETRY_DIMENSION=dim_no,
-                        STORAGE=[[1, storage]],
-                        PERMEABILITY_TENSOR=[["ISOTROPIC", kf]],
-                        )
+                # First block for MATERIAL_ID = 0
+                ogs.mmp.add_block(
+                    GEOMETRY_DIMENSION=dim_no,
+                    STORAGE=[[1, storage]],
+                    PERMEABILITY_TENSOR=[["ISOTROPIC", kf]],
+                )
                 # -------------------- NUM
                 # Set the linear solver.
                 ogs.num.add_block(
@@ -388,7 +365,7 @@ for storage in storage_list:
                         ogs.st.add_block(
                             PCS_TYPE=pcs_type_flow,
                             PRIMARY_VARIABLE=var_name_flow,
-                            GEO_TYPE=[["POLYLINE", "top"]],
+                            GEO_TYPE=[["POLYLINE", "left"]],
                             DIS_TYPE=[["CONSTANT_NEUMANN", 1]],
                             TIM_TYPE=[["CURVE", 1]],
                         )
@@ -396,7 +373,7 @@ for storage in storage_list:
                         ogs.st.add_block(
                             PCS_TYPE=pcs_type_flow,
                             PRIMARY_VARIABLE=var_name_flow,
-                            GEO_TYPE=[["POLYLINE", "top"]],
+                            GEO_TYPE=[["POLYLINE", "left"]],
                             DIS_TYPE=[
                                 ["CONSTANT_NEUMANN", np.mean(rfd_data[:, 1])]
                             ],
