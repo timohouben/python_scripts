@@ -256,8 +256,6 @@ for storage in storage_list:
                 ogs.gli.add_polyline(name="right", points=["B", "C"])
                 ogs.gli.add_polyline(name="top", points=["D", "C"])
                 ogs.gli.add_polyline(name="left", points=["A", "D"])
-                print("asdad")
-                sys.exit()
                 # Add the points and polylines based on the aquifer length and
                 # desired relative position of the observation points.
                 obs = []
