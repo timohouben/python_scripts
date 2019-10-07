@@ -207,7 +207,7 @@ for i, project_folder in enumerate(project_folder_list):
         # plot the time series vs recharge
         plot_head_timeseries_vs_recharge(path=path_to_project)
         # get a list of kf values from the blocks in the .mmp-file
-        kf_list = get_kf_from_blocks(path_to_project,number_of_blocks)
+        kf_list = get_kf_from_blocks(path_to_project)
         kf_in_ari, kf_in_geo, kf_in_har = np.mean(kf_list), gmean(kf_list), hmean(kf_list)
         T_in_ari, T_in_geo, T_in_har = kf_in_ari * aquifer_thickness, kf_in_geo*aquifer_thickness, kf_in_har*aquifer_thickness
         # write OGS input parameters in DataFrame, but don't return kf because it is ditrubuted
