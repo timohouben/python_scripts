@@ -22,6 +22,10 @@ def get_kf_from_blocks(path):
 
 
 def get_ogs_parameters(path, noKf=False):
+    """Return Ss, kf from the first block of the .mmp-file
+    Return time_step_size and time_steps from the .tim-file."""
+
+
     from ogs5py import OGS
 
     ogsmodel = OGS(task_root=path)
