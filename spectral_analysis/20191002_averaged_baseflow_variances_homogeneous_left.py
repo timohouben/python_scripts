@@ -12,8 +12,8 @@ the stuff for every time step.
 
 # some variables
 filename = "transect_ply_obs_01000_t8_GROUNDWATER_FLOW_flow_timeseries.txt"
-path_to_multiple_projects = "/Users/houben/Desktop/eve_work/20191002_generate_ogs_homogeneous_baseflow_sa_2/setup"
-path_to_multiple_projects_single = "/Users/houben/Desktop/eve_work/20191007_ogs_homogeneous_baseflow_sa_means_2/setup"
+path_to_multiple_projects = "/Users/houben/Desktop/eve_work/20191002_generate_ogs_homogeneous_baseflow_sa_2_left/setup"
+path_to_multiple_projects_single = "/Users/houben/Desktop/eve_work/20191007_ogs_homogeneous_baseflow_sa_means_2_left/setup"
 
 
 import sys
@@ -124,7 +124,7 @@ plt.figure(figsize=(16,10))
 ####
 # Plot The variance of the baseflows as ensemble variance
 ####
-#x, y = extract_rfd("/Users/houben/Desktop/eve_work/20191002-2_generate_ogs_layered_ensemble_2/setup/1101_reali_0_stor_0.01_rech_mHM",1,export=False)
+#x, y = extract_rfd(path_to_multiple_projects + "/1101_kf_1.112e-05_stor_0.01_rech_mHM",1,export=False)
 #plt.plot(np.var(baseflow_array_1101_1200, axis=1), label="ensemble variance")
 #plt.plot([i/1000000 for i in y], label="recharge / 1000000")
 #plt.legend()
@@ -163,13 +163,13 @@ plt.figure(figsize=(16,10))
 ####
 plt.figure(figsize=(16,10))
 for baseflow, name, color in zip([baseflow_sum_1001_1100, baseflow_sum_1101_1200, baseflow_sum_1201_1300, baseflow_sum_1301_1400],["0.01, white noise, ensemble", "0.01, mHM, ensemble", "0.0001, white noise, ensemble", "0.0001, mHM, ensemble"],["red", "blue", "green", "black"]):
-    plt.semilogy(moving_variance(baseflow)[1], label=name, linestyle="-", color=color)
+    plt.plot(moving_variance(baseflow)[1], label=name, linestyle="-", color=color)
 
 
 for folder, style, color in zip(sorted(folders),["--",":","-.","--",":","-.","--",":","-.","--",":","-."],["red", "red", "red", "blue","blue","blue", "green","green","green", "black", "black", "black"]):
     basetemp = np.loadtxt(path_to_multiple_projects_single + "/" + folder + "/" + "transect_ply_obs_01000_t8_GROUNDWATER_FLOW_flow_timeseries.txt")
     vartemp = moving_variance(basetemp)[1]
-    plt.semilogy(vartemp, label=folder[8:], linestyle=style, color=color)
+    plt.plot(vartemp, label=folder[8:], linestyle=style, color=color)
     print("Finished " + folder + ". The variance approaches in the last time step: " + str(vartemp[-1]))
 
 
@@ -178,5 +178,5 @@ plt.legend()
 plt.title("Evolution of Baseflow Variance over Time")
 plt.ylabel("normalized variance")
 plt.xlabel("time step [days]")
-plt.savefig(path_to_multiple_projects[:-6] + "/variance_analysis/moving_variance_norm_log.png", dpi=300)
+plt.savefig(path_to_multiple_projects[:-6] + "/variance_analysis/moving_variance_norm_lin.png", dpi=300)
 plt.close()

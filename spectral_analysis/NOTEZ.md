@@ -34,6 +34,7 @@
 - Include a File for the OGS setup, for observation point, their distance to the ricer and the name!!!! or improve GET_OBS (not generic enough)
 - Set up a generic script to perform the SA on a single folder but parallel on EVE (partly done)
 - Don't use the index of time series, use the actual time!
+- create a folder with example files which uses the functions and classes in the respective folder
 
 ## ToBeDone
 - Find an appropriate measure to compare input and output parameters.

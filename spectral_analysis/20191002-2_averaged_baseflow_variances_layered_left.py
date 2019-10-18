@@ -136,26 +136,26 @@ plt.figure(figsize=(16,10))
 ####
 # Plot The temporal evolution of the baseflows
 ####
-from scipy.stats import gmean, hmean
-plt.plot(np.mean(baseflow_array_1001_1100,axis=1), label="ensemble arimean")
-plt.plot(gmean(baseflow_array_1001_1100,axis=1), label="ensemble geomean")
+#from scipy.stats import gmean, hmean
+#plt.plot(np.mean(baseflow_array_1301_1400,axis=1), label="ensemble arimean")
+#plt.plot(gmean(baseflow_array_1301_1400,axis=1), label="ensemble geomean")
 #plt.plot(hmean([i*-1 if i < 0 else i for i in baseflow_array_1301_1400],axis=1), label="ensemble harmean")
-for folder, style, color in zip(sorted(folders),["--",":","-.","--",":","-.","--",":","-.","--",":","-."],["red", "red", "red", "blue","blue","blue", "green","green","green", "black", "black", "black"]):
-    if folder[:4] != "1100":
-        continue
-    basetemp = np.loadtxt(path_to_multiple_projects_single + "/" + folder + "/" + "transect_ply_obs_01000_t8_GROUNDWATER_FLOW_flow_timeseries.txt")
-    plt.plot(basetemp, label=folder[8:], linestyle=style, color=color)
-    print("Finished " + folder + ".")
-plt.legend()
-plt.title("Baseflow over Time")
-plt.ylabel("baseflow")
-plt.xlabel("time step [days]")
-plt.xlim(0,6000)
-plt.ylim(1.4e-7,2e-7)
-plt.savefig(path_to_multiple_projects[:-6] + "/variance_analysis/1001_1100_baseflow.png", dpi=300)
-plt.show()
-plt.close()
-sys.exit()
+#for folder, style, color in zip(sorted(folders),["--",":","-.","--",":","-.","--",":","-.","--",":","-."],["red", "red", "red", "blue","blue","blue", "green","green","green", "black", "black", "black"]):
+#    if folder[:4] != "1400":
+#        continue
+#    basetemp = np.loadtxt(path_to_multiple_projects_single + "/" + folder + "/" + "transect_ply_obs_01000_t8_GROUNDWATER_FLOW_flow_timeseries.txt")
+#    plt.plot(basetemp, label=folder[8:], linestyle=style, color=color)
+#    print("Finished " + folder + ".")
+#plt.legend()
+#plt.title("Baseflow over Time")
+#plt.ylabel("baseflow")
+#plt.xlabel("time step [days]")
+#plt.xlim(5000,6000)
+#plt.ylim(1.4e-7,2e-7)
+#plt.savefig(path_to_multiple_projects[:-6] + "/variance_analysis/1301_1400_baseflow.png", dpi=300)
+#plt.show()
+#plt.close()
+#sys.exit()
 
 
 ####
@@ -163,13 +163,13 @@ sys.exit()
 ####
 plt.figure(figsize=(16,10))
 for baseflow, name, color in zip([baseflow_sum_1001_1100, baseflow_sum_1101_1200, baseflow_sum_1201_1300, baseflow_sum_1301_1400],["0.01, white noise, ensemble", "0.01, mHM, ensemble", "0.0001, white noise, ensemble", "0.0001, mHM, ensemble"],["red", "blue", "green", "black"]):
-    plt.semilogy(moving_variance(baseflow)[1], label=name, linestyle="-", color=color)
+    plt.plot(moving_variance(baseflow)[1], label=name, linestyle="-", color=color)
 
 
 for folder, style, color in zip(sorted(folders),["--",":","-.","--",":","-.","--",":","-.","--",":","-."],["red", "red", "red", "blue","blue","blue", "green","green","green", "black", "black", "black"]):
     basetemp = np.loadtxt(path_to_multiple_projects_single + "/" + folder + "/" + "transect_ply_obs_01000_t8_GROUNDWATER_FLOW_flow_timeseries.txt")
     vartemp = moving_variance(basetemp)[1]
-    plt.semilogy(vartemp, label=folder[8:], linestyle=style, color=color)
+    plt.plot(vartemp, label=folder[8:], linestyle=style, color=color)
     print("Finished " + folder + ". The variance approaches in the last time step: " + str(vartemp[-1]))
 
 
@@ -178,5 +178,5 @@ plt.legend()
 plt.title("Evolution of Baseflow Variance over Time")
 plt.ylabel("normalized variance")
 plt.xlabel("time step [days]")
-plt.savefig(path_to_multiple_projects[:-6] + "/variance_analysis/moving_variance_norm_log.png", dpi=300)
+plt.savefig(path_to_multiple_projects[:-6] + "/variance_analysis/moving_variance_norm_lin.png", dpi=300)
 plt.close()
