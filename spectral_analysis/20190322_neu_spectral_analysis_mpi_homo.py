@@ -418,7 +418,7 @@ for i, project_folder in enumerate(project_folder_list):
                 "D_in": T_in/S_in,
                 "T_out": popt[1],
                 "S_out": popt[0],
-                "tc_out": calc_tc(aquifer_length, popt[0], popt[1]),
+                "tc_out": calc_tc(aquifer_length, popt[0], popt[1], which="dupuit"),
                 "cov": pcov,
                 "obs_loc": obs_loc,
                 "time_step_size": time_step_size,
