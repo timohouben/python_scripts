@@ -21,7 +21,8 @@ convergence
 comment
 # the number of the curve (1st == 1)
 recharge_rfd
-lims
+lims_head
+lims_base
 
 path_to_multiple_projects as first argument
 number of cores as second argument
@@ -460,7 +461,6 @@ for i, project_folder in enumerate(project_folder_list):
                 "Shh fitted"
             ]
             linestyle = ["-", "-"]
-            # lims = [(1e-9,6e-6),(1e-6,1e5)]
             marker = ["", "d"]
             figtxt = "OGS Input Parameter: S = %1.3e, T = %1.3e" % (
                 S_in,
@@ -476,7 +476,7 @@ for i, project_folder in enumerate(project_folder_list):
                     frequency,
                     labels=labels,
                     path=path_to_results,
-                    lims=lims,
+                    lims=lim,
                     linestyle=linestyle,
                     marker=marker,
                     heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),
