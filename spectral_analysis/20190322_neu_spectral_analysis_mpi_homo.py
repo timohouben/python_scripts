@@ -21,6 +21,7 @@ convergence
 comment
 # the number of the curve (1st == 1)
 recharge_rfd
+lims
 
 path_to_multiple_projects as first argument
 number of cores as second argument
@@ -83,6 +84,9 @@ comment = "1_"  # give a specific comment for the analysis e.g. "parameterset1_"
 cut_index = None
 # plot the power spectrum normalized by recharge or not
 norm = False
+# limits for the spektrum plot
+lims_head = [(1e-9,6e-6),(1e-6,1e12)]
+lims_base = [(1e-9,6e-6),(1e-6,3e1)]
 # ------------------------------------------------------------------------------
 # some parameters for the mpi run
 # ------------------------------------------------------------------------------
@@ -295,7 +299,6 @@ for i, project_folder in enumerate(project_folder_list):
                 ]
 
                 linestyle = ["-", "-"]
-                # lims = [(1e-9,6e-6),(1e-6,1e5)]
                 marker = ["", ""]
                 figtxt = "OGS Input Parameter: S = %1.3e, T = %1.3e, D = %1.3e" % (
                     S_in,
@@ -306,23 +309,24 @@ for i, project_folder in enumerate(project_folder_list):
                     D_cov[0],
                 )
 
-                plot_spectrum(
-                    data,
-                    frequency,
-                    labels=labels,
-                    path=path_to_results,
-                    #   lims=lims,
-                    linestyle=linestyle,
-                    marker=marker,
-                    heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),
-                    name="SA_"
-                    + project_folder
-                    + "_"
-                    + str(obs_loc).zfill(len(str(aquifer_length)))
-                    + "_baseflow",
-                    figtxt=figtxt,
-                    comment=comment,
-                )
+                for lim, name in zip([lims_base, None],["SA_lim", "SA_"]):
+                    plot_spectrum(
+                        data,
+                        frequency,
+                        labels=labels,
+                        path=path_to_results,
+                        lims=lim,
+                        linestyle=linestyle,
+                        marker=marker,
+                        heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),
+                        name=name
+                        + project_folder
+                        + "_"
+                        + str(obs_loc).zfill(len(str(aquifer_length)))
+                        + "_baseflow",
+                        figtxt=figtxt,
+                        comment=comment,
+                    )
                 # break this itearation and continue with next obs point
                 continue
             # load head time series
@@ -466,22 +470,23 @@ for i, project_folder in enumerate(project_folder_list):
                 popt[1],
             )
 
-            plot_spectrum(
-                data,
-                frequency,
-                labels=labels,
-                path=path_to_results,
-                #   lims=lims,
-                linestyle=linestyle,
-                marker=marker,
-                heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),
-                name="SA_"
-                + project_folder
-                + "_"
-                + str(obs_loc).zfill(len(str(aquifer_length))),
-                figtxt=figtxt,
-                comment=comment,
-            )
+            for lim, name in zip([lims_head, None],["SA_lim", "SA_"]):
+                plot_spectrum(
+                    data,
+                    frequency,
+                    labels=labels,
+                    path=path_to_results,
+                    lims=lims,
+                    linestyle=linestyle,
+                    marker=marker,
+                    heading="Folder: " + project_folder + "\nLocation: " + str(obs_loc),
+                    name=name
+                    + project_folder
+                    + "_"
+                    + str(obs_loc).zfill(len(str(aquifer_length))),
+                    figtxt=figtxt,
+                    comment=comment,
+                )
 
 
         time_1_folder_end = time.time() - time_1_folder_begin
