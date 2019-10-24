@@ -6,7 +6,7 @@ from __future__ import division
 # ------------------------------------------------------------------------------
 
 
-def calc_tc(L, S, T):
+def calc_tc(L, S, T, which="lin"):
     """
     Calculates tc characteristic time scale (Gelhar 1974) in days!
 
@@ -19,6 +19,9 @@ def calc_tc(L, S, T):
         Storativity [-]
     T : float
         Transmissivity [m^2/s]
+    which : string
+        "linear" : for linear aquifer
+        "dupuit" : for dupuit aquifer
 
     Yields
     ------
@@ -26,4 +29,9 @@ def calc_tc(L, S, T):
     tc : float
         characteristic time scale [day]
     """
-    return L ** 2 * S / 3 / T / 86400
+
+    if which == "lin":
+        return L ** 2 * S / 3 / T / 86400
+    if which == "dupuit":
+        from numpy import pi
+        return 4 * L ** 2 * S / pi ** 2 / T / 86400
