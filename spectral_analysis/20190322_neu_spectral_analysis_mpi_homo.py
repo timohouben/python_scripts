@@ -79,7 +79,7 @@ recharge_rfd = 1
 # also ,has m and n as arguments but is not using them.
 m = None
 n = None
-comment = "1_"  # give a specific comment for the analysis e.g. "parameterset1_"
+comment = "2_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = None
@@ -191,7 +191,7 @@ for i, project_folder in enumerate(project_folder_list):
         # initialize the dataframe
         results = pd.DataFrame(columns=columns)
         print("###################################################################")
-        print("Starting spectral analysis for folder " + project_folder + " on rank " + str(rank))
+        print("Starting spectral analysis for folder " + project_folder + " on rank " + str(rank) + "\nTime: " + time.ctime(time.time()))
         print("###################################################################")
         path_to_project = path_to_multiple_projects + "/" + project_folder
         # get list of observation points in current porject_folder
@@ -224,11 +224,13 @@ for i, project_folder in enumerate(project_folder_list):
         )
         if not os.path.exists(path_to_results):
             os.mkdir(path_to_results)
+        # ---
+        # change the order of the lists to start with the baseflow
+        #myorder = np.arange(-len(obs_point_list)+1,1)*-1
+        #obs_point_list = [obs_point_list[i] for i in myorder]
+        #obs_loc_list = [obs_loc_list[i] for i in myorder]
+        # ---
         # inner loop over all observation points of current OGS model run
-        # change the order of the lists
-        myorder = np.arange(-len(obs_point_list)+1,1)*-1
-        obs_point_list = [obs_point_list[i] for i in myorder]
-        obs_loc_list = [obs_loc_list[i] for i in myorder]
         for j, (obs_point, obs_loc) in enumerate(zip(obs_point_list, obs_loc_list)):
             print("###################################################################")
             print("Project folder: " + project_folder)
@@ -490,7 +492,10 @@ for i, project_folder in enumerate(project_folder_list):
 
 
         time_1_folder_end = time.time() - time_1_folder_begin
-        print("Ready! " + str(time_1_folder_end) + " s elapsed for " + project_folder + "...")
+        print("###################################################################")
+        print("Ready! Finished spectral analysis for folder " + project_folder + ".\nTime elapsed: " + str(time_1_folder_end) + " s")
+        print("On rank " + str(rank) + "\nCurrent time: " + time.ctime(time.time()))
+        print("###################################################################")
         # set path to results incl file name of results
         path_to_results_df = path_to_results + "/" + comment + "results.csv"
         # if os.path.isfile(path_to_results_df): # override = true, not necesarry
