@@ -79,7 +79,7 @@ recharge_rfd = 1
 # also ,has m and n as arguments but is not using them.
 m = None
 n = None
-comment = "2_"  # give a specific comment for the analysis e.g. "parameterset1_"
+comment = "3_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = None
