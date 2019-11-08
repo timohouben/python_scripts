@@ -276,8 +276,8 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
     # Shh = [Sww[i]/Sy**2/omega[i] for i in range(0, len(omega))]
 
     # Show how many iterations where needed to meet the criterion
-    print("Iterations for inner sum: " + str(counter_inner))
-    print("Iterations for outer sum: " + str(counter_inner))
+    #print("Iterations for inner sum: " + str(counter_inner))
+    #print("Iterations for outer sum: " + str(counter_inner))
 
     if norm == True:
         Shh_Sww = [value / Sww[i] for i, value in enumerate(Shh)]
