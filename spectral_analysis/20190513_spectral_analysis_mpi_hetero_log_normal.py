@@ -72,7 +72,7 @@ recharge_rfd = 1
 # also ,has m and n as arguments but is not using them.
 m = None
 n = None
-comment = "1_"  # give a specific comment for the analysis e.g. "parameterset1_"
+comment = "20191108_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = None
@@ -217,7 +217,7 @@ for i, project_folder in enumerate(project_folder_list):
         kf_in_har = float(harmean)
         kf_in_ari = float(arimean)
         S_in = Ss_in * aquifer_thickness
-        T_in_eo = kf_in_geo + aquifer_thickness
+        T_in_geo = kf_in_geo + aquifer_thickness
         T_in_har = kf_in_har + aquifer_thickness
         T_in_ari = kf_in_ari + aquifer_thickness
         # make directory for results
