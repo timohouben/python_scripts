@@ -172,6 +172,7 @@ for i, project_folder in enumerate(project_folder_list):
     kf_har = float(harmean)
     kf_ari = float(arimean)
     S = Ss * aquifer_thickness
+    HERE IS A MISTAKE: IT SHOULD BE * INSTEAD OF + in the following lines
     T_geo = kf_geo + aquifer_thickness
     T_har = kf_har + aquifer_thickness
     T_ari = kf_ari + aquifer_thickness

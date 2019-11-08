@@ -217,9 +217,9 @@ for i, project_folder in enumerate(project_folder_list):
         kf_in_har = float(harmean)
         kf_in_ari = float(arimean)
         S_in = Ss_in * aquifer_thickness
-        T_in_geo = kf_in_geo + aquifer_thickness
-        T_in_har = kf_in_har + aquifer_thickness
-        T_in_ari = kf_in_ari + aquifer_thickness
+        T_in_geo = kf_in_geo * aquifer_thickness
+        T_in_har = kf_in_har * aquifer_thickness
+        T_in_ari = kf_in_ari * aquifer_thickness
         # make directory for results
         path_to_results = (
             path_to_multiple_projects + "/" + project_folder + "/" + "spectral_analysis"
