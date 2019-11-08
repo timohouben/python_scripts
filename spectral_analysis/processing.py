@@ -178,7 +178,7 @@ def difference_fraction_log(a, b):
     return (np.log(a) - np.log(b)) / np.log(a)
 
 
-def combine_results(path_to_multiple_projects, filename):
+def combine_results(path_to_multiple_projects, name):
     """
     Searches for results.csv in all subdirectories and combines these files. All csv files must have the same header!
 
@@ -187,7 +187,7 @@ def combine_results(path_to_multiple_projects, filename):
 
     path_to_multiple_projects : string
         Path in which you want to start searching. Results will be stored on this level.
-    filename : string
+    name : string
         Name of .csv file.
     """
 
@@ -199,7 +199,7 @@ def combine_results(path_to_multiple_projects, filename):
 
     file_paths = []
     for dirpath, dirnames, filenames in os.walk(path_to_multiple_projects):
-        for filename in [f for f in filenames if f.endswith(str(filename))]:
+        for filename in [f for f in filenames if f.endswith(str(name))]:
             file_paths.append(dirpath + "/" + str(filename))
 
     # get header from first file in list
@@ -220,7 +220,7 @@ def combine_results(path_to_multiple_projects, filename):
             csv_merge.write(line)
         csv_in.close()
     csv_merge.close()
-    print("Created consolidated CSV file : " + filename[:-4] + "_merge.csv")
+    print("Created consolidated CSV file : " + name[:-4] + "_merge.csv")
 
 
 def get_filename_from_rfd_top_com(

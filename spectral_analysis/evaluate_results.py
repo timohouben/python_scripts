@@ -106,4 +106,5 @@ def evaluate_fit(path_to_results, filename="results.csv"):
 
 
 if __name__ == "__main__":
-    evaluate_fit("/Users/houben/Desktop/test", "csv_merge.csv")
+    pass
+    #evaluate_fit("/Users/houben/Desktop/test", "csv_merge.csv")

@@ -20,7 +20,7 @@ def calc_tc(L, S, T, which="lin"):
     T : float
         Transmissivity [m^2/s]
     which : string
-        "linear" : for linear aquifer
+        "linear" : for linear aquifer (default)
         "dupuit" : for dupuit aquifer
 
     Yields
