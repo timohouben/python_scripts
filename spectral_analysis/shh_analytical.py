@@ -176,7 +176,7 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
         be taken for both, shh_analytical and shh_analytical_man.
     norm : bool
         normalize the output spectrum Shh by the input spectrum Sww
-    convergence : float
+    convergence : float, Default: 0.01
         Convergence criterion. If new iteration of series adds less than this
         value the series is truncated.
 
@@ -276,8 +276,8 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
     # Shh = [Sww[i]/Sy**2/omega[i] for i in range(0, len(omega))]
 
     # Show how many iterations where needed to meet the criterion
-    # print(counter_inner)
-    # print(counter_inner)
+    print("Iterations for inner sum: " + str(counter_inner))
+    print("Iterations for outer sum: " + str(counter_inner))
 
     if norm == True:
         Shh_Sww = [value / Sww[i] for i, value in enumerate(Shh)]
@@ -345,7 +345,7 @@ def shh_analytical_2015(
         be taken for both, shh_analytical and shh_analytical_man.
     norm : bool
         normalize the output spectrum Shh by the input spectrum Sww
-    convergence : float
+    convergence : float, Default: 0.01
         Convergence criterion. If new iteration of series adds less than this
         %-value the series is truncated.
 
@@ -501,6 +501,9 @@ def shh_analytical_fit(Sww, Shh, f, x, L, m, n, norm, convergence):
         number of terms of inner sum, default
     norm : bool
         normalize the output spectrum Shh by the input spectrum Sww
+    convergence : float
+        Convergence criterion. If new iteration of series adds less than this
+        value the series is truncated.
 
 
     Yields
@@ -526,7 +529,7 @@ def shh_analytical_fit(Sww, Shh, f, x, L, m, n, norm, convergence):
 
     partial = prt(shh_analytical, x=x, L=L, m=m, n=n, norm=norm, convergence=convergence)
     initial_guess = [1e-3, 1e-3]
-    bounds = (1e-7, 1)
+    bounds = (1e-8, 1)
     popt, pcov = optimization.curve_fit(
         partial, (f, Sww), Shh, p0=initial_guess, method="lm"
     )  # , bounds=bounds)

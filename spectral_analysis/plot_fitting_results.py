@@ -125,7 +125,7 @@ def plot_parameter_vs_location_block(results, path_to_results, borders, S_in, re
         plt.savefig(path_to_results + "/" + comment + "T_vs_location.png", dpi=dpi)
     #plt.show()
 
-def plot_error_vs_tc(results, path_to_results, comment="", abs=True):
+def plot_error_vs_tc(results, path_to_results, lims=None, locs=None, comment="", abs=True, yaxis="log"):
     """
     Plot errors of input and output parameters (S, T, tc) vs input tc.
     This results in 3 (S,T,tc) plots with multiple graphs according to the
@@ -140,6 +140,13 @@ def plot_error_vs_tc(results, path_to_results, comment="", abs=True):
         Path where to store the images
     abs : bool
         Take the mean over absolute errors or not.
+    locs : list of integers
+        default: [200, 400, 600, 800, 990]
+    lims : list of two tuples with limits for x and y. [(x_min, x_max), (y_min, y_max)]
+        Default: No limits
+    yaxis : string, Default: "log"
+        "log": loglog plot
+        "lin": semilogx
     """
 
     import pandas as pd
@@ -148,6 +155,12 @@ def plot_error_vs_tc(results, path_to_results, comment="", abs=True):
     import os
 
     from cycler import cycler
+
+    try:
+        if locs == None:
+            locs = [200, 400, 600, 800, 990]
+    except ValueError:
+        pass
 
     # ['#f1eef6', '#d0d1e6', '#a6bddb', '#74a9cf','#3690c0','#0570b0','#034e7b']
     plt.rc(
@@ -174,7 +187,7 @@ def plot_error_vs_tc(results, path_to_results, comment="", abs=True):
     for error in ["err_S", "err_T", "err_tc"]:
         tc_agg = results["tc_in"].apply(lambda x: np.around(x, 2)).unique()
         tc_agg.sort()
-        for loc in [200, 400, 600, 800, 990]:  # results.obs_loc.unique():
+        for loc in locs:  # results.obs_loc.unique():
             results_loc = results[error][results["obs_loc"] == loc]
             err_vs_tc_at_loc = []
             for tc in tc_agg:
@@ -203,19 +216,26 @@ def plot_error_vs_tc(results, path_to_results, comment="", abs=True):
                             ]
                         )
                     )
-            plt.loglog(tc_agg, err_vs_tc_at_loc, label=str(loc) + " m")
-
+            if yaxis == "log":
+                plt.loglog(tc_agg, err_vs_tc_at_loc, label=str(loc) + " m")
+            elif yaxis == "lin":
+                plt.semilogx(tc_agg, err_vs_tc_at_loc, label=str(loc) + " m")
+            else:
+                print("Please set argument 'yaxis' either to 'lin' or 'log'.")
+        if lims != None:
+            plt.ylim(lims[1])
+            plt.xlim(lims[0])
         plt.ylabel(error + " [%]")
         plt.xlabel("t_c [days]")
         plt.legend()
         plt.savefig(
             path_to_results
             + "/error_vs_tc/"
+            + comment
+            + "_"
             + error
             + "_vs_tc_abs_"
             + str(abs)
-            + "_"
-            + comment
             + ".png",
             dpi=dpi,
             bbox_inches="tight",
@@ -286,7 +306,7 @@ def plot_errors_vs_loc_aggregate(
     plt.title(("Plot: " + error + ", " + "Aggregation: " + aggregate))
     plt.ylabel(error)
     plt.xlabel("location [m]")
-    plt.savefig(path_to_results + "/" + error + "-" + aggregate, bbox_inches="tight")
+    plt.savefig(path_to_results + "/" + error + "-" + aggregate, bbox_inches="tight", dpi=dpi)
     plt.close()
 
 
