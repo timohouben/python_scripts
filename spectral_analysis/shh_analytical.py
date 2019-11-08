@@ -226,8 +226,8 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
         return np.cos((2 * n + 1) * np.pi * x_dim / 2) / (2 * n + 1)
 
     # Count the number of iteration
-    counter_inner = []
-    counter_outer = []
+    #counter_inner = []
+    #counter_outer = []
 
     Shh = []
     for i, freq in enumerate(omega):
@@ -256,7 +256,7 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
                 else:
                     inner_sum += single_inner_sum
                 k += 1
-            counter_inner.append(k)
+            #counter_inner.append(k)
             # print("Needed " + str(k) + " iterations for " + str(j) + ". outer sum.")
             # the result from inner_sum is equal to single_outer_sum. This step ist redundand.
             single_outer_sum = inner_sum
@@ -267,7 +267,7 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
             else:
                 outer_sum += inner_sum
             j += 1
-        counter_outer.append(j)
+        #counter_outer.append(j)
         # print("Needed " + str(j) + " iterations for " + str(i) + ". value of Sww.")
         Shh.append(outer_sum * (16 / np.pi ** 2 / Sy ** 2))
 
