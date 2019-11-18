@@ -1,3 +1,26 @@
+def get_ogs_polyline_length(path, name):
+    """
+    Returns the length of the polyline.
+
+    Parameters
+    ----------
+    path : string
+        Path to OGS project folder.
+    name : string
+        Name of the polyline which length should be returned.
+    """
+
+    from ogs5py import OGS
+    from scipy.spatial.distance import euclidean
+    ogsmodel = OGS(task_root=path)
+    ogsmodel.load_model(task_root=path)
+    for line in ogsmodel.gli.POLYLINES:
+        if line["NAME"] == name:
+            points = line["POINTS"]
+            return euclidean(ogsmodel.gli.POINTS[points[0]],ogsmodel.gli.POINTS[points[1]])
+        else:
+            pass
+
 def get_ogs_folders(path):
     """
     Returns a list of directories where OGS model runs have been setup based on the following file types. It does not decide whether the model has run or not.
@@ -29,7 +52,6 @@ def get_ogs_folders(path):
         for extension in file_extensions_list:
             if glob.glob(path + "/" + folder + "/" + extension):
                 check_extensions.append(True)
-
         if len(check_extensions) != len(file_extensions_list):
             project_folder_list.remove(folder)
     return project_folder_list
@@ -53,3 +75,10 @@ def get_ogs_task_id(path):
     task_id = string[pos1 + 1 : -5]
 
     return task_id
+
+
+if __name__ == "__main__":
+    pass
+    #name = "right"
+    #path = "/Users/houben/phd/modelling/20190712_Constant_vs_Constant_Neumann/1b_steady_gw_flow_stor_0.1_kf_0.0001_C_1"
+    #test = get_ogs_polyline_length(path, name)

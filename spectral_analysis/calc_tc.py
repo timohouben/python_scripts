@@ -6,7 +6,7 @@ from __future__ import division
 # ------------------------------------------------------------------------------
 
 
-def calc_tc(L, S, T, which="lin"):
+def calc_tc(L, S, T, which="linear"):
     """
     Calculates tc characteristic time scale (Gelhar 1974) in days!
 
@@ -30,7 +30,7 @@ def calc_tc(L, S, T, which="lin"):
         characteristic time scale [day]
     """
 
-    if which == "lin":
+    if which == "linear":
         return L ** 2 * S / 3 / T / 86400
     if which == "dupuit":
         from numpy import pi

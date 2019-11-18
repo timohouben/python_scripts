@@ -1,5 +1,5 @@
 def plot_combined_violins_for_ensemble_runs_hetero(
-    path, filename, order, len_scales, y, savename="", y_lims=None, bw=None
+    path, filename, order, len_scales, y, savename="", y_lims=None, bw=None, yachsis="lin"
 ):
     """
     Make violin plots for ensemble runs with log-normal distributed hydraulic
@@ -21,10 +21,13 @@ def plot_combined_violins_for_ensemble_runs_hetero(
         give a list of size 2 with correlation lenghts
     y : string
         Which column of data frame to use for violins.
-    ylims : tuple (y_min,y_max)
+    ylims : tuple (y_min,y_max), Default: None
         Tuple of limits for y-axis:
-    bw : float
+    bw : float, Default: None
         Bandwith of violin plots.
+    yachsi : string, Default: "lin"
+        "lin" : linear y-achsis
+        "log" : log y-achsis
 
 
     Yields
@@ -92,6 +95,12 @@ def plot_combined_violins_for_ensemble_runs_hetero(
         ax1.set_ylabels("$S\;[-]$ derived by fit")
     plt.legend(loc="upper left")
     ax1.set_xlabels("location of observation point [m]")
+    if yachsis == "log":
+        plt.yscale('log')
+    elif yachsis == "lin":
+        pass
+    else:
+        print("Argument yachsis has to be 'lin' or 'log'. Selected default 'lin'.")
     plt.ylim(y_lims)
     plt.savefig(
         path
@@ -104,6 +113,8 @@ def plot_combined_violins_for_ensemble_runs_hetero(
         + "_".join([str(i) for i in order])
         + "_bw_"
         + str(bw)
+        + "_"
+        + yachsis
         + ".png",
         dpi=300,
         bbox_inches="tight",
@@ -359,6 +370,23 @@ if __name__ == '__main__':
 #        for len_scalesT in len_scales:
 #            for yT in y:
 #                plot_combined_violins_for_ensemble_runs("/Users/houben/phd/results/20190513_spec_anal_hetero_ensemble_1", "merge_results.csv", orderT, len_scalesT,yT,bw=0.2)
+
+
+# plot the results for 20191108_results_merge
+path = "/Users/houben/phd/results/20190513_spec_anal_hetero_ensemble_1/20191114_combined_results"
+filename = "20191108_results_merge.csv"
+order = [100,200,500,800,940]
+len_scales = [5, 15]
+y = "T_out"
+yachsis = "log"
+
+
+plot_combined_violins_for_ensemble_runs_hetero(path, filename, order, len_scales, y, savename="", y_lims=None, bw=None, yachsis=yachsis)
+
+
+
+
+
 
 '''
 # plot the results for 20190917_ogs_layered_ensemble
