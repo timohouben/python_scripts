@@ -12,14 +12,21 @@ def get_ogs_polyline_length(path, name):
 
     from ogs5py import OGS
     from scipy.spatial.distance import euclidean
+    found = False
     ogsmodel = OGS(task_root=path)
     ogsmodel.load_model(task_root=path)
     for line in ogsmodel.gli.POLYLINES:
         if line["NAME"] == name:
+            found = True
             points = line["POINTS"]
             return euclidean(ogsmodel.gli.POINTS[points[0]],ogsmodel.gli.POINTS[points[1]])
         else:
             pass
+
+    if found == False:
+        raise NameError("No polyline with the name " + name + " has been found!")
+    else:
+        pass
 
 def get_ogs_folders(path):
     """

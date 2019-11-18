@@ -59,7 +59,7 @@ from shh_analytical import shh_analytical_fit, shh_analytical
 from plot_fitting_results import plot_errors_vs_loc_hetero, plot_parameter_vs_location
 from tools import get_ogs_folders
 from calculate_flow import plot_recharge_vs_baseflow, get_baseflow_from_polyline
-from tools import get_ogs_task_id
+from tools import get_ogs_task_id, get_ogs_polyline_length
 from transfer_functions import discharge_ftf_fit, discharge_ftf
 # ------------------------------------------------------------------------------
 # set some arameters for the analysis manually
@@ -183,6 +183,8 @@ for i, project_folder in enumerate(project_folder_list):
         # get list of observation points in current porject_folder
         obs_point_list = get_obs(path_to_project, without_max=False)[1]
         obs_loc_list = get_obs(path_to_project, without_max=False)[2]
+        aquifer_thickness = get_ogs_polyline_length(path_to_project, "left")
+        connection_length = get_ogs_polyline_length(path_to_project, "river")
         # check if time series for different observation points have already been extracted
         checker = []
         for item in obs_point_list:
@@ -232,20 +234,20 @@ for i, project_folder in enumerate(project_folder_list):
                 # multiply the recharge time series with the aquifer length to get the total inflow
                 recharge = recharge_time_series * aquifer_length
                 try:
-                    D, D_cov, frequency, Sqq = discharge_ftf_fit(recharge, baseflow, time_step_size, aquifer_length)
+                    D_out, D_cov, frequency, Sqq = discharge_ftf_fit(recharge, baseflow, time_step_size, aquifer_length)
                 except RuntimeError:
                     print("Optimal parameters not found...")
-                    D[0], D_cov[0] = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
+                    D_out[0], D_cov[0] = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
                     print("popt and pcov have been set to np.nan")
                 except ValueError:
                     print("either ydata or xdata contain NaNs, or if incompatible options are used")
-                    D[0], D_cov[0] = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
+                    D_out[0], D_cov[0] = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
                 except OptimizeWarning:
                     print("Covariance of the parameters could not be estimated.")
                     #popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
 
                 # add values to dataframe
-                print("D: ", "{0:.3e}".format(D[0]))
+                print("D: ", "{0:.3e}".format(D_out[0]))
                 print("Covariance of fit:" + str(D_cov[0]))
 
                 # fill temporal dataframe for one model run
@@ -266,7 +268,8 @@ for i, project_folder in enumerate(project_folder_list):
                     "recharge": get_filename_from_rfd_top_com(path_to_project),
                     "aquifer_length": aquifer_length,
                     "aquifer_thickness": aquifer_thickness,
-                    "D": D[0],
+                    "connection_length": connection_length,
+                    "D_out": D_out[0],
                     "D_cov": D_cov[0],
                 }
 
@@ -293,7 +296,7 @@ for i, project_folder in enumerate(project_folder_list):
                     T_in,
                     T_in/S_in
                 ) + "\nDerived Parameter:    D = %1.3e, D_cov = %1.1e" % (
-                    D[0],
+                    D_out[0],
                     D_cov[0],
                 )
 
@@ -419,7 +422,8 @@ for i, project_folder in enumerate(project_folder_list):
                 "recharge": get_filename_from_rfd_top_com(path_to_project),
                 "aquifer_length": aquifer_length,
                 "aquifer_thickness": aquifer_thickness,
-                "D": np.nan,
+                "connection_length": connection_length,
+                "D_out": np.nan,
                 "D_cov": np.nan,
             }
 
