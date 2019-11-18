@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def calc_t_c(L, S, T):
-    return L ** 2 * S / 3 / T / 86400
+#def calc_t_c(L, S, T):
+#    return L ** 2 * S / 3 / T / 86400
 
 
 # define parameter space
@@ -22,16 +22,15 @@ barmin = 1e-2
 # plt.semilogy(T)
 
 
-def plot_heatmap(S, T, function):
+def plot_heatmap(S, T):
     """
-    Plot S vs T and colorize the heatmap accodring to function.
+    Plot S vs T and colorize the heatmap accodring to calt_tc.
 
     Parameters
     ----------
 
     S : 1D array
     T : 1D array
-    function : functon to calculate the Z value
 
     Yields
     ------
@@ -43,6 +42,8 @@ def plot_heatmap(S, T, function):
     import pandas as pd
     from matplotlib.colors import LogNorm
     import math
+    from calc_tc import calc_tc
+
 
     def plot(pivot, vmin, vmax):
 
@@ -64,7 +65,7 @@ def plot_heatmap(S, T, function):
             cmap="PuBu",
             norm=log_norm,
             cbar_kws={"ticks": cbar_ticks},
-            annot=True,
+            annot=False,
         )  # ,yticklabels=achsislabel_y)#,xticklabels=achsislabel_x)
         # ax.set_yticks(achsisticks_y)
         # ax.set_xticks(achsisticks_x)
@@ -85,7 +86,7 @@ def plot_heatmap(S, T, function):
     sample_space = []
     for i in S:
         for j in T:
-            sample_space.append([i, j, calc_t_c(aquifer_length, i, j)])
+            sample_space.append([i, j, calc_tc(aquifer_length, i, j, which="dupuit")])
     # create a dictionary from input parameters and sample the space
     data = {
         "S": [sample_space[i][0] for i in np.arange(len(sample_space))],
@@ -108,4 +109,4 @@ def plot_heatmap(S, T, function):
 
 
 if __name__ == "__main__":
-    plot_heatmap(S, T, calc_t_c)
+    plot_heatmap(S, T)

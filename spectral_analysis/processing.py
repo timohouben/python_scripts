@@ -188,7 +188,7 @@ def combine_results(path_to_multiple_projects, name):
     path_to_multiple_projects : string
         Path in which you want to start searching. Results will be stored on this level.
     name : string
-        Name of .csv file.
+        Last part of the name of .csv file which should be selected. (= endswith)
     """
 
     import os
