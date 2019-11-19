@@ -124,7 +124,8 @@ dataframe : n_observation_points x n_parameters
     recharge : type of recharge
     aquifer_length : aquifer_length
     aquifer_thickness : aquifer_thickness
-    connection_length : Length of river polyline.
+    c_length : Length of river polyline.
+    c_length_rel : Relative length of river in relation to the aqhifer thickness
     D_out : Diffusivity
     D_cov : Covariance of fit or Diffusivity
 """
@@ -165,7 +166,8 @@ columns = [
     "recharge",
     "aquifer_length",
     "aquifer_thickness",
-    "connection_length",
+    "c_length",
+    "c_length_rel",
     "D_out",
     "D_cov",
 ]
@@ -184,7 +186,7 @@ for i, project_folder in enumerate(project_folder_list):
         obs_point_list = get_obs(path_to_project, without_max=False)[1]
         obs_loc_list = get_obs(path_to_project, without_max=False)[2]
         aquifer_thickness = get_ogs_polyline_length(path_to_project, "left")
-        connection_length = get_ogs_polyline_length(path_to_project, "river")
+        c_length = get_ogs_polyline_length(path_to_project, "river")
         # check if time series for different observation points have already been extracted
         checker = []
         for item in obs_point_list:
@@ -268,7 +270,8 @@ for i, project_folder in enumerate(project_folder_list):
                     "recharge": get_filename_from_rfd_top_com(path_to_project),
                     "aquifer_length": aquifer_length,
                     "aquifer_thickness": aquifer_thickness,
-                    "connection_length": connection_length,
+                    "c_length": c_length,
+                    "c_length_rel": c_length / aquifer_thickness,
                     "D_out": D_out[0],
                     "D_cov": D_cov[0],
                 }
@@ -276,7 +279,7 @@ for i, project_folder in enumerate(project_folder_list):
                 results = results.append(other=results_temp, ignore_index=True, sort=False)
 
                 # calculate the fitted power spectra
-                Sqq_fitted = discharge_ftf(frequency, D, aquifer_length)
+                Sqq_fitted = discharge_ftf(frequency, D_out, aquifer_length)
 
                 Sqq_fitted = np.reshape(Sqq_fitted,(len(Sqq_fitted),))
                 Sqq = np.reshape(Sqq,(len(Sqq),))
@@ -422,7 +425,8 @@ for i, project_folder in enumerate(project_folder_list):
                 "recharge": get_filename_from_rfd_top_com(path_to_project),
                 "aquifer_length": aquifer_length,
                 "aquifer_thickness": aquifer_thickness,
-                "connection_length": connection_length,
+                "c_length": c_length,
+                "c_length_rel": c_length / aquifer_thickness,
                 "D_out": np.nan,
                 "D_cov": np.nan,
             }
