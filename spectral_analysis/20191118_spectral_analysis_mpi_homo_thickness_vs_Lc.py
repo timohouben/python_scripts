@@ -174,9 +174,6 @@ columns = [
     "D_cov",
 ]
 
-# set path to results incl file name of results
-path_to_results_df = path_to_results + "/" + comment + "results.csv"
-
 # outer loop over all project_folders containing OGS model runs
 for i, project_folder in enumerate(project_folder_list):
     if i%slots == rank:
@@ -217,6 +214,8 @@ for i, project_folder in enumerate(project_folder_list):
         path_to_results = (
             path_to_multiple_projects + "/" + project_folder + "/" + "spectral_analysis"
         )
+        # set path to results incl file name of results
+        path_to_results_df = path_to_results + "/" + comment + "results.csv"
         if not os.path.exists(path_to_results):
             os.mkdir(path_to_results)
         # inner loop over all observation points of current OGS model run
