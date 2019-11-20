@@ -1,6 +1,7 @@
 def get_ogs_polyline_length(path, name):
     """
-    Returns the length of the polyline.
+    Returns the length of a polyline. The number of points which make up the
+    polyline must not be more than 2!
 
     Parameters
     ----------
@@ -19,6 +20,10 @@ def get_ogs_polyline_length(path, name):
         if line["NAME"] == name:
             found = True
             points = line["POINTS"]
+            if len(points) > 2:
+                print("The polyline has more than 2 points!")
+                print("Exit!")
+                break
             return euclidean(ogsmodel.gli.POINTS[points[0]],ogsmodel.gli.POINTS[points[1]])
         else:
             pass
