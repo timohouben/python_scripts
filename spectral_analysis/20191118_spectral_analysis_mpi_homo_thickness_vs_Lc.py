@@ -174,6 +174,9 @@ columns = [
     "D_cov",
 ]
 
+# set path to results incl file name of results
+path_to_results_df = path_to_results + "/" + comment + "results.csv"
+
 # outer loop over all project_folders containing OGS model runs
 for i, project_folder in enumerate(project_folder_list):
     if i%slots == rank:
@@ -322,6 +325,8 @@ for i, project_folder in enumerate(project_folder_list):
                     figtxt=figtxt,
                     comment=comment,
                 )
+                # Save the results after each iteration to a dataframe.
+                results.to_csv(path_to_results_df)
                 # break this itearation and continue with next obs point
                 continue
             # load head time series
@@ -488,8 +493,6 @@ for i, project_folder in enumerate(project_folder_list):
             results.to_csv(path_to_results_df)
         time_1_folder_end = time.time() - time_1_folder_begin
         print("Ready! " + str(time_1_folder_end) + " s elapsed for " + project_folder + "...")
-        # set path to results incl file name of results
-        path_to_results_df = path_to_results + "/" + comment + "results.csv"
         # if os.path.isfile(path_to_results_df): # override = true, not necesarry
         results.to_csv(path_to_results_df)
 
