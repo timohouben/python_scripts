@@ -139,6 +139,8 @@ except IndexError:
 
 # get a list of all directories containing OGS model runs
 project_folder_list = get_ogs_folders(path_to_multiple_projects)
+print(project_folder_list)
+
 
 # remove folder "fitting_results" from list and sort
 try:
@@ -482,7 +484,8 @@ for i, project_folder in enumerate(project_folder_list):
                 comment=comment,
             )
 
-
+            # Save the results after each iteration to a dataframe.
+            results.to_csv(path_to_results_df)
         time_1_folder_end = time.time() - time_1_folder_begin
         print("Ready! " + str(time_1_folder_end) + " s elapsed for " + project_folder + "...")
         # set path to results incl file name of results
