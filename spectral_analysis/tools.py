@@ -66,7 +66,7 @@ def get_ogs_folders(path):
                 check_extensions.append(True)
             else:
                 check_extensions.append(False)
-        if any(check_extensions) == False
+        if any(check_extensions) == False:
             project_folder_list.remove(folder)
     return project_folder_list
 
