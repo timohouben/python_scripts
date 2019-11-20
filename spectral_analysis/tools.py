@@ -64,7 +64,9 @@ def get_ogs_folders(path):
         for extension in file_extensions_list:
             if glob.glob(path + "/" + folder + "/" + extension):
                 check_extensions.append(True)
-        if len(check_extensions) != len(file_extensions_list):
+            else:
+                check_extensions.append(False)
+        if any(check_extensions) == False
             project_folder_list.remove(folder)
     return project_folder_list
 
