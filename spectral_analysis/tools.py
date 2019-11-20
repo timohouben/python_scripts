@@ -55,20 +55,23 @@ def get_ogs_folders(path):
 
     file_extensions_list = ["*.gli", "*.msh", "*.out", "*.pcs", "*.num"]
     project_folder_list = [f for f in os.listdir(str(path)) if not f.startswith(".")]
+    project_folder_list_temp = project_folder_list.copy()
 
-    # print(project_folder_list)
+#    print(project_folder_list)
     for folder in project_folder_list:
-        #    print(folder)
+#        print(folder)
         check_extensions = []
-        #    print(len(project_folder_list))
+#        print(len(project_folder_list))
         for extension in file_extensions_list:
             if glob.glob(path + "/" + folder + "/" + extension):
                 check_extensions.append(True)
+#                print(extension + " in " + folder)
             else:
                 check_extensions.append(False)
+#                print(extension + " not in " + folder)
         if any(check_extensions) == False:
-            project_folder_list.remove(folder)
-    return project_folder_list
+            project_folder_list_temp.remove(folder)
+    return project_folder_list_temp
 
 
 def get_ogs_task_id(path):
