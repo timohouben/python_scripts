@@ -241,7 +241,6 @@ for storage in storage_list:
                     # Add the points and polylines based on the aquifer length and
                     # desired relative position of the observation points.
                     obs = []
-                    """
                     for percent in percents_of_length:
                         obs_loc = int(np.around(length * percent, 0))
                         # Name of the observation point.
@@ -265,7 +264,7 @@ for storage in storage_list:
                                 [obs_loc, 0.0, thickness],
                             ],
                         )
-                        """
+                        
                     # -------------------- generate .rfd
                     # Load the rfd data from the file.
                     rfd_data = np.loadtxt(recharge_path)
