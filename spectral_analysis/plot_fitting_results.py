@@ -10,35 +10,243 @@ dpi = 300
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
+
+def plot_eff_thickness_vs_connection_length_and_thickness(results, path, obs_locs, stors):
+    """
+    Plot the effectie aquifer thickness which has been calculated from the
+    derived t_c, the real input hydraulic conductivity and the real input
+    spec. storage.
+
+    e.g. for analysis 20191115_ogs_homogeneous_thickness
+
+    Parameter
+    ---------
+    results : Pandas Dataframe
+        Results dataframe from spectral analysis.
+    path : string
+        Path which will be used to store the resulting images.
+    obs_locs : list
+        List of observation points numbering
+    stors : list
+        List of storativities.
+
+    Yields
+    ------
+
+    An image in the path directory.
+    """
+
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    from cycler import cycler
+
+    colors = [
+        "#FF0000",
+        "#FF3A00",
+        "#FF7800",
+        "#FF7800",
+        "#FFFB00",
+        "#B9FF00",
+        "#59FF00",
+        "#00FF9B",
+        "#00FFE4",
+        "#00ECFF",
+        "#00D1FF",
+        "#0097FF",
+        "#0055FF",
+        "#0017FF",
+        "#4900FF",
+        "#8F00FF",
+        "#FB00FF",
+        "#FF009B",
+        "#FF0049",
+        "#FF001B",
+        "#FF0000",
+    ]
+    plt.rc("axes", prop_cycle=(cycler("color", colors)))
+    results = results[results.S_in / results.aquifer_thickness == 0.0001]
+    results = results[~results.effective_thickness.isnull()]
+
+    plt.figure(figsize=(16, 9))
+    for thickness in sorted(results.aquifer_thickness.unique(), reverse=False):
+        # plot the absolut effective thickness
+        #plt.plot(results.c_length_rel[results.aquifer_thickness == thickness], results.effective_thickness[results.aquifer_thickness == thickness], label=thickness, ls="", marker="*")
+        #plt.ylabel("absolut effecive thickness")
+        # plot the relative effective thickness
+        plt.plot(results.c_length_rel[results.aquifer_thickness == thickness], results.effective_thickness[results.aquifer_thickness == thickness] / results.aquifer_thickness[results.aquifer_thickness == thickness], label=thickness, ls="", marker="*")
+        plt.ylabel("relative effecive thickness")
+
+    plt.legend()
+    plt.title("effective aquifer thickness derived from baseflow spectral analysis")
+    plt.xlabel("connection length / aquifer thickness")
+    plt.ylim(0,1.1)
+    plt.show()
+
+
+def plot_k_vs_connection_length_and_thickness(results, path, obs_locs, stors):
+    """
+    Plot the derived kf value from the SA vs the ration between the connection
+    ength of the aquifer and the river. Each graph represents a thickness.
+
+    Parameter
+    ---------
+    results : Pandas Dataframe
+        Results dataframe from spectral analysis.
+    path : string
+        Path which will be used to store the resulting images.
+    obs_locs : list
+        List of observation points numbering
+    stors : list
+        List of storativities.
+
+    Yields
+    ------
+
+    An image in the path directory.
+    """
+
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    from cycler import cycler
+
+    colors = [
+        "#FF0000",
+        "#FF3A00",
+        "#FF7800",
+        "#FF7800",
+        "#FFFB00",
+        "#B9FF00",
+        "#59FF00",
+        "#00FF9B",
+        "#00FFE4",
+        "#00ECFF",
+        "#00D1FF",
+        "#0097FF",
+        "#0055FF",
+        "#0017FF",
+        "#4900FF",
+        "#8F00FF",
+        "#FB00FF",
+        "#FF009B",
+        "#FF0049",
+        "#FF001B",
+        "#FF0000",
+    ]
+    plt.rc("axes", prop_cycle=(cycler("color", colors)))
+
+    results["k_out"] = results["T_out"] / results["aquifer_thickness"]
+    results["Ss_in"] = results["S_in"] / results["aquifer_thickness"]
+    k_in = (results.T_in / results.aquifer_thickness).unique()
+    for stor in stors:
+        for obs_loc in obs_locs:
+            plt.figure(figsize=(16, 9))
+            for aquifer_thickness in sorted(results.aquifer_thickness.unique()):
+                # print(aquifer_thickness)
+                # print("länge: " + str(len(results["k_out"][(results["aquifer_thickness"] == aquifer_thickness) & (results["obs_loc"] == obs_locs) & (results["Ss_in"] == 0.0001)])))
+                # print("name: " + results["name"][(results["aquifer_thickness"] == aquifer_thickness) & (results["obs_loc"] == obs_locs) & (results["Ss_in"] == 0.0001)])
+                if (
+                    len(
+                        results["k_out"][
+                            (results["aquifer_thickness"] == aquifer_thickness)
+                            & (results["obs_loc"] == obs_loc)
+                            & (results["Ss_in"] == stor)
+                        ]
+                    )
+                    == 10
+                ):
+                    pass
+                    plt.semilogy(
+                        results["c_length_rel"][
+                            (results["aquifer_thickness"] == aquifer_thickness)
+                            & (results["obs_loc"] == obs_loc)
+                            & (results["Ss_in"] == stor)
+                        ],
+                        results["k_out"][
+                            (results["aquifer_thickness"] == aquifer_thickness)
+                            & (results["obs_loc"] == obs_loc)
+                            & (results["Ss_in"] == stor)
+                        ],
+                        ls=" ",
+                        marker="*",
+                        label=aquifer_thickness,
+                    )
+            plt.title("Derived K for observation point " + str(obs_loc) + " and different aquifer thicknesses. Specific Storage: " + str(stor))
+            plt.xlabel("Connection length / aquifer thickness")
+            plt.ylabel("K [m/s]")
+            plt.hlines(y=k_in, xmin=0, xmax=1)
+            plt.ylim(1e-6, 1e-4)
+            plt.legend(title="thickness")
+            # plt.show()
+            plt.savefig(
+                path + "/" + str(obs_loc) + "_stor_" + str(stor) + "_k_out_vs_lc.png",
+                dpi=300,
+            )
+            plt.close()
+
+
 def plot_baseflow_sa_vs_boundary_block(results, path_to_results):
     import matplotlib.pyplot as plt
     import pandas as pd
     import numpy as np
-    results_temp = results[results["recharge"] == "recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt"]
+
+    results_temp = results[
+        results["recharge"]
+        == "recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt"
+    ]
     results_temp = results_temp[results_temp["S_in"] == 0.003]
     results_temp = results_temp[results_temp["obs_loc"] == 1000]
     results_temp = results_temp.sort_values(by="name")
-    boundary = [50,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,920,930,940,950,960,970,980,990]
-    #plt.semilogy(boundary, results_temp["D"])
+    boundary = [
+        50,
+        100,
+        150,
+        200,
+        250,
+        300,
+        350,
+        400,
+        450,
+        500,
+        550,
+        600,
+        650,
+        700,
+        750,
+        800,
+        850,
+        920,
+        930,
+        940,
+        950,
+        960,
+        970,
+        980,
+        990,
+    ]
+    # plt.semilogy(boundary, results_temp["D"])
     plt.semilogy(boundary, [float(i[1:-1]) for i in results_temp["D_cov"]])
     plt.grid(which="both")
     plt.ylabel("covariance of optimization")
-    #plt.ylabel("Diffusivity [m^2/s]")
+    # plt.ylabel("Diffusivity [m^2/s]")
     plt.xlabel("boundary")
     plt.show()
 
 
-
-
-
-
-def plot_parameter_vs_location_block(results, path_to_results, borders, S_in, recharge1, recharge2, threshold = 0.1, comment="", saveimg=True):
+def plot_parameter_vs_location_block(
+    results,
+    path_to_results,
+    borders,
+    S_in,
+    recharge_list,
+    threshold=0.1,
+    comment="",
+    saveimg=True,
+    facecolor="#C0C0C0"
+):
     """
     Plot the derived parameter (T or S) along the different observation points
     and for a selection of positions of the boarder between a high and a low
     conductive zone.
-
-    CHANGE MANUALLY: The RECHARGE, THE PARAMETER and THE VALUE OF THE PARAMETER
 
     Parameters
     ----------
@@ -51,16 +259,16 @@ def plot_parameter_vs_location_block(results, path_to_results, borders, S_in, re
         List of values for the boarder between two zones.
     S_in : float
         For which S input.
-    recharge1 : string
-        Name of the first recharge.
-    recharge2 : string
-        Name of the second recharge.
+    recharge_list : list of strings
+        Names of the recharges.
     threshold : float
         Threshold for variance from curve_fit. All other entries will be dropped from data frame.
     comment : string
         Give a commment.
     saveimg : bool, default: True
         True: Saves a .png image like it has been modified in the interactive backend. Will be saved after you have closed the window.
+    facecolor : string, Default: "#C0C0C0"
+        Facecolcor of the plot in HTML color format or as name.
 
     Yields
     ------
@@ -75,13 +283,17 @@ def plot_parameter_vs_location_block(results, path_to_results, borders, S_in, re
 
     # convert strings to numbers
     results["cov_numbers"] = results["cov"].apply(identify_numbers_from_string)
-    results["sigma_S"] = results["cov_numbers"].apply(lambda x: float(x[0]) if x != [] else np.nan)
-    results["sigma_T"] = results["cov_numbers"].apply(lambda x: float(x[3]) if x != [] else np.nan)
+    results["sigma_S"] = results["cov_numbers"].apply(
+        lambda x: float(x[0]) if x != [] else np.nan
+    )
+    results["sigma_T"] = results["cov_numbers"].apply(
+        lambda x: float(x[3]) if x != [] else np.nan
+    )
     # remove all lines where the covariance is higher than threshold
     results = results[results["sigma_T"] > -threshold]
     results = results[results["sigma_T"] < threshold]
 
-    fig, axs = plt.subplots(len(borders), 1, sharex=True, figsize=(15,10))
+    fig, axs = plt.subplots(len(borders), 1, sharex=True, figsize=(15, 10))
     for i, border in enumerate(borders):
         results_temp = results
         border_str = "border_" + str(border) + "_"
@@ -90,42 +302,77 @@ def plot_parameter_vs_location_block(results, path_to_results, borders, S_in, re
         # only values with specific S_in
         results_temp = results_temp[results_temp["S_in"] == S_in]
         # plot the T in
-        T_in = [float(results_temp.T_in_1.unique()) if obs < border else float(results_temp.T_in_2.unique()) for obs in np.arange(0,1010,10)]
-        axs[i].semilogy(np.arange(0,border,10), T_in[:len(np.arange(0,border,10))], linestyle="--", linewidth=5, marker="", label="high conductive part", color="#1f77b4")
-        axs[i].semilogy(np.arange(border,1010,10), T_in[len(np.arange(0,border,10)):], linestyle="--", linewidth=5, marker="", label="low conductive part", color="#ff7f0e")
-        axs[i].grid(which="major", color="white", linestyle=":")
+        T_in = [
+            float(results_temp.T_in_1.unique())
+            if obs < border
+            else float(results_temp.T_in_2.unique())
+            for obs in np.arange(0, 1010, 10)
+        ]
+        axs[i].semilogy(
+            np.arange(0, border, 10),
+            T_in[: len(np.arange(0, border, 10))],
+            linestyle="--",
+            linewidth=5,
+            marker="",
+            label="high conductive part",
+            color="#1f77b4",
+        )
+        axs[i].semilogy(
+            np.arange(border, 1010, 10),
+            T_in[len(np.arange(0, border, 10)) :],
+            linestyle="--",
+            linewidth=5,
+            marker="",
+            label="low conductive part",
+            color="#ff7f0e",
+        )
+        axs[i].grid(which="both", color="grey", linestyle=":")
         # for both recharges in one plot
-        results_temp_r1 = results_temp[results_temp["recharge"] == recharge1]
-        results_temp_r2 = results_temp[results_temp["recharge"] == recharge2]
-        axs[i].plot(results_temp_r1.obs_loc, results_temp_r1.T_out, label="derived Transmissivity, white noise", linewidth=3, marker="^", color="#2ca02c")
-        axs[i].plot(results_temp_r2.obs_loc, results_temp_r2.T_out, label="derived Transmissivity, mHM", linewidth=1, marker="*", color="#d62728")
+        colors = [
+            "#CC3810",
+            "#23E1D0",
+            ]
+        for recharge, color in zip(recharge_list, colors):
+            results_temp = results_temp[results_temp["recharge"] == recharge]
+            axs[i].plot(
+                results_temp.obs_loc,
+                results_temp.T_out,
+                label="derived Transmissivity, white noise",
+                linewidth=3,
+                marker="^",
+                color=color,
+            )
         # Remove horizontal space between axes
         fig.subplots_adjust(hspace=0.2)
-        #axs[i].set_title("Border at " + str(border) + " m")
-        axs[i].annotate("Boundary \n" + str(border), (border+10, 5e-4))
-        axs[i].axvline(x=border, color='black')
-        axs[i].spines['right'].set_visible(False)
-        axs[i].spines['top'].set_visible(False)
-        axs[i].spines['bottom'].set_visible(False)
-        axs[i].spines['left'].set_visible(True)
-        #axs[i].set_ylim(ymin=np.min(T_in + results_temp.T_out.tolist())*0.5, ymax=np.max(T_in + results_temp.T_out.tolist())*4)
+        # axs[i].set_title("Border at " + str(border) + " m")
+        axs[i].annotate("Boundary \n" + str(border), (border + 10, 5e-4))
+        axs[i].axvline(x=border, color="black")
+        #axs[i].spines["right"].set_visible(False)
+        #axs[i].spines["top"].set_visible(False)
+        #axs[i].spines["bottom"].set_visible(False)
+        #axs[i].spines["left"].set_visible(True)
+        # axs[i].set_ylim(ymin=np.min(T_in + results_temp.T_out.tolist())*0.5, ymax=np.max(T_in + results_temp.T_out.tolist())*4)
         axs[i].set_ylim(bottom=7e-5, top=5e-1)
-        axs[i].set_facecolor('#C0C0C0')
+        axs[i].set_facecolor(facecolor)
         # set second y achsis
-        #axs_twin = axs[i].twinx()
-        #axs_twin.bar(results_temp.obs_loc, results_temp.sigma_T)
-        #axs_twin.errorbar(results_temp.obs_loc, results_temp.T_out, results_temp.sigma_T, label="Border at " + str(border) + " m", marker="+")
-    fig.text(0.04, 0.5, 'Transmissivity $[m^2/s]$', va='center', rotation='vertical')
+        # axs_twin = axs[i].twinx()
+        # axs_twin.bar(results_temp.obs_loc, results_temp.sigma_T)
+        # axs_twin.errorbar(results_temp.obs_loc, results_temp.T_out, results_temp.sigma_T, label="Border at " + str(border) + " m", marker="+")
+    fig.text(0.04, 0.5, "Transmissivity $[m^2/s]$", va="center", rotation="vertical")
     plt.xlabel("location [m]")
     fig.suptitle("Derived Transmissivity vs input Transmissivity\n" + comment)
     plt.legend(loc="lower left")
-    axs[len(borders)-1].legend(loc='upper center', bbox_to_anchor=(0.5, -1),
-          fancybox=True, shadow=True, ncol=5)
+    axs[len(borders) - 1].legend(
+        loc="upper center", bbox_to_anchor=(0.5, -1), fancybox=True, shadow=True, ncol=5
+    )
     if saveimg == True:
         plt.savefig(path_to_results + "/" + comment + "T_vs_location.png", dpi=dpi)
-    #plt.show()
+    # plt.show()
 
-def plot_error_vs_tc(results, path_to_results, lims=None, locs=None, comment="", abs=True, yaxis="log"):
+
+def plot_error_vs_tc(
+    results, path_to_results, lims=None, locs=None, comment="", abs=True, yaxis="log"
+):
     """
     Plot errors of input and output parameters (S, T, tc) vs input tc.
     This results in 3 (S,T,tc) plots with multiple graphs according to the
@@ -306,7 +553,9 @@ def plot_errors_vs_loc_aggregate(
     plt.title(("Plot: " + error + ", " + "Aggregation: " + aggregate))
     plt.ylabel(error)
     plt.xlabel("location [m]")
-    plt.savefig(path_to_results + "/" + error + "-" + aggregate, bbox_inches="tight", dpi=dpi)
+    plt.savefig(
+        path_to_results + "/" + error + "-" + aggregate, bbox_inches="tight", dpi=dpi
+    )
     plt.close()
 
 
@@ -342,7 +591,7 @@ def plot_errors_vs_loc_hetero(obs, error_list, legend, ylabel, path, comment):
 
     for i, error in enumerate(error_list):
         plt.plot(obs, error, label=legend[i])
-    plt.hlines(0, 0, np.max(obs), colors='k', linestyles="dashed")
+    plt.hlines(0, 0, np.max(obs), colors="k", linestyles="dashed")
     plt.legend()
     plt.ylabel(ylabel)
     plt.title("Error vs location: " + os.path.basename(path))
@@ -467,7 +716,7 @@ def plot_heatmap(results, path_to_results, abs=True, comment=""):
         ax.invert_yaxis()
         # import matplotlib.ticker as ticker
         # tick_locator = ticker.MaxNLocator(12)
-        # ax.xaxis.set_major_locator(tick_locator)
+        # ax.xaxis.set__locator(tick_locator)
         # ax.yaxis.set_major_locator(tick_locator)
 
         fig = ax.get_figure()
@@ -505,7 +754,10 @@ def plot_heatmap(results, path_to_results, abs=True, comment=""):
             # plot heatmap
             plot(pivot_df_obs_loc_cut, error)
 
-def plot_parameter_vs_location(path_to_results, parameter, location, y_label, error=None):
+
+def plot_parameter_vs_location(
+    path_to_results, parameter, location, y_label, error=None
+):
     """
     Plots a list/array of parameters along location and saves it in path_to_results
 
@@ -540,12 +792,37 @@ def plot_parameter_vs_location(path_to_results, parameter, location, y_label, er
     plt.xlabel("location [m]")
     plt.ylabel(y_label)
     plt.title(os.path.basename(path_to_results))
-    plt.savefig(path_to_results + "/" + y_label + "_vs_location.png", bbox_inches="tight", dpi=300)
+    plt.savefig(
+        path_to_results + "/" + y_label + "_vs_location.png",
+        bbox_inches="tight",
+        dpi=300,
+    )
 
 
 if __name__ == "__main__":
     import pandas as pd
     import numpy as np
+
+    # execute the plot_eff_thickness_vs_connection_length_and_thickness
+    results = pd.read_csv("/Users/houben/phd/results/20191115_ogs_homogeneous_thickness/1_results_merge.csv")
+    path = "/Users/houben/phd/results/20191115_ogs_homogeneous_thickness"
+    obs_locs = [1000]
+    stors = 0.01
+    plot_eff_thickness_vs_connection_length_and_thickness(results, path, obs_locs, stors)
+
+
+    """
+    # execute plot_kf_vs_connection_length_and_thickness(results, path)
+    stors = [0.01, 0.0001]
+    obs_locs = [0, 50, 100, 200, 500, 800, 900, 950, 1000]
+    # obs_locs = [500]
+    results = pd.read_csv(
+        "/Users/houben/phd/results/20191115_ogs_homogeneous_thickness/1_results_merge.csv"
+    )
+    path = "/Users/houben/phd/results/20191115_ogs_homogeneous_thickness"
+    plot_k_vs_connection_length_and_thickness(results, path, obs_locs, stors)
+    """
+
 
     # plot_error_vs_tc(results, path_to_results, abs=True)
     # plot_errors_vs_loc(results, path_to_results)
@@ -565,6 +842,7 @@ if __name__ == "__main__":
     #        #print(err,agg,bins[i])
     #        plot_errors_vs_loc_aggregate(results, path_to_results, err, agg, bins[i], abs=True)
 
+    """
     ## execute plot_parameter_vs_location_block
     ## ----------------------------------------
 
@@ -572,22 +850,37 @@ if __name__ == "__main__":
     #borders = [700,710,720,730,740,750,760,770,780,790,800]
     #borders = [200,210,250,280,290,300,310,320,330,340,500]
     #borders = [110,120,130,140,150,160,170,180,190,200]
-    borders = [50,100,200,300,400,500,600,800,950,970,990]
-    recharge1 = "recharge_daily.txt"
-    recharge2 = "recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt"
-
+    #borders = [50,100,200,300,400,500,600,800,950,970,990]
+    #borders = [int(i) for i in np.linspace(10,990,99)]
+    #border =
+    facecolor = "None"
+    recharge_list = ["recharge_daily.txt"]#, "recharge_daily_30years_seconds_mm_mHM_estanis_danube.txt"]
     # configuration for 20190531_SA_hetero_block
-#    results = pd.read_csv("/Users/houben/phd/results/20190531_SA_hetero_block/results_merge.csv")
-#    path_to_results = "/Users/houben/phd/results/20190531_SA_hetero_block"
-#    plot_parameter_vs_location_block(results, path_to_results, borders=borders, S_in = 0.003, recharge1=recharge1, recharge2=recharge2, comment="S = 0.003")
+    results = pd.read_csv("/Users/houben/phd/results/20190531_SA_hetero_block/results_merge.csv")
+    path_to_results = "/Users/houben/phd/results/20190531_SA_hetero_block"
+    borders = [10,20,30,40,50, 200, 400, 500,600, 700, 990]
+    plot_parameter_vs_location_block(results, path_to_results, borders=borders, S_in = 0.003, recharge_list=recharge_list, comment="S_0.003_border_", facecolor=facecolor)
+
 
     # configuration for 20190717_SA_hetero_block_2
-#    results = pd.read_csv("/Users/houben/phd/results/20190717_SA_hetero_block_2/1_results_merge.csv")
-#    path_to_results = "/Users/houben/phd/results/20190717_SA_hetero_block_2"
-#    plot_parameter_vs_location_block(results, path_to_results, borders=borders, S_in = 0.3, recharge1=recharge1, recharge2=recharge2, comment="S = 0.3")
+    borders = [50,100,200,300,400,500,600,800,950,970,990]
+    results = pd.read_csv("/Users/houben/phd/results/20190717_SA_hetero_block_2/1_results_merge.csv")
+    path_to_results = "/Users/houben/phd/results/20190717_SA_hetero_block_2"
+    plot_parameter_vs_location_block(results, path_to_results, borders=borders, S_in = 0.3, recharge_list=recharge_list, comment="S_0.3_", facecolor=facecolor)
+
+    for i in range(0,10):
+        intervall = i * 100
+        start = 10 + intervall
+        end = 90 + intervall
+        borders = [int(i) for i in np.linspace(start,end,9)]
+        print(borders)
+        plot_parameter_vs_location_block(results, path_to_results, borders=borders, S_in = 0.003, recharge_list=recharge_list, comment="S_0.003_border_"+str(start)+"_"+str(end)+"_", facecolor=facecolor)
+        #plot_parameter_vs_location_block(results, path_to_results, borders=borders, S_in = 0.003, recharge_list=recharge_list, comment="S_0.003_border_"+str(start)+"_"+str(end)+"_", facecolor=facecolor)
+    """
 
 
-    # execute plot_baseflow_sa_vs_boundary_block
-    #import pandas as pd
-    #results = pd.read_csv("/Users/houben/phd/results/20190717_SA_hetero_block_2/combined_results/baseflow_results_merge.csv")
-    #plot_baseflow_sa_vs_boundary_block(results,"/Users/houben/phd/results/20190717_SA_hetero_block_2/combined_results/baseflow_results_merge.csv")
+
+# execute plot_baseflow_sa_vs_boundary_block
+# import pandas as pd
+# results = pd.read_csv("/Users/houben/phd/results/20190717_SA_hetero_block_2/combined_results/baseflow_results_merge.csv")
+# plot_baseflow_sa_vs_boundary_block(results,"/Users/houben/phd/results/20190717_SA_hetero_block_2/combined_results/baseflow_results_merge.csv")
