@@ -70,16 +70,18 @@ def plot_eff_thickness_vs_connection_length_and_thickness(results, path, obs_loc
     plt.figure(figsize=(16, 9))
     for thickness in sorted(results.aquifer_thickness.unique(), reverse=False):
         # plot the absolut effective thickness
-        #plt.plot(results.c_length_rel[results.aquifer_thickness == thickness], results.effective_thickness[results.aquifer_thickness == thickness], label=thickness, ls="", marker="*")
-        #plt.ylabel("absolut effecive thickness")
+        plt.plot(results.c_length_rel[results.aquifer_thickness == thickness], results.effective_thickness[results.aquifer_thickness == thickness], label=thickness, ls="", marker="*")
+        plt.ylabel("absolut effecive thickness")
+        plt.ylim(0,1100)
         # plot the relative effective thickness
-        plt.plot(results.c_length_rel[results.aquifer_thickness == thickness], results.effective_thickness[results.aquifer_thickness == thickness] / results.aquifer_thickness[results.aquifer_thickness == thickness], label=thickness, ls="", marker="*")
-        plt.ylabel("relative effecive thickness")
+        #plt.plot(results.c_length_rel[results.aquifer_thickness == thickness], results.effective_thickness[results.aquifer_thickness == thickness] / results.aquifer_thickness[results.aquifer_thickness == thickness], label=thickness, ls="", marker="*")
+        #plt.ylabel("relative effecive thickness")
+        #plt.ylim(0,1.1)
 
     plt.legend()
     plt.title("effective aquifer thickness derived from baseflow spectral analysis")
     plt.xlabel("connection length / aquifer thickness")
-    plt.ylim(0,1.1)
+    plt.savefig(path + "/abs_eff_thickness_vs_connection_length_by_aquifer_thickness.png")
     plt.show()
 
 

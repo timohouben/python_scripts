@@ -127,7 +127,7 @@ if __name__ == "__main__":
     print("alpha is: " + str(alpha))
 
     # fit on linear data
-    popt_lin, pcov_lin = discharge_ftf_linear_modified_fit_lin(frequency,np.log(power))
+    popt_lin, pcov_lin = discharge_ftf_linear_modified_fit_lin(frequency,np.log10(power))
     t_c_lin = popt_lin[0]
     print("t_c_lin is : " + str(t_c_lin))
     alpha_lin = popt_lin[1]
