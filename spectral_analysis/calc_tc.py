@@ -35,3 +35,5 @@ def calc_tc(L, S, T, which="linear"):
     if which == "dupuit":
         from numpy import pi
         return 4 * L ** 2 * S / pi ** 2 / T / 86400
+    else:
+        print("Parameter 'which' can only be 'linear' or 'dupuit'.")

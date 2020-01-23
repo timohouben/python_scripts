@@ -16,10 +16,10 @@ birkach = "/Users/houben/phd/application_spectral_analysis/main/gwms/data/birkac
 stegaurach = "/Users/houben/phd/application_spectral_analysis/main/gwms/data/stegaurach_quadratic.txt"
 strullendorf_west = "/Users/houben/phd/application_spectral_analysis/main/gwms/data/strull_west_quadratic.txt"
 strullendorf_nord = "/Users/houben/phd/application_spectral_analysis/main/gwms/data/strull_nord_quadratic.txt"
-xs = [4400,600,7000,5100]
-Ls = [4500,3000,8000,7800]
+xs = [25800,600,7000,5100]
+Ls = [35000,3000,8000,7800]
 names = [birkach, stegaurach, strullendorf_west, strullendorf_nord]
-name = stegaurach
+name = birkach
 x = 4400
 L = 4500
 m = None
@@ -27,7 +27,8 @@ n = None
 norm = False
 convergence = 0.01
 time_step_size = 86400
-cut_freq = 1e-6
+cut_freq = None
+combine_df = False
 
 
 # Load the data and take right part of it
@@ -48,26 +49,40 @@ recharge_df = pd.read_csv(
 )
 recharge_df["date"] = pd.to_datetime(recharge_df["date"])
 
-# combine dataframes and remove rows with nans
-combined_df = pd.merge_ordered(recharge_df, head_df, how="inner")
-date_min = combined_df["date"].min()
-date_max = combined_df["date"].max()
-period = combined_df["date"].max() - combined_df["date"].min()
-print("Start/end/length of series where head measurements and recharge overlap: " + str(date_min) + "/" + str(date_max) + "/" + str(period))
-recharge_time_series = combined_df["recharge"].tolist()
-# convert mm/d to recharge along the aquifer in m2/s
-recharge_time_series = [i / 86400 / 1000 * L for i in recharge_time_series]
-head_time_series = combined_df["head"].tolist()
 
+if combine_df is True:
+    # combine dataframes and remove rows with nans
+    combined_df = pd.merge_ordered(recharge_df, head_df, how="inner")
+    date_min = combined_df["date"].min()
+    date_max = combined_df["date"].max()
+    period = combined_df["date"].max() - combined_df["date"].min()
+    print("Start/end/length of series where head measurements and recharge overlap: " + str(date_min) + "/" + str(date_max) + "/" + str(period))
+    recharge_time_series = combined_df["recharge"].tolist()
+    # convert mm/d to recharge along the aquifer in m2/s
+    recharge_time_series = [i / 86400 / 1000 * L for i in recharge_time_series]
+    head_time_series = combined_df["head"].tolist()
+else:
+    recharge_time_series = recharge_df["recharge"].tolist()
+    head_time_series = head_df["head"].tolist()
 
 '''
 ####################################################################
 # artificial data to test the script
+# A) S = 0.5, T = 0.008???, L = 1000, x = 200, white noise
 recharge_time_series = np.loadtxt("/Users/houben/phd/modelling/20190318_spectral_analysis_homogeneous/models_test/1001_24.1127_5.00e-01_8.00e-02/rfd_curve#1.txt")
 head_time_series = np.loadtxt("/Users/houben/phd/modelling/20190318_spectral_analysis_homogeneous/models_test/1001_24.1127_5.00e-01_8.00e-02/head_ogs_obs_00200_mean.txt")
+x = 200
+# B) S = 1.1e-5, T = 1.0 e-3, L = 1000, x = 200, white noise
+recharge_time_series = np.loadtxt("/Users/houben/phd/modelling/20190304_spectral_analysis_homogeneous/models/100_sample2_351_1.10e-05_1.00e-03/rfd_curve#1.txt")
+head_time_series = np.loadtxt("/Users/houben/phd/modelling/20190304_spectral_analysis_homogeneous/models/100_sample2_351_1.10e-05_1.00e-03/head_ogs_obs_00200_mean.txt")
+x = 200
+# C) 1076_border_50_stor_0.0001_rech_mHM, S = 1e-4, T2 = 3e-2
+recharge_time_series = np.loadtxt("/Users/houben/phd/modelling/20190717_SA_hetero_block_2/1076_border_50_stor_0.0001_rech_mHM/rfd_curve#1_y_values.txt")
+head_time_series = np.loadtxt("/Users/houben/phd/modelling/20190717_SA_hetero_block_2/1076_border_50_stor_0.0001_rech_mHM/head_ogs_obs_00500_mean.txt")
+x = 500
+############
 L = 1000
 time_step_size = 86400
-x = 200
 convergence = 0.01
 m = None
 n = None
@@ -76,18 +91,29 @@ norm = False
 # limits for the spectrum plot
 lims_head = [(1e-9,6e-6),(1e-6,1e12)]
 lims_base = [(1e-9,6e-6),(1e-6,3e1)]
+# cut the data
+# cut_value of frequency
+begin_index = 0
+end_index = 5000
+shift = 5000
+#%matplotlib qt
+import matplotlib.pyplot as plt
+plt.plot(recharge_time_series)
+plt.show()
+recharge_time_series = recharge_time_series[begin_index:end_index]
+head_time_series = head_time_series[begin_index+shift:end_index+shift]
 ####################################################################
 '''
 
 # calculate the power spectrum: Shh, output to FIT with analy solution only!
-frequency, Shh = power_spectrum(
+frequency_output, Shh = power_spectrum(
     input=recharge_time_series,
     output=head_time_series,
     time_step_size=time_step_size,
     method="scipyffthalf",
     o_i="o",
 )
-frequency, Sww = power_spectrum(
+frequency_input, Sww = power_spectrum(
     input=recharge_time_series,
     output=head_time_series,
     time_step_size=time_step_size,
@@ -97,10 +123,10 @@ frequency, Sww = power_spectrum(
 
 # cut the spectra
 # cut_value of frequency
-cut_array = np.less(frequency, cut_freq)
-Sww = Sww[cut_array]
-Shh = Shh[cut_array]
-frequency = frequency[cut_array]
+#cut_array = np.less(frequency, cut_freq)
+#Sww = Sww[cut_array]
+#Shh = Shh[cut_array]
+#frequency = frequency[cut_array]
 
 
 # fit the power spectrum with the analytical solution
@@ -158,7 +184,7 @@ figtxt ="Derived Parameter:    S = %1.3e, T = %1.3e" % (
 # plot only spectrum of Shh
 plot_spectrum(
     [Shh],
-    frequency,
+    frequency_output,
     heading="head spectrum",
     labels=["power_spec_out"],
     path="/Users/houben/phd/application_spectral_analysis/main/gwms/data",
@@ -170,7 +196,7 @@ plot_spectrum(
 # plot only spectrum of Sww
 plot_spectrum(
     [Sww],
-    frequency,
+    frequency_input,
     heading="recharge spectrum",
     labels=["power_spec_out"],
     path="/Users/houben/phd/application_spectral_analysis/main/gwms/data",
@@ -191,5 +217,13 @@ plot_spectrum(
     lims=[(2e-9,7e-6),(1e-5,1e7)],
 )
 
+
+
+
+# get the characteristic time
 from calc_tc import calc_tc
-test = calc_tc(L,Sy,T,which="dupui")
+tc = calc_tc(L,Sy,T,which="dupuit")
+# define a (discharge constant)
+#a = np.pi ** 2 * T / (4 * L ** 2)
+# define tc (characteristic time scale)
+#tc = Sy / a

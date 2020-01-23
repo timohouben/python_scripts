@@ -207,7 +207,6 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
     a = np.pi ** 2 * T / (4 * L ** 2)
     # define tc (characteristic time scale)
     tc = Sy / a
-    print(tc)
 
     # check if distance to river is 0
     if x == L:
@@ -280,6 +279,7 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
     #print("Iterations for inner sum: " + str(counter_inner))
     #print("Iterations for outer sum: " + str(counter_inner))
 
+    print(str(tc))
     if norm == True:
         Shh_Sww = [value / Sww[i] for i, value in enumerate(Shh)]
         Shh_Sww = np.asarray(Shh_Sww)

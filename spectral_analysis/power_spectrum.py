@@ -65,7 +65,7 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
     """
     import numpy as np
 
-    if np.shape(input) != np.shape(output):
+    if np.shape(input) != np.shape(output) and o_i == "oi":
         raise ValueError("x and y must have same length.")
     if np.asarray(input).ndim != 1:
         raise ValueError("x and y must have dimension = 1.")
@@ -82,9 +82,10 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
         # first value was popped because frequencies are very low (=0) and cause errors while fitting
         power_spectrum_input = fftpack.fft(input)
         power_spectrum_output = fftpack.fft(output)
-        power_spectrum_result = power_spectrum_output / power_spectrum_input
-        power_spectrum_result = abs(power_spectrum_result[: int(round(len(power_spectrum_result) / 2))]) ** 2
-        power_spectrum_result = power_spectrum_result[1:]
+        if len_input == len_output:
+            power_spectrum_result = power_spectrum_output / power_spectrum_input
+            power_spectrum_result = abs(power_spectrum_result[: int(round(len(power_spectrum_result) / 2))]) ** 2
+            power_spectrum_result = power_spectrum_result[1:]
         frequency_input = (
             abs(fftpack.fftfreq(len_output, time_step_size))[
                 : int(round(len_output / 2))
@@ -106,9 +107,10 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
         spectrum = fftpack.fft(output)
         spectrum = abs(spectrum[: int(round(len(spectrum) / 2))]) ** 2
         power_spectrum_output = spectrum[1:]
-        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        if len_input == len_output:
+            power_spectrum_result = power_spectrum_output / power_spectrum_input
         frequency_input = (
-            abs(fftpack.fftfreq(len_output, time_step_size))[
+            abs(fftpack.fftfreq(len_input, time_step_size))[
                 : int(round(len_output / 2))
             ]
         )[1:]
@@ -128,7 +130,8 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
         frequency_output, power_spectrum_output = signal.welch(
             output, sampling_frequency, nperseg=nperseg, window="hamming"
         )
-        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        if len_input == len_output:
+            power_spectrum_result = power_spectrum_output / power_spectrum_input
 
     elif method == "scipyperio":
         from scipy import signal
@@ -143,7 +146,8 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
         frequency_input = frequency_input[1:]
         power_spectrum_input = power_spectrum_input[1:]
         power_spectrum_output = power_spectrum_output[1:]
-        power_spectrum_result = power_spectrum_output / power_spectrum_input
+        if len_input == len_output:
+            power_spectrum_result = power_spectrum_output / power_spectrum_input
     else:
         print("Method not valid.")
 
