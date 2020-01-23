@@ -87,7 +87,7 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
             power_spectrum_result = abs(power_spectrum_result[: int(round(len(power_spectrum_result) / 2))]) ** 2
             power_spectrum_result = power_spectrum_result[1:]
         frequency_input = (
-            abs(fftpack.fftfreq(len_output, time_step_size))[
+            abs(fftpack.fftfreq(len_input, time_step_size))[
                 : int(round(len_output / 2))
             ]
         )[1:]
@@ -111,7 +111,7 @@ def power_spectrum(input, output, time_step_size, method="scipyffthalf", o_i="oi
             power_spectrum_result = power_spectrum_output / power_spectrum_input
         frequency_input = (
             abs(fftpack.fftfreq(len_input, time_step_size))[
-                : int(round(len_output / 2))
+                : int(round(len_input / 2))
             ]
         )[1:]
         frequency_output = (
