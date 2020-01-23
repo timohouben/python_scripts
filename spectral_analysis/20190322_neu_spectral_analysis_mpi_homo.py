@@ -453,6 +453,11 @@ for i, project_folder in enumerate(project_folder_list):
                 norm=norm,
             )
 
+            print(Sww)
+            print(Shh)
+            print(Shh_fitted)
+            print(Shh_Sww)
+
             if norm == True:
                 data = np.vstack((Shh_Sww, Shh_fitted))
             elif norm == False:

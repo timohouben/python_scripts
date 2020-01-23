@@ -10,7 +10,7 @@ def shh_analytical_man(X, Sy, T, x, L, m=7, n=4, norm=False):
     """
     Function to analyticaly compute the power spectrum of head with a given
     spectrum of the coresponding recharge process Sww in a phreatic aquifer,
-    modeled by a linearized Boussinesq-Equation.
+    derived from a linearized Boussinesq-Equation.
     For further explanations see:
         Liang and Zhang, 2013. Temporal and spatial variation and scaling of
         groundwater levels in a bounded unconfined aquifer. Journal of
@@ -129,7 +129,7 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
     """
     Function to compute the analytical power spectrum of head with a given
     spectrum of the coresponding recharge process Sww in a phreatic aquifer,
-    modeled by a linearized Boussinesq-Equation.
+    derived from a linearized Boussinesq-Equation.
     For further explanations see:
         Liang and Zhang, 2013. Temporal and spatial variation and scaling of
         groundwater levels in a bounded unconfined aquifer. Journal of
@@ -184,7 +184,7 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
     Yields
     ------
     array
-        Power spectrum of groundwater head as function of omega
+        Power spectrum of groundwater head as function of omega.
 
 
     References
@@ -207,6 +207,7 @@ def shh_analytical(X, Sy, T, x, L, m=None, n=None, norm=False, convergence=0.01)
     a = np.pi ** 2 * T / (4 * L ** 2)
     # define tc (characteristic time scale)
     tc = Sy / a
+    print(tc)
 
     # check if distance to river is 0
     if x == L:
@@ -295,9 +296,9 @@ def shh_analytical_2015(
     Function to analytically compute the power spectrum of head with a given
     spectrum of the coresponding recharge process Sww AND a spectrum of a
     fluctuating river SHH AND a flux to the left boundary SQQ in a phreatic
-    aquifer, modelled by a linearized Boussinesq-Equation. Default values for SWW,
-    SQQ and SHH are "none". If data is provided the corresponding term will be
-    switched on and power spectrum of head (Shh) will be calculated.
+    aquifer, derived from a linearized Boussinesq-Equation. Default values for
+    SWW, SQQ and SHH are "none". If data is provided the corresponding term
+    will be switched on and power spectrum of head (Shh) will be calculated.
 
     For further explanations see:
         Liang and Zhang, 2015. Analyses of uncertainties and scaling of

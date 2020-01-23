@@ -28,7 +28,7 @@ from plot_power_spectra import plot_spectrum
 from get_obs import get_obs
 from get_ogs_parameters import get_ogs_parameters
 from shh_analytical import shh_analytical_fit, shh_analytical
-from plot_fitting_results import plot_errors_vs_loc
+from plot_fitting_results import plot_errors_vs_loc_homo
 
 
 # ------------------------------------------------------------------------------
@@ -37,12 +37,13 @@ from plot_fitting_results import plot_errors_vs_loc
 aquifer_length = 1000
 aquifer_thickness = 30
 which = "mean"
-m = 5
-n = 5
-comment = "eq_limits_"  # give a specific comment for the analysis e.g. "parameterset1_"
+m = None
+n = None
+comment = "TEST_"  # give a specific comment for the analysis e.g. "parameterset1_"
 # set cut index and limit recharge and head time series to the first #cut_index values
 # set it to None to take all values
 cut_index = None
+convergence = 0.1
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------s
 
@@ -173,6 +174,7 @@ for i, project_folder in enumerate(project_folder_list):
             + which
             + ".txt"
         )
+        print(head_time_series)
         # do some preprocessing on time series
         # ------------------------------------
 
@@ -206,6 +208,7 @@ for i, project_folder in enumerate(project_folder_list):
             Shh=Shh,
             f=frequency,
             x=obs_loc,
+            convergence=convergence,
             m=m,
             n=n,
             L=aquifer_length,
