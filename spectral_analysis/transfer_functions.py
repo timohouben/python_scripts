@@ -98,7 +98,8 @@ def discharge_ftf_linear_modified_fit(frequency, spectrum):
 
 def discharge_ftf(f, d, aquifer_length):
     """
-    This method computes the discharge frequency transfer function.
+    This method computes the discharge frequency transfer function for a Dupuit
+    aquifer.
     For further reading see
     Anna Russian et al. 2013:
         Temporal scaling of groundwater discharge in dual and multicontinuum
@@ -167,8 +168,8 @@ def discharge_ftf_fit(input, output, time_step_size, aquifer_length, method='sci
         The power spectrum.
     frequency : 1D array
         The coresponding frequencies.
-    t_c : float
-        The characteristic time of the aquifer after Russian et al. 2013
+#    t_c : float
+#        The characteristic time of the aquifer after Russian et al. 2013
     D : float
         The aquifer diffusivity [m^2/s].
     """

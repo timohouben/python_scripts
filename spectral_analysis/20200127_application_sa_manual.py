@@ -24,42 +24,37 @@ birkach_r = "/Users/houben/phd/application_spectral_analysis/main/recharge/44160
 stegaurach_r = "/Users/houben/phd/application_spectral_analysis/main/recharge/4416000.0_5526000.0_stegaurach_recharge.txt"
 strullendorf_west_r = "/Users/houben/phd/application_spectral_analysis/main/recharge/4424000.0_5522000.0_strullendorf_west_recharge.txt"
 strullendorf_nord_r = "/Users/houben/phd/application_spectral_analysis/main/recharge/4424000.0_5526000.0_strullendorf_nord_recharge.txt"
-names_h = ["Birkach", "Stegaurach", "Strullendorf_West", "Strullendorf_Nord"]
-names_r = ["Birkach", "Stegaurach", "Strullendorf_West", "Strullendorf_Nord"]
-# set A alt
+names_h = ["birkach", "stegaurach", "strullendorf_west", "strullendorf_nord"]
+names_r = ["birkach", "stegaurach", "strullendorf_west", "strullendorf_nord"]
 xs = [25800, 600, 7000, 1000]
 Ls = [35000, 3000, 8000, 900]
-# set B alt
-xs = [2580, 6000, 70000, 10000]
-Ls = [3500, 30000, 80000, 9000]
-# set farthest
-xs = [27500, 4700, 7000, 36000]
-Ls = [37000, 4500, 7860, 38500]
-# set nearest
-xs = [500, 1700, 150, 5600]
-Ls = [2800, 2000, 800, 8100]
-# set gis nearest
-xs = [304, 2100, 220, 4100]
-Ls = [2528, 2405, 968, 6032]
-# set gis farthest
-xs = [12000, 4500, 7250, 5600]
-Ls = [17102, 4619, 7910, 8100]
+xs = [2300, 2200, 1400, 1100]
+Ls = [12000, 2400, 2000, 3000]
+xs = [50, 2200, 1400, 1100]
+Ls = [100, 2400, 2000, 3000]
 paths_h = [birkach_h, stegaurach_h, strullendorf_west_h, strullendorf_nord_h]
 paths_r = [birkach_r, stegaurach_r, strullendorf_west_r, strullendorf_nord_r]
+#path_r = strullendorf_west_r
+#path_h = strullendorf_west_h
+#name_h = "strullendorf_west_h"
+#name_r = "strullendorf_west_r"
+#x = 15000
+#L = 20000
 m = None
 n = None
 norm = False
 convergence = 0.01
 time_step_size = 86400
-# cut higher frequencies than cut_freq_higher
-cut_freq_higher = 1e-4
-# cut lower frequencies than cut_freq_lower
-cut_freq_lower = 1e-6
+cut_freq = 1e-4
 combine_df = False
 detrend_ts = True
 
+Sy = 0.01
+T = 0.00001
+
+
 for name_h, path_h, name_r, path_r, x, L in zip(names_h, paths_h, names_r, paths_r, xs, Ls):
-    print("Currently fitting: " + str(name_h) + " ...")
+    print("Currently fitting: " + str(name_h))
     # Load the data
     head_df = pd.read_csv(
         path_h,
@@ -91,20 +86,21 @@ for name_h, path_h, name_r, path_r, x, L in zip(names_h, paths_h, names_r, paths
     else:
         recharge_time_series = recharge_df["recharge"].tolist()
         head_time_series = head_df["head"].tolist()
-        # modify the time series so that both have same length
-        # assume: recharge is longest
-        recharge_time_series = recharge_time_series[-len(head_time_series):]
 
     if detrend_ts is True:
         head_time_series = detrend(head_time_series)
-        recharge_time_series = detrend(recharge_time_series)
     else:
         pass
 
-    # convert mm/d to recharge along the aquifer in m2/s
+    # convert recharge from mm/d to m/s
     recharge_time_series = [i / 86400 / 1000 for i in recharge_time_series]
 
-    '''
+    # modify the time series so that both have same length
+    # assume: recharge is longest
+    recharge_time_series = recharge_time_series[-len(head_time_series):]
+
+
+    #'''
     ####################################################################
     # artificial data to test the script
     # A) S = 0.5, T = 0.008???, L = 1000, x = 200, white noise
@@ -116,9 +112,9 @@ for name_h, path_h, name_r, path_r, x, L in zip(names_h, paths_h, names_r, paths
     head_time_series = np.loadtxt("/Users/houben/phd/modelling/20190304_spectral_analysis_homogeneous/models/100_sample2_351_1.10e-05_1.00e-03/head_ogs_obs_00200_mean.txt")
     x = 200
     # C) 1076_border_50_stor_0.0001_rech_mHM, S = 1e-4, T2 = 3e-2
-    #recharge_time_series = np.loadtxt("/Users/houben/phd/modelling/20190717_SA_hetero_block_2/1076_border_50_stor_0.0001_rech_mHM/rfd_curve#1_y_values.txt")
-    #head_time_series = np.loadtxt("/Users/houben/phd/modelling/20190717_SA_hetero_block_2/1076_border_50_stor_0.0001_rech_mHM/head_ogs_obs_00500_mean.txt")
-    #x = 500
+    recharge_time_series = np.loadtxt("/Users/houben/phd/modelling/20190717_SA_hetero_block_2/1076_border_50_stor_0.0001_rech_mHM/rfd_curve#1_y_values.txt")
+    head_time_series = np.loadtxt("/Users/houben/phd/modelling/20190717_SA_hetero_block_2/1076_border_50_stor_0.0001_rech_mHM/head_ogs_obs_00500_mean.txt")
+    x = 500
     ############
     L = 1000
     time_step_size = 86400
@@ -133,8 +129,8 @@ for name_h, path_h, name_r, path_r, x, L in zip(names_h, paths_h, names_r, paths
     # cut the data
     # cut_value of frequency
     begin_index = 0
-    end_index = 10000
-    shift = 0
+    end_index = 5000
+    shift = 5000
     #%matplotlib qt
     import matplotlib.pyplot as plt
     #plt.plot(recharge_time_series)
@@ -142,7 +138,7 @@ for name_h, path_h, name_r, path_r, x, L in zip(names_h, paths_h, names_r, paths
     recharge_time_series = recharge_time_series[begin_index:end_index]
     head_time_series = head_time_series[begin_index+shift:end_index+shift]
     ####################################################################
-    '''
+    #'''
 
     # calculate the power spectrum: Shh, output to FIT with analy solution only!
     frequency_output, Shh = power_spectrum(
@@ -159,47 +155,6 @@ for name_h, path_h, name_r, path_r, x, L in zip(names_h, paths_h, names_r, paths
         method="scipyffthalf",
         o_i="i",
     )
-
-    # cut higher frequencies than cut_freq_higher
-    cut_array_higher = np.less(frequency_input, cut_freq_higher)
-    Sww = Sww[cut_array_higher]
-    Shh = Shh[cut_array_higher]
-    frequency_input = frequency_input[cut_array_higher]
-    frequency_output = frequency_output[cut_array_higher]
-    # cut lower frequencies than cut_freq_lower
-    cut_array_lower = np.invert(np.less(frequency_input, cut_freq_lower))
-    Sww = Sww[cut_array_lower]
-    Shh = Shh[cut_array_lower]
-    frequency_input = frequency_input[cut_array_lower]
-    frequency_output = frequency_output[cut_array_lower]
-
-
-    # fit the power spectrum with the analytical solution
-    try:
-        popt, pcov = shh_analytical_fit(
-            Sww=Sww,
-            Shh=Shh,
-            f=frequency_input,
-            x=x,
-            m=m,
-            n=n,
-            L=L,
-            norm=False,
-            convergence=convergence,
-        )
-    except RuntimeError:
-        print("Optimal parameters not found...")
-        popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
-        print("popt and pcov have been set to np.nan")
-    except ValueError:
-        print("either ydata or xdata contain NaNs, or if incompatible options are used")
-        popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
-    except OptimizeWarning:
-        print("Covariance of the parameters could not be estimated.")
-        #popt, pcov = [np.nan, np.nan], [[np.nan, np.nan],[np.nan, np.nan]]
-
-    Sy = abs(popt[0])
-    T = abs(popt[1])
 
     # calculate the fitted power spectra
     Shh_fitted = shh_analytical(
@@ -229,37 +184,35 @@ for name_h, path_h, name_r, path_r, x, L in zip(names_h, paths_h, names_r, paths
     ]
     linestyle = ["-", "-"]
     marker = ["", "d"]
-    figtxt ="Derived Parameter:    S = %1.3e, T = %1.3e [m2/s], tc = %1.3e [d]\nInput Parameter:        L = %0.0f, x = %0.0f" % (
+    figtxt ="Derived Parameter:    S = %1.3e, T = %1.3e, tc = %1.3e" % (
         Sy,
         T,
-        tc,
-        L,
-        x
+        tc
     )
-    print("Currently plotting: " + str(name_h) + " ...")
+    print("Currently plotting: " + str(name_h))
     # plot only spectrum of Shh
-    plot_spectrum(
-        [Shh],
-        frequency_output,
-        heading="Shh - Head Power Spectrum " + name_h,
-        labels=["Shh obs"],
-        path=save_path,
-        linestyle=["-"],
-        marker=[""],
-        lims=[(2e-9,7e-6),(1e-5,1e7)],
-        name="Shh_" + name_h
-    )
+#    plot_spectrum(
+#        [Shh],
+#        frequency_output,
+#        heading="head spectrum " + name_h,
+#        labels=["power_spec_out"],
+#        path=save_path,
+#        linestyle=["-"],
+#        marker=[""],
+#        lims=[(2e-9,7e-6),(1e-5,1e7)],
+#        name="Shh_" + name_h
+#    )
 
     # plot only spectrum of Sww
     plot_spectrum(
         [Sww],
         frequency_input,
-        heading="Sww - Recharge Power Spectrum  " + name_r,
-        labels=["Sww mHM"],
+        heading="recharge spectrum " + name_r,
+        labels=["power_spec_out"],
         path=save_path,
         linestyle=["-"],
         marker=[""],
-        lims=[(2e-9,7e-6),(1e-20,1e-9)],
+        lims=[(2e-9,7e-6),(1e-10,1e4)],
         name="Sww_" + name_r
     )
 
@@ -267,12 +220,13 @@ for name_h, path_h, name_r, path_r, x, L in zip(names_h, paths_h, names_r, paths
     plot_spectrum(
         data,
         frequency_input,
-        heading="Shh - Head Power Spectrum " + name_h,
-        labels=["Shh obs", "Shh fit"],
+        heading="Shh and fited spectrum",
+        labels=["power_spec_out", "analytical fit"],
         path=save_path,
         linestyle=["-", " "],
         marker=["", "*"],
         figtxt=figtxt,
-        lims=[(2e-9,7e-6),(1e-7,1e8)],
-        name="Shh_fitted_" + name_h + "_R_" + name_r + "_L_" + str(L) + "_x_" + str(x)
+        #lims=[(2e-9,7e-6),(1e-5,1e7)],
+        name="Shh_fitted_" + name_h + "_" + name_r + "_L_" + str(L) + "_x_" + str(x)
     )
+    break

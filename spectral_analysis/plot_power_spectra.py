@@ -15,6 +15,7 @@ def plot_spectrum(
     lims=None,
     linestyle="-",
     marker="",
+    #markersize=None,
     grid="both",
     unit="[Hz]",
     heading="None",
@@ -76,8 +77,9 @@ def plot_spectrum(
             linewidth=1,
             linestyle=linestyle,
             marker=marker,
+            #markersize=markersize,
         )
-    else:
+    elif (np.ndim(data) != 1) & (np.ndim(frequency) == 1):
         for i, spectrum in enumerate(data):
             plt.loglog(
                 frequency,
@@ -86,6 +88,18 @@ def plot_spectrum(
                 linewidth=1,
                 linestyle=linestyle[i],
                 marker=marker[i],
+                #markersize=markersize[i],
+            )
+    else:
+        for i, spectrum in enumerate(data):
+            plt.loglog(
+                frequency[i],
+                spectrum,
+                label=labels[i],
+                linewidth=1,
+                linestyle=linestyle[i],
+                marker=marker[i],
+                #markersize=markersize[i],
             )
     plt.grid(which=grid, color="grey", linestyle="-", linewidth=0.2)
     if lims != None:
