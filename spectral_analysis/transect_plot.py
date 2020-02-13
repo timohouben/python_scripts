@@ -197,7 +197,7 @@ def plot_head_timeseries_vs_recharge(path, which="mean"):
     ax1.legend(handles, labels, loc=6, facecolor="white", framealpha=100)
 
     fig.tight_layout()
-    plt.show()
+    #plt.show()
     # make a string from list obs_per_plot
     fig.savefig(
         str(path)

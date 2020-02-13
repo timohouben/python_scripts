@@ -4,6 +4,31 @@
 from __future__ import division
 
 # ------------------------------------------------------------------------------
+
+def aggregate_series(series, n):
+    """
+    Takes the mean of n entries in a series. If len(series) % n != 0 remaining
+    values will be popped.
+
+    Parameters
+    ----------
+
+    series : 1D array
+        Series to aggregate.
+    n : integer
+        Number of entries to aggregate to.
+    """
+    import numpy as np
+
+    series_agg = []
+    len_series_agg = len(series) // n
+    for i in range(len_series_agg):
+        mean_n = np.mean(series[n*i:n*(i+1)])
+        series_agg.append(mean_n)
+        print(mean_n)
+    series_agg = np.asarray(series_agg)
+    return series_agg
+
 def identify_numbers_from_string(string, index=None):
     """
     Pass a string and return a list of numbers in this string.
@@ -242,3 +267,18 @@ if __name__ == "__main__":
     pass
     # test for combine_results()
     # combine_results("/Users/houben/Desktop/TEST_combine")
+
+    # test for def aggregate_series(series, n)
+    import numpy as np
+    np.random.seed(199)
+    series = np.random.randint(0,100,100)
+    n = 99
+    test_array = []
+    for i in range(len(series) // n):
+        test_array.append(np.mean(series[i*n:(i+1)*n]))
+    test_array = np.asarray(test_array)
+    series_agg = aggregate_series(series, n)
+    if np.all(test_array == series_agg):
+        print("Test bestanden!")
+    else:
+        print("Test nicht bestanden!")
